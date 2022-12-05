@@ -8,5 +8,8 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [require('tailwindcss-question-mark')],
-}
+  plugins: [
+    require("tailwindcss-question-mark"),
+    require("prettier-plugin-tailwindcss"),
+  ],
+};
