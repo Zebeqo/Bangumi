@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@types/node': 18.11.10
+  '@types/node': 18.11.11
   '@types/react': 18.0.26
   '@types/react-dom': 18.0.9
   '@typescript-eslint/eslint-plugin': ^5.45.0
@@ -24,7 +24,7 @@ specifiers:
   zod: ^3.19.1
 
 dependencies:
-  '@types/node': 18.11.10
+  '@types/node': 18.11.11
   '@types/react': 18.0.26
   '@types/react-dom': 18.0.9
   autoprefixer: 10.4.13_postcss@8.4.19
@@ -277,8 +277,8 @@ packages:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
     dev: false
 
-  /@types/node/18.11.10:
-    resolution: {integrity: sha512-juG3RWMBOqcOuXC643OAdSA525V44cVgGV6dUDuiFtss+8Fk5x1hI93Rsld43VeJVIeqlP9I7Fn9/qaVqoEAuQ==}
+  /@types/node/18.11.11:
+    resolution: {integrity: sha512-KJ021B1nlQUBLopzZmPBVuGU9un7WJd/W4ya7Ih02B4Uwky5Nja0yGYav2EfYIk0RR2Q9oVhf60S2XR1BCWJ2g==}
     dev: false
 
   /@types/prop-types/15.7.5:
