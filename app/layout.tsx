@@ -1,9 +1,14 @@
 import "@/styles/globals.css";
-export default function RootLayout({
+import { ClientSessionProvider } from "./SessionProvider";
+import { unstable_getServerSession } from "next-auth/next";
+import { authOptions } from "@/lib/auth";
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await unstable_getServerSession(authOptions);
+
   return (
     <html lang="en">
       {/*
@@ -11,7 +16,11 @@ export default function RootLayout({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body>{children}</body>
+      <body>
+        <ClientSessionProvider session={session}>
+          {children}
+        </ClientSessionProvider>
+      </body>
     </html>
   );
 }
