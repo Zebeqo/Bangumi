@@ -1,5 +1,5 @@
 import "@/styles/globals.css";
-import { ClientSessionProvider } from "./SessionProvider";
+import { ClientSessionProvider } from "@/components/auth/SessionProvider";
 import { unstable_getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
 export default async function RootLayout({

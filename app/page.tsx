@@ -1,5 +1,5 @@
 import { unstable_getServerSession } from "next-auth/next";
-import { SignIn } from "./SignIn";
+import { Sign } from "./Sign";
 import { authOptions } from "@/lib/auth";
 
 export default async function Page() {
@@ -7,7 +7,7 @@ export default async function Page() {
   return (
     <>
       <h1 className="text-3xl font-bold underline ?">Hello, Next.js!</h1>
-      <SignIn />
+      <Sign />
       <div>{JSON.stringify(session, null, 2)}</div>
     </>
   );
