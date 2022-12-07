@@ -12,6 +12,10 @@
   ],
   "rules": {
     "@typescript-eslint/consistent-type-imports": "warn",
-    "@typescript-eslint/consistent-type-exports": "warn"
+    "@typescript-eslint/consistent-type-exports": "warn",
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      { "checksVoidReturn": { "attributes": false } }
+    ]
   }
 }
