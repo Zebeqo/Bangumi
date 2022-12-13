@@ -1,3 +1,7 @@
+/* eslint-disable */
+const { toRadixVars } = require("windy-radix-palette/vars");
+const radixColors = require("@radix-ui/colors");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -6,10 +10,24 @@ module.exports = {
     "./ui/**/*.{ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        bangumi: "#f09199",
+        primary: toRadixVars("red"),
+        accent: toRadixVars("cyan"),
+        neutral: toRadixVars("mauve"),
+      },
+    },
   },
   plugins: [
     require("tailwindcss-question-mark"),
     require("prettier-plugin-tailwindcss"),
+    require("windy-radix-palette")({
+      colors: {
+        red: radixColors.red,
+        cyan: radixColors.cyan,
+        mauve: radixColors.mauve,
+      },
+    }),
   ],
 };
