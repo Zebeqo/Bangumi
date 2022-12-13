@@ -5,5 +5,11 @@
   ],
   "constraints": {
     "pnpm": "7"
-  }
+  },
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["major"],
+      "dependencyDashboardApproval": true
+    }
+  ]
 }
