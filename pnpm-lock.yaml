@@ -4,22 +4,22 @@ specifiers:
   '@types/node': 18.11.11
   '@types/react': 18.0.26
   '@types/react-dom': 18.0.9
-  '@typescript-eslint/eslint-plugin': ^5.45.0
-  '@typescript-eslint/parser': ^5.45.0
-  autoprefixer: ^10.4.13
+  '@typescript-eslint/eslint-plugin': 5.45.0
+  '@typescript-eslint/parser': 5.45.0
+  autoprefixer: 10.4.13
   eslint: 8.29.0
   eslint-config-next: 13.0.6
-  husky: ^8.0.0
-  lint-staged: ^13.1.0
+  husky: 8.0.0
+  lint-staged: 13.1.0
   next: 13.0.6
-  next-auth: ^4.18.0
-  postcss: ^8.4.19
-  prettier: ^2.8.0
-  prettier-plugin-tailwindcss: ^0.2.0
+  next-auth: 4.18.0
+  postcss: 8.4.19
+  prettier: 2.8.0
+  prettier-plugin-tailwindcss: 0.2.0
   react: 18.2.0
   react-dom: 18.2.0
-  tailwindcss: ^3.2.4
-  tailwindcss-question-mark: ^0.1.1
+  tailwindcss: 3.2.4
+  tailwindcss-question-mark: 0.1.1
   typescript: 4.9.4
   zod: ^3.19.1
 
@@ -43,7 +43,7 @@ dependencies:
 devDependencies:
   '@typescript-eslint/eslint-plugin': 5.45.0_lanalmh4wdvf2ldh3psw5tivce
   '@typescript-eslint/parser': 5.45.0_ha6vam6werchizxrnqvarmz2zu
-  husky: 8.0.2
+  husky: 8.0.0
   lint-staged: 13.1.0
   prettier: 2.8.0
   prettier-plugin-tailwindcss: 0.2.0_prettier@2.8.0
@@ -1454,8 +1454,8 @@ packages:
     engines: {node: '>=12.20.0'}
     dev: true
 
-  /husky/8.0.2:
-    resolution: {integrity: sha512-Tkv80jtvbnkK3mYWxPZePGFpQ/tT3HNSs/sasF9P2YfkMezDl3ON37YN6jUUI4eTg5LcyVynlb6r4eyvOmspvg==}
+  /husky/8.0.0:
+    resolution: {integrity: sha512-4qbE/5dzNDNxFEkX9MNRPKl5+omTXQzdILCUWiqG/lWIAioiM5vln265/l6I2Zx8gpW8l1ukZwGQeCFbBZ6+6w==}
     engines: {node: '>=14'}
     hasBin: true
     dev: true
