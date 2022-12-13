@@ -35,6 +35,6 @@
     "husky": "8.0.2",
     "lint-staged": "13.1.0",
     "prettier": "2.8.1",
-    "prettier-plugin-tailwindcss": "0.2.0"
+    "prettier-plugin-tailwindcss": "0.2.1"
   }
 }
