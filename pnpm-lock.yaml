@@ -8,6 +8,7 @@ specifiers:
   "@typescript-eslint/eslint-plugin": 5.46.1
   "@typescript-eslint/parser": 5.46.1
   autoprefixer: 10.4.13
+  clsx: ^1.2.1
   eslint: 8.29.0
   eslint-config-next: 13.0.6
   husky: 8.0.2
@@ -19,6 +20,7 @@ specifiers:
   prettier-plugin-tailwindcss: 0.2.1
   react: 18.2.0
   react-dom: 18.2.0
+  tailwind-merge: ^1.8.0
   tailwindcss: 3.2.4
   tailwindcss-question-mark: 0.1.1
   typescript: 4.9.4
@@ -40,6 +42,7 @@ devDependencies:
   "@typescript-eslint/eslint-plugin": 5.46.1_imrg37k3svwu377c6q7gkarwmi
   "@typescript-eslint/parser": 5.46.1_ha6vam6werchizxrnqvarmz2zu
   autoprefixer: 10.4.13_postcss@8.4.20
+  clsx: 1.2.1
   eslint: 8.29.0
   eslint-config-next: 13.0.6_ha6vam6werchizxrnqvarmz2zu
   husky: 8.0.2
@@ -47,6 +50,7 @@ devDependencies:
   postcss: 8.4.20
   prettier: 2.8.1
   prettier-plugin-tailwindcss: 0.2.1_prettier@2.8.1
+  tailwind-merge: 1.8.0
   tailwindcss: 3.2.4_postcss@8.4.20
   tailwindcss-question-mark: 0.1.1
   typescript: 4.9.4
@@ -1001,6 +1005,14 @@ packages:
         integrity: sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==,
       }
     dev: false
+
+  /clsx/1.2.1:
+    resolution:
+      {
+        integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==,
+      }
+    engines: { node: ">=6" }
+    dev: true
 
   /color-convert/2.0.1:
     resolution:
@@ -3694,6 +3706,13 @@ packages:
     dependencies:
       "@pkgr/utils": 2.3.1
       tslib: 2.4.1
+    dev: true
+
+  /tailwind-merge/1.8.0:
+    resolution:
+      {
+        integrity: sha512-tER/2SbYRdfPYg6m4pDWZSlbymLTmDi+dx4iCsJmgmz4UDGzgnVelOvBe3GNtGCw9Bmc4MiObfJJbKeVL+KnMQ==,
+      }
     dev: true
 
   /tailwindcss-question-mark/0.1.1:
