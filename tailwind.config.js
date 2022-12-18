@@ -9,6 +9,7 @@ module.exports = {
     "./components/**/*.{ts,tsx}",
     "./ui/**/*.{ts,tsx}",
   ],
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
