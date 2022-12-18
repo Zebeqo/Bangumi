@@ -25,8 +25,11 @@ module.exports = {
     require("windy-radix-palette")({
       colors: {
         red: radixColors.red,
+        redDark: radixColors.redDark,
         cyan: radixColors.cyan,
+        cyanDark: radixColors.cyanDark,
         mauve: radixColors.mauve,
+        mauveDark: radixColors.mauveDark,
       },
     }),
   ],
