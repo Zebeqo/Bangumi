@@ -23,6 +23,7 @@ module.exports = {
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "@storybook/addon-storysource",
+    "storybook-dark-mode",
   ],
   framework: {
     name: "@storybook/nextjs",

@@ -11,4 +11,9 @@ export const parameters = {
   nextjs: {
     appDirectory: true,
   },
+  darkMode: {
+    darkClass: "dark",
+    lightClass: "light",
+    stylePreview: true,
+  },
 };
