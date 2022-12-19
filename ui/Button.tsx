@@ -32,7 +32,9 @@ export const Button: React.FC<ButtonProps> = ({ type, color, label, icon }) => (
   >
     {label && <ButtonPrimitive.Label>{label}</ButtonPrimitive.Label>}
     {icon && (
-      <ButtonPrimitive.Icon className={cn("h-5", "w-5", label && "mr-2")}>
+      <ButtonPrimitive.Icon
+        className={cn("h-5 w-5", label ? "mr-2" : "h-6 w-6")}
+      >
         {icon}
       </ButtonPrimitive.Icon>
     )}
