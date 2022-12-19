@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { ButtonPrimitive } from "./ButtonPrimitive";
-import { BangumiRawIcon } from "@/ui/icon/BangumiRawIcon";
+import { BangumiRawIcon } from "@/ui/icon/20/BangumiRawIcon";
 import { BoltIcon } from "@heroicons/react/20/solid";
 const meta: Meta<typeof ButtonPrimitive> = {
   title: "_ButtonPrimitive",
