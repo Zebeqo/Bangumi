@@ -7,7 +7,7 @@ module.exports = {
       // 👇 The titlePrefix field will generate automatic titles for your stories
       titlePrefix: "UI",
       // 👇 Storybook will load all files that contain the stories extension
-      files: "*.stories.*",
+      files: "**/*.stories.*",
     },
     {
       // 👇 The directory field sets the directory your stories
@@ -15,7 +15,7 @@ module.exports = {
       // 👇 The titlePrefix field will generate automatic titles for your stories
       titlePrefix: "Components",
       // 👇 Storybook will load all files that contain the stories extension
-      files: "*.stories.*",
+      files: "**/*.stories.*",
     },
   ],
   addons: [
