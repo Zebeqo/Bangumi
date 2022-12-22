@@ -1,5 +1,6 @@
 import "@/styles/globals.css";
-import { ClientSessionProvider } from "@/components/auth/SessionProvider";
+import SessionProvider from "@/components/provider/SessionProvider";
+import JotaiProvider from "@/components/provider/JotaiProvider";
 import { unstable_getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
 export default async function RootLayout({
@@ -16,10 +17,11 @@ export default async function RootLayout({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body>
-        <ClientSessionProvider session={session}>
-          {children}
-        </ClientSessionProvider>
+
+      <body className="bg-neutral-1">
+        <JotaiProvider>
+          <SessionProvider session={session}>{children}</SessionProvider>
+        </JotaiProvider>
       </body>
     </html>
   );
