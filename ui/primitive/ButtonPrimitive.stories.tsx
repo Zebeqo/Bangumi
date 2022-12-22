@@ -63,3 +63,25 @@ export const PrimaryWithCustomIcon: Story = {
     </ButtonPrimitive>
   ),
 };
+
+export const PrimaryWithCustomIconWidthFull: Story = {
+  render: () => (
+    <ButtonPrimitive className="inline-flex w-full items-center rounded-md bg-primary-9 px-4 py-2 font-medium text-white hover:bg-primary-10">
+      <ButtonPrimitive.Label>Button</ButtonPrimitive.Label>
+      <ButtonPrimitive.Icon className="mr-2 h-5 w-5">
+        <BangumiRawIcon />
+      </ButtonPrimitive.Icon>
+    </ButtonPrimitive>
+  ),
+};
+
+export const ItemButtonSelected: Story = {
+  render: () => (
+    <ButtonPrimitive className="inline-flex w-full items-center rounded-md  bg-primary-5 px-4  py-2 font-medium text-primary-11 ">
+      <ButtonPrimitive.Label>Button</ButtonPrimitive.Label>
+      <ButtonPrimitive.Icon className="mr-2 h-5 w-5">
+        <BangumiRawIcon />
+      </ButtonPrimitive.Icon>
+    </ButtonPrimitive>
+  ),
+};
