@@ -1,11 +1,15 @@
 import { Header } from "@/components/Header";
+import { Sidebar } from "@/components/Sidebar";
 
-export default function Layout() {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div>
       {/* @ts-expect-error Server Component */}
       <Header />
-      <div className="h-[1px] w-full bg-primary-6"></div>
+      <div className="flex flex-row ">
+        <Sidebar />
+        <div className="ml-52 w-full">{children}</div>
+      </div>
     </div>
   );
 }
