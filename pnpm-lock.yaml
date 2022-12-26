@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   "@heroicons/react": 2.0.13
+  "@next/font": ^13.1.1
   "@radix-ui/colors": 0.1.8
   "@radix-ui/react-dropdown-menu": 2.0.1
   "@storybook/addon-essentials": 7.0.0-beta.12
@@ -49,6 +50,7 @@ specifiers:
 
 dependencies:
   "@heroicons/react": 2.0.13_react@18.2.0
+  "@next/font": 13.1.1
   "@radix-ui/react-dropdown-menu": 2.0.1_ib3m5ricvtkl2cll7qpr2f6lvq
   class-variance-authority: 0.4.0_typescript@4.9.4
   create-slots: 0.6.1_react@18.2.0
@@ -2415,6 +2417,13 @@ packages:
     dependencies:
       glob: 7.1.7
     dev: true
+
+  /@next/font/13.1.1:
+    resolution:
+      {
+        integrity: sha512-amygRorS05hYK1/XQRZo5qBl7l2fpHnezeKU/cNveWU5QJg+sg8gMGkUXHtvesNKpiKIJshBRH1TzvO+2sKpvQ==,
+      }
+    dev: false
 
   /@next/swc-android-arm-eabi/13.1.1:
     resolution:

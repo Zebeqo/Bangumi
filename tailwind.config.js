@@ -12,6 +12,9 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["var(--font-noto-sans-sc)"],
+      },
       colors: {
         bangumi: "#f09199",
         primary: toRadixVars("red"),
