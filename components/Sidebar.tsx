@@ -2,7 +2,7 @@
 import {
   ArchiveBoxIcon,
   ArchiveBoxXMarkIcon,
-  CalendarIcon,
+  CalendarDaysIcon,
   ChartBarIcon,
   FireIcon,
   InboxArrowDownIcon,
@@ -17,7 +17,7 @@ const headerItems = [
   {
     name: "每日放送",
     href: "/calendar",
-    icon: <CalendarIcon />,
+    icon: <CalendarDaysIcon />,
   },
   {
     name: "当前最热",
