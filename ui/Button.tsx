@@ -1,6 +1,5 @@
 import type { VariantProps } from "class-variance-authority";
 import { cva } from "class-variance-authority";
-import { ButtonPrimitive } from "@/ui/primitive/ButtonPrimitive";
 import type { Color } from "@/lib/colorWrapper";
 import { colorWrapper } from "@/lib/colorWrapper";
 import { cn } from "@/lib/utils";
@@ -29,11 +28,16 @@ const button = cva(
   }
 );
 
-export interface ButtonProps extends VariantProps<typeof button> {
+type ButtonVariantProps = VariantProps<typeof button>;
+
+export interface ButtonProps
+  extends Pick<ButtonVariantProps, "width">,
+    Required<Omit<ButtonVariantProps, "width">> {
   color: Color;
   label?: string;
   icon?: React.ReactNode;
   onClick?: () => void;
+  revert?: boolean;
 }
 export const Button: React.FC<ButtonProps> = ({
   type,
@@ -42,21 +46,26 @@ export const Button: React.FC<ButtonProps> = ({
   icon,
   onClick,
   width = "auto",
+  revert = false,
 }) => (
-  <ButtonPrimitive
+  <button
     className={cn(
       colorWrapper(button({ type, width }), color),
       !label && "px-2"
     )}
     onClick={onClick}
   >
-    {label && <ButtonPrimitive.Label>{label}</ButtonPrimitive.Label>}
+    {revert && label && <span>{label}</span>}
     {icon && (
-      <ButtonPrimitive.Icon
-        className={cn("h-5 w-5", label ? "mr-2" : "h-6 w-6")}
+      <span
+        className={cn(
+          "h-5 w-5",
+          label ? (revert ? "ml-2" : "mr-2") : "h-6 w-6"
+        )}
       >
         {icon}
-      </ButtonPrimitive.Icon>
+      </span>
     )}
-  </ButtonPrimitive>
+    {!revert && label && <span>{label}</span>}
+  </button>
 );
