@@ -16,7 +16,7 @@ import Link from "next/link";
 const headerItems = [
   {
     name: "每日放送",
-    href: "/calendar",
+    href: "/calendar/today",
     icon: <CalendarDaysIcon />,
   },
   {
@@ -76,9 +76,9 @@ export function Sidebar() {
               // Sidebar.Item
               <Link href={item.href} key={item.name}>
                 <Button
-                  color={path === item.href ? "primary" : "neutral"}
+                  color={path?.startsWith(item.href) ? "primary" : "neutral"}
                   label={item.name}
-                  type={path === item.href ? "selected" : "ghost"}
+                  type={path?.startsWith(item.href) ? "selected" : "ghost"}
                   icon={item.icon}
                   width="full"
                 />
@@ -98,9 +98,13 @@ export function Sidebar() {
                     // Sidebar.Item
                     <Link href={item.href} key={item.name}>
                       <Button
-                        color={path === item.href ? "primary" : "neutral"}
+                        color={
+                          path?.startsWith(item.href) ? "primary" : "neutral"
+                        }
                         label={item.name}
-                        type={path === item.href ? "selected" : "ghost"}
+                        type={
+                          path?.startsWith(item.href) ? "selected" : "ghost"
+                        }
                         icon={item.icon}
                         width="full"
                       />
