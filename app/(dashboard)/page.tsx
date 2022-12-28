@@ -1,3 +1,7 @@
+import { redirect } from "next/navigation";
+
 export default function Page() {
-  return <div className="h-[1920px]"></div>;
+  redirect("/calendar/today");
+
+  return <></>;
 }

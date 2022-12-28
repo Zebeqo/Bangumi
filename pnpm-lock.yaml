@@ -37,6 +37,7 @@ specifiers:
   prettier-plugin-tailwindcss: 0.2.1
   react: 18.2.0
   react-dom: 18.2.0
+  react-wrap-balancer: ^0.2.4
   storybook: 7.0.0-beta.12
   storybook-dark-mode: 2.0.4
   style-loader: 3.3.1
@@ -59,6 +60,7 @@ dependencies:
   next-auth: 4.18.7_q76c2b4vyoegvsbrcwkfvimnai
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-wrap-balancer: 0.2.4_react@18.2.0
   tailwindcss-radix: 2.6.1
   zod: 3.20.2
 
@@ -12914,6 +12916,17 @@ packages:
       react: 18.2.0
       refractor: 3.6.0
     dev: true
+
+  /react-wrap-balancer/0.2.4_react@18.2.0:
+    resolution:
+      {
+        integrity: sha512-MVL9/Tw1X72t0i5Y/2j3YmSx1vkJJ22b5Vb+vZ/IOEdq7r9JPNzTfnfkB8wrl98Jwx+F6VCwJXmU7a1lT5PtCA==,
+      }
+    peerDependencies:
+      react: ^18.0.0
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /react/18.2.0:
     resolution:
