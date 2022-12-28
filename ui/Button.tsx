@@ -50,11 +50,11 @@ export const Button: React.FC<ButtonProps> = ({
   <button
     className={cn(
       colorWrapper(button({ type, width }), color),
-      !label && "px-2"
+      !label && "px-2",
+      revert && "flex-row-reverse"
     )}
     onClick={onClick}
   >
-    {revert && label && <span>{label}</span>}
     {icon && (
       <span
         className={cn(
@@ -65,6 +65,6 @@ export const Button: React.FC<ButtonProps> = ({
         {icon}
       </span>
     )}
-    {!revert && label && <span>{label}</span>}
+    {label && <span>{label}</span>}
   </button>
 );
