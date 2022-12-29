@@ -1,27 +1,70 @@
 import Image from "next/image";
 import {
-  BookmarkIcon,
   CalendarDaysIcon,
-  StarIcon,
+  ClockIcon,
   TableCellsIcon,
 } from "@heroicons/react/20/solid";
 import { Badges } from "@/ui/Badget";
-import Balancer from "react-wrap-balancer";
 import { Rating } from "@/ui/Rating";
 import { Button } from "@/ui/Button";
 import {
   ChatBubbleLeftRightIcon,
   InformationCircleIcon,
 } from "@heroicons/react/24/outline";
+import { z } from "zod";
 
-export function Card() {
+const subjectScheme = z.object({
+  date: z.string(),
+  images: z.object({
+    large: z.string().url(),
+    common: z.string().url(),
+  }),
+  name: z.string(),
+  name_cn: z.string(),
+  tags: z.array(
+    z.object({
+      name: z.string(),
+      count: z.number(),
+    })
+  ),
+  rating: z.object({
+    score: z.number(),
+    total: z.number(),
+  }),
+  collection: z.object({
+    doing: z.number(),
+    on_hold: z.number(),
+    dropped: z.number(),
+    wish: z.number(),
+    collect: z.number(),
+  }),
+  eps: z.number(),
+});
+
+async function getSubjectData(id: number) {
+  return subjectScheme.parse(
+    await fetch(`https://api.bgm.tv/v0/subjects/${id}`, {
+      next: {
+        revalidate: 3600,
+      },
+    }).then((res) => res.json())
+  );
+}
+
+interface CardProps {
+  id: number;
+}
+
+export async function Card({ id }: CardProps) {
+  const { date, images, name, name_cn, tags, rating, collection, eps } =
+    await getSubjectData(id);
   return (
     <div className="group flex w-[30rem] cursor-pointer select-none overflow-hidden rounded-2xl outline outline-1 outline-neutral-7">
       {/*Card.Image*/}
       <div className="relative aspect-[75/106] h-full">
         <Image
           className="object-cover"
-          src="https://lain.bgm.tv/pic/cover/l/b7/58/302286_s3o3E.jpg"
+          src={images.common}
           alt=""
           fill={true}
         />
@@ -31,12 +74,12 @@ export function Card() {
         {/*Card.Header*/}
         <div className="flex justify-between">
           {/*Card.Title*/}
-          <div>
-            <div className="text-xl font-bold text-neutral-12">
-              死神 千年血战篇
+          <div className="w-48">
+            <div className="truncate text-xl font-bold text-neutral-12">
+              {name_cn || name}
             </div>
-            <div className="text-xs font-medium text-neutral-11">
-              BLEACH 千年血戦篇
+            <div className="truncate text-xs font-medium text-neutral-11">
+              {name}
             </div>
           </div>
           {/*Card.HoverButton*/}
@@ -60,49 +103,48 @@ export function Card() {
             <span className="h-4 w-4">
               <CalendarDaysIcon />
             </span>
-            <span>2022-10-10</span>
+            <span>{date}</span>
           </div>
           {/*Card.InfoItem*/}
           <div className="flex items-center space-x-2 text-xs font-medium text-neutral-11">
             <span className="h-4 w-4">
               <TableCellsIcon />
             </span>
-            <span>13集</span>
+            <span>{eps} 集</span>
           </div>
           {/*Card.InfoItem*/}
           <div className="flex items-center space-x-2 text-xs font-medium text-neutral-11">
             <span className="h-4 w-4">
-              <BookmarkIcon />
+              <ClockIcon />
             </span>
-            <span>2937 人收藏</span>
+            <span>{collection.doing} 人在看</span>
           </div>
         </div>
         {/*Card.TagGroup*/}
-        <div className="pt-1 pb-2 leading-loose">
-          <Balancer>
-            <Badges color="primary" label="2022年10月" />
-            <Badges color="primary" label="BLEACH" />
-            <Badges color="primary" label="死神" />
-            <Badges color="primary" label="TV" />
-            <Badges color="primary" label="热血" />
-            <Badges color="primary" label="漫改" />
-            <Badges color="primary" label="StudioPierrot" />
-            <Badges color="primary" label="漫画改" />
-          </Balancer>
+        <div className="h-[4.6rem] overflow-hidden py-1 leading-loose">
+          {/*<Balancer>*/}
+          {tags.slice(0, 10).map((tag, index) => (
+            <Badges key={index} color="primary" label={tag.name} />
+          ))}
+          {/*</Balancer>*/}
         </div>
         {/*Card.Footer*/}
         <div className="flex justify-between">
           {/*Card.Rating*/}
           <div className="flex space-x-3">
             {/*Card.RatingPoint*/}
-            <div className="text-4xl font-bold text-accent-11">8.0</div>
+            <div className="text-4xl font-bold text-accent-11">
+              {rating.score}
+            </div>
             <div className="flex flex-col justify-center space-y-1">
               {/*Card.RatingStar*/}
               <div>
-                <Rating point={8} />
+                <Rating point={rating.score} />
               </div>
               {/*Rating.RatingDescription*/}
-              <div className="text-xs text-neutral-11">791 人评分</div>
+              <div className="text-xs text-neutral-11">
+                {rating.total} 人评分
+              </div>
             </div>
           </div>
           {/*Card.Status*/}
