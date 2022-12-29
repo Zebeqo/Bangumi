@@ -12,7 +12,8 @@ const button = cva(
         primary: "bg-primary-9 text-white hover:bg-primary-10",
         secondary:
           "bg-primary-4 text-primary-11 hover:bg-primary-5 active:bg-primary-6",
-        outline: "border border-primary-6 bg-primary-1 text-primary-11",
+        outline:
+          "border border-primary-7 bg-primary-1 text-primary-11 hover:bg-primary-4 active:bg-primary-5",
         ghost: "text-primary-11 hover:bg-primary-4 active:bg-primary-5",
         selected: "bg-primary-5 text-primary-11",
       },
