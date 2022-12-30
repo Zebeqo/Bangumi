@@ -94,7 +94,7 @@ export const ItemButton: Story = {
     label: "Button",
     type: "ghost",
     icon: <BoltIcon />,
-    width: "full",
+    className: "w-full justify-start",
   },
 };
 
@@ -104,6 +104,6 @@ export const ItemButtonSelected: Story = {
     label: "Button",
     type: "selected",
     icon: <BoltIcon />,
-    width: "full",
+    className: "w-full justify-start",
   },
 };

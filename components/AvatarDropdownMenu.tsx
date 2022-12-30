@@ -63,14 +63,14 @@ export const AvatarDropdownMenu = ({ imageURL }: { imageURL: string }) => (
           <DropdownMenuPrimitive.Item
             key={i}
             onSelect={handleSelect}
-            className="focus:outline-none"
+            className="outline-none"
           >
             <Button
               color="neutral"
               icon={icon}
               type="ghost"
               label={label}
-              width="full"
+              className="w-full justify-start"
             />
           </DropdownMenuPrimitive.Item>
         ))}
