@@ -1,11 +1,13 @@
 "use client";
 import { Button } from "@/ui/Button";
 import {
-  ChevronUpDownIcon,
   AdjustmentsHorizontalIcon,
+  ArrowsUpDownIcon,
 } from "@heroicons/react/20/solid";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
+import { SortDropdownMenu } from "@/components/SortDropdownMenu";
+
 const navItems = [
   {
     name: "今日",
@@ -43,20 +45,21 @@ const navItems = [
 
 export function Subnav() {
   const path = usePathname();
+  const searchParams = useSearchParams();
   return (
     <div className="flex justify-between px-16">
-      <Button
-        color="neutral"
-        type="outline"
-        label="默认"
-        icon={<ChevronUpDownIcon />}
-        revert
-      />
       <div className="flex space-x-1">
         {navItems.map((item) => {
           return (
             // Sidebar.Item
-            <Link href={item.href} key={item.name}>
+            <Link
+              href={
+                searchParams.toString()
+                  ? `${item.href}?${searchParams.toString()}`
+                  : `${item.href}`
+              }
+              key={item.name}
+            >
               <Button
                 color="neutral"
                 label={item.name}
@@ -66,12 +69,15 @@ export function Subnav() {
           );
         })}
       </div>
-      <Button
-        color="neutral"
-        type="outline"
-        label="过滤"
-        icon={<AdjustmentsHorizontalIcon />}
-      />
+      <div className="flex space-x-2">
+        <SortDropdownMenu />
+        {/*<Button*/}
+        {/*  color="neutral"*/}
+        {/*  type="outline"*/}
+        {/*  label="过滤"*/}
+        {/*  icon={<AdjustmentsHorizontalIcon />}*/}
+        {/*/>*/}
+      </div>
     </div>
   );
 }
