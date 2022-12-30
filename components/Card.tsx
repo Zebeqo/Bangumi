@@ -42,7 +42,7 @@ const subjectScheme = z.object({
 });
 
 async function getSubjectData(id: number) {
-  return subjectScheme.parse(
+  return subjectScheme.safeParse(
     await fetch(`https://api.bgm.tv/v0/subjects/${id}`, {
       next: {
         revalidate: 3600,
@@ -56,8 +56,13 @@ interface CardProps {
 }
 
 export async function Card({ id }: CardProps) {
+  const result = await getSubjectData(id);
+  if (!result.success) {
+    return null;
+  }
   const { date, images, name, name_cn, tags, rating, collection, eps } =
-    await getSubjectData(id);
+    result.data;
+
   return (
     <div className="group flex w-[30rem] cursor-pointer select-none overflow-hidden rounded-2xl outline outline-1 outline-neutral-7">
       {/*Card.Image*/}
