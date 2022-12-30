@@ -1,9 +1,5 @@
 "use client";
 import { Button } from "@/ui/Button";
-import {
-  AdjustmentsHorizontalIcon,
-  ArrowsUpDownIcon,
-} from "@heroicons/react/20/solid";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { SortDropdownMenu } from "@/components/SortDropdownMenu";
@@ -71,12 +67,6 @@ export function Subnav() {
       </div>
       <div className="flex space-x-2">
         <SortDropdownMenu />
-        {/*<Button*/}
-        {/*  color="neutral"*/}
-        {/*  type="outline"*/}
-        {/*  label="过滤"*/}
-        {/*  icon={<AdjustmentsHorizontalIcon />}*/}
-        {/*/>*/}
       </div>
     </div>
   );
