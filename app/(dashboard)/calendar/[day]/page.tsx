@@ -39,7 +39,7 @@ export default async function Page({
   searchParams,
 }: {
   params: { day: string };
-  searchParams: SearchParams;
+  searchParams?: SearchParams;
 }) {
   if (
     ![

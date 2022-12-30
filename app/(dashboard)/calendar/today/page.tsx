@@ -15,7 +15,7 @@ async function getCalendarData() {
 export default async function Page({
   searchParams,
 }: {
-  searchParams: SearchParams;
+  searchParams?: SearchParams;
 }) {
   const calendarData = await getCalendarData();
   const todayData = calendarData.find(
