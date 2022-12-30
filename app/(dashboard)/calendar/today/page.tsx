@@ -23,6 +23,11 @@ const calendarScheme = z.array(
             large: z.string().url(),
           })
           .nullable(),
+        collection: z
+          .object({
+            doing: z.number(),
+          })
+          .optional(),
       })
     ),
   })
@@ -38,19 +43,48 @@ async function getCalendarData() {
   );
 }
 
-export default async function Page() {
+interface SearchParams {
+  sort?: "do" | "count" | "rating";
+  order?: "asc" | "desc";
+}
+
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: SearchParams;
+}) {
   const calendarData = await getCalendarData();
   const todayData = calendarData.find(
     (data) => data.weekday.id === [7, 1, 2, 3, 4, 5, 6].at(new Date().getDay())
   );
+
+  const sortedData = todayData?.items.sort((a, b) => {
+    if (searchParams.sort === "do") {
+      return searchParams.order === "asc"
+        ? (a.collection?.doing ?? 0) - (b.collection?.doing ?? 0)
+        : (b.collection?.doing ?? 0) - (a.collection?.doing ?? 0);
+    }
+    if (searchParams.sort === "count") {
+      return searchParams.order === "asc"
+        ? (a.rating?.total ?? 0) - (b.rating?.total ?? 0)
+        : (b.rating?.total ?? 0) - (a.rating?.total ?? 0);
+    }
+    if (searchParams.sort === "rating") {
+      return searchParams.order === "asc"
+        ? (a.rating?.score ?? 0) - (b.rating?.score ?? 0)
+        : (b.rating?.score ?? 0) - (a.rating?.score ?? 0);
+    }
+    return searchParams.order === "asc"
+      ? (a.collection?.doing ?? 0) - (b.collection?.doing ?? 0)
+      : (b.collection?.doing ?? 0) - (a.collection?.doing ?? 0);
+  });
+
   return (
     <>
-      {todayData?.items.map((data) => {
-        return (
-          /* @ts-expect-error Server Component */
-          <Card key={data.id} id={data.id} />
-        );
-      })}
+      {sortedData?.map((item) => (
+        /* @ts-expect-error Server Component */
+        <Card key={item.id} id={item.id} />
+      ))}
     </>
   );
 }
