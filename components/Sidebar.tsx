@@ -80,7 +80,7 @@ export function Sidebar() {
                   label={item.name}
                   type={path?.startsWith(item.href) ? "selected" : "ghost"}
                   icon={item.icon}
-                  width="full"
+                  className="w-full justify-start"
                 />
               </Link>
             );
@@ -106,7 +106,7 @@ export function Sidebar() {
                           path?.startsWith(item.href) ? "selected" : "ghost"
                         }
                         icon={item.icon}
-                        width="full"
+                        className="w-full justify-start"
                       />
                     </Link>
                   );
