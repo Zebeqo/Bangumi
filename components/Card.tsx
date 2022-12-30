@@ -74,7 +74,7 @@ export async function Card({ id }: CardProps) {
         {/*Card.Header*/}
         <div className="flex justify-between">
           {/*Card.Title*/}
-          <div className="w-48">
+          <div className="w-52">
             <div className="truncate text-xl font-bold text-neutral-12">
               {name_cn || name}
             </div>
@@ -134,7 +134,7 @@ export async function Card({ id }: CardProps) {
           <div className="flex space-x-3">
             {/*Card.RatingPoint*/}
             <div className="text-4xl font-bold text-accent-11">
-              {rating.score}
+              {rating.score.toFixed(1)}
             </div>
             <div className="flex flex-col justify-center space-y-1">
               {/*Card.RatingStar*/}
