@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import type { SearchParams } from "@/lib/calendar";
 import { calendarScheme, sortCalendarData } from "@/lib/calendar";
 
-export function generateStaticPaths() {
+export function generateStaticParams() {
   return [
     { day: "monday" },
     { day: "tuesday" },
