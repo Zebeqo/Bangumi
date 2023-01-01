@@ -3,17 +3,17 @@ import { redirect } from "next/navigation";
 import type { SearchParams } from "@/lib/calendar";
 import { calendarScheme, sortCalendarData } from "@/lib/calendar";
 
-export function generateStaticParams() {
-  return [
-    { day: "monday" },
-    { day: "tuesday" },
-    { day: "wednesday" },
-    { day: "thursday" },
-    { day: "friday" },
-    { day: "saturday" },
-    { day: "sunday" },
-  ];
-}
+// export function generateStaticParams() {
+//   return [
+//     { day: "monday" },
+//     { day: "tuesday" },
+//     { day: "wednesday" },
+//     { day: "thursday" },
+//     { day: "friday" },
+//     { day: "saturday" },
+//     { day: "sunday" },
+//   ];
+// }
 
 const dayMap = {
   monday: 1,
