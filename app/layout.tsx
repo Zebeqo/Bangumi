@@ -1,9 +1,9 @@
 import "@/styles/globals.css";
 import SessionProvider from "@/components/provider/SessionProvider";
-import JotaiProvider from "@/components/provider/JotaiProvider";
 import { unstable_getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
 import { Noto_Sans_SC } from "@next/font/google";
+import { StateProvider } from "@/components/provider/StateProvider";
 
 const notoSansSC = Noto_Sans_SC({
   variable: "--font-noto-sans-sc",
@@ -28,9 +28,9 @@ export default async function RootLayout({
       <head />
 
       <body className="bg-neutral-1">
-        <JotaiProvider>
+        <StateProvider>
           <SessionProvider session={session}>{children}</SessionProvider>
-        </JotaiProvider>
+        </StateProvider>
       </body>
     </html>
   );
