@@ -15,9 +15,11 @@ import {
 import Image from "next/image";
 import { Badges } from "@/ui/Badget";
 import { subjectScheme } from "@/lib/subject";
-import { useQuery } from "@tanstack/react-query";
-import { InboxArrowDownIcon } from "@heroicons/react/20/solid";
+import { useIsFetching, useQuery } from "@tanstack/react-query";
+import { ChevronDownIcon, InboxArrowDownIcon } from "@heroicons/react/20/solid";
 import { atom } from "jotai/vanilla";
+import { collectionScheme, collectionTypeMap } from "@/lib/collection";
+import { useSession } from "next-auth/react";
 
 export const showFullInfoAtom = atom(false);
 export function Panel() {
@@ -25,19 +27,34 @@ export function Panel() {
   const [showFullInfo, setShowFullInfo] = useAtom(showFullInfoAtom);
   const [isClamped, setIsClamped] = useState(false);
   const descriptionRef = useRef<HTMLParagraphElement>(null);
+  const isFetching = useIsFetching();
+  const { data: session } = useSession();
 
-  const { data, isFetching } = useQuery({
+  const { data: subjectData } = useQuery({
     queryKey: ["subject", selectedPanel?.id],
-    queryFn: async ({ queryKey }) => {
-      const [, id] = queryKey;
-      if (!id) {
+    queryFn: async () => {
+      if (!selectedPanel?.id) {
         return null;
       }
-      const response = await fetch(`https://api.bgm.tv/v0/subjects/${id}`);
+      const response = await fetch(
+        `https://api.bgm.tv/v0/subjects/${selectedPanel.id}`
+      );
       return subjectScheme.parse(await response.json());
     },
-    enabled: selectedPanel !== null,
     keepPreviousData: true,
+  });
+
+  const { data: collectionData } = useQuery({
+    queryKey: ["collection", selectedPanel?.id, session?.user.id],
+    queryFn: async () => {
+      if (!selectedPanel?.id || !session?.user.id) {
+        return null;
+      }
+      const response = await fetch(
+        `https://api.bgm.tv/v0/users/${session.user.id}/collections/${selectedPanel.id}`
+      );
+      return collectionScheme.parse(await response.json());
+    },
   });
 
   return (
@@ -75,7 +92,7 @@ export function Panel() {
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            {data && !isFetching ? (
+            {subjectData && !isFetching ? (
               <DialogPrimitive.Content
                 forceMount
                 className="fixed top-[50%] left-[50%] z-50 flex w-[1040.62px] -translate-x-[50%] -translate-y-[50%] flex-col space-y-4 rounded-lg border border-neutral-6 bg-neutral-1 px-8 py-6 outline-none"
@@ -100,10 +117,10 @@ export function Panel() {
                     {/*InfoPanel.TitleGroup*/}
                     <div className="flex flex-col">
                       <DialogPrimitive.Title className="text-lg font-bold text-neutral-12">
-                        {data.name_cn}
+                        {subjectData.name_cn}
                       </DialogPrimitive.Title>
                       <span className="text-xs font-medium text-neutral-11">
-                        {data.name}
+                        {subjectData.name}
                       </span>
                     </div>
                   </div>
@@ -122,7 +139,7 @@ export function Panel() {
                 <div className="flex min-h-[384px] space-x-4">
                   {/*InfoPanel.InfoImage*/}
                   <Image
-                    src={data.images.large}
+                    src={subjectData.images.large}
                     className="min-h-[384px] flex-shrink-0 self-center overflow-hidden rounded-xl object-cover"
                     alt=""
                     width={288}
@@ -141,17 +158,17 @@ export function Panel() {
                           label="评分"
                         />
                         <span className="text-4xl font-bold text-accent-11">
-                          {data.rating.score}
+                          {subjectData.rating.score}
                         </span>
                         <span className="text-xs text-neutral-11">
-                          {data.rating.total} 人评分
+                          {subjectData.rating.total} 人评分
                         </span>
                       </div>
                       {/*InfoPanel.InfoContentDivider*/}
                       <div className="h-full w-px bg-neutral-6"></div>
                       {/*InfoPanel.TagGroup*/}
                       <div className="max-w-[564px] leading-loose">
-                        {data.tags.map(({ count, name }, index) => (
+                        {subjectData.tags.map(({ count, name }, index) => (
                           <Badges key={index} label={name} count={count} />
                         ))}
                       </div>
@@ -179,17 +196,31 @@ export function Panel() {
                                 "hover:cursor-pointer hover:font-medium"
                         )}
                       >
-                        {data.summary}
+                        {subjectData.summary}
                       </DialogPrimitive.Description>
                     </div>
                     {/*InfoPanel.InfoContentFooter*/}
                     <div className="flex space-x-2 p-2">
-                      <Button
-                        color={"neutral"}
-                        type={"primary"}
-                        icon={<InboxArrowDownIcon />}
-                        label="收藏"
-                      />
+                      {collectionData?.type ? (
+                        <Button
+                          color={"accent"}
+                          type={"outline"}
+                          icon={<ChevronDownIcon />}
+                          label={
+                            collectionTypeMap[
+                              collectionData.type as keyof typeof collectionTypeMap
+                            ]
+                          }
+                          revert
+                        />
+                      ) : (
+                        <Button
+                          color={"neutral"}
+                          type={"primary"}
+                          icon={<InboxArrowDownIcon />}
+                          label="收藏"
+                        />
+                      )}
                     </div>
                   </div>
                 </div>
