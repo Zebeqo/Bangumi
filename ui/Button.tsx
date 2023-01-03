@@ -28,7 +28,7 @@ export interface ButtonProps
   extends React.HTMLAttributes<HTMLButtonElement>,
     Required<ButtonVariantProps> {
   color: Color;
-  label?: string;
+  label?: string | React.ReactNode;
   icon?: React.ReactNode;
   revert?: boolean;
 }
@@ -54,7 +54,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           {icon}
         </span>
       )}
-      {label && <span>{label}</span>}
+      <span className="whitespace-nowrap">{label}</span>
     </button>
   )
 );
