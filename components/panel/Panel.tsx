@@ -2,7 +2,7 @@
 
 import { Transition } from "@headlessui/react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { Fragment } from "react";
+import { Fragment, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { useAtom } from "jotai/react";
 import { selectedPanelAtom } from "@/lib/panel";
@@ -23,6 +23,8 @@ export const showFullInfoAtom = atom(false);
 export function Panel() {
   const [selectedPanel, setSelectedPanelAtom] = useAtom(selectedPanelAtom);
   const [showFullInfo, setShowFullInfo] = useAtom(showFullInfoAtom);
+  const [isClamped, setIsClamped] = useState(false);
+  const descriptionRef = useRef<HTMLParagraphElement>(null);
 
   const { data, isFetching } = useQuery({
     queryKey: ["subject", selectedPanel?.id],
@@ -42,7 +44,10 @@ export function Panel() {
     <DialogPrimitive.Root
       open={selectedPanel !== null}
       onOpenChange={(open) => {
-        !open && setSelectedPanelAtom(null);
+        if (!open) {
+          setSelectedPanelAtom(null);
+          setIsClamped(false);
+        }
       }}
     >
       <DialogPrimitive.Portal forceMount>
@@ -154,14 +159,24 @@ export function Panel() {
                     {/*InfoPanel.InfoContentBody*/}
                     <div className=" flex-grow whitespace-pre-wrap px-4 text-sm text-neutral-12  ">
                       <DialogPrimitive.Description
+                        ref={descriptionRef}
+                        onMouseEnter={() => {
+                          if (descriptionRef.current) {
+                            setIsClamped(
+                              descriptionRef.current.scrollHeight >
+                                descriptionRef.current.clientHeight
+                            );
+                          }
+                        }}
                         onClick={() => {
-                          setShowFullInfo(true);
+                          isClamped && setShowFullInfo(true);
                         }}
                         className={cn(
                           "line-clamp-8",
                           showFullInfo
                             ? "line-clamp-none"
-                            : "hover:cursor-pointer hover:font-medium"
+                            : isClamped &&
+                                "hover:cursor-pointer hover:font-medium"
                         )}
                       >
                         {data.summary}
