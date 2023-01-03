@@ -7,39 +7,9 @@ import {
 import { Badges } from "@/ui/Badget";
 import { Rating } from "@/ui/Rating";
 import { Button } from "@/ui/Button";
-import {
-  ChatBubbleLeftRightIcon,
-  InformationCircleIcon,
-} from "@heroicons/react/24/outline";
-import { z } from "zod";
-
-const subjectScheme = z.object({
-  date: z.string(),
-  images: z.object({
-    large: z.string().url(),
-    common: z.string().url(),
-  }),
-  name: z.string(),
-  name_cn: z.string(),
-  tags: z.array(
-    z.object({
-      name: z.string(),
-      count: z.number(),
-    })
-  ),
-  rating: z.object({
-    score: z.number(),
-    total: z.number(),
-  }),
-  collection: z.object({
-    doing: z.number(),
-    on_hold: z.number(),
-    dropped: z.number(),
-    wish: z.number(),
-    collect: z.number(),
-  }),
-  eps: z.number(),
-});
+import { ChatBubbleLeftRightIcon } from "@heroicons/react/24/outline";
+import { InfoButton } from "@/components/InfoButton";
+import { subjectScheme } from "@/lib/subject";
 
 async function getSubjectData(id: number) {
   return subjectScheme.safeParse(
@@ -89,11 +59,7 @@ export async function Card({ id }: CardProps) {
           </div>
           {/*Card.HoverButton*/}
           <div className="hidden space-x-1 group-hover:flex">
-            <Button
-              color="accent"
-              type="primary"
-              icon={<InformationCircleIcon />}
-            />
+            <InfoButton id={id} />
             <Button
               color="accent"
               type="primary"
@@ -127,11 +93,9 @@ export async function Card({ id }: CardProps) {
         </div>
         {/*Card.TagGroup*/}
         <div className="h-[4.6rem] overflow-hidden py-1 leading-loose">
-          {/*<Balancer>*/}
           {tags.slice(0, 10).map((tag, index) => (
             <Badges key={index} color="primary" label={tag.name} />
           ))}
-          {/*</Balancer>*/}
         </div>
         {/*Card.Footer*/}
         <div className="flex justify-between">

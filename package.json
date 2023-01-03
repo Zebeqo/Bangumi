@@ -15,8 +15,10 @@
     "*": "prettier --write --ignore-unknown"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.7",
     "@heroicons/react": "2.0.13",
     "@next/font": "13.1.1",
+    "@radix-ui/react-dialog": "^1.0.2",
     "@radix-ui/react-dropdown-menu": "2.0.1",
     "@tanstack/query-core": "^4.20.4",
     "@tanstack/react-query": "^4.20.4",
@@ -41,6 +43,7 @@
     "@storybook/nextjs": "7.0.0-beta.12",
     "@storybook/react": "7.0.0-beta.12",
     "@storybook/testing-library": "0.0.14-next.1",
+    "@tailwindcss/line-clamp": "^0.4.2",
     "@tanstack/eslint-plugin-query": "^4.20.8",
     "@types/node": "18.11.18",
     "@types/react": "18.0.26",
