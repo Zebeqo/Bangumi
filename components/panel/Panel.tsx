@@ -2,7 +2,7 @@
 
 import { Transition } from "@headlessui/react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import { cn } from "@/lib/utils";
 import { useAtom } from "jotai/react";
 import { selectedPanelAtom } from "@/lib/panel";
@@ -17,10 +17,12 @@ import { Badges } from "@/ui/Badget";
 import { subjectScheme } from "@/lib/subject";
 import { useQuery } from "@tanstack/react-query";
 import { InboxArrowDownIcon } from "@heroicons/react/20/solid";
+import { atom } from "jotai/vanilla";
 
+export const showFullInfoAtom = atom(false);
 export function Panel() {
   const [selectedPanel, setSelectedPanelAtom] = useAtom(selectedPanelAtom);
-  const [showFullInfo, setShowFullInfo] = useState(false);
+  const [showFullInfo, setShowFullInfo] = useAtom(showFullInfoAtom);
 
   const { data, isFetching } = useQuery({
     queryKey: ["subject", selectedPanel?.id],
@@ -39,8 +41,8 @@ export function Panel() {
   return (
     <DialogPrimitive.Root
       open={selectedPanel !== null}
-      onOpenChange={() => {
-        setSelectedPanelAtom(null);
+      onOpenChange={(open) => {
+        !open && setSelectedPanelAtom(null);
       }}
     >
       <DialogPrimitive.Portal forceMount>
