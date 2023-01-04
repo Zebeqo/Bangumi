@@ -57,7 +57,7 @@ export const AvatarDropdownMenu = ({ imageURL }: { imageURL: string }) => (
       <DropdownMenuPrimitive.Content
         align="end"
         sideOffset={4}
-        className="w-auto rounded-xl border border-neutral-7 bg-white px-2 py-2 shadow-lg radix-side-bottom:animate-slide-down radix-side-top:animate-slide-up dark:bg-black"
+        className="z-50 w-auto rounded-lg bg-neutral-1 px-2 py-2 shadow-lg ring-1 ring-neutral-6 radix-side-bottom:animate-slide-down radix-side-top:animate-slide-up"
       >
         {generalMenuItems.map(({ label, icon, handleSelect }, i) => (
           <DropdownMenuPrimitive.Item
