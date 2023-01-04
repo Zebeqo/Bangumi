@@ -1,7 +1,7 @@
 import { atom } from "jotai/vanilla";
 
-interface SelectedPanel {
+interface Panel {
   type: "info" | "discussion";
   id: number;
 }
-export const selectedPanelAtom = atom<SelectedPanel | null>(null);
+export const panelAtom = atom<Panel | null>(null);
