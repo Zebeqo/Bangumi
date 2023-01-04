@@ -1,14 +1,12 @@
 "use client";
 
-import { useSetAtom } from "jotai/react";
 import { Button } from "@/ui/Button";
-import { dialogAtom, openDialogAtom } from "@/lib/dialog";
 import { useToast } from "@/hooks/useToast";
+import { useDialog } from "@/hooks/useDialog";
 
 export function ToastTestButtonB() {
-  const setDialog = useSetAtom(dialogAtom);
-  const setOpenDialog = useSetAtom(openDialogAtom);
   const openToast = useToast();
+  const openDialog = useDialog();
   return (
     <>
       <Button
@@ -22,8 +20,7 @@ export function ToastTestButtonB() {
             action: {
               label: "查看详情",
               onClick: () => {
-                setOpenDialog(true);
-                setDialog({
+                openDialog({
                   title: "问题详情",
                   description:
                     "ZodError: [\n" +

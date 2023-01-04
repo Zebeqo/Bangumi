@@ -6,23 +6,23 @@ import { Fragment } from "react";
 import { cn } from "@/lib/utils";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useAtom, useAtomValue } from "jotai/react";
-import { dialogAtom, openDialogAtom } from "@/lib/dialog";
+import { dialogAtom, isOpenDialogAtom } from "@/lib/dialog";
 import { Button } from "@/ui/Button";
 
 export function Dialog() {
   const dialog = useAtomValue(dialogAtom);
-  const [openDialog, setOpenDialog] = useAtom(openDialogAtom);
+  const [isOpenDialog, setIsOpenDialog] = useAtom(isOpenDialogAtom);
   return (
     <DialogPrimitive.Root
-      open={openDialog}
+      open={isOpenDialog}
       onOpenChange={(open) => {
         if (!open) {
-          setOpenDialog(false);
+          setIsOpenDialog(false);
         }
       }}
     >
       <DialogPrimitive.Portal forceMount>
-        <Transition.Root show={openDialog}>
+        <Transition.Root show={isOpenDialog}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
