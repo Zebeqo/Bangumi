@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import type { SearchParams } from "@/lib/calendar";
 import { calendarScheme, sortCalendarData } from "@/lib/calendar";
 
+// https://github.com/nextauthjs/next-auth/issues/5647#issuecomment-1342099364
 // export function generateStaticParams() {
 //   return [
 //     { day: "monday" },
