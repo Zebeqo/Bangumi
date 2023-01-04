@@ -37,9 +37,9 @@ export function Toast() {
         <div className="flex space-x-1">
           {/*Toast.TypeIcon*/}
           {toast?.type === "success" ? (
-            <CheckCircleIcon className="h-6 w-6 text-success" />
+            <CheckCircleIcon className="h-6 w-6 text-success-9" />
           ) : toast?.type === "error" ? (
-            <ExclamationCircleIcon className="h-6 w-6 text-red-500" />
+            <ExclamationCircleIcon className="h-6 w-6 text-error-9" />
           ) : null}
           {/*div*/}
           <div className="flex flex-col space-y-2 px-2 py-0.5">
