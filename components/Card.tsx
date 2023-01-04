@@ -34,7 +34,7 @@ export async function Card({ id }: CardProps) {
     result.data;
 
   return (
-    <div className="group flex w-[30rem] cursor-pointer select-none overflow-hidden rounded-2xl outline outline-1 outline-neutral-7">
+    <div className="group flex w-[30rem] cursor-pointer select-none overflow-hidden rounded-2xl ring-1 ring-neutral-6">
       {/*Card.Image*/}
       <div className="relative aspect-[75/106] h-full">
         <Image
