@@ -5,7 +5,7 @@ import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { Fragment, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { useAtom } from "jotai/react";
-import { selectedPanelAtom } from "@/lib/panel";
+import { panelAtom } from "@/lib/panel";
 import { Button } from "@/ui/Button";
 import {
   ChevronLeftIcon,
@@ -23,7 +23,7 @@ import { useSession } from "next-auth/react";
 
 export const showFullInfoAtom = atom(false);
 export function Panel() {
-  const [selectedPanel, setSelectedPanelAtom] = useAtom(selectedPanelAtom);
+  const [panel, setPanel] = useAtom(panelAtom);
   const [showFullInfo, setShowFullInfo] = useAtom(showFullInfoAtom);
   const [isClamped, setIsClamped] = useState(false);
   const descriptionRef = useRef<HTMLParagraphElement>(null);
@@ -31,13 +31,13 @@ export function Panel() {
   const { data: session } = useSession();
 
   const { data: subjectData } = useQuery({
-    queryKey: ["subject", selectedPanel?.id],
+    queryKey: ["subject", panel?.id],
     queryFn: async () => {
-      if (!selectedPanel?.id) {
+      if (!panel?.id) {
         return null;
       }
       const response = await fetch(
-        `https://api.bgm.tv/v0/subjects/${selectedPanel.id}`
+        `https://api.bgm.tv/v0/subjects/${panel.id}`
       );
       return subjectScheme.parse(await response.json());
     },
@@ -45,9 +45,9 @@ export function Panel() {
   });
 
   const { data: collectionData } = useQuery({
-    queryKey: ["collection", selectedPanel?.id, session?.user.id],
+    queryKey: ["collection", panel?.id, session?.user.id],
     queryFn: async () => {
-      if (!selectedPanel?.id || !session?.user.id) {
+      if (!panel?.id || !session?.user.id) {
         return null;
       }
       const response = await fetch(
@@ -59,16 +59,16 @@ export function Panel() {
 
   return (
     <DialogPrimitive.Root
-      open={selectedPanel !== null}
+      open={panel !== null}
       onOpenChange={(open) => {
         if (!open) {
-          setSelectedPanelAtom(null);
+          setPanel(null);
           setIsClamped(false);
         }
       }}
     >
       <DialogPrimitive.Portal forceMount>
-        <Transition.Root show={selectedPanel !== null}>
+        <Transition.Root show={panel !== null}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
