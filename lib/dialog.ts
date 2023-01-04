@@ -1,6 +1,6 @@
 import { atom } from "jotai/vanilla";
 
-interface Dialog {
+export interface Dialog {
   title: string;
   description?: string;
   action?: Action;
@@ -13,4 +13,4 @@ interface Action {
 
 export const dialogAtom = atom<Dialog | null>(null);
 
-export const openDialogAtom = atom(false);
+export const isOpenDialogAtom = atom(false);
