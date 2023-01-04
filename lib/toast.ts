@@ -1,6 +1,6 @@
 import { atom } from "jotai/vanilla";
 
-interface Toast {
+export interface Toast {
   type: "success" | "error" | "info";
   title: string;
   description?: string;
@@ -14,4 +14,4 @@ interface Action {
 
 export const toastAtom = atom<Toast | null>(null);
 
-export const openToastAtom = atom(false);
+export const isOpenToastAtom = atom(false);

@@ -1,16 +1,14 @@
 "use client";
 
-import { useAtom, useSetAtom } from "jotai/react";
-import { openToastAtom, toastAtom } from "@/lib/toast";
+import { useSetAtom } from "jotai/react";
 import { Button } from "@/ui/Button";
-import { flushSync } from "react-dom";
 import { dialogAtom, openDialogAtom } from "@/lib/dialog";
+import { useToast } from "@/hooks/useToast";
 
 export function ToastTestButtonB() {
-  const setToast = useSetAtom(toastAtom);
-  const [openToast, setOpenToast] = useAtom(openToastAtom);
   const setDialog = useSetAtom(dialogAtom);
   const setOpenDialog = useSetAtom(openDialogAtom);
+  const openToast = useToast();
   return (
     <>
       <Button
@@ -18,16 +16,7 @@ export function ToastTestButtonB() {
         type={"secondary"}
         label="success"
         onClick={() => {
-          if (openToast) {
-            flushSync(() => {
-              setOpenToast(false);
-            });
-            setOpenToast(true);
-          } else {
-            setOpenToast(true);
-          }
-
-          setToast({
+          openToast({
             type: "error",
             title: "获取数据失败！",
             action: {

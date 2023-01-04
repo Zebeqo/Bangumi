@@ -2,7 +2,7 @@
 
 import * as ToastPrimitive from "@radix-ui/react-toast";
 import { useAtom, useAtomValue } from "jotai/react";
-import { openToastAtom, toastAtom } from "@/lib/toast";
+import { isOpenToastAtom, toastAtom } from "@/lib/toast";
 import { cn } from "@/lib/utils";
 import {
   CheckCircleIcon,
@@ -12,15 +12,15 @@ import { XMarkIcon } from "@heroicons/react/20/solid";
 
 export function Toast() {
   const toast = useAtomValue(toastAtom);
-  const [openToast, setOpenToast] = useAtom(openToastAtom);
+  const [isOpenToast, setIsOpenToast] = useAtom(isOpenToastAtom);
 
   return (
     <>
       <ToastPrimitive.Root
-        open={openToast}
+        open={isOpenToast}
         onOpenChange={(open) => {
           if (!open) {
-            setOpenToast(false);
+            setIsOpenToast(false);
           }
         }}
         className={cn(
