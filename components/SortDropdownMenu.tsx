@@ -61,8 +61,8 @@ export function SortDropdownMenu() {
       <DropdownMenuPrimitive.Portal>
         <DropdownMenuPrimitive.Content
           align="end"
-          sideOffset={4}
-          className="w-36 rounded-xl border border-neutral-7 bg-white px-2 py-2 shadow-lg radix-side-bottom:animate-slide-down radix-side-top:animate-slide-up dark:bg-black"
+          sideOffset={8}
+          className="w-36 rounded-xl bg-neutral-1 px-2 py-2 shadow-lg ring-1 ring-neutral-6 radix-side-bottom:animate-slide-down radix-side-top:animate-slide-up"
         >
           <DropdownMenuPrimitive.RadioGroup
             value={searchParams.get("sort") ?? "do"}
