@@ -1,5 +1,5 @@
 /* eslint-disable */
-const { toRadixVars } = require("windy-radix-palette/vars");
+const { toRadixVars, toRadixVar } = require("windy-radix-palette/vars");
 const radixColors = require("@radix-ui/colors");
 
 /** @type {import('tailwindcss').Config} */
@@ -26,6 +26,7 @@ module.exports = {
         primary: toRadixVars("red"),
         accent: toRadixVars("cyan"),
         neutral: toRadixVars("mauve"),
+        success: toRadixVar("green", 9),
       },
 
       boxShadow: {
@@ -157,6 +158,8 @@ module.exports = {
         cyanDark: radixColors.cyanDark,
         mauve: radixColors.mauve,
         mauveDark: radixColors.mauveDark,
+        green: radixColors.green,
+        greenDark: radixColors.greenDark,
       },
     }),
     require("tailwindcss-radix")(),
