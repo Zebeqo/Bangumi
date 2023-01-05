@@ -14,14 +14,12 @@ import {
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { Badges } from "@/ui/Badget";
-import { subjectScheme } from "@/lib/subject";
-import { useIsFetching, useQuery } from "@tanstack/react-query";
+import { useIsFetching } from "@tanstack/react-query";
 import { ChevronDownIcon, InboxArrowDownIcon } from "@heroicons/react/20/solid";
 import { atom } from "jotai/vanilla";
-import { collectionScheme, collectionTypeMap } from "@/lib/collection";
-import { useSession } from "next-auth/react";
-import { errorScheme } from "@/lib/error";
-import { useErrorToast } from "@/hooks/useErrorToast";
+import { collectionTypeMap } from "@/lib/collection";
+import { useSubjectData } from "@/hooks/useSubjectData";
+import { useCollectionData } from "@/hooks/useCollectionData";
 
 export const showFullInfoAtom = atom(false);
 export function Panel() {
@@ -30,63 +28,9 @@ export function Panel() {
   const [isClamped, setIsClamped] = useState(false);
   const descriptionRef = useRef<HTMLParagraphElement>(null);
   const isFetching = useIsFetching();
-  const { data: session } = useSession();
-  const openErrorToast = useErrorToast();
   const [isOpenPanel, setIsOpenPanel] = useAtom(isOpenPanelAtom);
-
-  const { data: subjectData } = useQuery({
-    queryKey: ["subject", panel?.id],
-    queryFn: async () => {
-      if (!panel?.id) {
-        return null;
-      }
-      try {
-        const response = await fetch(
-          `https://api.bgm.tv/v0/subjects/${panel.id}`
-        );
-        return subjectScheme.parse(await response.json());
-      } catch (e) {
-        if (e instanceof Error) {
-          const message = e.message;
-          openErrorToast("获取条目信息失败", message);
-        }
-      }
-    },
-  });
-
-  const { data: collectionData } = useQuery({
-    queryKey: ["collection", panel?.id, session?.user.id],
-    queryFn: async () => {
-      if (!panel?.id || !session?.user.id) {
-        return null;
-      }
-      try {
-        const response = await fetch(
-          `https://api.bgm.tv/v0/users/${session.user.id}/collections/${panel.id}`
-        );
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        const data = await response.json();
-        const collectionResult = collectionScheme.safeParse(data);
-        if (!collectionResult.success) {
-          const errorResult = errorScheme.safeParse(data);
-          if (errorResult.success) {
-            return null;
-          } else {
-            throw new Error(
-              `FROM ERROR:\n${errorResult.error.message}\n\nFROM COLLECTION:\n${collectionResult.error.message}`
-            );
-          }
-        } else {
-          return collectionResult.data;
-        }
-      } catch (e) {
-        if (e instanceof Error) {
-          const message = e.message;
-          openErrorToast("获取收藏信息失败", message);
-        }
-      }
-    },
-  });
+  const subjectData = useSubjectData(panel?.id);
+  const collectionData = useCollectionData(panel?.id);
 
   return (
     <DialogPrimitive.Root
