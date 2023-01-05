@@ -20,8 +20,8 @@ import { ChevronDownIcon, InboxArrowDownIcon } from "@heroicons/react/20/solid";
 import { atom } from "jotai/vanilla";
 import { collectionScheme, collectionTypeMap } from "@/lib/collection";
 import { useSession } from "next-auth/react";
-import { useToast } from "@/hooks/useToast";
-import { useDialog } from "@/hooks/useDialog";
+import { errorScheme } from "@/lib/error";
+import { useErrorToast } from "@/hooks/useErrorToast";
 
 export const showFullInfoAtom = atom(false);
 export function Panel() {
@@ -31,8 +31,7 @@ export function Panel() {
   const descriptionRef = useRef<HTMLParagraphElement>(null);
   const isFetching = useIsFetching();
   const { data: session } = useSession();
-  const openToast = useToast();
-  const openDialog = useDialog();
+  const openErrorToast = useErrorToast();
 
   const { data: subjectData } = useQuery({
     queryKey: ["subject", panel?.id],
@@ -40,10 +39,17 @@ export function Panel() {
       if (!panel?.id) {
         return null;
       }
-      const response = await fetch(
-        `https://api.bgm.tv/v0/subjects/${panel.id}`
-      );
-      return subjectScheme.parse(await response.json());
+      try {
+        const response = await fetch(
+          `https://api.bgm.tv/v0/subjects/${panel.id}`
+        );
+        return subjectScheme.parse(await response.json());
+      } catch (e) {
+        if (e instanceof Error) {
+          const message = e.message;
+          openErrorToast("获取条目信息失败", message);
+        }
+      }
     },
     keepPreviousData: true,
   });
@@ -58,29 +64,25 @@ export function Panel() {
         const response = await fetch(
           `https://api.bgm.tv/v0/users/${session.user.id}/collections/${panel.id}`
         );
-        return collectionScheme.parse(await response.json());
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        const data = await response.json();
+        const collectionResult = collectionScheme.safeParse(data);
+        if (!collectionResult.success) {
+          const errorResult = errorScheme.safeParse(data);
+          if (errorResult.success) {
+            return null;
+          } else {
+            throw new Error(
+              `FROM ERROR:\n${errorResult.error.message}\n\nFROM COLLECTION:\n${collectionResult.error.message}`
+            );
+          }
+        } else {
+          return collectionResult.data;
+        }
       } catch (e) {
         if (e instanceof Error) {
           const message = e.message;
-          openToast({
-            type: "error",
-            title: "获取收藏信息失败",
-            action: {
-              label: "查看详情",
-              onClick: () => {
-                openDialog({
-                  title: "问题详情",
-                  description: message,
-                  action: {
-                    label: "提交 issue",
-                    onClick: () => {
-                      return;
-                    },
-                  },
-                });
-              },
-            },
-          });
+          openErrorToast("获取收藏信息失败", message);
         }
       }
     },
