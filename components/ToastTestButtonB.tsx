@@ -1,8 +1,8 @@
 "use client";
 
 import { Button } from "@/ui/Button";
-import { useToast } from "@/hooks/useToast";
-import { useDialog } from "@/hooks/useDialog";
+import { useToast } from "@/hooks/use-toast";
+import { useDialog } from "@/hooks/use-dialog";
 
 export function ToastTestButtonB() {
   const openToast = useToast();

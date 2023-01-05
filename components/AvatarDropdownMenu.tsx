@@ -10,7 +10,7 @@ import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 import Image from "next/image";
 import { signOut } from "next-auth/react";
 import { Button } from "@/ui/Button";
-import { useToast } from "@/hooks/useToast";
+import { useToast } from "@/hooks/use-toast";
 import { createIssueToast } from "@/lib/toast";
 
 interface RadixMenuItem {

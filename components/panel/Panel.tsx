@@ -18,8 +18,8 @@ import { useIsFetching } from "@tanstack/react-query";
 import { ChevronDownIcon, InboxArrowDownIcon } from "@heroicons/react/20/solid";
 import { atom } from "jotai/vanilla";
 import { collectionTypeMap } from "@/lib/collection";
-import { useSubjectData } from "@/hooks/useSubjectData";
-import { useCollectionData } from "@/hooks/useCollectionData";
+import { useSubjectData } from "@/hooks/use-subject";
+import { useCollectionData } from "@/hooks/use-collection";
 
 export const showFullInfoAtom = atom(false);
 export function Panel() {
