@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import {
   CheckCircleIcon,
   ExclamationCircleIcon,
+  InformationCircleIcon,
 } from "@heroicons/react/24/outline";
 import { XMarkIcon } from "@heroicons/react/20/solid";
 
@@ -40,6 +41,8 @@ export function Toast() {
             <CheckCircleIcon className="h-6 w-6 text-success-9" />
           ) : toast?.type === "error" ? (
             <ExclamationCircleIcon className="h-6 w-6 text-error-9" />
+          ) : toast?.type === "info" ? (
+            <InformationCircleIcon className="h-6 w-6 text-blue-9" />
           ) : null}
           {/*div*/}
           <div className="flex flex-col space-y-2 px-2 py-0.5">
@@ -69,40 +72,6 @@ export function Toast() {
         <ToastPrimitive.Close>
           <XMarkIcon className="h-5 w-5 text-neutral-11" />
         </ToastPrimitive.Close>
-        {/* <div className="flex">
-          <div className="flex w-0 flex-1 items-center py-4 pl-5">
-            <div className="radix w-full">
-              <ToastPrimitive.Title className="text-sm font-medium text-gray-900 dark:text-gray-100">
-                {toast?.title}
-              </ToastPrimitive.Title>
-              <ToastPrimitive.Description className="mt-1 text-sm text-gray-700 dark:text-gray-400">
-                Someone requested your review on{" "}
-                <span className="font-medium">repository/branch</span>
-              </ToastPrimitive.Description>
-            </div>
-          </div>
-          <div className="flex">
-            <div className="flex flex-col space-y-1 px-3 py-2">
-              <div className="flex h-0 flex-1">
-                <ToastPrimitive.Action
-                  altText="view now"
-                  className="flex w-full items-center justify-center rounded-lg border border-transparent px-3 py-2 text-sm font-medium text-purple-600 hover:bg-gray-50 focus:z-10 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75 dark:text-purple-500 dark:hover:bg-gray-900"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    window.open("https://github.com");
-                  }}
-                >
-                  Review
-                </ToastPrimitive.Action>
-              </div>
-              <div className="flex h-0 flex-1">
-                <ToastPrimitive.Close className="flex w-full items-center justify-center rounded-lg border border-transparent px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75 dark:text-gray-100 dark:hover:bg-gray-900">
-                  Dismiss
-                </ToastPrimitive.Close>
-              </div>
-            </div>
-          </div>
-        </div> */}
       </ToastPrimitive.Root>
 
       <ToastPrimitive.Viewport />
