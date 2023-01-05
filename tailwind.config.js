@@ -28,6 +28,7 @@ module.exports = {
         neutral: toRadixVars("mauve"),
         success: toRadixVars("green"),
         error: toRadixVars("tomato"),
+        info: toRadixVars("blue"),
       },
 
       // https://github.com/ecklf/tailwindcss-radix/blob/main/demo/tailwind.config.js
@@ -164,6 +165,8 @@ module.exports = {
         greenDark: radixColors.greenDark,
         tomato: radixColors.tomato,
         tomatoDark: radixColors.tomatoDark,
+        blue: radixColors.blue,
+        blueDark: radixColors.blueDark,
       },
     }),
     require("tailwindcss-radix")(),
