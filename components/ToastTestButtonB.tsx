@@ -22,18 +22,187 @@ export function ToastTestButtonB() {
               onClick: () => {
                 openDialog({
                   title: "问题详情",
-                  description:
-                    "ZodError: [\n" +
-                    "  {\n" +
-                    '    "code": "invalid_type",\n' +
-                    '    "expected": "boolean",\n' +
-                    '    "received": "undefined",\n' +
-                    '    "path": [\n' +
-                    '      "privates"\n' +
-                    "    ],\n" +
-                    '    "message": "Required"\n' +
-                    "  }\n" +
-                    "]",
+                  description: `ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "boolean",
+    "received": "undefined",
+    "path": [
+      "privates"
+    ],
+    "message": "Required"
+  }
+]ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "boolean",
+    "received": "undefined",
+    "path": [
+      "privates"
+    ],
+    "message": "Required"
+  }
+]ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "boolean",
+    "received": "undefined",
+    "path": [
+      "privates"
+    ],
+    "message": "Required"
+  }
+]ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "boolean",
+    "received": "undefined",
+    "path": [
+      "privates"
+    ],
+    "message": "Required"
+  }
+]ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "boolean",
+    "received": "undefined",
+    "path": [
+      "privates"
+    ],
+    "message": "Required"
+  }
+]ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "boolean",
+    "received": "undefined",
+    "path": [
+      "privates"
+    ],
+    "message": "Required"
+  }
+]ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "boolean",
+    "received": "undefined",
+    "path": [
+      "privates"
+    ],
+    "message": "Required"
+  }
+]ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "boolean",
+    "received": "undefined",
+    "path": [
+      "privates"
+    ],
+    "message": "Required"
+  }
+]ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "boolean",
+    "received": "undefined",
+    "path": [
+      "privates"
+    ],
+    "message": "Required"
+  }
+]ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "boolean",
+    "received": "undefined",
+    "path": [
+      "privates"
+    ],
+    "message": "Required"
+  }
+]ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "boolean",
+    "received": "undefined",
+    "path": [
+      "privates"
+    ],
+    "message": "Required"
+  }
+]ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "boolean",
+    "received": "undefined",
+    "path": [
+      "privates"
+    ],
+    "message": "Required"
+  }
+]ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "boolean",
+    "received": "undefined",
+    "path": [
+      "privates"
+    ],
+    "message": "Required"
+  }
+]ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "boolean",
+    "received": "undefined",
+    "path": [
+      "privates"
+    ],
+    "message": "Required"
+  }
+]ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "boolean",
+    "received": "undefined",
+    "path": [
+      "privates"
+    ],
+    "message": "Required"
+  }
+]ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "boolean",
+    "received": "undefined",
+    "path": [
+      "privates"
+    ],
+    "message": "Required"
+  }
+]ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "boolean",
+    "received": "undefined",
+    "path": [
+      "privates"
+    ],
+    "message": "Required"
+  }
+]ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "boolean",
+    "received": "undefined",
+    "path": [
+      "privates"
+    ],
+    "message": "Required"
+  }
+]`,
                   action: {
                     label: "提交 issue",
                     onClick: () => {

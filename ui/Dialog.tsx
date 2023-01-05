@@ -34,57 +34,75 @@ export function Dialog() {
           >
             <DialogPrimitive.Overlay
               forceMount
-              className="fixed inset-0 z-20 bg-black/50"
-            />
-          </Transition.Child>
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0 scale-95"
-            enterTo="opacity-100 scale-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100 scale-100"
-            leaveTo="opacity-0 scale-95"
-          >
-            <DialogPrimitive.Content
-              forceMount
-              className={cn(
-                "fixed z-50",
-                "flex w-full max-w-lg flex-col items-end space-y-4 rounded-lg p-6 shadow-lg",
-                "top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]",
-                "bg-neutral-1",
-                "outline-none"
-              )}
+              className="fixed inset-0 z-20 grid place-items-center overflow-y-auto bg-black/50 pb-16"
             >
-              {/*Dialog.Header*/}
-              <div className="flex w-full items-center justify-between">
-                {/*Dialog.Title*/}
-                <DialogPrimitive.Title className="text-lg font-medium text-neutral-12">
-                  {dialog?.title}
-                </DialogPrimitive.Title>
-                {/*Dialog.CloseButton*/}
-                <DialogPrimitive.Close asChild>
-                  <Button
-                    color={"neutral"}
-                    type={"ghost"}
-                    icon={<XMarkIcon />}
-                  />
-                </DialogPrimitive.Close>
-              </div>
-              {/*Dialog.Description*/}
-              <DialogPrimitive.Description className="w-full whitespace-pre-wrap text-sm text-neutral-11">
-                {dialog?.description}
-              </DialogPrimitive.Description>
-              {/*Dialog.Action*/}
-              {dialog?.action && (
-                <Button
-                  color={"accent"}
-                  type={"primary"}
-                  label={dialog.action.label}
-                  onClick={dialog.action.onClick}
-                />
-              )}{" "}
-            </DialogPrimitive.Content>
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+              >
+                <DialogPrimitive.Content
+                  forceMount
+                  className={cn(
+                    "flex w-full max-w-lg flex-col items-end rounded-lg p-6 pt-0 shadow-lg",
+                    "mt-16 bg-neutral-1",
+                    "outline-none",
+                    ""
+                  )}
+                  onPointerDownOutside={(e) => {
+                    if (
+                      e.detail.originalEvent.which === 2 ||
+                      e.detail.originalEvent.button === 4
+                    ) {
+                      e.preventDefault();
+                    }
+
+                    // https://github.com/radix-ui/primitives/issues/1280#issuecomment-1198248523
+                    const currentTarget = e.currentTarget as HTMLElement;
+
+                    if (
+                      e.detail.originalEvent.offsetX > currentTarget.clientWidth
+                    ) {
+                      e.preventDefault();
+                    }
+                  }}
+                >
+                  {/*Dialog.Header*/}
+                  <div className="sticky top-0 flex w-full items-center justify-between bg-neutral-1 py-4">
+                    {/*Dialog.Title*/}
+                    <DialogPrimitive.Title className="text-lg font-medium text-neutral-12">
+                      {dialog?.title}
+                    </DialogPrimitive.Title>
+                    {/*Dialog.CloseButton*/}
+                    <DialogPrimitive.Close asChild>
+                      <Button
+                        color={"neutral"}
+                        type={"ghost"}
+                        icon={<XMarkIcon />}
+                      />
+                    </DialogPrimitive.Close>
+                  </div>
+                  {/*Dialog.Description*/}
+                  <DialogPrimitive.Description className="w-full whitespace-pre-wrap text-sm text-neutral-11">
+                    {dialog?.description}
+                  </DialogPrimitive.Description>
+                  {/*Dialog.Action*/}
+                  {dialog?.action && (
+                    <Button
+                      color={"accent"}
+                      type={"primary"}
+                      label={dialog.action.label}
+                      onClick={dialog.action.onClick}
+                      className="mt-4"
+                    />
+                  )}
+                </DialogPrimitive.Content>
+              </Transition.Child>
+            </DialogPrimitive.Overlay>
           </Transition.Child>
         </Transition.Root>
       </DialogPrimitive.Portal>
