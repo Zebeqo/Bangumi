@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { subjectScheme } from "@/lib/subject";
-import { useErrorToast } from "@/hooks/useErrorToast";
+import { useErrorToast } from "@/hooks/use-toast";
 
 export function useSubjectData(id?: number) {
   const openErrorToast = useErrorToast();

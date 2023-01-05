@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { collectionScheme } from "@/lib/collection";
 import { errorScheme } from "@/lib/error";
 import { useSession } from "next-auth/react";
-import { useErrorToast } from "@/hooks/useErrorToast";
+import { useErrorToast } from "@/hooks/use-toast";
 
 export function useCollectionData(id?: number) {
   const { data: session } = useSession();

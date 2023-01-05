@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/ui/Button";
-import { useToast } from "@/hooks/useToast";
+import { useToast } from "@/hooks/use-toast";
 
 export function ToastTestButtonA() {
   const openToast = useToast();
