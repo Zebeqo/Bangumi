@@ -15,3 +15,19 @@ interface Action {
 export const toastAtom = atom<Toast | null>(null);
 
 export const isOpenToastAtom = atom(false);
+
+export const createIssueToast = (id: number): Toast => {
+  return {
+    type: "info",
+    title: "功能尚未实现！",
+    action: {
+      label: "跳转至相关 issue",
+      onClick: () => {
+        window.open(
+          `https://github.com/Zebeqo/bangumi-dashboard/issues/${id}`,
+          "_blank"
+        );
+      },
+    },
+  };
+};
