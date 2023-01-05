@@ -5,3 +5,5 @@ interface Panel {
   id: number;
 }
 export const panelAtom = atom<Panel | null>(null);
+
+export const isOpenPanelAtom = atom(false);
