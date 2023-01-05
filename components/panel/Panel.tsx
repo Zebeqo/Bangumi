@@ -55,7 +55,7 @@ export function Panel() {
           >
             <DialogPrimitive.Overlay
               forceMount
-              className="fixed inset-0 z-20 bg-black/50"
+              className="fixed inset-0 z-20 bg-blackA-9"
             />
           </Transition.Child>
           <Transition.Child
@@ -208,7 +208,7 @@ export function Panel() {
                   "w-full max-w-md rounded-lg",
                   "top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]",
                   "border border-neutral-6 bg-neutral-1 outline-none",
-                  "flex flex-col space-y-4 px-8 py-6"
+                  "flex flex-col space-y-4 px-8 py-6 text-neutral-12"
                 )}
               >
                 is fetching

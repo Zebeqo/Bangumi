@@ -167,6 +167,8 @@ module.exports = {
         tomatoDark: radixColors.tomatoDark,
         blue: radixColors.blue,
         blueDark: radixColors.blueDark,
+        blackA: radixColors.blackA,
+        whiteA: radixColors.whiteA,
       },
     }),
     require("tailwindcss-radix")(),
