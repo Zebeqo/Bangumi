@@ -16,7 +16,13 @@ export function useCollectionData(id?: number) {
       }
       try {
         const response = await fetch(
-          `https://api.bgm.tv/v0/users/${session.user.id}/collections/${id}`
+          `https://api.bgm.tv/v0/users/${session.user.id}/collections/${id}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${session.accessToken}`,
+            },
+          }
         );
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         const data = await response.json();
