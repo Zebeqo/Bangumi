@@ -8,10 +8,16 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useAtom, useAtomValue } from "jotai/react";
 import { dialogAtom, isOpenDialogAtom } from "@/lib/dialog";
 import { Button } from "@/ui/Button";
+import { useInView } from "react-intersection-observer";
 
 export function Dialog() {
   const dialog = useAtomValue(dialogAtom);
   const [isOpenDialog, setIsOpenDialog] = useAtom(isOpenDialogAtom);
+  const { ref, inView } = useInView({
+    threshold: 1,
+    rootMargin: "-1px",
+  });
+
   return (
     <DialogPrimitive.Root
       open={isOpenDialog}
@@ -47,12 +53,7 @@ export function Dialog() {
               >
                 <DialogPrimitive.Content
                   forceMount
-                  className={cn(
-                    "flex w-full max-w-lg flex-col items-end rounded-lg p-6 pt-0 shadow-lg",
-                    "mt-16 bg-neutral-1",
-                    "outline-none",
-                    ""
-                  )}
+                  className="mt-16 flex w-full max-w-lg flex-col items-end rounded-lg bg-neutral-1 pb-6 shadow-lg outline-none"
                   onPointerDownOutside={(e) => {
                     if (
                       e.detail.originalEvent.which === 2 ||
@@ -72,7 +73,13 @@ export function Dialog() {
                   }}
                 >
                   {/*Dialog.Header*/}
-                  <div className="sticky top-0 flex w-full items-center justify-between bg-neutral-1 py-4">
+                  <div
+                    className={cn(
+                      "sticky top-0 flex w-full items-center justify-between py-4 px-6",
+                      !inView && "border-b border-neutral-6 bg-neutral-1"
+                    )}
+                    ref={ref}
+                  >
                     {/*Dialog.Title*/}
                     <DialogPrimitive.Title className="text-lg font-medium text-neutral-12">
                       {dialog?.title}
@@ -87,7 +94,7 @@ export function Dialog() {
                     </DialogPrimitive.Close>
                   </div>
                   {/*Dialog.Description*/}
-                  <DialogPrimitive.Description className="w-full whitespace-pre-wrap text-sm text-neutral-11">
+                  <DialogPrimitive.Description className="w-full whitespace-pre-wrap px-6 text-sm text-neutral-11">
                     {dialog?.description}
                   </DialogPrimitive.Description>
                   {/*Dialog.Action*/}
@@ -97,7 +104,7 @@ export function Dialog() {
                       type={"primary"}
                       label={dialog.action.label}
                       onClick={dialog.action.onClick}
-                      className="mt-4"
+                      className="mt-4 mr-6"
                     />
                   )}
                 </DialogPrimitive.Content>
