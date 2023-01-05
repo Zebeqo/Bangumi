@@ -149,7 +149,7 @@ export function Panel() {
                       </div>
                     </div>
                     {/*InfoPanel.InfoContentBody*/}
-                    <div className=" flex-grow whitespace-pre-wrap px-4 text-sm text-neutral-12  ">
+                    <div className="flex-grow whitespace-pre-wrap px-4 text-sm text-neutral-12">
                       <DialogPrimitive.Description
                         ref={descriptionRef}
                         onMouseEnter={() => {
