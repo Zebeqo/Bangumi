@@ -30,6 +30,7 @@ module.exports = {
         error: toRadixVars("tomato"),
       },
 
+      // https://github.com/ecklf/tailwindcss-radix/blob/main/demo/tailwind.config.js
       boxShadow: {
         slider: "0 0 0 5px rgba(0, 0, 0, 0.3)",
       },
