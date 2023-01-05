@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { forwardRef } from "react";
 
 const button = cva(
-  "inline-flex items-center rounded-md px-4 py-2 font-medium",
+  "inline-flex items-center rounded-md px-4 py-2 font-medium outline-none",
   {
     variants: {
       type: {
@@ -33,7 +33,10 @@ export interface ButtonProps
   revert?: boolean;
 }
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ type, color, label, icon, onClick, revert = false, className }, ref) => (
+  (
+    { type, color, label, icon, onClick, revert = false, className, ...props },
+    ref
+  ) => (
     <button
       ref={ref}
       className={cn(
@@ -43,6 +46,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         className
       )}
       onClick={onClick}
+      {...props}
     >
       {icon && (
         <span

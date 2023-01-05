@@ -3,6 +3,7 @@
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 import { ArrowsUpDownIcon, CheckIcon } from "@heroicons/react/20/solid";
+import { Button } from "@/ui/Button";
 
 const sortRadioItems = [
   {
@@ -51,12 +52,12 @@ export function SortDropdownMenu() {
   return (
     <DropdownMenuPrimitive.Root>
       <DropdownMenuPrimitive.Trigger asChild>
-        <button className="inline-flex items-center rounded-md border border-neutral-7 bg-neutral-1 px-4 py-2 font-medium text-neutral-11 outline-none hover:bg-neutral-4 active:bg-neutral-5 ">
-          <span className="mr-2 h-5 w-5">
-            <ArrowsUpDownIcon />
-          </span>
-          <span>排序</span>
-        </button>
+        <Button
+          color={"neutral"}
+          type={"outline"}
+          label="排序"
+          icon={<ArrowsUpDownIcon />}
+        />
       </DropdownMenuPrimitive.Trigger>
       <DropdownMenuPrimitive.Portal>
         <DropdownMenuPrimitive.Content
