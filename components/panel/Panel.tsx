@@ -124,7 +124,7 @@ export function Panel() {
             {subjectData && !isFetching ? (
               <DialogPrimitive.Content
                 forceMount
-                className="fixed top-[50%] left-[50%] z-50 flex w-[1040.62px] -translate-x-[50%] -translate-y-[50%] flex-col space-y-4 rounded-lg bg-neutral-1 px-8 py-6 shadow-lg outline-none"
+                className="fixed top-[50%] left-[50%] z-40 flex w-[1040.62px] -translate-x-[50%] -translate-y-[50%] flex-col space-y-4 rounded-lg bg-neutral-1 px-8 py-6 shadow-lg outline-none"
               >
                 {/*InfoPanel.Nav*/}
                 <div className="flex justify-between p-2">
