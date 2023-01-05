@@ -4,8 +4,8 @@ import { Transition } from "@headlessui/react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { Fragment, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
-import { useAtom } from "jotai/react";
-import { panelAtom } from "@/lib/panel";
+import { useAtom, useAtomValue } from "jotai/react";
+import { isOpenPanelAtom, panelAtom } from "@/lib/panel";
 import { Button } from "@/ui/Button";
 import {
   ChevronLeftIcon,
@@ -25,13 +25,14 @@ import { useErrorToast } from "@/hooks/useErrorToast";
 
 export const showFullInfoAtom = atom(false);
 export function Panel() {
-  const [panel, setPanel] = useAtom(panelAtom);
+  const panel = useAtomValue(panelAtom);
   const [showFullInfo, setShowFullInfo] = useAtom(showFullInfoAtom);
   const [isClamped, setIsClamped] = useState(false);
   const descriptionRef = useRef<HTMLParagraphElement>(null);
   const isFetching = useIsFetching();
   const { data: session } = useSession();
   const openErrorToast = useErrorToast();
+  const [isOpenPanel, setIsOpenPanel] = useAtom(isOpenPanelAtom);
 
   const { data: subjectData } = useQuery({
     queryKey: ["subject", panel?.id],
@@ -51,7 +52,6 @@ export function Panel() {
         }
       }
     },
-    keepPreviousData: true,
   });
 
   const { data: collectionData } = useQuery({
@@ -90,16 +90,16 @@ export function Panel() {
 
   return (
     <DialogPrimitive.Root
-      open={panel !== null}
+      open={isOpenPanel}
       onOpenChange={(open) => {
         if (!open) {
-          setPanel(null);
+          setIsOpenPanel(false);
           setIsClamped(false);
         }
       }}
     >
       <DialogPrimitive.Portal forceMount>
-        <Transition.Root show={panel !== null}>
+        <Transition.Root show={isOpenPanel}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
