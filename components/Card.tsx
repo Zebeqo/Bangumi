@@ -117,9 +117,7 @@ export async function Card({ id }: CardProps) {
             </div>
           </div>
           {/*Card.Status*/}
-          <div>
-            <Button color="accent" label="待定" type="outline" />
-          </div>
+          <div></div>
         </div>
       </div>
     </div>
