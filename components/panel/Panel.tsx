@@ -13,7 +13,7 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
-import { Badges } from "@/ui/Badget";
+import { Badge } from "@/ui/Badge";
 import { useIsFetching } from "@tanstack/react-query";
 import { ChevronDownIcon, InboxArrowDownIcon } from "@heroicons/react/20/solid";
 import { atom } from "jotai/vanilla";
@@ -144,7 +144,7 @@ export function Panel() {
                       {/*InfoPanel.TagGroup*/}
                       <div className="max-w-[564px] leading-loose">
                         {subjectData.tags.map(({ count, name }, index) => (
-                          <Badges key={index} label={name} count={count} />
+                          <Badge key={index} label={name} count={count} />
                         ))}
                       </div>
                     </div>

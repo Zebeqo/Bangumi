@@ -6,7 +6,7 @@ export interface BadgesProps {
   label: string;
   count?: number;
 }
-export const Badges: React.FC<BadgesProps> = ({
+export const Badge: React.FC<BadgesProps> = ({
   color = "primary",
   label,
   count,
