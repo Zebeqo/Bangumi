@@ -1,5 +1,3 @@
-// TODO: radix primitive interactive not working
-
 import type { Meta, StoryObj } from "@storybook/react";
 import { AvatarDropdownMenu as AvatarDropdownMenuComponent } from "@/components/AvatarDropdownMenu";
 
