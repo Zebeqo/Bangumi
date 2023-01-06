@@ -14,16 +14,16 @@ import type { Color } from "@/lib/colorWrapper";
 import { colorWrapper } from "@/lib/colorWrapper";
 
 interface SelectProps {
-  type: CollectionType;
+  collection_type: CollectionType;
   color: Color;
   handleSelect?: (value: string) => void;
 }
 export const CollectionTypeSelect = forwardRef<HTMLButtonElement, SelectProps>(
-  ({ type, color, handleSelect, ...props }, ref) => {
+  ({ collection_type, color, handleSelect, ...props }, ref) => {
     return (
       <SelectPrimitive.Root
         {...props}
-        defaultValue={collectionTypeMap[type]}
+        defaultValue={collectionTypeMap[collection_type]}
         onValueChange={handleSelect}
       >
         <SelectPrimitive.Trigger asChild aria-label="Collection Type">
