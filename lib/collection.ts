@@ -7,6 +7,9 @@ export const collectionTypeMap = {
   4: "搁置",
   5: "抛弃",
 };
+
+export type CollectionType = 1 | 2 | 3 | 4 | 5;
+
 export const collectionScheme = z.object({
   updated_at: z.string().datetime(),
   comment: z.string().nullable(),
