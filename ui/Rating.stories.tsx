@@ -7,6 +7,7 @@ const meta: Meta<typeof RatingComponent> = {
   component: RatingComponent,
   parameters: {
     controls: { exclude: ["icon"] },
+    tags: ["autodocs"],
   },
 };
 

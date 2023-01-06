@@ -10,8 +10,16 @@ import { MoonIcon } from "@heroicons/react/24/outline";
 const meta: Meta<typeof Button> = {
   title: "Button",
   component: Button,
+  tags: ["autodocs"],
   parameters: {
     controls: { exclude: ["icon"] },
+  },
+  argTypes: {
+    label: {
+      control: {
+        type: "text",
+      },
+    },
   },
 };
 
@@ -21,31 +29,38 @@ type Story = StoryObj<typeof Button>;
 export const Base: Story = {
   args: {
     label: "Button",
-    color: "primary",
-    type: "primary",
-  },
-};
-
-export const WithIcon: Story = {
-  args: {
-    label: "Button",
-    color: "primary",
+    color: "accent",
     type: "primary",
     icon: <BoltIcon />,
   },
 };
 
-export const Icon: Story = {
+export const SecondaryButton: Story = {
   args: {
-    color: "neutral",
+    label: "Button",
+    color: "accent",
+    type: "secondary",
+    icon: <BoltIcon />,
+  },
+};
+
+export const OutlineButton: Story = {
+  args: {
+    label: "Button",
+    color: "accent",
+    type: "outline",
+    icon: <BoltIcon />,
+  },
+};
+
+export const GhostButton: Story = {
+  args: {
+    label: "Button",
+    color: "accent",
     type: "ghost",
     icon: <BoltIcon />,
   },
-  parameters: {
-    controls: { exclude: ["icon", "label"] },
-  },
 };
-
 export const LoginButton: Story = {
   args: {
     label: "使用 Bangumi 登录",
@@ -55,33 +70,19 @@ export const LoginButton: Story = {
   },
 };
 
-export const GithubButton: Story = {
+export const WithoutIcon: Story = {
   args: {
+    label: "Button",
     color: "neutral",
-    type: "ghost",
-    icon: <GithubIcon />,
-  },
-  parameters: {
-    controls: { exclude: ["icon", "label"] },
+    type: "primary",
   },
 };
 
-export const ThemeButton: Story = {
+export const IconButton: Story = {
   args: {
     color: "neutral",
     type: "ghost",
-    icon: <MoonIcon />,
-  },
-  parameters: {
-    controls: { exclude: ["icon", "label"] },
-  },
-};
-
-export const DarkThemeButton: Story = {
-  args: {
-    color: "neutral",
-    type: "ghost",
-    icon: <SunIcon />,
+    icon: <BoltIcon />,
   },
   parameters: {
     controls: { exclude: ["icon", "label"] },
