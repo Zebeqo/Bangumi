@@ -89,7 +89,7 @@ export function useMutateCollectionType() {
         if (data.status !== 204) {
           const errorResult = errorScheme.safeParse(await data.json());
           if (errorResult.success) {
-            throw new Error(errorResult.data.description);
+            throw new Error(JSON.stringify(errorResult.data));
           } else {
             throw new Error(errorResult.error.message);
           }

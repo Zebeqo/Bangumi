@@ -41,7 +41,10 @@ export function useErrorToast() {
             action: {
               label: "提交 issue",
               onClick: () => {
-                return;
+                window.open(
+                  "https://github.com/Zebeqo/bangumi-dashboard/issues/new",
+                  "_blank"
+                );
               },
             },
           });
