@@ -19,7 +19,12 @@ interface RadixMenuItem {
   handleSelect: () => void;
 }
 
-export const AvatarDropdownMenu = ({ imageURL }: { imageURL: string }) => {
+export const AvatarDropdownMenu = ({
+  imageURL,
+  ...props
+}: {
+  imageURL: string;
+}) => {
   const avatarMenuItems: RadixMenuItem[] = [
     {
       label: "个人主页",
@@ -46,21 +51,22 @@ export const AvatarDropdownMenu = ({ imageURL }: { imageURL: string }) => {
   const openToast = useToast();
 
   return (
-    <DropdownMenuPrimitive.Root>
-      <DropdownMenuPrimitive.Trigger asChild>
+    <DropdownMenuPrimitive.Root {...props}>
+      <DropdownMenuPrimitive.Trigger className="relative outline-none">
         <Image
           src={imageURL}
           alt={"Avatar"}
           width={48}
           height={48}
-          className="rounded-lg hover:cursor-pointer"
+          className="rounded-lg"
         />
+        <div className="absolute top-0 left-0 h-full w-full rounded-lg shadow-[inset_0_0_8px_rgba(0,0,0,0.15)]" />
       </DropdownMenuPrimitive.Trigger>
       <DropdownMenuPrimitive.Portal>
         <DropdownMenuPrimitive.Content
           align="end"
           sideOffset={4}
-          className="z-50 w-auto rounded-lg bg-neutral-1 px-2 py-2 shadow-lg ring-1 ring-neutral-6 radix-side-bottom:animate-slide-down radix-side-top:animate-slide-up"
+          className="z-50 w-auto rounded-lg bg-neutral-1 px-2 py-2 shadow-lg outline-none ring-1 ring-neutral-6 radix-side-bottom:animate-slide-down radix-side-top:animate-slide-up"
         >
           {avatarMenuItems.map(({ label, icon, handleSelect }, i) => (
             <DropdownMenuPrimitive.Item
