@@ -13,7 +13,8 @@
     "test-storybook": "test-storybook --url http://localhost:6007"
   },
   "lint-staged": {
-    "*": "prettier --write --ignore-unknown"
+    "*": "prettier --write --ignore-unknown",
+    "*.{ts,tsx,js,jsx}": "eslint --fix"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.7",
