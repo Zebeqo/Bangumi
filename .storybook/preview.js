@@ -3,6 +3,8 @@ import ToastProvider from "../components/provider/ToastProvider";
 import { StateProvider } from "../components/provider/StateProvider";
 import { Toast } from "../ui/Toast";
 import { Dialog } from "../ui/Dialog";
+import SessionProvider from "../components/provider/SessionProvider";
+import { Panel } from "../components/panel/Panel";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -25,11 +27,14 @@ export const parameters = {
 const Provider = (Story) => {
   return (
     <StateProvider noDevtools>
-      <ToastProvider swipeDirection="right" duration={3000}>
-        <Story />
-        <Toast />
-        <Dialog />
-      </ToastProvider>
+      <SessionProvider session={JSON.parse(process.env.STORYBOOK_TEST_SESSION)}>
+        <ToastProvider swipeDirection="right" duration={3000}>
+          <Story />
+          <Toast />
+          <Dialog />
+          <Panel />
+        </ToastProvider>
+      </SessionProvider>
     </StateProvider>
   );
 };
