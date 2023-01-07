@@ -3,9 +3,6 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "./Button";
 import { BoltIcon } from "@heroicons/react/20/solid";
 import { BangumiRawIcon } from "@/ui/icon/20/BangumiRawIcon";
-import { GithubIcon } from "@/ui/icon/24/GithubIcon";
-import { SunIcon } from "@heroicons/react/24/outline";
-import { MoonIcon } from "@heroicons/react/24/outline";
 
 const meta: Meta<typeof Button> = {
   title: "Button",

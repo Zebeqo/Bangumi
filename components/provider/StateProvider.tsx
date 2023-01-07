@@ -17,11 +17,17 @@ const queryClient = new QueryClient({
 const store = createStore();
 store.set(queryClientAtom, queryClient);
 
-export function StateProvider({ children }: { children: React.ReactNode }) {
+export function StateProvider({
+  children,
+  noDevtools = false,
+}: {
+  children: React.ReactNode;
+  noDevtools?: boolean;
+}) {
   return (
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>{children}</Provider>
-      <ReactQueryDevtools initialIsOpen={false} />
+      {!noDevtools && <ReactQueryDevtools initialIsOpen={false} />}
     </QueryClientProvider>
   );
 }
