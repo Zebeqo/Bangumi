@@ -25,6 +25,8 @@ export const AvatarDropdownMenu = ({
 }: {
   imageURL: string;
 }) => {
+  const openToast = useToast();
+
   const avatarMenuItems: RadixMenuItem[] = [
     {
       label: "个人主页",
@@ -48,7 +50,6 @@ export const AvatarDropdownMenu = ({
       },
     },
   ];
-  const openToast = useToast();
 
   return (
     <DropdownMenuPrimitive.Root {...props}>
