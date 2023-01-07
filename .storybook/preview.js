@@ -26,16 +26,20 @@ export const parameters = {
 
 const Provider = (Story) => {
   return (
-    <StateProvider noDevtools>
-      <SessionProvider session={JSON.parse(process.env.STORYBOOK_TEST_SESSION)}>
-        <ToastProvider swipeDirection="right" duration={3000}>
-          <Story />
-          <Toast />
-          <Dialog />
-          <Panel />
-        </ToastProvider>
-      </SessionProvider>
-    </StateProvider>
+    <div className="font-['Noto_Sans_SC']">
+      <StateProvider noDevtools>
+        <SessionProvider
+          session={JSON.parse(process.env.STORYBOOK_TEST_SESSION)}
+        >
+          <ToastProvider swipeDirection="right" duration={3000}>
+            <Story />
+            <Toast />
+            <Dialog />
+            <Panel />
+          </ToastProvider>
+        </SessionProvider>
+      </StateProvider>
+    </div>
   );
 };
 export const decorators = [Provider];
