@@ -34,4 +34,7 @@ module.exports = {
   docs: {
     autodocs: "tag",
   },
+  features: {
+    interactionsDebugger: true, // 👈 Enable playback controls
+  },
 };

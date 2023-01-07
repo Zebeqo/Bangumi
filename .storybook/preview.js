@@ -1,6 +1,8 @@
 import "@/styles/globals.css";
 import ToastProvider from "../components/provider/ToastProvider";
 import { StateProvider } from "../components/provider/StateProvider";
+import { Toast } from "../ui/Toast";
+import { Dialog } from "../ui/Dialog";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -22,9 +24,11 @@ export const parameters = {
 
 const Provider = (Story) => {
   return (
-    <StateProvider>
+    <StateProvider noDevtools>
       <ToastProvider swipeDirection="right" duration={3000}>
         <Story />
+        <Toast />
+        <Dialog />
       </ToastProvider>
     </StateProvider>
   );

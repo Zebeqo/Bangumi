@@ -8,8 +8,9 @@
     "start": "next start",
     "lint": "next lint && eslint .",
     "prepare": "husky install",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "storybook": "storybook dev -p 6007",
+    "build-storybook": "storybook build",
+    "test-storybook": "test-storybook --url http://localhost:6007"
   },
   "lint-staged": {
     "*": "prettier --write --ignore-unknown"
@@ -43,8 +44,10 @@
     "@storybook/addon-links": "7.0.0-beta.20",
     "@storybook/addon-storysource": "7.0.0-beta.20",
     "@storybook/blocks": "7.0.0-beta.20",
+    "@storybook/jest": "0.0.11-next.0",
     "@storybook/nextjs": "7.0.0-beta.20",
     "@storybook/react": "7.0.0-beta.20",
+    "@storybook/test-runner": "0.10.0-next.4",
     "@storybook/testing-library": "0.0.14-next.1",
     "@tailwindcss/line-clamp": "^0.4.2",
     "@tanstack/eslint-plugin-query": "^4.20.8",
