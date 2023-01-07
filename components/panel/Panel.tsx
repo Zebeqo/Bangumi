@@ -133,9 +133,9 @@ export function Panel() {
                           label="评分"
                         />
                         <span className="text-4xl font-bold text-accent-11">
-                          {subjectData.rating.score}
+                          {subjectData.rating.score.toFixed(1)}
                         </span>
-                        <span className="text-xs text-neutral-11">
+                        <span className="whitespace-nowrap text-xs text-neutral-11">
                           {subjectData.rating.total} 人评分
                         </span>
                       </div>
