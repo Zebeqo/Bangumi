@@ -8,6 +8,8 @@ module.exports = {
     "./app/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
     "./ui/**/*.{ts,tsx}",
+    "./.storybook/*.html",
+    "./.storybook/preview.js",
   ],
   darkMode: "class",
   theme: {
