@@ -16,7 +16,7 @@ import Link from "next/link";
 const headerItems = [
   {
     name: "每日放送",
-    href: "/calendar",
+    href: "/calendar/today",
     icon: <CalendarDaysIcon />,
   },
   {
