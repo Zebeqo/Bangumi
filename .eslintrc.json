@@ -3,10 +3,7 @@
   "parserOptions": {
     "project": "./tsconfig.json"
   },
-  "plugins": [
-    "@typescript-eslint",
-    "@tanstack/query"
-  ],
+  "plugins": ["@typescript-eslint", "@tanstack/query"],
   "extends": [
     "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended",
@@ -28,5 +25,14 @@
     ],
     "@tanstack/query/exhaustive-deps": "error",
     "@tanstack/query/prefer-query-object-syntax": "error"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.stories.tsx"],
+      // https://github.com/storybookjs/storybook/discussions/17664#discussioncomment-2319098
+      "rules": {
+        "@typescript-eslint/await-thenable": "off"
+      }
+    }
+  ]
 }
