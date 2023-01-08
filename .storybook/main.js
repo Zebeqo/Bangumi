@@ -24,6 +24,7 @@ module.exports = {
     "@storybook/addon-interactions",
     "@storybook/addon-storysource",
     "storybook-dark-mode",
+    "@tomfreudenberg/next-auth-mock/storybook",
   ],
   framework: {
     name: "@storybook/nextjs",
