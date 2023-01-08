@@ -3,8 +3,6 @@ import ToastProvider from "../components/provider/ToastProvider";
 import { StateProvider } from "../components/provider/StateProvider";
 import { Toast } from "../ui/Toast";
 import { Dialog } from "../ui/Dialog";
-import SessionProvider from "../components/provider/SessionProvider";
-import { Panel } from "../components/panel/Panel";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -22,22 +20,23 @@ export const parameters = {
     lightClass: "light",
     stylePreview: true,
   },
+  nextAuthMock: {
+    session: {
+      data: JSON.parse(process.env.STORYBOOK_MOCK_SESSION),
+      status: "authenticated",
+    },
+  },
 };
 
 const Provider = (Story) => {
   return (
     <div className="font-['Noto_Sans_SC']">
       <StateProvider noDevtools>
-        <SessionProvider
-          session={JSON.parse(process.env.STORYBOOK_TEST_SESSION)}
-        >
-          <ToastProvider swipeDirection="right" duration={3000}>
-            <Story />
-            <Toast />
-            <Dialog />
-            <Panel />
-          </ToastProvider>
-        </SessionProvider>
+        <ToastProvider swipeDirection="right" duration={3000}>
+          <Story />
+          <Toast />
+          <Dialog />
+        </ToastProvider>
       </StateProvider>
     </div>
   );
