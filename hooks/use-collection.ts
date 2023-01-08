@@ -5,19 +5,19 @@ import { errorScheme } from "@/lib/error";
 import { useSession } from "next-auth/react";
 import { useErrorToast, useToast } from "@/hooks/use-toast";
 
-export function useCollectionData(id?: number) {
+export function useCollectionData(subject_id?: number) {
   const { data: session } = useSession();
   const openErrorToast = useErrorToast();
 
   const { data } = useQuery({
-    queryKey: ["collection", id, session?.user.id],
+    queryKey: ["collection", subject_id, session?.user.id],
     queryFn: async () => {
-      if (!id || !session?.user.id) {
+      if (!subject_id || !session?.user.id) {
         return null;
       }
       try {
         const response = await fetch(
-          `https://api.bgm.tv/v0/users/${session.user.id}/collections/${id}`,
+          `https://api.bgm.tv/v0/users/${session.user.id}/collections/${subject_id}`,
           {
             headers: {
               "Content-Type": "application/json",
