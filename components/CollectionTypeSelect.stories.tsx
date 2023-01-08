@@ -28,6 +28,8 @@ const play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
   await userEvent.dblClick(listbox.getByRole("option", { name: "在看" }));
 
   await expect(select.getByText("在看")).toBeVisible();
+
+  await userEvent.click(selectEl);
 };
 
 export const CollectionTypeSelect: Story = {
