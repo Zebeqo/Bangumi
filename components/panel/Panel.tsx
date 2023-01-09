@@ -22,10 +22,13 @@ import { useSubjectData } from "@/hooks/use-subject";
 import {
   useCollectionData,
   useMutateCollectionType,
+  useMutateRating,
 } from "@/hooks/use-collection";
 import { useToast } from "@/hooks/use-toast";
 import { createIssueToast } from "@/lib/toast";
-import { CollectionTypeSelect as CollectionTypeSelectComponent } from "@/components/CollectionTypeSelect";
+import { CollectionTypeSelect } from "@/components/CollectionTypeSelect";
+import type { Rating } from "@/components/RatingSelect";
+import { RatingSelect } from "@/components/RatingSelect";
 
 export const showFullInfoAtom = atom(false);
 export function Panel() {
@@ -38,6 +41,7 @@ export function Panel() {
   const subjectData = useSubjectData(panel?.id);
   const collectionData = useCollectionData(panel?.id);
   const mutateCollectionType = useMutateCollectionType();
+  const mutateRating = useMutateRating();
   const openToast = useToast();
 
   return (
@@ -184,14 +188,21 @@ export function Panel() {
                     </div>
                     {/*InfoPanel.InfoContentFooter*/}
                     <div className="flex space-x-2 p-2">
-                      {collectionData?.type ? (
-                        <CollectionTypeSelectComponent
-                          collection_type={
-                            collectionData.type as CollectionType
-                          }
-                          color={"accent"}
-                          handleSelect={mutateCollectionType}
-                        />
+                      {collectionData ? (
+                        <>
+                          <CollectionTypeSelect
+                            collection_type={
+                              collectionData.type as CollectionType
+                            }
+                            color={"accent"}
+                            handleSelect={mutateCollectionType}
+                          />
+                          <RatingSelect
+                            rating={collectionData.rate as Rating}
+                            color={"accent"}
+                            handleSelect={mutateRating}
+                          />
+                        </>
                       ) : (
                         <Button
                           color={"neutral"}
