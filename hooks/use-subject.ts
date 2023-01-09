@@ -4,7 +4,7 @@ import { useErrorToast } from "@/hooks/use-toast";
 
 export function useSubjectData(id?: number) {
   const openErrorToast = useErrorToast();
-  const { data } = useQuery({
+  const { data, isSuccess } = useQuery({
     queryKey: ["subject", id],
     queryFn: async () => {
       if (!id) {
@@ -21,5 +21,5 @@ export function useSubjectData(id?: number) {
       }
     },
   });
-  return data;
+  return { data, isSuccess };
 }

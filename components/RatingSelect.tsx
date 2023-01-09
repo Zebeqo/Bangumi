@@ -17,7 +17,7 @@ export const TextWrapper = ({ children }: { children?: React.ReactNode }) => (
 );
 
 export function RatingSelect({ subject_id }: { subject_id: number }) {
-  const collectionData = useCollectionData(subject_id);
+  const { data: collectionData } = useCollectionData(subject_id);
   const mutateCollection = useCollectionMutation();
 
   return (
