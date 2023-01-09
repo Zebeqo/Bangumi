@@ -7,7 +7,7 @@ import { Dialog } from "@/ui/Dialog";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <ToastProvider swipeDirection="right" duration={5000}>
+    <ToastProvider swipeDirection="right" duration={3000}>
       <div>
         {/* @ts-expect-error Server Component */}
         <Header />
