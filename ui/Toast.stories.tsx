@@ -85,11 +85,14 @@ export const SuccessToast: Story = {
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-
     await userEvent.click(canvas.getByText("Success Toast"));
-    await expect(canvas.getByText("更新成功！")).toBeInTheDocument();
-    await expect(canvas.getByText("进度已更新至第 8 集。")).toBeInTheDocument();
-    await expect(canvas.getByText("跳转至评论页")).toBeInTheDocument();
+
+    const toast = await canvas.findByRole("status");
+    await expect(within(toast).getByText("更新成功！")).toBeVisible();
+    await expect(
+      within(toast).getByText("进度已更新至第 8 集。")
+    ).toBeVisible();
+    await expect(within(toast).getByText("跳转至评论页")).toBeVisible();
   },
 };
 
@@ -99,10 +102,11 @@ export const ErrorToast: Story = {
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-
     await userEvent.click(canvas.getByText("Error Toast"));
-    await expect(canvas.getByText("收藏条目失败")).toBeInTheDocument();
-    await expect(canvas.getByText("查看详情")).toBeInTheDocument();
+
+    const toast = await canvas.findByRole("status");
+    await expect(within(toast).getByText("收藏条目失败")).toBeVisible();
+    await expect(within(toast).getByText("查看详情")).toBeVisible();
   },
 };
 
@@ -112,9 +116,10 @@ export const IssueToast: Story = {
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-
     await userEvent.click(canvas.getByText("Issue Toast"));
-    await expect(canvas.getByText("需要相关 api")).toBeInTheDocument();
-    await expect(canvas.getByText("跳转至相关 issue")).toBeInTheDocument();
+
+    const toast = await canvas.findByRole("status");
+    await expect(within(toast).getByText("需要相关 api")).toBeVisible();
+    await expect(within(toast).getByText("跳转至相关 issue")).toBeVisible();
   },
 };
