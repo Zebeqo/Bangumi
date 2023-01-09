@@ -27,20 +27,29 @@ type ButtonVariantProps = VariantProps<typeof button>;
 export interface ButtonProps
   extends React.HTMLAttributes<HTMLButtonElement>,
     Required<ButtonVariantProps> {
-  color: Color;
+  colorType: Color;
   label?: string | React.ReactNode;
   icon?: React.ReactNode;
   revert?: boolean;
 }
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
-    { type, color, label, icon, onClick, revert = false, className, ...props },
+    {
+      type,
+      colorType,
+      label,
+      icon,
+      onClick,
+      revert = false,
+      className,
+      ...props
+    },
     ref
   ) => (
     <button
       ref={ref}
       className={cn(
-        colorWrapper(button({ type }), color),
+        colorWrapper(button({ type }), colorType),
         !label && "px-2",
         revert && "flex-row-reverse",
         className

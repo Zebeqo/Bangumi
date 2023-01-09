@@ -61,7 +61,7 @@ export async function Card({ subject_id }: CardProps) {
           <div className="hidden space-x-1 group-hover:flex">
             <InfoButton subject_id={subject_id} />
             <Button
-              color="accent"
+              colorType="accent"
               type="primary"
               icon={<ChatBubbleLeftRightIcon />}
             />

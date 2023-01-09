@@ -57,7 +57,7 @@ export function Subnav() {
               key={item.name}
             >
               <Button
-                color="neutral"
+                colorType="neutral"
                 label={item.name}
                 type={path === item.href ? "selected" : "ghost"}
               />

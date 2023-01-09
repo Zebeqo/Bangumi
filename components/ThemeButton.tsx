@@ -27,7 +27,7 @@ export function ThemeButton() {
 
   return (
     <Button
-      color="neutral"
+      colorType="neutral"
       type="ghost"
       icon={darkMode ? <SunIcon /> : <MoonIcon />}
       onClick={handleClick}

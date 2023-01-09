@@ -84,12 +84,12 @@ export function Panel() {
                     {/*InfoPanel.NavButtonGroup*/}
                     <div className="flex space-x-2">
                       <Button
-                        color="neutral"
+                        colorType="neutral"
                         type="outline"
                         icon={<ChevronLeftIcon />}
                       />
                       <Button
-                        color="neutral"
+                        colorType="neutral"
                         type="outline"
                         icon={<ChevronRightIcon />}
                       />
@@ -108,7 +108,7 @@ export function Panel() {
                   <div>
                     <DialogPrimitive.Close>
                       <Button
-                        color="neutral"
+                        colorType="neutral"
                         type={"ghost"}
                         icon={<XMarkIcon />}
                       />
@@ -133,7 +133,7 @@ export function Panel() {
                       {/*InfoPanel.Rating*/}
                       <div className="flex flex-col items-center space-y-2 p-2">
                         <Button
-                          color="accent"
+                          colorType="accent"
                           type={"secondary"}
                           label="评分"
                         />
@@ -192,7 +192,7 @@ export function Panel() {
                         </>
                       ) : (
                         <Button
-                          color={"neutral"}
+                          colorType={"neutral"}
                           type={"primary"}
                           icon={<InboxArrowDownIcon />}
                           label="收藏"

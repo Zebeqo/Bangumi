@@ -6,7 +6,7 @@ import { GithubIcon } from "@/ui/icon/24/GithubIcon";
 export function GithubButton() {
   return (
     <Button
-      color="neutral"
+      colorType="neutral"
       type="ghost"
       icon={<GithubIcon />}
       onClick={() =>
