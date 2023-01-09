@@ -56,4 +56,25 @@ export const InfoPanel: Story = {
       </>
     ),
   ],
+  parameters: {
+    nextAuthMock: {
+      session: {
+        data: null,
+        status: "unauthenticated",
+      },
+    },
+  },
+};
+
+export const InfoPanel_Session: Story = {
+  render: () => <InfoButton id={SUBJECT_ID} />,
+  play,
+  decorators: [
+    (Story) => (
+      <>
+        <Story />
+        <ReactQueryDevtools initialIsOpen={true} panelPosition={"right"} />
+      </>
+    ),
+  ],
 };

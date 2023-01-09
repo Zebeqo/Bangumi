@@ -16,7 +16,7 @@ import { colorWrapper } from "@/lib/colorWrapper";
 interface SelectProps {
   collection_type: CollectionType;
   color: Color;
-  handleSelect?: (value: string) => void;
+  handleSelect: (value: string) => void;
 }
 export const CollectionTypeSelect = forwardRef<HTMLButtonElement, SelectProps>(
   ({ collection_type, color, handleSelect, ...props }, ref) => {
@@ -40,33 +40,35 @@ export const CollectionTypeSelect = forwardRef<HTMLButtonElement, SelectProps>(
             revert
           />
         </SelectPrimitive.Trigger>
-        <SelectPrimitive.Content className="z-50">
-          <SelectPrimitive.ScrollUpButton className="flex items-center justify-center text-neutral-11">
-            <ChevronUpIcon className="h-5 w-5" />
-          </SelectPrimitive.ScrollUpButton>
-          <SelectPrimitive.Viewport className="rounded-lg bg-neutral-1 p-2 shadow-lg">
-            <SelectPrimitive.Group>
-              {Object.values(collectionTypeMap).map((value, index) => (
-                <SelectPrimitive.Item
-                  key={`${value}-${index}`}
-                  value={value}
-                  className={colorWrapper(
-                    "relative flex select-none items-center rounded-md px-8 py-2 font-medium text-primary-11 outline-none focus:bg-primary-4",
-                    color
-                  )}
-                >
-                  <SelectPrimitive.ItemText>{value}</SelectPrimitive.ItemText>
-                  <SelectPrimitive.ItemIndicator className="absolute left-2 inline-flex items-center">
-                    <CheckIcon className="h-5 w-5" />
-                  </SelectPrimitive.ItemIndicator>
-                </SelectPrimitive.Item>
-              ))}
-            </SelectPrimitive.Group>
-          </SelectPrimitive.Viewport>
-          <SelectPrimitive.ScrollUpButton className="flex items-center justify-center text-neutral-11">
-            <ChevronDownIcon className="h-5 w-5" />
-          </SelectPrimitive.ScrollUpButton>
-        </SelectPrimitive.Content>
+        <SelectPrimitive.Portal>
+          <SelectPrimitive.Content className="z-50">
+            <SelectPrimitive.ScrollUpButton className="flex items-center justify-center text-neutral-11">
+              <ChevronUpIcon className="h-5 w-5" />
+            </SelectPrimitive.ScrollUpButton>
+            <SelectPrimitive.Viewport className="rounded-lg bg-neutral-1 p-2 shadow-lg">
+              <SelectPrimitive.Group>
+                {Object.values(collectionTypeMap).map((value, index) => (
+                  <SelectPrimitive.Item
+                    key={`${value}-${index}`}
+                    value={value}
+                    className={colorWrapper(
+                      "relative flex select-none items-center rounded-md px-8 py-2 font-medium text-primary-11 outline-none focus:bg-primary-4",
+                      color
+                    )}
+                  >
+                    <SelectPrimitive.ItemText>{value}</SelectPrimitive.ItemText>
+                    <SelectPrimitive.ItemIndicator className="absolute left-2 inline-flex items-center">
+                      <CheckIcon className="h-5 w-5" />
+                    </SelectPrimitive.ItemIndicator>
+                  </SelectPrimitive.Item>
+                ))}
+              </SelectPrimitive.Group>
+            </SelectPrimitive.Viewport>
+            <SelectPrimitive.ScrollUpButton className="flex items-center justify-center text-neutral-11">
+              <ChevronDownIcon className="h-5 w-5" />
+            </SelectPrimitive.ScrollUpButton>
+          </SelectPrimitive.Content>
+        </SelectPrimitive.Portal>
       </SelectPrimitive.Root>
     );
   }
