@@ -1,7 +1,7 @@
 import { expect } from "@storybook/jest";
 import type { Meta, StoryObj } from "@storybook/react";
 import { AvatarDropdownMenu as AvatarDropdownMenuComponent } from "@/components/AvatarDropdownMenu";
-import { userEvent, within } from "@storybook/testing-library";
+import { userEvent, within, screen } from "@storybook/testing-library";
 
 const meta: Meta<typeof AvatarDropdownMenuComponent> = {
   title: "AvatarDropdownMenu",
@@ -13,17 +13,14 @@ type Story = StoryObj<typeof AvatarDropdownMenuComponent>;
 
 const play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
   const canvas = within(canvasElement);
-  const button = canvas.getByRole("button");
-  await userEvent.click(button);
+  const avatar = canvas.getByAltText("Avatar");
+  await userEvent.click(avatar);
 
-  const menuEl = document.querySelector<HTMLElement>(
-    "[data-radix-popper-content-wrapper]"
-  );
-  if (!menuEl) {
-    throw new Error("Menu not found");
-  }
-  const menu = within(menuEl);
-  await expect(menu.getByText("登出")).toBeVisible();
+  const menu = await screen.findByRole("menu");
+  screen.debug(menu);
+  await expect(
+    within(menu).getByRole("menuitem", { name: "登出" })
+  ).toBeVisible();
 };
 
 export const AvatarDropdownMenu: Story = {

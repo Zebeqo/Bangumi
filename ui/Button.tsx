@@ -46,7 +46,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         className
       )}
       onClick={onClick}
-      role="button"
       {...props}
     >
       {icon && (

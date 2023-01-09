@@ -32,12 +32,14 @@ const play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
   await userEvent.click(button);
 
   await waitFor(() => {
-    expect(screen.getByRole("dialog")).toBeInTheDocument();
+    expect(screen.getByRole("dialog")).toBeVisible();
   });
+
+  const panel = await screen.findByRole("dialog");
 
   await waitFor(
     () => {
-      expect(screen.getByText("死神 千年血战篇")).toBeInTheDocument();
+      expect(within(panel).getByText("死神 千年血战篇")).toBeVisible();
     },
     { timeout: 5000, interval: 1000 }
   );
