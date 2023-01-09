@@ -1,7 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { CollectionTypeSelect as CollectionTypeSelectComponent } from "@/components/CollectionTypeSelect";
-import { userEvent, within } from "@storybook/testing-library";
+import { userEvent, within, screen } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
+import type { CollectionType } from "@/lib/collection";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import {
+  useCollectionData,
+  useMutateCollectionType,
+} from "@/hooks/use-collection";
+import { useIsFetching } from "@tanstack/react-query";
 
 const meta: Meta<typeof CollectionTypeSelectComponent> = {
   title: "CollectionTypeSelect",
@@ -22,7 +29,7 @@ const play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
   await expect(select.getByText("看过")).toBeVisible();
 
   await userEvent.click(selectEl);
-  const listbox = within(canvas.getByRole("listbox"));
+  const listbox = within(screen.getByRole("listbox"));
   await expect(listbox.getByText("在看")).toBeVisible();
 
   await userEvent.dblClick(listbox.getByRole("option", { name: "在看" }));
@@ -49,4 +56,27 @@ export const CollectionTypeSelect_Edge: Story = {
     color: "accent",
   },
   play,
+};
+
+export const CollectionTypeSelect_Dev = () => {
+  const collectionData = useCollectionData(302286);
+  const isFetching = useIsFetching();
+  const mutateCollectionType = useMutateCollectionType();
+
+  return (
+    <>
+      {collectionData && !isFetching && (
+        <>
+          <ReactQueryDevtools initialIsOpen={true} panelPosition={"right"} />
+          <div className="flex h-full w-full items-center justify-center py-80">
+            <CollectionTypeSelectComponent
+              collection_type={collectionData.type as CollectionType}
+              color={"accent"}
+              handleSelect={mutateCollectionType}
+            />
+          </div>
+        </>
+      )}
+    </>
+  );
 };

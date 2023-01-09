@@ -52,13 +52,13 @@ export function useCollectionData(subject_id?: number) {
   return data;
 }
 
-export function useMutateCollectionType() {
+export function useCollectionTypeMutation() {
   const queryClient = useQueryClient();
   const { data: session } = useSession();
   const openToast = useToast();
   const openErrorToast = useErrorToast();
 
-  const mutation = useMutation({
+  return useMutation({
     mutationFn: ({
       collection_type,
       subject_id,
@@ -114,6 +114,17 @@ export function useMutateCollectionType() {
       }
     },
   });
+}
 
-  return mutation;
+export function useMutateCollectionType() {
+  const collectionTypeMutation = useCollectionTypeMutation();
+  return (value: string) => {
+    const collection_type = Object.keys(collectionTypeMap).find(
+      (key) => collectionTypeMap[Number(key) as CollectionType] === value
+    );
+    collectionTypeMutation.mutate({
+      collection_type: Number(collection_type) as CollectionType,
+      subject_id: 302286,
+    });
+  };
 }

@@ -15,11 +15,17 @@ import {
 import Image from "next/image";
 import { Badge } from "@/ui/Badge";
 import { useIsFetching } from "@tanstack/react-query";
-import { ChevronDownIcon, InboxArrowDownIcon } from "@heroicons/react/20/solid";
+import { InboxArrowDownIcon } from "@heroicons/react/20/solid";
 import { atom } from "jotai/vanilla";
-import { collectionTypeMap } from "@/lib/collection";
+import type { CollectionType } from "@/lib/collection";
 import { useSubjectData } from "@/hooks/use-subject";
-import { useCollectionData } from "@/hooks/use-collection";
+import {
+  useCollectionData,
+  useMutateCollectionType,
+} from "@/hooks/use-collection";
+import { useToast } from "@/hooks/use-toast";
+import { createIssueToast } from "@/lib/toast";
+import { CollectionTypeSelect as CollectionTypeSelectComponent } from "@/components/CollectionTypeSelect";
 
 export const showFullInfoAtom = atom(false);
 export function Panel() {
@@ -31,6 +37,8 @@ export function Panel() {
   const [isOpenPanel, setIsOpenPanel] = useAtom(isOpenPanelAtom);
   const subjectData = useSubjectData(panel?.id);
   const collectionData = useCollectionData(panel?.id);
+  const mutateCollectionType = useMutateCollectionType();
+  const openToast = useToast();
 
   return (
     <DialogPrimitive.Root
@@ -177,16 +185,12 @@ export function Panel() {
                     {/*InfoPanel.InfoContentFooter*/}
                     <div className="flex space-x-2 p-2">
                       {collectionData?.type ? (
-                        <Button
-                          color={"accent"}
-                          type={"outline"}
-                          icon={<ChevronDownIcon />}
-                          label={
-                            collectionTypeMap[
-                              collectionData.type as keyof typeof collectionTypeMap
-                            ]
+                        <CollectionTypeSelectComponent
+                          collection_type={
+                            collectionData.type as CollectionType
                           }
-                          revert
+                          color={"accent"}
+                          handleSelect={mutateCollectionType}
                         />
                       ) : (
                         <Button
@@ -194,6 +198,9 @@ export function Panel() {
                           type={"primary"}
                           icon={<InboxArrowDownIcon />}
                           label="收藏"
+                          onClick={() => {
+                            openToast(createIssueToast(42, "需要相关 api"));
+                          }}
                         />
                       )}
                     </div>
