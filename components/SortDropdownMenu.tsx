@@ -53,7 +53,7 @@ export function SortDropdownMenu() {
     <DropdownMenuPrimitive.Root>
       <DropdownMenuPrimitive.Trigger asChild>
         <Button
-          color={"neutral"}
+          colorType={"neutral"}
           type={"outline"}
           label="排序"
           icon={<ArrowsUpDownIcon />}

@@ -21,7 +21,7 @@ const OpenSuccessToastButton = () => {
   const openToast = useToast();
   return (
     <Button
-      color={"accent"}
+      colorType={"accent"}
       type={"secondary"}
       label="Success Toast"
       onClick={() => {
@@ -45,7 +45,7 @@ const OpenErrorToastButton = () => {
   const openErrorToast = useErrorToast();
   return (
     <Button
-      color={"accent"}
+      colorType={"accent"}
       type={"secondary"}
       label="Error Toast"
       onClick={() => {
@@ -69,7 +69,7 @@ const OpenIssueToastButton = () => {
   const openToast = useToast();
   return (
     <Button
-      color={"accent"}
+      colorType={"accent"}
       type={"secondary"}
       label="Issue Toast"
       onClick={() => {

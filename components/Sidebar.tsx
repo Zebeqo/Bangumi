@@ -76,7 +76,9 @@ export function Sidebar() {
               // Sidebar.Item
               <Link href={item.href} key={item.name}>
                 <Button
-                  color={path?.startsWith(item.href) ? "primary" : "neutral"}
+                  colorType={
+                    path?.startsWith(item.href) ? "primary" : "neutral"
+                  }
                   label={item.name}
                   type={path?.startsWith(item.href) ? "selected" : "ghost"}
                   icon={item.icon}
@@ -98,7 +100,7 @@ export function Sidebar() {
                     // Sidebar.Item
                     <Link href={item.href} key={item.name}>
                       <Button
-                        color={
+                        colorType={
                           path?.startsWith(item.href) ? "primary" : "neutral"
                         }
                         label={item.name}

@@ -87,7 +87,7 @@ export function Dialog() {
                     {/*Dialog.CloseButton*/}
                     <DialogPrimitive.Close asChild>
                       <Button
-                        color={"neutral"}
+                        colorType={"neutral"}
                         type={"ghost"}
                         icon={<XMarkIcon />}
                       />
@@ -100,7 +100,7 @@ export function Dialog() {
                   {/*Dialog.Action*/}
                   {dialog?.action && (
                     <Button
-                      color={"accent"}
+                      colorType={"accent"}
                       type={"primary"}
                       label={dialog.action.label}
                       onClick={dialog.action.onClick}

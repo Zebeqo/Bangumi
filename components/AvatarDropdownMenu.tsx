@@ -76,7 +76,7 @@ export const AvatarDropdownMenu = ({
               className="outline-none"
             >
               <Button
-                color="neutral"
+                colorType="neutral"
                 icon={icon}
                 type="ghost"
                 label={label}

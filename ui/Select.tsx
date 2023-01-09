@@ -39,7 +39,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
         <SelectPrimitive.Trigger asChild aria-label="Select">
           <Button
             ref={ref}
-            color={color}
+            colorType={color}
             type={"outline"}
             icon={
               <SelectPrimitive.Icon>
