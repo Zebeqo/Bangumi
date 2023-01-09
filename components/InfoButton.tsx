@@ -6,7 +6,7 @@ import { useSetAtom } from "jotai/react";
 import { isOpenPanelAtom, panelAtom } from "@/lib/panel";
 import { showFullInfoAtom } from "@/components/panel/Panel";
 
-export function InfoButton({ id }: { id: number }) {
+export function InfoButton({ subject_id }: { subject_id: number }) {
   const setPanel = useSetAtom(panelAtom);
   const setShowFullInfo = useSetAtom(showFullInfoAtom);
   const setIsOpenPanel = useSetAtom(isOpenPanelAtom);
@@ -17,7 +17,7 @@ export function InfoButton({ id }: { id: number }) {
       icon={<InformationCircleIcon />}
       onClick={() => {
         setIsOpenPanel(true);
-        setPanel({ id, type: "info" });
+        setPanel({ subject_id: subject_id, type: "info" });
         setShowFullInfo(false);
       }}
     />

@@ -31,10 +31,10 @@ export function Panel() {
   const descriptionRef = useRef<HTMLParagraphElement>(null);
   const [isOpenPanel, setIsOpenPanel] = useAtom(isOpenPanelAtom);
   const { data: subjectData, isSuccess: isSubjectDataSuccess } = useSubjectData(
-    panel?.id
+    panel?.subject_id
   );
   const { data: collectionData, isSuccess: isCollectionDataSuccess } =
-    useCollectionData(panel?.id);
+    useCollectionData(panel?.subject_id);
   const openToast = useToast();
 
   return (

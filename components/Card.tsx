@@ -22,11 +22,11 @@ async function getSubjectData(id: number) {
 }
 
 interface CardProps {
-  id: number;
+  subject_id: number;
 }
 
-export async function Card({ id }: CardProps) {
-  const result = await getSubjectData(id);
+export async function Card({ subject_id }: CardProps) {
+  const result = await getSubjectData(subject_id);
   if (!result.success) {
     return null;
   }
@@ -59,7 +59,7 @@ export async function Card({ id }: CardProps) {
           </div>
           {/*Card.HoverButton*/}
           <div className="hidden space-x-1 group-hover:flex">
-            <InfoButton id={id} />
+            <InfoButton subject_id={subject_id} />
             <Button
               color="accent"
               type="primary"
