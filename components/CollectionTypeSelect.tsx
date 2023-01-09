@@ -9,7 +9,7 @@ import type { CollectionType } from "@/lib/collection";
 import { collectionTypeMap } from "@/lib/collection";
 
 export function CollectionTypeSelect({ subject_id }: { subject_id: number }) {
-  const collectionData = useCollectionData(subject_id);
+  const { data: collectionData } = useCollectionData(subject_id);
   const mutateCollection = useCollectionMutation();
 
   return (

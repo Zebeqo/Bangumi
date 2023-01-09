@@ -14,7 +14,6 @@ import {
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { Badge } from "@/ui/Badge";
-import { useIsFetching } from "@tanstack/react-query";
 import { InboxArrowDownIcon } from "@heroicons/react/20/solid";
 import { atom } from "jotai/vanilla";
 import { useSubjectData } from "@/hooks/use-subject";
@@ -30,10 +29,12 @@ export function Panel() {
   const [showFullInfo, setShowFullInfo] = useAtom(showFullInfoAtom);
   const [isClamped, setIsClamped] = useState(false);
   const descriptionRef = useRef<HTMLParagraphElement>(null);
-  const isFetching = useIsFetching();
   const [isOpenPanel, setIsOpenPanel] = useAtom(isOpenPanelAtom);
-  const subjectData = useSubjectData(panel?.id);
-  const collectionData = useCollectionData(panel?.id);
+  const { data: subjectData, isSuccess: isSubjectDataSuccess } = useSubjectData(
+    panel?.id
+  );
+  const { data: collectionData, isSuccess: isCollectionDataSuccess } =
+    useCollectionData(panel?.id);
   const openToast = useToast();
 
   return (
@@ -71,7 +72,7 @@ export function Panel() {
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            {subjectData && !isFetching ? (
+            {subjectData && isSubjectDataSuccess && isCollectionDataSuccess ? (
               <DialogPrimitive.Content
                 forceMount
                 className="fixed top-[50%] left-[50%] z-40 flex w-[1040.62px] -translate-x-[50%] -translate-y-[50%] flex-col space-y-4 rounded-lg bg-neutral-1 px-8 py-6 shadow-lg outline-none"

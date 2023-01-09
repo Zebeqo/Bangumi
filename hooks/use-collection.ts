@@ -9,7 +9,7 @@ export function useCollectionData(subject_id?: number) {
   const { data: session } = useSession();
   const openErrorToast = useErrorToast();
 
-  const { data } = useQuery({
+  const { data, isSuccess } = useQuery({
     queryKey: ["collection", subject_id, session?.user.id],
     queryFn: async () => {
       if (!subject_id || !session?.user.id) {
@@ -49,7 +49,7 @@ export function useCollectionData(subject_id?: number) {
     },
   });
 
-  return data;
+  return { data, isSuccess };
 }
 
 export function useCollectionMutation() {
@@ -88,7 +88,22 @@ export function useCollectionMutation() {
           }
         });
       }),
-    onSuccess: async (data, { subject_id, description }) => {
+    onMutate: async ({ mutateCollection, subject_id }) => {
+      await queryClient.cancelQueries(["collection", subject_id]);
+      const previousCollectionData = collectionScheme.parse(
+        queryClient.getQueryData(["collection", subject_id, session?.user.id])
+      );
+      const newCollectionData = {
+        ...previousCollectionData,
+        ...mutateCollection,
+      };
+      queryClient.setQueryData(
+        ["collection", subject_id, session?.user.id],
+        newCollectionData
+      );
+      return { previousCollectionData, newCollectionData };
+    },
+    onSuccess: async (data, { description }) => {
       if (data) {
         if (data.status !== 204) {
           const errorResult = errorScheme.safeParse(await data.json());
@@ -100,20 +115,28 @@ export function useCollectionMutation() {
         }
       }
 
-      await queryClient.invalidateQueries({
-        queryKey: ["collection", subject_id, session?.user.id],
-        exact: true,
-      });
       openToast({
         type: "success",
         title: "修改收藏状态成功",
         description: `已将条目的收藏状态修改为 ${description}`,
       });
     },
-    onError: (error) => {
+    onError: (error, { subject_id }, context) => {
       if (error instanceof Error) {
         openErrorToast("修改收藏状态失败", error.message);
       }
+
+      context &&
+        queryClient.setQueryData(
+          ["collection", subject_id, session?.user.id],
+          context.previousCollectionData
+        );
+    },
+    onSettled: async (data, error, { subject_id }) => {
+      await queryClient.invalidateQueries({
+        queryKey: ["collection", subject_id, session?.user.id],
+        exact: true,
+      });
     },
   });
 }
