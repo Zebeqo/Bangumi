@@ -111,6 +111,7 @@ export function Panel() {
                         colorType="neutral"
                         type={"ghost"}
                         icon={<XMarkIcon />}
+                        aria-label="Close"
                       />
                     </DialogPrimitive.Close>
                   </div>

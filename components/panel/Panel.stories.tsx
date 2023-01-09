@@ -27,7 +27,7 @@ type Story = StoryObj<typeof Panel>;
 const play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
   const canvas = within(canvasElement);
 
-  const button = canvas.getByRole("button");
+  const button = canvas.getByRole("button", { name: "open info panel" });
   await userEvent.click(button);
 
   await waitFor(() => {
@@ -42,6 +42,8 @@ const play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
     },
     { timeout: 5000, interval: 1000 }
   );
+
+  await userEvent.click(within(panel).getByRole("button", { name: "Close" }));
 };
 
 export const InfoPanel: Story = {
