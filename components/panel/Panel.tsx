@@ -17,17 +17,11 @@ import { Badge } from "@/ui/Badge";
 import { useIsFetching } from "@tanstack/react-query";
 import { InboxArrowDownIcon } from "@heroicons/react/20/solid";
 import { atom } from "jotai/vanilla";
-import type { CollectionType } from "@/lib/collection";
 import { useSubjectData } from "@/hooks/use-subject";
-import {
-  useCollectionData,
-  useMutateCollectionType,
-  useMutateRating,
-} from "@/hooks/use-collection";
+import { useCollectionData } from "@/hooks/use-collection";
 import { useToast } from "@/hooks/use-toast";
 import { createIssueToast } from "@/lib/toast";
 import { CollectionTypeSelect } from "@/components/CollectionTypeSelect";
-import type { Rating } from "@/components/RatingSelect";
 import { RatingSelect } from "@/components/RatingSelect";
 
 export const showFullInfoAtom = atom(false);
@@ -40,8 +34,6 @@ export function Panel() {
   const [isOpenPanel, setIsOpenPanel] = useAtom(isOpenPanelAtom);
   const subjectData = useSubjectData(panel?.id);
   const collectionData = useCollectionData(panel?.id);
-  const mutateCollectionType = useMutateCollectionType();
-  const mutateRating = useMutateRating();
   const openToast = useToast();
 
   return (
@@ -191,16 +183,10 @@ export function Panel() {
                       {collectionData ? (
                         <>
                           <CollectionTypeSelect
-                            collection_type={
-                              collectionData.type as CollectionType
-                            }
-                            color={"accent"}
-                            handleSelect={mutateCollectionType}
+                            subject_id={collectionData.subject_id}
                           />
                           <RatingSelect
-                            rating={collectionData.rate as Rating}
-                            color={"accent"}
-                            handleSelect={mutateRating}
+                            subject_id={collectionData.subject_id}
                           />
                         </>
                       ) : (

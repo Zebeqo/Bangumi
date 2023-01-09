@@ -4,6 +4,7 @@ import { Panel } from "@/components/panel/Panel";
 import { InfoButton } from "@/components/InfoButton";
 import { userEvent, within, waitFor, screen } from "@storybook/testing-library";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { STORYBOOK_SUBJECT_ID } from "@/lib/constant";
 
 const meta: Meta<typeof Panel> = {
   title: "Panel",
@@ -22,8 +23,6 @@ const meta: Meta<typeof Panel> = {
 
 export default meta;
 type Story = StoryObj<typeof Panel>;
-
-const SUBJECT_ID = 302286;
 
 const play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
   const canvas = within(canvasElement);
@@ -46,7 +45,7 @@ const play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
 };
 
 export const InfoPanel: Story = {
-  render: () => <InfoButton id={SUBJECT_ID} />,
+  render: () => <InfoButton id={STORYBOOK_SUBJECT_ID} />,
   play,
   decorators: [
     (Story) => (
@@ -67,7 +66,7 @@ export const InfoPanel: Story = {
 };
 
 export const InfoPanel_Session: Story = {
-  render: () => <InfoButton id={SUBJECT_ID} />,
+  render: () => <InfoButton id={STORYBOOK_SUBJECT_ID} />,
   play,
   decorators: [
     (Story) => (
