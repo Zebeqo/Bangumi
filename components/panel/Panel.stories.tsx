@@ -45,7 +45,7 @@ const play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
 };
 
 export const InfoPanel: Story = {
-  render: () => <InfoButton id={STORYBOOK_SUBJECT_ID} />,
+  render: () => <InfoButton subject_id={STORYBOOK_SUBJECT_ID} />,
   play,
   decorators: [
     (Story) => (
@@ -66,7 +66,7 @@ export const InfoPanel: Story = {
 };
 
 export const InfoPanel_Session: Story = {
-  render: () => <InfoButton id={STORYBOOK_SUBJECT_ID} />,
+  render: () => <InfoButton subject_id={STORYBOOK_SUBJECT_ID} />,
   play,
   decorators: [
     (Story) => (

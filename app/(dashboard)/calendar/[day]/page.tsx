@@ -69,7 +69,7 @@ export default async function Page({
     <>
       {sortedData.map((item) => (
         /* @ts-expect-error Server Component */
-        <Card key={item.id} id={item.id} />
+        <Card key={item.id} subject_id={item.id} />
       ))}
     </>
   );

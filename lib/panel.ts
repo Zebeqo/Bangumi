@@ -2,7 +2,7 @@ import { atom } from "jotai/vanilla";
 
 interface Panel {
   type: "info" | "discussion";
-  id: number;
+  subject_id: number;
 }
 export const panelAtom = atom<Panel | null>(null);
 
