@@ -3,22 +3,13 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Panel } from "@/components/panel/Panel";
 import { InfoButton } from "@/components/InfoButton";
 import { userEvent, within, waitFor, screen } from "@storybook/testing-library";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { STORYBOOK_SUBJECT_ID } from "@/lib/constant";
+import { panelDecorator, reactQueryDevtoolsDecorator } from "@/lib/storybook";
 
 const meta: Meta<typeof Panel> = {
   title: "Panel",
   component: Panel,
-  decorators: [
-    (Story) => {
-      return (
-        <>
-          <Story />
-          <Panel />
-        </>
-      );
-    },
-  ],
+  decorators: [panelDecorator, reactQueryDevtoolsDecorator],
 };
 
 export default meta;
@@ -49,14 +40,6 @@ const play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
 export const InfoPanel: Story = {
   render: () => <InfoButton subject_id={STORYBOOK_SUBJECT_ID} />,
   play,
-  decorators: [
-    (Story) => (
-      <>
-        <Story />
-        <ReactQueryDevtools initialIsOpen={false} panelPosition={"right"} />
-      </>
-    ),
-  ],
   parameters: {
     nextAuthMock: {
       session: {
@@ -70,12 +53,4 @@ export const InfoPanel: Story = {
 export const InfoPanel_Session: Story = {
   render: () => <InfoButton subject_id={STORYBOOK_SUBJECT_ID} />,
   play,
-  decorators: [
-    (Story) => (
-      <>
-        <Story />
-        <ReactQueryDevtools initialIsOpen={false} panelPosition={"right"} />
-      </>
-    ),
-  ],
 };

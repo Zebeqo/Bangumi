@@ -1,18 +1,20 @@
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import type { Meta } from "@storybook/react";
+import { Panel } from "@/components/panel/Panel";
 
-export const reactQueryDevtoolsDecorators = () => {
-  const meta: Meta = {
-    decorators: [
-      (Story) => {
-        return (
-          <>
-            <ReactQueryDevtools initialIsOpen={false} panelPosition={"right"} />
-            <Story />
-          </>
-        );
-      },
-    ],
-  };
-  return meta;
+export const reactQueryDevtoolsDecorator = (Story: React.ComponentType) => {
+  return (
+    <>
+      <ReactQueryDevtools initialIsOpen={false} panelPosition={"right"} />
+      <Story />
+    </>
+  );
+};
+
+export const panelDecorator = (Story: React.ComponentType) => {
+  return (
+    <>
+      <Panel />
+      <Story />
+    </>
+  );
 };
