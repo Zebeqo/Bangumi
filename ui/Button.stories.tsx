@@ -26,7 +26,7 @@ type Story = StoryObj<typeof Button>;
 export const Base: Story = {
   args: {
     label: "Button",
-    color: "accent",
+    colorType: "accent",
     type: "primary",
     icon: <BoltIcon />,
   },
@@ -35,7 +35,7 @@ export const Base: Story = {
 export const SecondaryButton: Story = {
   args: {
     label: "Button",
-    color: "accent",
+    colorType: "accent",
     type: "secondary",
     icon: <BoltIcon />,
   },
@@ -44,7 +44,7 @@ export const SecondaryButton: Story = {
 export const OutlineButton: Story = {
   args: {
     label: "Button",
-    color: "accent",
+    colorType: "accent",
     type: "outline",
     icon: <BoltIcon />,
   },
@@ -53,7 +53,7 @@ export const OutlineButton: Story = {
 export const GhostButton: Story = {
   args: {
     label: "Button",
-    color: "accent",
+    colorType: "accent",
     type: "ghost",
     icon: <BoltIcon />,
   },
@@ -61,7 +61,7 @@ export const GhostButton: Story = {
 export const LoginButton: Story = {
   args: {
     label: "使用 Bangumi 登录",
-    color: "primary",
+    colorType: "primary",
     type: "primary",
     icon: <BangumiRawIcon />,
   },
@@ -70,14 +70,14 @@ export const LoginButton: Story = {
 export const WithoutIcon: Story = {
   args: {
     label: "Button",
-    color: "neutral",
+    colorType: "neutral",
     type: "primary",
   },
 };
 
 export const IconButton: Story = {
   args: {
-    color: "neutral",
+    colorType: "neutral",
     type: "ghost",
     icon: <BoltIcon />,
   },
@@ -88,7 +88,7 @@ export const IconButton: Story = {
 
 export const ItemButton: Story = {
   args: {
-    color: "neutral",
+    colorType: "neutral",
     label: "Button",
     type: "ghost",
     icon: <BoltIcon />,
@@ -98,7 +98,7 @@ export const ItemButton: Story = {
 
 export const ItemButtonSelected: Story = {
   args: {
-    color: "primary",
+    colorType: "primary",
     label: "Button",
     type: "selected",
     icon: <BoltIcon />,
