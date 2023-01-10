@@ -53,7 +53,7 @@ export const InfoPanel: Story = {
     (Story) => (
       <>
         <Story />
-        <ReactQueryDevtools initialIsOpen={true} panelPosition={"right"} />
+        <ReactQueryDevtools initialIsOpen={false} panelPosition={"right"} />
       </>
     ),
   ],
@@ -74,7 +74,7 @@ export const InfoPanel_Session: Story = {
     (Story) => (
       <>
         <Story />
-        <ReactQueryDevtools initialIsOpen={true} panelPosition={"right"} />
+        <ReactQueryDevtools initialIsOpen={false} panelPosition={"right"} />
       </>
     ),
   ],
