@@ -32,6 +32,10 @@ export const collectionScheme = z.object({
   type: z.number().int().positive().lte(5),
   rate: z.number().int().nonnegative().lte(10),
   private: z.boolean(),
+  subject: z.object({
+    eps: z.number().int().nonnegative(),
+  }),
+  ep_status: z.number().int().nonnegative(),
 });
 
 export const mutateCollectionScheme = z.object({
