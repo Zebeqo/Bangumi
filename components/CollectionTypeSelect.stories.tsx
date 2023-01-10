@@ -3,12 +3,12 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { CollectionTypeSelect as CollectionTypeSelectComponent } from "@/components/CollectionTypeSelect";
 import { STORYBOOK_SUBJECT_ID } from "@/lib/constant";
 import { userEvent, within, screen } from "@storybook/testing-library";
-import { reactQueryDevtoolsDecorators } from "@/lib/storybook";
+import { reactQueryDevtoolsDecorator } from "@/lib/storybook";
 
 const meta: Meta<typeof CollectionTypeSelectComponent> = {
   title: "CollectionTypeSelect",
   component: CollectionTypeSelectComponent,
-  ...reactQueryDevtoolsDecorators(),
+  decorators: [reactQueryDevtoolsDecorator],
 };
 
 export default meta;
