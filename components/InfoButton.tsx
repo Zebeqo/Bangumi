@@ -4,7 +4,7 @@ import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import { Button } from "@/ui/Button";
 import { useSetAtom } from "jotai/react";
 import { isOpenPanelAtom, panelAtom } from "@/lib/panel";
-import { showFullInfoAtom } from "@/components/panel/Panel";
+import { showFullInfoAtom } from "@/components/module/Panel";
 import { forwardRef } from "react";
 
 interface props extends React.HTMLAttributes<HTMLButtonElement> {

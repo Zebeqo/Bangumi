@@ -1,13 +1,13 @@
 import { expect } from "@storybook/jest";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Panel } from "@/components/panel/Panel";
+import { Panel } from "@/components/module/Panel";
 import { InfoButton } from "@/components/InfoButton";
 import { userEvent, within, waitFor, screen } from "@storybook/testing-library";
 import { STORYBOOK_SUBJECT_ID } from "@/lib/constant";
 import { panelDecorator, reactQueryDevtoolsDecorator } from "@/lib/storybook";
 
 const meta: Meta<typeof Panel> = {
-  title: "Panel",
+  title: "Module/Panel",
   component: Panel,
   decorators: [panelDecorator, reactQueryDevtoolsDecorator],
 };

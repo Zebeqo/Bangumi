@@ -1,9 +1,9 @@
 import { Header } from "@/components/Header";
 import { Sidebar } from "@/components/Sidebar";
-import { Panel } from "@/components/panel/Panel";
+import { Panel } from "@/components/module/Panel";
 import ToastProvider from "@/components/provider/ToastProvider";
-import { Toast } from "@/ui/Toast";
-import { Dialog } from "@/ui/Dialog";
+import { Toast } from "@/components/module/Toast";
+import { Dialog } from "@/components/module/Dialog";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
