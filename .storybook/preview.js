@@ -1,8 +1,8 @@
 import "@/styles/globals.css";
 import ToastProvider from "../components/provider/ToastProvider";
 import { StateProvider } from "../components/provider/StateProvider";
-import { Toast } from "../ui/Toast";
-import { Dialog } from "../ui/Dialog";
+import { Toast } from "../components/module/Toast";
+import { Dialog } from "../components/module/Dialog";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },

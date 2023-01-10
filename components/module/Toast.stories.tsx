@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Toast } from "@/ui/Toast";
+import { Toast } from "@/components/module/Toast";
 import { useErrorToast, useToast } from "@/hooks/use-toast";
 import { Button } from "@/ui/Button";
 import { createIssueToast } from "@/lib/toast";
@@ -12,7 +12,7 @@ import {
 import { expect } from "@storybook/jest";
 
 const meta: Meta<typeof Toast> = {
-  title: "Toast",
+  title: "Module/Toast",
   component: Toast,
   parameters: {
     layout: "centered",
