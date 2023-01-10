@@ -69,7 +69,7 @@ export function Toast() {
           </div>
         </div>
         {/*Toast.CloseButton*/}
-        <ToastPrimitive.Close>
+        <ToastPrimitive.Close aria-label="Close">
           <XMarkIcon className="h-5 w-5 text-neutral-11" />
         </ToastPrimitive.Close>
       </ToastPrimitive.Root>

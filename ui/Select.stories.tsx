@@ -22,6 +22,8 @@ const play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
   const listbox = within(screen.getByRole("listbox"));
   const option = await listbox.findAllByRole("option");
   expect(option.length).toBeGreaterThan(1);
+
+  await userEvent.keyboard("{esc}");
 };
 
 export const CollectionTypeSelect: Story = {
