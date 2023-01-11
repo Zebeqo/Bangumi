@@ -14,6 +14,21 @@ export default meta;
 type Story = StoryObj<typeof EpisodeButtonComponent>;
 
 export const EpisodeButton = () => {
+  const { data: collectionData } = useCollectionData(STORYBOOK_SUBJECT_ID);
+  return (
+    <>
+      {collectionData && (
+        <EpisodeButtonComponent
+          subject_id={collectionData.subject_id}
+          eps={collectionData.subject.eps}
+          ep_status={collectionData.ep_status}
+        />
+      )}
+    </>
+  );
+};
+
+export const EpisodeButton_Bad = () => {
   const { data: collectionData } = useCollectionData(1600);
   return (
     <>
