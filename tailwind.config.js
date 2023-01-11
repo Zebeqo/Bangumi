@@ -8,6 +8,7 @@ module.exports = {
     "./app/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
     "./ui/**/*.{ts,tsx}",
+    "./hooks/**/*.tsx",
     "./.storybook/*.html",
     "./.storybook/preview.js",
   ],
