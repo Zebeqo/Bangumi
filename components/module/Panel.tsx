@@ -14,7 +14,11 @@ import {
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { Badge } from "@/ui/Badge";
-import { InboxArrowDownIcon } from "@heroicons/react/20/solid";
+import {
+  ChevronDownIcon,
+  InboxArrowDownIcon,
+  StarIcon,
+} from "@heroicons/react/20/solid";
 import { atom } from "jotai/vanilla";
 import { useSubjectData } from "@/hooks/use-subject";
 import { useCollectionData } from "@/hooks/use-collection";
@@ -22,6 +26,8 @@ import { useToast } from "@/hooks/use-toast";
 import { createIssueToast } from "@/lib/toast";
 import { CollectionTypeSelect } from "@/components/CollectionTypeSelect";
 import { RatingSelect } from "@/components/RatingSelect";
+import { EpisodeButton as EpisodeButtonComponent } from "@/components/EpisodeButton";
+import { signIn, useSession } from "next-auth/react";
 
 export const showFullInfoAtom = atom(false);
 export function Panel() {
@@ -36,6 +42,7 @@ export function Panel() {
   const { data: collectionData, isSuccess: isCollectionDataSuccess } =
     useCollectionData(panel?.subject_id);
   const openToast = useToast();
+  const { data: session } = useSession();
 
   return (
     <DialogPrimitive.Root
@@ -190,17 +197,47 @@ export function Panel() {
                           <RatingSelect
                             subject_id={collectionData.subject_id}
                           />
+                          <EpisodeButtonComponent
+                            subject_id={collectionData.subject_id}
+                            eps={collectionData.subject.eps}
+                            ep_status={collectionData.ep_status}
+                          />
                         </>
                       ) : (
-                        <Button
-                          colorType={"neutral"}
-                          type={"primary"}
-                          icon={<InboxArrowDownIcon />}
-                          label="收藏"
-                          onClick={() => {
-                            openToast(createIssueToast(42, "需要相关 api"));
-                          }}
-                        />
+                        <>
+                          <Button
+                            colorType={"neutral"}
+                            type={"primary"}
+                            icon={<InboxArrowDownIcon />}
+                            label="收藏"
+                            onClick={() => {
+                              if (session) {
+                                openToast(createIssueToast(42, "需要相关 api"));
+                              } else {
+                                void signIn("bangumi", { redirect: false });
+                              }
+                            }}
+                          />
+                          <Button
+                            colorType={"neutral"}
+                            type={"outline"}
+                            icon={<ChevronDownIcon />}
+                            label={
+                              <span className="flex items-center space-x-1">
+                                <StarIcon className="h-5 w-5" />
+                                <span>评分</span>
+                              </span>
+                            }
+                            onClick={() => {
+                              if (session) {
+                                openToast(createIssueToast(42, "需要相关 api"));
+                              } else {
+                                void signIn("bangumi", { redirect: false });
+                              }
+                            }}
+                            revert
+                          />
+                        </>
                       )}
                     </div>
                   </div>
