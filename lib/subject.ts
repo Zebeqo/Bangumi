@@ -1,5 +1,6 @@
 import { z } from "zod";
 export const subjectScheme = z.object({
+  id: z.number().int(),
   date: z.string(),
   images: z.object({
     large: z.string().url(),

@@ -28,6 +28,7 @@ import { CollectionTypeSelect } from "@/components/CollectionTypeSelect";
 import { RatingSelect } from "@/components/RatingSelect";
 import { EpisodeButton as EpisodeButtonComponent } from "@/components/EpisodeButton";
 import { signIn, useSession } from "next-auth/react";
+import { MoreDropdownMenu } from "@/components/MoreDropdownMenu";
 
 export const showFullInfoAtom = atom(false);
 export function Panel() {
@@ -202,6 +203,10 @@ export function Panel() {
                             eps={collectionData.subject.eps}
                             ep_status={collectionData.ep_status}
                           />
+                          <MoreDropdownMenu
+                            subject_id={collectionData.subject_id}
+                            hasCollectionData={true}
+                          />
                         </>
                       ) : (
                         <>
@@ -237,6 +242,7 @@ export function Panel() {
                             }}
                             revert
                           />
+                          <MoreDropdownMenu subject_id={subjectData.id} />
                         </>
                       )}
                     </div>
