@@ -3,6 +3,7 @@ import { PlusCircleIcon } from "@heroicons/react/20/solid";
 import { useRef, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
+import { useEpisodeMutation } from "@/hooks/use-episode";
 
 export function EpisodeButton({
   subject_id,
@@ -16,6 +17,7 @@ export function EpisodeButton({
   const [value, setValue] = useState<number>(ep_status);
   const inputRef = useRef<HTMLInputElement>(null);
   const openToast = useToast();
+  const mutateEpisode = useEpisodeMutation();
 
   const episodeScheme = z
     .number()
@@ -88,16 +90,10 @@ export function EpisodeButton({
 
               if (epResult.success) {
                 setValue(Number(e.target.value));
-                openToast({
-                  type: "success",
-                  title: "更新成功！",
-                  description: `进度已更新至第 ${e.target.value} 集。`,
-                  action: {
-                    label: "跳转至评论页",
-                    onClick: () => {
-                      return;
-                    },
-                  },
+                mutateEpisode.mutate({
+                  subject_id,
+                  currentEp: ep_status,
+                  targetEp: Number(e.target.value),
                 });
               } else {
                 e.target.value = value.toString();
@@ -112,7 +108,7 @@ export function EpisodeButton({
             }}
             className="w-8 appearance-none bg-neutral-1 text-center outline-none selection:bg-neutral-9 selection:text-neutral-1 hover:pointer-events-auto"
           />
-          / 13
+          / {eps}
         </span>
       }
       revert

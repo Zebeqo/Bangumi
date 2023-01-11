@@ -1,9 +1,15 @@
 import { useSession } from "next-auth/react";
-import { useErrorToast } from "@/hooks/use-toast";
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useErrorToast, useToast } from "@/hooks/use-toast";
+import {
+  useInfiniteQuery,
+  useMutation,
+  useQueryClient,
+} from "@tanstack/react-query";
 import { z } from "zod";
 import { errorScheme } from "@/lib/error";
+import type { mutateEpisodesScheme } from "@/lib/episode";
 import { episodesScheme } from "@/lib/episode";
+import { collectionScheme } from "@/lib/collection";
 
 export function useEpisodesData(subject_id: number, limit = 100, type = 0) {
   const { data: session } = useSession();
@@ -61,4 +67,124 @@ export function useEpisodesData(subject_id: number, limit = 100, type = 0) {
     });
 
   return { data, isSuccess, fetchNextPage, hasNextPage, isFetchingNextPage };
+}
+
+export function useEpisodeMutation() {
+  const queryClient = useQueryClient();
+  const { data: session } = useSession();
+  const openToast = useToast();
+  const openErrorToast = useErrorToast();
+
+  return useMutation({
+    mutationFn: z
+      .function()
+      .args(
+        z.object({
+          currentEp: z.number().int(),
+          targetEp: z.number().int(),
+          subject_id: z.number().int(),
+        })
+      )
+      .implement(({ currentEp, targetEp, subject_id }) => {
+        if (!session) {
+          throw new Error("请先登录！");
+        }
+        if (targetEp - currentEp > 100) {
+          throw new Error("一次最多只能修改 100 集");
+        }
+        const limit = targetEp - currentEp;
+
+        // const mutateEpisodes =
+
+        return fetch(
+          `https://api.bgm.tv/v0/episodes?subject_id=${subject_id}&type=0&offset=${
+            limit > 0 ? currentEp : targetEp
+          }&limit=${Math.abs(limit)}`
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            const episodes = episodesScheme.parse(data);
+            if (
+              episodes.data[0].ep !==
+              (limit > 0 ? currentEp : targetEp) + 1
+            ) {
+              throw new Error(
+                "该条目章节 api 未按顺序排列，请自行前往主站修改。"
+              );
+            }
+            const episodes_id = episodes.data.map((episode) => episode.id);
+            const mutateEpisodes: z.infer<typeof mutateEpisodesScheme> = {
+              episode_id: episodes_id,
+              type: targetEp - currentEp > 0 ? 2 : 0,
+            };
+            console.log(`targetEP: ${targetEp}, currentEp: ${currentEp}`);
+            return fetch(
+              `https://api.bgm.tv/v0/users/-/collections/${subject_id}/episodes`,
+              {
+                method: "PATCH",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${session.accessToken}`,
+                },
+                body: JSON.stringify(mutateEpisodes),
+              }
+            );
+          })
+          .catch((e) => {
+            if (e instanceof Error) {
+              throw new Error(e.message);
+            }
+          });
+      }),
+    onMutate: async ({ targetEp, subject_id }) => {
+      await queryClient.cancelQueries(["collection", subject_id]);
+      const previousCollectionData = collectionScheme.parse(
+        queryClient.getQueryData(["collection", subject_id, session?.user.id])
+      );
+      const newCollectionData: z.infer<typeof collectionScheme> = {
+        ...previousCollectionData,
+        ep_status: targetEp,
+      };
+      queryClient.setQueryData(
+        ["collection", subject_id, session?.user.id],
+        newCollectionData
+      );
+      return { previousCollectionData, newCollectionData };
+    },
+    onSuccess: async (data, { targetEp }) => {
+      if (data) {
+        if (data.status !== 204) {
+          const errorResult = errorScheme.safeParse(await data.json());
+          if (errorResult.success) {
+            throw new Error(JSON.stringify(errorResult.data));
+          } else {
+            throw new Error(errorResult.error.message);
+          }
+        }
+      }
+
+      openToast({
+        type: "success",
+        title: "修改收藏进度成功",
+        description: `已将条目的收藏进度修改为观看至第 ${targetEp} 集`,
+      });
+    },
+    onError: (error, { subject_id }, context) => {
+      if (error instanceof Error) {
+        openErrorToast("修改收藏进度失败", error.message);
+      }
+
+      context &&
+        queryClient.setQueryData(
+          ["collection", subject_id, session?.user.id],
+          context.previousCollectionData
+        );
+    },
+    onSettled: async (data, error, { subject_id }) => {
+      await queryClient.invalidateQueries({
+        queryKey: ["collection", subject_id, session?.user.id],
+        exact: true,
+      });
+    },
+  });
 }
