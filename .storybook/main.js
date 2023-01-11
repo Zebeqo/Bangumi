@@ -17,6 +17,11 @@ module.exports = {
       // 👇 Storybook will load all files that contain the stories extension
       files: "**/*.stories.*",
     },
+    {
+      directory: "../hooks",
+      titlePrefix: "Hooks",
+      files: "**/*.stories.*",
+    },
   ],
   addons: [
     "@storybook/addon-links",
