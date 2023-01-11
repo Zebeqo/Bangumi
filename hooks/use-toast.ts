@@ -28,7 +28,19 @@ export function useErrorToast() {
   const openToast = useToast();
   const openDialog = useDialog();
 
-  const openErrorToast = (title: string, description: string) => {
+  const openErrorToast = (
+    title: string,
+    description: string,
+    action = {
+      label: "提交 issue",
+      onClick: () => {
+        window.open(
+          "https://github.com/Zebeqo/bangumi-dashboard/issues/new",
+          "_blank"
+        );
+      },
+    }
+  ) => {
     openToast({
       type: "error",
       title: title,
@@ -39,13 +51,8 @@ export function useErrorToast() {
             title: "问题详情",
             description: description,
             action: {
-              label: "提交 issue",
-              onClick: () => {
-                window.open(
-                  "https://github.com/Zebeqo/bangumi-dashboard/issues/new",
-                  "_blank"
-                );
-              },
+              label: action.label,
+              onClick: action.onClick,
             },
           });
         },

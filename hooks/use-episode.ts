@@ -6,7 +6,7 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 import { z } from "zod";
-import { errorScheme } from "@/lib/error";
+import { errorScheme, ToastError } from "@/lib/error";
 import type { mutateEpisodesScheme } from "@/lib/episode";
 import { episodesScheme } from "@/lib/episode";
 import { collectionScheme } from "@/lib/collection";
@@ -90,11 +90,17 @@ export function useEpisodeMutation() {
           throw new Error("请先登录！");
         }
         if (targetEp - currentEp > 100) {
-          throw new Error("一次最多只能修改 100 集");
+          throw new ToastError({
+            description: "单次最多更新 100 集。建议前往主站更新",
+            action: {
+              label: "前往主站",
+              onClick: () => {
+                window.open(`https://bgm.tv/subject/${subject_id}`, "_blank");
+              },
+            },
+          });
         }
         const limit = targetEp - currentEp;
-
-        // const mutateEpisodes =
 
         return fetch(
           `https://api.bgm.tv/v0/episodes?subject_id=${subject_id}&type=0&offset=${
@@ -108,9 +114,18 @@ export function useEpisodeMutation() {
               episodes.data[0].ep !==
               (limit > 0 ? currentEp : targetEp) + 1
             ) {
-              throw new Error(
-                "该条目章节 api 未按顺序排列，请自行前往主站修改。"
-              );
+              throw new ToastError({
+                description: "该章节 api 未按顺序排列，请前往主站更新",
+                action: {
+                  label: "前往主站",
+                  onClick: () => {
+                    window.open(
+                      `https://bgm.tv/subject/${subject_id}`,
+                      "_blank"
+                    );
+                  },
+                },
+              });
             }
             const episodes_id = episodes.data.map((episode) => episode.id);
             const mutateEpisodes: z.infer<typeof mutateEpisodesScheme> = {
@@ -132,6 +147,9 @@ export function useEpisodeMutation() {
           })
           .catch((e) => {
             if (e instanceof Error) {
+              if (e instanceof ToastError) {
+                throw e;
+              }
               throw new Error(e.message);
             }
           });
@@ -171,7 +189,16 @@ export function useEpisodeMutation() {
     },
     onError: (error, { subject_id }, context) => {
       if (error instanceof Error) {
-        openErrorToast("修改收藏进度失败", error.message);
+        if (error instanceof ToastError) {
+          openToast({
+            type: "error",
+            title: "修改收藏进度失败",
+            description: error.description,
+            action: error.action,
+          });
+        } else {
+          openErrorToast("修改收藏进度失败", error.message);
+        }
       }
 
       context &&

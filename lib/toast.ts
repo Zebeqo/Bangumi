@@ -4,10 +4,10 @@ export interface Toast {
   type: "success" | "error" | "info";
   title: string;
   description?: string;
-  action?: Action;
+  action?: ToastAction;
 }
 
-interface Action {
+export interface ToastAction {
   label: string;
   onClick: () => void;
 }

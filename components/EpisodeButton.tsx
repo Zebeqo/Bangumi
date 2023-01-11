@@ -54,8 +54,8 @@ export function EpisodeButton({
             } else {
               openToast({
                 type: "error",
-                title: "更新失败！",
-                description: `进度更新失败，请输入 0-${eps || "max"} 的整数。`,
+                title: "修改收藏进度失败！",
+                description: `请输入 0-${eps || "max"} 之间的整数。`,
               });
             }
           }}
@@ -86,6 +86,25 @@ export function EpisodeButton({
               const epResult = episodeScheme.safeParse(value);
 
               if (epResult.success) {
+                if (value - prevValue > 100) {
+                  openToast({
+                    type: "error",
+                    title: "修改收藏进度失败！",
+                    description: "单次最多更新 100 集。建议前往主站更新",
+                    action: {
+                      label: "前往主站",
+                      onClick: () => {
+                        window.open(
+                          `https://bgm.tv/subject/${subject_id}`,
+                          "_blank"
+                        );
+                      },
+                    },
+                  });
+                  setValue(prevValue);
+                  return;
+                }
+
                 setPrevValue(value);
                 mutateEpisode.mutate({
                   subject_id,
@@ -96,10 +115,8 @@ export function EpisodeButton({
                 setValue(prevValue);
                 openToast({
                   type: "error",
-                  title: "更新失败！",
-                  description: `进度更新失败，请输入 0-${
-                    eps || "max"
-                  } 的整数。`,
+                  title: "修改收藏进度失败！",
+                  description: `请输入 0-${eps || "max"} 之间的整数。`,
                 });
               }
             }}
