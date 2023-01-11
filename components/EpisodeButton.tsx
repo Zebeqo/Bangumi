@@ -79,6 +79,14 @@ export function EpisodeButton({
             }}
             value={value}
             ref={inputRef}
+            onKeyDown={(e) => {
+              e.stopPropagation();
+              if (e.key === "Enter") {
+                inputRef.current?.blur();
+              } else if (e.key === "Escape") {
+                inputRef.current?.blur();
+              }
+            }}
             onBlur={() => {
               if (value === prevValue) {
                 return;
