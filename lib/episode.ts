@@ -14,3 +14,8 @@ export const episodesScheme = z.object({
   limit: z.number().int(),
   offset: z.number().int(),
 });
+
+export const mutateEpisodesScheme = z.object({
+  episode_id: z.array(z.number().int()),
+  type: z.number().int().nonnegative().max(3),
+});
