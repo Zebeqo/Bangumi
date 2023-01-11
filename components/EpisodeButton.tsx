@@ -1,6 +1,6 @@
 import { Button } from "@/ui/Button";
 import { PlusCircleIcon } from "@heroicons/react/20/solid";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 import { useEpisodeMutation } from "@/hooks/use-episode";
@@ -15,9 +15,15 @@ export function EpisodeButton({
   ep_status: number;
 }) {
   const [value, setValue] = useState<number>(ep_status);
+  const [prevValue, setPrevValue] = useState<number>(ep_status);
   const inputRef = useRef<HTMLInputElement>(null);
   const openToast = useToast();
   const mutateEpisode = useEpisodeMutation();
+
+  useEffect(() => {
+    setValue(ep_status);
+    setPrevValue(ep_status);
+  }, [ep_status]);
 
   const episodeScheme = z
     .number()
@@ -35,31 +41,17 @@ export function EpisodeButton({
           onClick={(e) => {
             e.stopPropagation();
             const newValue = value + 1;
-            if (inputRef.current) {
-              inputRef.current.value = (value + 1).toString();
-            }
             const epResult = episodeScheme.safeParse(newValue);
 
             if (epResult.success) {
               setValue(newValue);
-              if (inputRef.current) {
-                inputRef.current.value = (value + 1).toString();
-              }
-              openToast({
-                type: "success",
-                title: "更新成功！",
-                description: `进度已更新至第 ${newValue} 集。`,
-                action: {
-                  label: "跳转至评论页",
-                  onClick: () => {
-                    return;
-                  },
-                },
+              setPrevValue(value);
+              mutateEpisode.mutate({
+                subject_id,
+                currentEp: ep_status,
+                targetEp: newValue,
               });
             } else {
-              if (inputRef.current) {
-                inputRef.current.value = value.toString();
-              }
               openToast({
                 type: "error",
                 title: "更新失败！",
@@ -80,23 +72,28 @@ export function EpisodeButton({
           进度:{" "}
           <input
             type={"number"}
-            defaultValue={ep_status}
+            min={0}
+            max={eps || undefined}
+            onChange={(e) => {
+              setValue(Number(e.target.value));
+            }}
+            value={value}
             ref={inputRef}
-            onBlur={(e) => {
-              if (Number(e.target.value) === value) {
+            onBlur={() => {
+              if (value === prevValue) {
                 return;
               }
-              const epResult = episodeScheme.safeParse(Number(e.target.value));
+              const epResult = episodeScheme.safeParse(value);
 
               if (epResult.success) {
-                setValue(Number(e.target.value));
+                setPrevValue(value);
                 mutateEpisode.mutate({
                   subject_id,
                   currentEp: ep_status,
-                  targetEp: Number(e.target.value),
+                  targetEp: value,
                 });
               } else {
-                e.target.value = value.toString();
+                setValue(prevValue);
                 openToast({
                   type: "error",
                   title: "更新失败！",
