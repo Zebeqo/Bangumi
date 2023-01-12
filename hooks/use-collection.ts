@@ -31,7 +31,7 @@ export function useCollectionData(subject_id?: number) {
         if (!collectionResult.success) {
           const errorResult = errorScheme.safeParse(data);
           if (errorResult.success) {
-            return null;
+            throw new Error(JSON.stringify(errorResult.data, null, 2));
           } else {
             throw new Error(
               `FROM ERROR:\n${errorResult.error.message}\n\nFROM COLLECTION:\n${collectionResult.error.message}`
@@ -108,7 +108,7 @@ export function useCollectionMutation() {
         if (data.status !== 204) {
           const errorResult = errorScheme.safeParse(await data.json());
           if (errorResult.success) {
-            throw new Error(JSON.stringify(errorResult.data));
+            throw new Error(JSON.stringify(errorResult.data, null, 2));
           } else {
             throw new Error(errorResult.error.message);
           }

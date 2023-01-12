@@ -39,7 +39,7 @@ export function useEpisodesData(subject_id: number, limit = 100, type = 0) {
           if (!episodesResult.success) {
             const errorResult = errorScheme.safeParse(data);
             if (errorResult.success) {
-              return null;
+              throw new Error(JSON.stringify(errorResult.data, null, 2));
             } else {
               throw new Error(
                 `FROM ERROR:\n${errorResult.error.message}\n\nFROM EPISODES:\n${episodesResult.error.message}`
@@ -132,7 +132,6 @@ export function useEpisodeMutation() {
               episode_id: episodes_id,
               type: targetEp - currentEp > 0 ? 2 : 0,
             };
-            console.log(`targetEP: ${targetEp}, currentEp: ${currentEp}`);
             return fetch(
               `https://api.bgm.tv/v0/users/-/collections/${subject_id}/episodes`,
               {

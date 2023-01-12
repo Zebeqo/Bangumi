@@ -29,6 +29,7 @@ import { RatingSelect } from "@/components/RatingSelect";
 import { EpisodeButton as EpisodeButtonComponent } from "@/components/EpisodeButton";
 import { signIn, useSession } from "next-auth/react";
 import { MoreDropdownMenu } from "@/components/MoreDropdownMenu";
+import { AvatarCardList } from "@/components/AvatarCardList";
 
 export const showFullInfoAtom = atom(false);
 export function Panel() {
@@ -247,6 +248,20 @@ export function Panel() {
                       )}
                     </div>
                   </div>
+                </div>
+                {/*InfoPanel.CharacterInfo*/}
+                <div className="flex flex-col space-y-2 p-2">
+                  {/*InfoPanel.Header*/}
+                  <div className="flex items-center justify-between px-6 py-2">
+                    <span className="text-3xl font-medium text-neutral-12">
+                      角色
+                    </span>
+                    <span className="font-medium text-neutral-11">
+                      显示全部
+                    </span>
+                  </div>
+                  {/*InfoPanel.CharacterCards*/}
+                  <AvatarCardList subject_id={subjectData.id} />
                 </div>
               </DialogPrimitive.Content>
             ) : (
