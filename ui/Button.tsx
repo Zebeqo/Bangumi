@@ -31,6 +31,7 @@ export interface ButtonProps
   label?: string | React.ReactNode;
   icon?: React.ReactNode;
   revert?: boolean;
+  iconClassName?: string;
 }
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
@@ -42,6 +43,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       onClick,
       revert = false,
       className,
+      iconClassName,
       ...props
     },
     ref
@@ -61,7 +63,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         <span
           className={cn(
             "h-5 w-5",
-            label ? (revert ? "ml-2" : "mr-2") : "h-6 w-6"
+            label ? (revert ? "ml-2" : "mr-2") : "h-6 w-6",
+            iconClassName
           )}
         >
           {icon}
