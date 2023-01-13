@@ -4,7 +4,7 @@ import { Panel } from "@/components/module/Panel";
 export const reactQueryDevtoolsDecorator = (Story: React.ComponentType) => {
   return (
     <>
-      <ReactQueryDevtools initialIsOpen={false} panelPosition={"right"} />
+      <ReactQueryDevtools initialIsOpen={false} panelPosition={"left"} />
       <Story />
     </>
   );
