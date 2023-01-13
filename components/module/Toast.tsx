@@ -74,7 +74,7 @@ export function Toast() {
         </ToastPrimitive.Close>
       </ToastPrimitive.Root>
 
-      <ToastPrimitive.Viewport />
+      <ToastPrimitive.Viewport className="z-50" />
     </>
   );
 }
