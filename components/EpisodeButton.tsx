@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/ui/Button";
 import { PlusCircleIcon } from "@heroicons/react/20/solid";
 import { useEffect, useRef, useState } from "react";
