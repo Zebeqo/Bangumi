@@ -41,7 +41,14 @@ export function AvatarCard({
                 <span className="whitespace-nowrap text-xs text-neutral-11">
                   {character_relation}:
                 </span>
-                <span className="cursor-pointer truncate text-xs font-medium text-neutral-12 hover:text-accent-11">
+                <span
+                  className="truncate text-xs font-medium text-neutral-12 "
+                  title={
+                    (characterData.infobox.find(
+                      (item) => item.key === "简体中文名"
+                    )?.value as string | undefined) ?? characterData.name
+                  }
+                >
                   {(characterData.infobox.find(
                     (item) => item.key === "简体中文名"
                   )?.value as string | undefined) ?? characterData.name}
@@ -51,8 +58,22 @@ export function AvatarCard({
                 <span className="whitespace-nowrap text-xs text-neutral-11">
                   CV:
                 </span>
-                <span className="cursor-pointer whitespace-pre-wrap text-xs font-medium text-neutral-12 hover:text-accent-11">
-                  {actor_names.join(" /\n")}
+
+                <span>
+                  {actor_names.map((actor_name, index) => (
+                    <div
+                      key={index}
+                      className="truncate whitespace-pre-wrap text-xs font-medium text-neutral-12 "
+                      title={actor_name}
+                    >
+                      <span className="cursor-pointer hover:text-accent-11">
+                        {actor_name}
+                      </span>
+                      <span className="select-none">
+                        {index !== actor_names.length - 1 && "  /"}
+                      </span>
+                    </div>
+                  ))}
                 </span>
               </div>
             </div>
