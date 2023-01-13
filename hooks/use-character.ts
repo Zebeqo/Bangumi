@@ -1,8 +1,8 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { characterScheme, subjectCharactersScheme } from "@/lib/character";
 import { errorScheme } from "@/lib/error";
 import { useSession } from "next-auth/react";
-import { useErrorToast, useToast } from "@/hooks/use-toast";
+import { useErrorToast } from "@/hooks/use-toast";
 
 export function useCharacterData(character_id: number) {
   const openErrorToast = useErrorToast();
@@ -55,9 +55,8 @@ export function useSubjectCharactersData(subject_id: number) {
           {
             headers:
               session === null
-                ? { "Content-Type": "application/json" }
+                ? {}
                 : {
-                    "Content-Type": "application/json",
                     Authorization: `Bearer ${session.accessToken}`,
                   },
           }
