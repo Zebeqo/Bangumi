@@ -8,6 +8,7 @@ export const episodesScheme = z.object({
       name_cn: z.string(),
       comment: z.number().int(),
       duration: z.string(),
+      airdate: z.string(),
     })
   ),
   total: z.number().int(),

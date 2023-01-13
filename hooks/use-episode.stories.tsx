@@ -1,5 +1,5 @@
 import type { Meta } from "@storybook/react";
-import { useEpisodesData } from "@/hooks/use-episode";
+import { useEpisodesPageData } from "@/hooks/use-episode";
 import { STORYBOOK_SUBJECT_ID } from "@/lib/constant";
 import { Button } from "@/ui/Button";
 import { reactQueryDevtoolsDecorator } from "@/lib/storybook";
@@ -18,7 +18,7 @@ export const EpisodesDataHook = () => {
     hasNextPage,
     isFetchingNextPage,
     isSuccess,
-  } = useEpisodesData(STORYBOOK_SUBJECT_ID, 2);
+  } = useEpisodesPageData(STORYBOOK_SUBJECT_ID, 2);
   return (
     <>
       {isSuccess ? (
