@@ -13,7 +13,7 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
-import { Badge } from "@/ui/Badge";
+import { TagBadge } from "@/ui/TagBadge";
 import {
   ChevronDownIcon,
   InboxArrowDownIcon,
@@ -191,7 +191,7 @@ export function Panel() {
                             <div className="max-w-[564px] leading-loose">
                               {subjectData.tags.map(
                                 ({ count, name }, index) => (
-                                  <Badge
+                                  <TagBadge
                                     key={index}
                                     label={name}
                                     count={count}
