@@ -65,6 +65,97 @@ const OpenErrorToastButton = () => {
             '        "method": "PATCH"\n' +
             "    },\n" +
             '    "description": "subject not collected"\n' +
+            "}{\n" +
+            '    "title": "Not Found",\n' +
+            '    "details": {\n' +
+            '        "path": "/v0/users/-/collections/:subject_id",\n' +
+            '        "method": "PATCH"\n' +
+            "    },\n" +
+            '    "description": "subject not collected"\n' +
+            "}{\n" +
+            '    "title": "Not Found",\n' +
+            '    "details": {\n' +
+            '        "path": "/v0/users/-/collections/:subject_id",\n' +
+            '        "method": "PATCH"\n' +
+            "    },\n" +
+            '    "description": "subject not collected"\n' +
+            "}{\n" +
+            '    "title": "Not Found",\n' +
+            '    "details": {\n' +
+            '        "path": "/v0/users/-/collections/:subject_id",\n' +
+            '        "method": "PATCH"\n' +
+            "    },\n" +
+            '    "description": "subject not collected"\n' +
+            "}{\n" +
+            '    "title": "Not Found",\n' +
+            '    "details": {\n' +
+            '        "path": "/v0/users/-/collections/:subject_id",\n' +
+            '        "method": "PATCH"\n' +
+            "    },\n" +
+            '    "description": "subject not collected"\n' +
+            "}{\n" +
+            '    "title": "Not Found",\n' +
+            '    "details": {\n' +
+            '        "path": "/v0/users/-/collections/:subject_id",\n' +
+            '        "method": "PATCH"\n' +
+            "    },\n" +
+            '    "description": "subject not collected"\n' +
+            "}{\n" +
+            '    "title": "Not Found",\n' +
+            '    "details": {\n' +
+            '        "path": "/v0/users/-/collections/:subject_id",\n' +
+            '        "method": "PATCH"\n' +
+            "    },\n" +
+            '    "description": "subject not collected"\n' +
+            "}{\n" +
+            '    "title": "Not Found",\n' +
+            '    "details": {\n' +
+            '        "path": "/v0/users/-/collections/:subject_id",\n' +
+            '        "method": "PATCH"\n' +
+            "    },\n" +
+            '    "description": "subject not collected"\n' +
+            "}{\n" +
+            '    "title": "Not Found",\n' +
+            '    "details": {\n' +
+            '        "path": "/v0/users/-/collections/:subject_id",\n' +
+            '        "method": "PATCH"\n' +
+            "    },\n" +
+            '    "description": "subject not collected"\n' +
+            "}{\n" +
+            '    "title": "Not Found",\n' +
+            '    "details": {\n' +
+            '        "path": "/v0/users/-/collections/:subject_id",\n' +
+            '        "method": "PATCH"\n' +
+            "    },\n" +
+            '    "description": "subject not collected"\n' +
+            "}{\n" +
+            '    "title": "Not Found",\n' +
+            '    "details": {\n' +
+            '        "path": "/v0/users/-/collections/:subject_id",\n' +
+            '        "method": "PATCH"\n' +
+            "    },\n" +
+            '    "description": "subject not collected"\n' +
+            "}{\n" +
+            '    "title": "Not Found",\n' +
+            '    "details": {\n' +
+            '        "path": "/v0/users/-/collections/:subject_id",\n' +
+            '        "method": "PATCH"\n' +
+            "    },\n" +
+            '    "description": "subject not collected"\n' +
+            "}{\n" +
+            '    "title": "Not Found",\n' +
+            '    "details": {\n' +
+            '        "path": "/v0/users/-/collections/:subject_id",\n' +
+            '        "method": "PATCH"\n' +
+            "    },\n" +
+            '    "description": "subject not collected"\n' +
+            "}{\n" +
+            '    "title": "Not Found",\n' +
+            '    "details": {\n' +
+            '        "path": "/v0/users/-/collections/:subject_id",\n' +
+            '        "method": "PATCH"\n' +
+            "    },\n" +
+            '    "description": "subject not collected"\n' +
             "}"
         );
       }}
