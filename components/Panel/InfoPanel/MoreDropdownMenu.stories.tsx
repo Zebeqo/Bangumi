@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { MoreDropdownMenu as MoreDropdownMenuComponent } from "@/components/MoreDropdownMenu";
+import { MoreDropdownMenu as MoreDropdownMenuComponent } from "@/components/Panel/InfoPanel/MoreDropdownMenu";
 import { STORYBOOK_SUBJECT_ID } from "@/lib/constant";
 
 const meta: Meta<typeof MoreDropdownMenuComponent> = {

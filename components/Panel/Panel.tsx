@@ -24,12 +24,12 @@ import { useSubjectData } from "@/hooks/use-subject";
 import { useCollectionData } from "@/hooks/use-collection";
 import { useToast } from "@/hooks/use-toast";
 import { createIssueToast } from "@/lib/toast";
-import { CollectionTypeSelect } from "@/components/CollectionTypeSelect";
-import { RatingSelect } from "@/components/RatingSelect";
+import { CollectionTypeSelect } from "@/components/Panel/InfoPanel/CollectionTypeSelect";
+import { RatingSelect } from "@/components/Panel/InfoPanel/RatingSelect";
 import { EpisodeButton as EpisodeButtonComponent } from "@/components/EpisodeButton";
 import { signIn, useSession } from "next-auth/react";
-import { MoreDropdownMenu } from "@/components/MoreDropdownMenu";
-import { AvatarCardList } from "@/components/AvatarCardList";
+import { MoreDropdownMenu } from "@/components/Panel/InfoPanel/MoreDropdownMenu";
+import { AvatarCardList } from "@/components/Panel/AvatarCardList";
 import { useInView } from "react-intersection-observer";
 
 export const showFullInfoAtom = atom(false);

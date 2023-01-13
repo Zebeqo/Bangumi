@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { SortDropdownMenu as SortDropdownMenuComponent } from "@/components/SortDropdownMenu";
+import { SortDropdownMenu as SortDropdownMenuComponent } from "@/components/Panel/InfoPanel/SortDropdownMenu";
 import { userEvent, within } from "@storybook/testing-library";
 
 const meta: Meta<typeof SortDropdownMenuComponent> = {
