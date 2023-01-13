@@ -31,6 +31,7 @@ import { signIn, useSession } from "next-auth/react";
 import { MoreDropdownMenu } from "@/components/Panel/InfoPanel/MoreDropdownMenu";
 import { AvatarCardList } from "@/components/Panel/AvatarCardList";
 import { useInView } from "react-intersection-observer";
+import { ListHeader } from "@/components/Panel/ListHeader";
 
 export const showFullInfoAtom = atom(false);
 export function Panel() {
@@ -297,7 +298,7 @@ export function Panel() {
                       {/*InfoPanel.CharacterInfo*/}
                       <div className="flex flex-col space-y-2 p-2">
                         {/*InfoPanel.Header*/}
-                        <Header title={"角色"} />
+                        <ListHeader title={"角色"} />
                         {/*InfoPanel.CharacterCards*/}
                         <AvatarCardList subject_id={subjectData.id} />
                         <div className="h-60"></div>
@@ -305,7 +306,7 @@ export function Panel() {
                       {/*InfoPanel.EPInfo*/}
                       <div className="flex flex-col space-y-2 p-2">
                         {/*InfoPanel.Header*/}
-                        <Header title={"角色"} />
+                        <ListHeader title={"剧集"} />
                         {/*InfoPanel.EPList*/}
                       </div>
                     </div>
