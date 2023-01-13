@@ -74,7 +74,7 @@ export function Panel() {
           >
             <DialogPrimitive.Overlay
               forceMount
-              className="fixed inset-0 z-50 grid place-items-center overflow-y-auto bg-blackA-9 pb-16"
+              className="fixed inset-0 z-40 grid place-items-center overflow-y-auto bg-blackA-9 pb-16"
             >
               <Transition.Child
                 as={Fragment}
