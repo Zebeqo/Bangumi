@@ -2,8 +2,7 @@
 
 import Image from "next/image";
 import { useCharacterData } from "@/hooks/use-character";
-import { Button } from "@/ui/Button";
-import { ChatBubbleLeftRightIcon } from "@heroicons/react/20/solid";
+import { CommentBadge } from "@/ui/CommentBadge";
 
 export function AvatarCard({
   character_id,
@@ -19,14 +18,10 @@ export function AvatarCard({
   return (
     <>
       {characterData && (
-        <div className="relative rounded-md bg-neutral-3 px-4 py-6">
-          <Button
-            colorType={"success"}
-            type={"secondary"}
-            label={characterData.stat.comments}
-            icon={<ChatBubbleLeftRightIcon />}
-            iconClassName={"w-4 h-4 mr-1"}
-            className="absolute top-2 right-2 z-10 rounded-full px-3 text-xs"
+        <div className="relative  rounded-md bg-neutral-3 px-4 py-6 hover:bg-neutral-5">
+          <CommentBadge
+            count={characterData.stat.comments}
+            className="absolute top-2 right-2 z-10"
           />
           <div className="flex flex-col space-y-4">
             <div className="relative h-32 w-32 self-center overflow-hidden rounded-full">

@@ -4,7 +4,7 @@ import {
   ClockIcon,
   TableCellsIcon,
 } from "@heroicons/react/20/solid";
-import { Badge } from "@/ui/Badge";
+import { TagBadge } from "@/ui/TagBadge";
 import { Rating } from "@/ui/Rating";
 import { Button } from "@/ui/Button";
 import { ChatBubbleLeftRightIcon } from "@heroicons/react/24/outline";
@@ -94,7 +94,7 @@ export async function Card({ subject_id }: CardProps) {
         {/*Card.TagGroup*/}
         <div className="h-[4.6rem] overflow-hidden py-1 leading-loose">
           {tags.slice(0, 10).map((tag, index) => (
-            <Badge key={index} color="primary" label={tag.name} />
+            <TagBadge key={index} color="primary" label={tag.name} />
           ))}
         </div>
         {/*Card.Footer*/}
