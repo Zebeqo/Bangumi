@@ -3,6 +3,7 @@ import { useErrorToast, useToast } from "@/hooks/use-toast";
 import {
   useInfiniteQuery,
   useMutation,
+  useQuery,
   useQueryClient,
 } from "@tanstack/react-query";
 import { z } from "zod";
@@ -11,7 +12,65 @@ import type { mutateEpisodesScheme } from "@/lib/episode";
 import { episodesScheme } from "@/lib/episode";
 import { collectionScheme } from "@/lib/collection";
 
-export function useEpisodesData(subject_id: number, limit = 100, type = 0) {
+export function useEpisodesData(
+  subject_id: number,
+  limit: number,
+  offset = 0,
+  type = 0
+) {
+  const { data: session } = useSession();
+  const openErrorToast = useErrorToast();
+
+  const { data, isSuccess } = useQuery({
+    queryKey: ["episodes", subject_id, offset, limit, type, session?.user.id],
+    queryFn: async () => {
+      try {
+        if (offset === -1) {
+          return null;
+        }
+        const response = await fetch(
+          `https://api.bgm.tv/v0/episodes?subject_id=${subject_id}&type=${type}&offset=${offset}&limit=${limit}`,
+          {
+            headers:
+              session === null
+                ? {}
+                : {
+                    Authorization: `Bearer ${session.accessToken}`,
+                  },
+          }
+        );
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        const data = await response.json();
+        const episodesResult = episodesScheme.safeParse(data);
+        if (!episodesResult.success) {
+          const errorResult = errorScheme.safeParse(data);
+          if (errorResult.success) {
+            throw new Error(JSON.stringify(errorResult.data, null, 2));
+          } else {
+            throw new Error(
+              `FROM ERROR:\n${errorResult.error.message}\n\nFROM EPISODES:\n${episodesResult.error.message}`
+            );
+          }
+        } else {
+          if (episodesResult.data.data[0].ep !== offset + 1) {
+            return null;
+          }
+          return episodesResult.data;
+        }
+      } catch (e) {
+        if (e instanceof Error) {
+          const message = e.message;
+          openErrorToast("获取剧集信息失败", message);
+        }
+      }
+    },
+    staleTime: Infinity,
+    keepPreviousData: true,
+  });
+  return { data, isSuccess };
+}
+
+export function useEpisodesPageData(subject_id: number, limit = 100, type = 0) {
   const { data: session } = useSession();
   const openErrorToast = useErrorToast();
 
