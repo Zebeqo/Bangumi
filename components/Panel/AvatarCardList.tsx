@@ -1,6 +1,6 @@
 "use client";
 
-import { AvatarCard } from "@/components/AvatarCard";
+import { AvatarCard } from "@/components/Panel/AvatarCard";
 import { useSubjectCharactersData } from "@/hooks/use-character";
 
 export function AvatarCardList({ subject_id }: { subject_id: number }) {

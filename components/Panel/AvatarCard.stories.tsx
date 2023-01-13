@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { AvatarCard as AvatarCardComponent } from "@/components/AvatarCard";
+import { AvatarCard as AvatarCardComponent } from "@/components/Panel/AvatarCard";
 import { reactQueryDevtoolsDecorator } from "@/lib/storybook";
 
 const meta: Meta<typeof AvatarCardComponent> = {

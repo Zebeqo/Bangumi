@@ -2,7 +2,7 @@
 import { Button } from "@/ui/Button";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
-import { SortDropdownMenu } from "@/components/SortDropdownMenu";
+import { SortDropdownMenu } from "@/components/Panel/InfoPanel/SortDropdownMenu";
 
 const navItems = [
   {

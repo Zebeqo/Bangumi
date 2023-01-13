@@ -1,20 +1,20 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { RatingSelect as RatingSelectComponent } from "@/components/RatingSelect";
-import { STORYBOOK_SUBJECT_ID } from "@/lib/constant";
-import { screen, userEvent, within } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
+import type { Meta, StoryObj } from "@storybook/react";
+import { CollectionTypeSelect as CollectionTypeSelectComponent } from "@/components/Panel/InfoPanel/CollectionTypeSelect";
+import { STORYBOOK_SUBJECT_ID } from "@/lib/constant";
+import { userEvent, within, screen } from "@storybook/testing-library";
 import { reactQueryDevtoolsDecorator } from "@/lib/storybook";
 
-const meta: Meta<typeof RatingSelectComponent> = {
-  title: "RatingSelect",
-  component: RatingSelectComponent,
+const meta: Meta<typeof CollectionTypeSelectComponent> = {
+  title: "CollectionTypeSelect",
+  component: CollectionTypeSelectComponent,
   decorators: [reactQueryDevtoolsDecorator],
 };
 
 export default meta;
-type Story = StoryObj<typeof RatingSelectComponent>;
+type Story = StoryObj<typeof CollectionTypeSelectComponent>;
 
-export const RatingSelect: Story = {
+export const CollectionTypeSelect: Story = {
   args: {
     subject_id: STORYBOOK_SUBJECT_ID,
   },
@@ -34,7 +34,7 @@ export const RatingSelect: Story = {
     await userEvent.click(selectEl);
     const listbox = within(screen.getByRole("listbox"));
     const option = await listbox.findAllByRole("option");
-    await expect(option.length).toEqual(11);
+    await expect(option.length).toEqual(5);
 
     await userEvent.keyboard("{esc}");
   },

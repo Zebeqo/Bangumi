@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { AvatarCardList as AvatarCardListComponent } from "@/components/AvatarCardList";
+import { AvatarCardList as AvatarCardListComponent } from "@/components/Panel/AvatarCardList";
 import { reactQueryDevtoolsDecorator } from "@/lib/storybook";
 import { STORYBOOK_SUBJECT_ID } from "@/lib/constant";
 

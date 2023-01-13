@@ -1,5 +1,5 @@
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { Panel } from "@/components/module/Panel";
+import { Panel } from "@/components/Panel/Panel";
 
 export const reactQueryDevtoolsDecorator = (Story: React.ComponentType) => {
   return (
