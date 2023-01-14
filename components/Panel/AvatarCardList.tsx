@@ -11,7 +11,7 @@ export function AvatarCardList({ subject_id }: { subject_id: number }) {
       <div className="flex flex-col space-y-2 p-2">
         {subjectCharactersData && (
           <>
-            <ListHeader title={"剧集"} />
+            <ListHeader title={"角色"} />
             <div className="grid grid-cols-5 gap-4 px-8 py-2">
               {subjectCharactersData.slice(0, 10).map((characterData) => {
                 return (
