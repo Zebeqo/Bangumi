@@ -4,7 +4,7 @@ import { AvatarCard } from "@/components/Panel/AvatarCard";
 import { useSubjectCharactersData } from "@/hooks/use-character";
 import { ListHeader } from "@/components/Panel/ListHeader";
 
-export function AvatarCardList({ subject_id }: { subject_id: number }) {
+export function CharacterList({ subject_id }: { subject_id: number }) {
   const { data: subjectCharactersData } = useSubjectCharactersData(subject_id);
   return (
     <>

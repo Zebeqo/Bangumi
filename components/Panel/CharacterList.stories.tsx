@@ -1,19 +1,19 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { AvatarCardList as AvatarCardListComponent } from "@/components/Panel/AvatarCardList";
+import { CharacterList as CharacterListComponent } from "@/components/Panel/CharacterList";
 import { reactQueryDevtoolsDecorator } from "@/lib/storybook";
 import { STORYBOOK_SUBJECT_ID } from "@/lib/constant";
 
-const meta: Meta<typeof AvatarCardListComponent> = {
-  title: "AvatarCardList",
-  component: AvatarCardListComponent,
+const meta: Meta<typeof CharacterListComponent> = {
+  title: "CharacterList",
+  component: CharacterListComponent,
   decorators: [reactQueryDevtoolsDecorator],
 };
 
 export default meta;
-type Story = StoryObj<typeof AvatarCardListComponent>;
+type Story = StoryObj<typeof CharacterListComponent>;
 
-export const AvatarCardList: Story = {
+export const CharacterList: Story = {
   args: {
     subject_id: STORYBOOK_SUBJECT_ID,
   },
