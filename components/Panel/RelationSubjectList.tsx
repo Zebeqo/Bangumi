@@ -2,20 +2,23 @@
 
 import { ListHeader } from "@/components/Panel/ListHeader";
 import { useSubjectRelationsData } from "@/hooks/use_relation";
-import { subjectRelationScheme, subjectRelationWeight } from "@/lib/relation";
+import { subjectRelationEnum, subjectRelationScheme } from "@/lib/relation";
 import { RelationSubjectAvatarCard } from "@/components/Panel/RelationSubjectAvatarCard";
 
 export function RelationSubjectList({ subject_id }: { subject_id: number }) {
   const { data: subjectRelationsData } = useSubjectRelationsData(subject_id);
 
   const sortedListData = subjectRelationsData?.sort((a, b) => {
-    const subjectRelationA = subjectRelationScheme.parse(a.relation);
-    const subjectRelationB = subjectRelationScheme.parse(b.relation);
-
-    return (
-      subjectRelationWeight[subjectRelationB] -
-      subjectRelationWeight[subjectRelationA]
+    const subjectRelationA = subjectRelationScheme.parse(
+      // @ts-expect-error zod will catch it
+      subjectRelationEnum[a.relation]
     );
+    const subjectRelationB = subjectRelationScheme.parse(
+      // @ts-expect-error zod will catch it
+      subjectRelationEnum[b.relation]
+    );
+
+    return subjectRelationB - subjectRelationA;
   });
 
   return (
