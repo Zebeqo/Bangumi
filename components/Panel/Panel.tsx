@@ -29,7 +29,7 @@ import { RatingSelect } from "@/components/Panel/InfoPanel/RatingSelect";
 import { EpisodeButton as EpisodeButtonComponent } from "@/components/EpisodeButton";
 import { signIn, useSession } from "next-auth/react";
 import { MoreDropdownMenu } from "@/components/Panel/InfoPanel/MoreDropdownMenu";
-import { AvatarCardList } from "@/components/Panel/AvatarCardList";
+import { CharacterList } from "@/components/Panel/CharacterList";
 import { useInView } from "react-intersection-observer";
 import { EPList } from "@/components/Panel/EPList";
 
@@ -296,7 +296,7 @@ export function Panel() {
                         </div>
                       </div>
                       {/*InfoPanel.CharacterList*/}
-                      <AvatarCardList subject_id={subjectData.id} />
+                      <CharacterList subject_id={subjectData.id} />
                       {/*InfoPanel.EPList*/}
                       <EPList subject_id={subjectData.id} length={6} />
                     </div>
