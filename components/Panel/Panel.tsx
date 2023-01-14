@@ -91,7 +91,7 @@ export function Panel() {
                 isCollectionDataSuccess ? (
                   <DialogPrimitive.Content
                     forceMount
-                    className="z-40 mt-16 flex w-[1040.62px] flex-col space-y-4 rounded-lg bg-neutral-1 py-6 shadow-lg outline-none"
+                    className="z-40 mt-16 flex w-[1040.62px] flex-col rounded-lg bg-neutral-1 pt-4 pb-6 shadow-lg outline-none"
                     onPointerDownOutside={(e) => {
                       if (
                         e.detail.originalEvent.which === 2 ||
@@ -114,7 +114,7 @@ export function Panel() {
                     {/*InfoPanel.Nav*/}
                     <div
                       className={cn(
-                        "sticky top-0 z-50 flex justify-between p-2 px-8",
+                        "sticky top-0 z-50 flex justify-between py-4 px-8",
                         !inView && "border-b border-neutral-6 bg-neutral-1"
                       )}
                       ref={ref}
@@ -156,7 +156,7 @@ export function Panel() {
                         </DialogPrimitive.Close>
                       </div>
                     </div>
-                    <div className="flex flex-col space-y-4 px-8">
+                    <div className="flex flex-col space-y-2 px-8">
                       {/*InfoPanel.Info*/}
                       <div className="flex min-h-[384px] space-x-4">
                         {/*InfoPanel.InfoImage*/}
@@ -174,10 +174,10 @@ export function Panel() {
                           <div className="flex space-x-2 p-2">
                             {/*InfoPanel.Rating*/}
                             <div className="flex flex-col items-center space-y-2 p-2">
-                              <Button
-                                colorType="accent"
-                                type={"secondary"}
-                                label="评分"
+                              <TagBadge
+                                label={"评分"}
+                                color={"accent"}
+                                className="mr-0 w-full text-base"
                               />
                               <span className="text-4xl font-bold text-accent-11">
                                 {subjectData.rating.score.toFixed(1)}

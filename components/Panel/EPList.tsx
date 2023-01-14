@@ -32,7 +32,7 @@ export function EPList({
     } else {
       episodesStart =
         collectionData.ep_status > halfLength
-          ? collectionData.subject.eps - length
+          ? Math.max(collectionData.subject.eps - length, 0)
           : 0;
     }
   }
