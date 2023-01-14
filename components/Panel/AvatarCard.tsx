@@ -28,7 +28,7 @@ export function AvatarCard({
               <Image
                 className="cursor-pointer object-cover object-top"
                 src={
-                  characterData.images.medium ||
+                  characterData.images?.medium ||
                   "https://avatars.githubusercontent.com/u/7521082"
                 }
                 alt="Avatar"

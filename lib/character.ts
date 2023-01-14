@@ -4,9 +4,11 @@ export const subjectCharactersScheme = z.array(
     id: z.number().int(),
     relation: z.string(),
     name: z.string(),
-    images: z.object({
-      medium: z.string().url().or(z.literal("")),
-    }),
+    images: z
+      .object({
+        medium: z.string().url().or(z.literal("")),
+      })
+      .optional(),
     actors: z.array(z.object({ id: z.number().int(), name: z.string() })),
   })
 );
@@ -27,9 +29,11 @@ export const characterScheme = z.object({
       ),
     })
   ),
-  images: z.object({
-    medium: z.string().url().or(z.literal("")),
-  }),
+  images: z
+    .object({
+      medium: z.string().url().or(z.literal("")),
+    })
+    .optional(),
   stat: z.object({
     comments: z.number().int(),
     collects: z.number().int(),
