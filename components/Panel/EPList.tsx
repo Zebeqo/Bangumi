@@ -9,36 +9,60 @@ import {
 
 import { useCollectionData } from "@/hooks/use-collection";
 import { useEpisodesData } from "@/hooks/use-episode";
+import { ListHeader } from "@/components/Panel/ListHeader";
+import { cn } from "@/lib/utils";
 
-export function EPList({ subject_id }: { subject_id: number }) {
+export function EPList({
+  subject_id,
+  length,
+}: {
+  subject_id: number;
+  length: number;
+}) {
   const { data: collectionData } = useCollectionData(subject_id);
+  const halfLength = Math.ceil(length / 2);
 
-  let episodesStart = -1;
+  let episodesStart = 0;
   if (collectionData) {
     if (
-      collectionData.ep_status > 3 &&
-      collectionData.ep_status < collectionData.subject.eps - 3
+      collectionData.ep_status > halfLength &&
+      collectionData.ep_status < collectionData.subject.eps - halfLength
     ) {
-      episodesStart = collectionData.ep_status - 3;
+      episodesStart = collectionData.ep_status - halfLength;
     } else {
       episodesStart =
-        collectionData.ep_status > 3 ? collectionData.subject.eps - 6 : 0;
+        collectionData.ep_status > halfLength
+          ? collectionData.subject.eps - length
+          : 0;
     }
   }
 
-  const { data: episodesData } = useEpisodesData(subject_id, 6, episodesStart);
+  const { data: episodesData } = useEpisodesData(
+    subject_id,
+    length,
+    episodesStart
+  );
 
   return (
     <>
-      {episodesData?.data.map((episodeData) => (
-        <EPItem
-          key={episodeData.ep}
-          episodeData={episodeData}
-          isSelected={
-            collectionData ? episodeData.ep <= collectionData.ep_status : false
-          }
-        />
-      ))}
+      <div className="flex flex-col space-y-2 p-2">
+        {episodesData && (
+          <>
+            <ListHeader title={"剧集"} />
+            {episodesData.data.map((episodeData) => (
+              <EPItem
+                key={episodeData.ep}
+                episodeData={episodeData}
+                isSelected={
+                  collectionData
+                    ? episodeData.ep <= collectionData.ep_status
+                    : false
+                }
+              />
+            ))}
+          </>
+        )}
+      </div>
     </>
   );
 }
@@ -60,8 +84,17 @@ function EPItem({
         />
         <div className="flex flex-col space-y-1">
           <div className="flex items-center font-medium">
-            <span className="text-xl text-neutral-12">{episodeData.name}</span>
-            <span className="text-neutral-11">（{episodeData.name_cn}）</span>
+            <span className="text-xl text-neutral-12">
+              {episodeData.name || "未知"}
+            </span>
+            <span
+              className={cn(
+                "text-neutral-11",
+                episodeData.name === "" && "hidden"
+              )}
+            >
+              （{episodeData.name_cn}）
+            </span>
           </div>
           <div className="flex space-x-2 text-xs font-medium text-neutral-11">
             <div className="flex justify-center space-x-1">
@@ -78,7 +111,7 @@ function EPItem({
       <Button
         colorType={"neutral"}
         type={"ghost"}
-        label={episodeData.comment}
+        label={episodeData.comment.toString()}
         icon={<ChatBubbleLeftRightIcon />}
       />
     </div>

@@ -31,6 +31,9 @@ export function useCollectionData(subject_id?: number) {
         if (!collectionResult.success) {
           const errorResult = errorScheme.safeParse(data);
           if (errorResult.success) {
+            if (response.status === 404) {
+              return null;
+            }
             throw new Error(JSON.stringify(errorResult.data, null, 2));
           } else {
             throw new Error(
