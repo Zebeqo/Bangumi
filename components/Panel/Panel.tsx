@@ -31,7 +31,6 @@ import { signIn, useSession } from "next-auth/react";
 import { MoreDropdownMenu } from "@/components/Panel/InfoPanel/MoreDropdownMenu";
 import { AvatarCardList } from "@/components/Panel/AvatarCardList";
 import { useInView } from "react-intersection-observer";
-import { ListHeader } from "@/components/Panel/ListHeader";
 import { EPList } from "@/components/Panel/EPList";
 
 export const showFullInfoAtom = atom(false);
@@ -296,20 +295,10 @@ export function Panel() {
                           </div>
                         </div>
                       </div>
-                      {/*InfoPanel.CharacterInfo*/}
-                      <div className="flex flex-col space-y-2 p-2">
-                        {/*InfoPanel.Header*/}
-                        <ListHeader title={"角色"} />
-                        {/*InfoPanel.CharacterCards*/}
-                        <AvatarCardList subject_id={subjectData.id} />
-                      </div>
-                      {/*InfoPanel.EPInfo*/}
-                      <div className="flex flex-col space-y-2 p-2">
-                        {/*InfoPanel.Header*/}
-                        <ListHeader title={"剧集"} />
-                        {/*InfoPanel.EPList*/}
-                        <EPList subject_id={subjectData.id} />
-                      </div>
+                      {/*InfoPanel.CharacterList*/}
+                      <AvatarCardList subject_id={subjectData.id} />
+                      {/*InfoPanel.EPList*/}
+                      <EPList subject_id={subjectData.id} length={6} />
                     </div>
                   </DialogPrimitive.Content>
                 ) : (

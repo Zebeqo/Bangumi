@@ -16,6 +16,7 @@ type Story = StoryObj<typeof EPListComponent>;
 export const EPList: Story = {
   args: {
     subject_id: STORYBOOK_SUBJECT_ID,
+    length: 6,
   },
   parameters: {
     layout: "centered",
