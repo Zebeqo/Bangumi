@@ -33,6 +33,7 @@ import { CharacterList } from "@/components/Panel/CharacterList";
 import { useInView } from "react-intersection-observer";
 import { EPList } from "@/components/Panel/EPList";
 import { PersonList } from "@/components/Panel/PersonList";
+import { RelationSubjectList } from "@/components/Panel/RelationSubjectList";
 
 export const showFullInfoAtom = atom(false);
 export function Panel() {
@@ -302,6 +303,8 @@ export function Panel() {
                       <EPList subject_id={subjectData.id} length={6} />
                       {/*InfoPanel.PersonList*/}
                       <PersonList subject_id={subjectData.id} />
+                      {/*InfoPanel.SubjectList*/}
+                      <RelationSubjectList subject_id={subjectData.id} />
                     </div>
                   </DialogPrimitive.Content>
                 ) : (
