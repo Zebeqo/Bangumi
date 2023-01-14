@@ -49,7 +49,6 @@ export const personRelationWeight = {
   导演: 5,
 };
 
-// export type PersonRelation = keyof typeof personRelationWeight;
 export const personRelationScheme = z
   .union([
     z.literal("_other"),
