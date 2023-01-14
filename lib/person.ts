@@ -39,3 +39,24 @@ export const personScheme = z.object({
     collects: z.number().int(),
   }),
 });
+
+export const personRelationWeight = {
+  _other: 0,
+  音乐: 1,
+  人物设定: 2,
+  动画制作: 3,
+  原作: 4,
+  导演: 5,
+};
+
+// export type PersonRelation = keyof typeof personRelationWeight;
+export const personRelationScheme = z
+  .union([
+    z.literal("_other"),
+    z.literal("音乐"),
+    z.literal("人物设定"),
+    z.literal("动画制作"),
+    z.literal("原作"),
+    z.literal("导演"),
+  ])
+  .catch("_other");
