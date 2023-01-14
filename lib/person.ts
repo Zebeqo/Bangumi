@@ -40,22 +40,15 @@ export const personScheme = z.object({
   }),
 });
 
-export const personRelationWeight = {
-  _other: 0,
-  音乐: 1,
-  人物设定: 2,
-  动画制作: 3,
-  原作: 4,
-  导演: 5,
-};
+export enum personRelationEnum {
+  _other,
+  音乐,
+  人物设定,
+  动画制作,
+  原作,
+  导演,
+}
 
 export const personRelationScheme = z
-  .union([
-    z.literal("_other"),
-    z.literal("音乐"),
-    z.literal("人物设定"),
-    z.literal("动画制作"),
-    z.literal("原作"),
-    z.literal("导演"),
-  ])
-  .catch("_other");
+  .nativeEnum(personRelationEnum)
+  .catch(personRelationEnum._other);

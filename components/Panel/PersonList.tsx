@@ -3,19 +3,22 @@
 import { ListHeader } from "@/components/Panel/ListHeader";
 import { useSubjectPersonsData } from "@/hooks/use-person";
 import { PersonAvatarCard } from "@/components/Panel/PersonAvatarCard";
-import { personRelationScheme, personRelationWeight } from "@/lib/person";
+import { personRelationEnum, personRelationScheme } from "@/lib/person";
 
 export function PersonList({ subject_id }: { subject_id: number }) {
   const { data: subjectPersonsData } = useSubjectPersonsData(subject_id);
 
   const sortedListData = subjectPersonsData?.sort((a, b) => {
-    const personRelationA = personRelationScheme.parse(a.relation);
-    const personRelationB = personRelationScheme.parse(b.relation);
-
-    return (
-      personRelationWeight[personRelationB] -
-      personRelationWeight[personRelationA]
+    const personRelationA = personRelationScheme.parse(
+      // @ts-expect-error zod will catch it
+      personRelationEnum[a.relation]
     );
+    const personRelationB = personRelationScheme.parse(
+      // @ts-expect-error zod will catch it
+      personRelationEnum[b.relation]
+    );
+
+    return personRelationB - personRelationA;
   });
 
   return (
