@@ -1,6 +1,6 @@
 "use client";
 
-import { AvatarCard } from "@/components/Panel/AvatarCard";
+import { CharacterAvatarCard } from "@/components/Panel/CharacterAvatarCard";
 import { useSubjectCharactersData } from "@/hooks/use-character";
 import { ListHeader } from "@/components/Panel/ListHeader";
 
@@ -15,7 +15,7 @@ export function CharacterList({ subject_id }: { subject_id: number }) {
             <div className="grid grid-cols-5 gap-4 px-8 py-2">
               {subjectCharactersData.slice(0, 10).map((characterData) => {
                 return (
-                  <AvatarCard
+                  <CharacterAvatarCard
                     key={characterData.id}
                     character_id={characterData.id}
                     character_relation={characterData.relation}
