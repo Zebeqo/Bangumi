@@ -1,18 +1,18 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { AvatarCard as AvatarCardComponent } from "@/components/Panel/AvatarCard";
+import { CharacterAvatarCard as CharacterAvatarCardComponent } from "@/components/Panel/CharacterAvatarCard";
 import { reactQueryDevtoolsDecorator } from "@/lib/storybook";
 
-const meta: Meta<typeof AvatarCardComponent> = {
-  title: "AvatarCard",
-  component: AvatarCardComponent,
+const meta: Meta<typeof CharacterAvatarCardComponent> = {
+  title: "CharacterAvatarCard",
+  component: CharacterAvatarCardComponent,
   decorators: [reactQueryDevtoolsDecorator],
 };
 
 export default meta;
-type Story = StoryObj<typeof AvatarCardComponent>;
+type Story = StoryObj<typeof CharacterAvatarCardComponent>;
 
-export const AvatarCard: Story = {
+export const CharacterAvatarCard: Story = {
   args: {
     character_id: 77,
     actor_names: ["山寺宏一", "Steven Blum"],

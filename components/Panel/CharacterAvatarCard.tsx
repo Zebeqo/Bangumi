@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useCharacterData } from "@/hooks/use-character";
 import { CommentBadge } from "@/ui/CommentBadge";
 
-export function AvatarCard({
+export function CharacterAvatarCard({
   character_id,
   character_relation,
   actor_names,
