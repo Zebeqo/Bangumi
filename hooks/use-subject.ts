@@ -22,6 +22,7 @@ export function useSubjectData(subject_id?: number) {
         }
       }
     },
+    staleTime: Infinity,
   });
   return { data, isSuccess };
 }

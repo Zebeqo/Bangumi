@@ -82,7 +82,7 @@ export async function Card({ subject_id }: CardProps) {
             <span className="h-4 w-4">
               <TableCellsIcon />
             </span>
-            <span>{eps || "未知"} 集</span>
+            <span>{eps ? `${eps} 集` : "未知"}</span>
           </div>
           {/*Card.InfoItem*/}
           <div className="flex items-center space-x-2 text-xs font-medium text-neutral-11">

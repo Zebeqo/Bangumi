@@ -19,13 +19,11 @@ export async function Header() {
           <GithubButton />
         </div>
         <div className="h-8 w-[1px] bg-neutral-6"></div>
-        <div>
-          {session ? (
-            <AvatarDropdownMenu imageURL={session.user.image} />
-          ) : (
-            <LoginButton />
-          )}
-        </div>
+        {session ? (
+          <AvatarDropdownMenu imageURL={session.user.image} />
+        ) : (
+          <LoginButton />
+        )}
       </div>
     </div>
   );
