@@ -35,7 +35,7 @@ export function RelationSubjectAvatarCard({
                   {relation}:
                 </span>
                 <span
-                  className="truncate text-xs font-medium text-neutral-12 "
+                  className="overflow-hidden text-ellipsis text-xs font-medium text-neutral-12 "
                   title={name_cn}
                 >
                   {name_cn || name}

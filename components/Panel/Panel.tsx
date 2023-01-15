@@ -300,7 +300,7 @@ export function Panel() {
                       {/*InfoPanel.CharacterList*/}
                       <CharacterList subject_id={subjectData.id} />
                       {/*InfoPanel.EPList*/}
-                      <EPList subject_id={subjectData.id} length={6} />
+                      <EPList subject_id={subjectData.id} length={10} />
                       {/*InfoPanel.PersonList*/}
                       <PersonList subject_id={subjectData.id} />
                       {/*InfoPanel.SubjectList*/}
