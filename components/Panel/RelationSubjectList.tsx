@@ -28,7 +28,7 @@ export function RelationSubjectList({ subject_id }: { subject_id: number }) {
           <>
             <ListHeader title={"相关条目"} />
             <div className="grid grid-cols-4 gap-4 px-8 py-2">
-              {sortedListData.slice(0, 4).map((subjectData) => {
+              {sortedListData.slice(0, 8).map((subjectData) => {
                 return (
                   <RelationSubjectAvatarCard
                     key={subjectData.id}
