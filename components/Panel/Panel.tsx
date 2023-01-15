@@ -166,11 +166,12 @@ export function Panel() {
                       <div className="flex min-h-[384px] space-x-4">
                         {/*InfoPanel.InfoImage*/}
                         <Image
-                          src={subjectData.images.large}
+                          src={subjectData.images.medium}
                           className="min-h-[384px] flex-shrink-0 self-center overflow-hidden rounded-xl object-cover"
                           alt=""
                           width={288}
                           height={100}
+                          unoptimized={true}
                         />
 
                         {/*InfoPanel.InfoContent*/}

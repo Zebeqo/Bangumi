@@ -40,8 +40,9 @@ export async function Card({ subject_id }: CardProps) {
         <Image
           className="object-cover"
           src={images.common}
-          alt=""
+          alt="card-image"
           fill={true}
+          unoptimized={true}
         />
       </div>
       {/*Card.Content*/}

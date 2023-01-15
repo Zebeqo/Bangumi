@@ -63,6 +63,7 @@ export const AvatarDropdownMenu = ({
           width={48}
           height={48}
           className="rounded-lg"
+          unoptimized={true}
         />
         <div className="absolute top-0 left-0 h-full w-full rounded-lg shadow-[inset_0_0_8px_rgba(0,0,0,0.15)]" />
       </DropdownMenuPrimitive.Trigger>
