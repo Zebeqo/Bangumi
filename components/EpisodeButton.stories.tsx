@@ -1,8 +1,10 @@
+import { expect } from "@storybook/jest";
 import type { Meta, StoryObj } from "@storybook/react";
 import { EpisodeButton as EpisodeButtonComponent } from "@/components/EpisodeButton";
 import { STORYBOOK_SUBJECT_ID } from "@/lib/constant";
 import { reactQueryDevtoolsDecorator } from "@/lib/storybook";
 import { useCollectionData } from "@/hooks/use-collection";
+import { waitFor, within } from "@storybook/testing-library";
 
 const meta: Meta<typeof EpisodeButtonComponent> = {
   title: "EpisodeButton",
@@ -13,32 +15,50 @@ const meta: Meta<typeof EpisodeButtonComponent> = {
 export default meta;
 type Story = StoryObj<typeof EpisodeButtonComponent>;
 
-export const EpisodeButton = () => {
-  const { data: collectionData } = useCollectionData(STORYBOOK_SUBJECT_ID);
-  return (
-    <>
-      {collectionData && (
-        <EpisodeButtonComponent
-          subject_id={collectionData.subject_id}
-          eps={collectionData.subject.eps}
-          ep_status={collectionData.ep_status}
-        />
-      )}
-    </>
+const play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+  const canvas = within(canvasElement);
+
+  const input = await canvas.findByRole<HTMLInputElement>("spinbutton");
+  await waitFor(
+    async () => {
+      await expect(input.value).toBeTruthy();
+    },
+    { timeout: 5000, interval: 1000 }
   );
 };
 
-export const EpisodeButton_Bad = () => {
-  const { data: collectionData } = useCollectionData(1600);
-  return (
-    <>
-      {collectionData && (
-        <EpisodeButtonComponent
-          subject_id={collectionData.subject_id}
-          eps={collectionData.subject.eps}
-          ep_status={collectionData.ep_status}
-        />
-      )}
-    </>
-  );
+export const EpisodeButton: Story = {
+  render: () => {
+    const { data: collectionData } = useCollectionData(STORYBOOK_SUBJECT_ID);
+    return (
+      <>
+        {collectionData && (
+          <EpisodeButtonComponent
+            subject_id={collectionData.subject_id}
+            eps={collectionData.subject.eps}
+            ep_status={collectionData.ep_status}
+          />
+        )}
+      </>
+    );
+  },
+  play,
+};
+
+export const EpisodeButton_Broken: Story = {
+  render: () => {
+    const { data: collectionData } = useCollectionData(1600);
+    return (
+      <>
+        {collectionData && (
+          <EpisodeButtonComponent
+            subject_id={collectionData.subject_id}
+            eps={collectionData.subject.eps}
+            ep_status={collectionData.ep_status}
+          />
+        )}
+      </>
+    );
+  },
+  play,
 };

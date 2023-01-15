@@ -40,6 +40,7 @@ export function PersonAvatarCard({
                   {relation}:
                 </span>
                 <span
+                  data-testid="person-name"
                   className="truncate text-xs font-medium text-neutral-12 "
                   title={
                     (personData.infobox.find(

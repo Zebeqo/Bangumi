@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { SortDropdownMenu as SortDropdownMenuComponent } from "@/components/Panel/InfoPanel/SortDropdownMenu";
-import { userEvent, within } from "@storybook/testing-library";
+import { screen, userEvent, within } from "@storybook/testing-library";
+import { expect } from "@storybook/jest";
 
 const meta: Meta<typeof SortDropdownMenuComponent> = {
   title: "SortDropdownMenu",
@@ -10,19 +11,16 @@ const meta: Meta<typeof SortDropdownMenuComponent> = {
 export default meta;
 type Story = StoryObj<typeof SortDropdownMenuComponent>;
 
-const play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
-  const canvas = within(canvasElement);
-  const button = canvas.getByRole("button");
-  await userEvent.click(button);
-};
-
 export const SortDropdownMenu: Story = {
-  parameters: {
-    layout: "centered",
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    const canvas = within(canvasElement);
+    const button = await canvas.findByRole("button", { name: "sort" });
+    await userEvent.click(button);
+    const menu = await screen.findByRole("menu");
+    const items = within(menu).getAllByRole("menuitemradio");
+    await expect(items.length).toEqual(5);
+    for (const item of items) {
+      await expect(item).toHaveTextContent(/./);
+    }
   },
-  play,
-};
-
-export const SortDropdownMenu_Edge: Story = {
-  play,
 };

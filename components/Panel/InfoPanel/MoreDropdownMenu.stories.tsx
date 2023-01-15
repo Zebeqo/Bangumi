@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { MoreDropdownMenu as MoreDropdownMenuComponent } from "@/components/Panel/InfoPanel/MoreDropdownMenu";
 import { STORYBOOK_SUBJECT_ID } from "@/lib/constant";
+import { userEvent, screen, within } from "@storybook/testing-library";
+import { expect } from "@storybook/jest";
 
 const meta: Meta<typeof MoreDropdownMenuComponent> = {
   title: "MoreDropdownMenu",
@@ -15,7 +17,15 @@ export const MoreDropdownMenu: Story = {
     subject_id: STORYBOOK_SUBJECT_ID,
     hasCollectionData: true,
   },
-  parameters: {
-    layout: "centered",
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    const canvas = within(canvasElement);
+    const button = await canvas.findByRole("button", { name: "more" });
+    await userEvent.click(button);
+    const menu = await screen.findByRole("menu");
+    const items = within(menu).getAllByRole("menuitem");
+    await expect(items.length).toEqual(3);
+    for (const item of items) {
+      await expect(item).toHaveTextContent(/./);
+    }
   },
 };

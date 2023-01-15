@@ -53,6 +53,7 @@ export function SortDropdownMenu() {
     <DropdownMenuPrimitive.Root>
       <DropdownMenuPrimitive.Trigger asChild>
         <Button
+          aria-label={"sort"}
           colorType={"neutral"}
           type={"outline"}
           label="排序"

@@ -31,7 +31,8 @@
       "files": ["**/*.stories.tsx"],
       // https://github.com/storybookjs/storybook/discussions/17664#discussioncomment-2319098
       "rules": {
-        "@typescript-eslint/await-thenable": "off"
+        "@typescript-eslint/await-thenable": "off",
+        "react-hooks/rules-of-hooks": "off"
       }
     }
   ]

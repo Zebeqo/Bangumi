@@ -110,6 +110,7 @@ function EPItem({
       </div>
       <Button
         colorType={"neutral"}
+        aria-label="comment"
         type={"ghost"}
         label={episodeData.comment.toString()}
         icon={<ChatBubbleLeftRightIcon />}

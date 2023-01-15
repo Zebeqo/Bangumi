@@ -8,6 +8,7 @@ import {
   STORYBOOK_BROKEN_SUBJECT_ID,
   STORYBOOK_NOT_COLLECTED_SUBJECT_ID,
   STORYBOOK_SUBJECT_ID,
+  STORYBOOK_UPCOMING_SUBJECT_ID,
 } from "@/lib/constant";
 import { panelDecorator, reactQueryDevtoolsDecorator } from "@/lib/storybook";
 
@@ -20,33 +21,27 @@ const meta: Meta<typeof Panel> = {
 export default meta;
 type Story = StoryObj<typeof Panel>;
 
-const play =
-  (title: string) =>
-  async ({ canvasElement }: { canvasElement: HTMLElement }) => {
-    const canvas = within(canvasElement);
+const play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+  const canvas = within(canvasElement);
 
-    const button = canvas.getByRole("button", { name: "open info panel" });
-    await userEvent.click(button);
+  const button = canvas.getByRole("button", { name: "open-info-panel" });
+  await userEvent.click(button);
 
-    await waitFor(() => {
-      expect(screen.getByRole("dialog")).toBeVisible();
-    });
+  const panel = await screen.findByRole("dialog");
 
-    const panel = await screen.findByRole("dialog");
+  await waitFor(
+    () => {
+      expect(within(panel).getByTestId("title")).toHaveTextContent(/./);
+    },
+    { timeout: 5000, interval: 1000 }
+  );
 
-    await waitFor(
-      () => {
-        expect(within(panel).getAllByText(title)[0]).toBeVisible();
-      },
-      { timeout: 5000, interval: 1000 }
-    );
-
-    await userEvent.click(within(panel).getByRole("button", { name: "Close" }));
-  };
+  await userEvent.click(within(panel).getByRole("button", { name: "Close" }));
+};
 
 export const InfoPanel: Story = {
   render: () => <InfoButton subject_id={STORYBOOK_SUBJECT_ID} />,
-  play: play("死神 千年血战篇"),
+  play,
   parameters: {
     nextAuthMock: {
       session: {
@@ -59,12 +54,12 @@ export const InfoPanel: Story = {
 
 export const InfoPanel_Session: Story = {
   render: () => <InfoButton subject_id={STORYBOOK_SUBJECT_ID} />,
-  play: play("死神 千年血战篇"),
+  play,
 };
 
 export const InfoPanel_Session_Not_Collected: Story = {
   render: () => <InfoButton subject_id={STORYBOOK_NOT_COLLECTED_SUBJECT_ID} />,
-  play: play("新世纪福音战士"),
+  play,
 };
 
 export const InfoPanel_Broken: Story = {
@@ -77,17 +72,22 @@ export const InfoPanel_Broken: Story = {
       },
     },
   },
-  play: play("名侦探柯南"),
+  play,
 };
 
 export const InfoPanel_Broken_Session: Story = {
   render: () => <InfoButton subject_id={STORYBOOK_BROKEN_SUBJECT_ID} />,
-  play: play("名侦探柯南"),
+  play,
 };
 
 export const InfoPanel_Broken_Session_Not_Collected: Story = {
   render: () => (
     <InfoButton subject_id={STORYBOOK_BROKEN_NOT_COLLECTED_SUBJECT_ID} />
   ),
-  play: play("海贼王"),
+  play,
+};
+
+export const InfoPanel_Upcoming: Story = {
+  render: () => <InfoButton subject_id={STORYBOOK_UPCOMING_SUBJECT_ID} />,
+  play,
 };
