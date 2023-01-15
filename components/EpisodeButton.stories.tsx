@@ -18,9 +18,9 @@ type Story = StoryObj<typeof EpisodeButtonComponent>;
 const play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
   const canvas = within(canvasElement);
 
-  const input = await canvas.findByRole<HTMLInputElement>("spinbutton");
   await waitFor(
     async () => {
+      const input = await canvas.getByRole<HTMLInputElement>("spinbutton");
       await expect(input.value).toBeTruthy();
     },
     { timeout: 5000, interval: 1000 }
