@@ -23,24 +23,22 @@ export function PersonList({ subject_id }: { subject_id: number }) {
 
   return (
     <>
-      <div className="flex flex-col space-y-2 p-2">
-        {sortedListData && (
-          <>
-            <ListHeader title={"制作人员"} />
-            <div className="grid grid-cols-5 gap-4 px-8 py-2">
-              {sortedListData.slice(0, 5).map((personData) => {
-                return (
-                  <PersonAvatarCard
-                    key={personData.id}
-                    id={personData.id}
-                    relation={personData.relation}
-                  />
-                );
-              })}
-            </div>
-          </>
-        )}
-      </div>
+      {sortedListData?.length ? (
+        <div className="flex flex-col space-y-2 p-2">
+          <ListHeader title={"制作人员"} />
+          <div className="grid grid-cols-5 gap-4 px-8 py-2">
+            {sortedListData.slice(0, 5).map((personData) => {
+              return (
+                <PersonAvatarCard
+                  key={personData.id}
+                  id={personData.id}
+                  relation={personData.relation}
+                />
+              );
+            })}
+          </div>
+        </div>
+      ) : null}
     </>
   );
 }
