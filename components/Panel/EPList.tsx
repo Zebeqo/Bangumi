@@ -8,9 +8,10 @@ import {
 } from "@heroicons/react/20/solid";
 
 import { useCollectionData } from "@/hooks/use-collection";
-import { useEpisodesData } from "@/hooks/use-episode";
+import { useEpisodeMutation, useEpisodesData } from "@/hooks/use-episode";
 import { ListHeader } from "@/components/Panel/ListHeader";
 import { cn } from "@/lib/utils";
+import { useToast } from "@/hooks/use-toast";
 
 export function EPList({
   subject_id,
@@ -21,6 +22,8 @@ export function EPList({
 }) {
   const { data: collectionData } = useCollectionData(subject_id);
   const halfLength = Math.ceil(length / 2);
+  const mutateEpisode = useEpisodeMutation();
+  const openToast = useToast();
 
   let episodesStart = 0;
   if (collectionData) {
@@ -58,6 +61,20 @@ export function EPList({
                     ? episodeData.ep <= collectionData.ep_status
                     : false
                 }
+                onClickIndex={() => {
+                  if (collectionData) {
+                    mutateEpisode.mutate({
+                      subject_id,
+                      currentEp: collectionData.ep_status,
+                      targetEp: episodeData.ep,
+                    });
+                  } else {
+                    openToast({
+                      type: "info",
+                      title: "请先收藏该条目",
+                    });
+                  }
+                }}
               />
             ))}
           </div>
@@ -70,9 +87,11 @@ export function EPList({
 function EPItem({
   episodeData,
   isSelected,
+  onClickIndex,
 }: {
   episodeData: z.infer<typeof episodesScheme.shape.data.element>;
   isSelected: boolean;
+  onClickIndex?: () => void;
 }) {
   return (
     <div className="flex items-center justify-between px-2">
@@ -81,6 +100,7 @@ function EPItem({
           colorType={"neutral"}
           type={isSelected ? "selected" : "ghost"}
           label={episodeData.ep}
+          onClick={onClickIndex}
         />
         <div className="flex flex-col space-y-1">
           <div className="flex items-center font-medium">
