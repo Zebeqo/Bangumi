@@ -75,6 +75,6 @@
     "tailwind-merge": "1.8.1",
     "tailwindcss": "3.2.4",
     "typescript": "4.9.4",
-    "windy-radix-palette": "0.4.1"
+    "windy-radix-palette": "0.5.0"
   }
 }
