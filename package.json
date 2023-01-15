@@ -45,7 +45,7 @@
     "autoprefixer": "10.4.13",
     "clsx": "1.2.1",
     "css-loader": "6.7.3",
-    "eslint": "8.30.0",
+    "eslint": "8.32.0",
     "eslint-config-next": "13.1.1",
     "eslint-plugin-storybook": "0.6.8",
     "husky": "8.0.2",
