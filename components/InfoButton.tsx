@@ -26,7 +26,7 @@ export const InfoButton = forwardRef<HTMLButtonElement, props>(
           setPanel({ subject_id: subject_id, type: "info" });
           setShowFullInfo(false);
         }}
-        aria-label="open info panel"
+        aria-label="open-info-panel"
         {...props}
       />
     );

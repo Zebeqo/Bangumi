@@ -14,9 +14,6 @@ import { expect } from "@storybook/jest";
 const meta: Meta<typeof Toast> = {
   title: "Toast",
   component: Toast,
-  parameters: {
-    layout: "centered",
-  },
 };
 
 export default meta;

@@ -51,6 +51,7 @@ export const MoreDropdownMenu = ({
     <DropdownMenuPrimitive.Root>
       <DropdownMenuPrimitive.Trigger asChild>
         <Button
+          aria-label={"more"}
           colorType={"neutral"}
           type={"outline"}
           icon={<EllipsisVerticalIcon />}

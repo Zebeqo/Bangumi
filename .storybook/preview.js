@@ -26,6 +26,7 @@ export const parameters = {
       status: "authenticated",
     },
   },
+  layout: "centered",
 };
 
 const Provider = (Story) => {

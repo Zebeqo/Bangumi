@@ -53,7 +53,10 @@ export const AvatarDropdownMenu = ({
 
   return (
     <DropdownMenuPrimitive.Root {...props}>
-      <DropdownMenuPrimitive.Trigger className="relative outline-none">
+      <DropdownMenuPrimitive.Trigger
+        aria-label="more"
+        className="relative outline-none"
+      >
         <Image
           src={imageURL}
           alt={"Avatar"}

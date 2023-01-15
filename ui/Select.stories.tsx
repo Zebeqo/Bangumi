@@ -32,9 +32,6 @@ export const CollectionTypeSelect: Story = {
     selectMap: collectionTypeMap,
     defaultValue: "看过",
   },
-  parameters: {
-    layout: "centered",
-  },
   play,
 };
 
@@ -53,9 +50,6 @@ export const RatingSelect: Story = {
     selectMap: ratingMap,
     defaultValue: "(6) 还行",
     textWrapper: <TextWrapper />,
-  },
-  parameters: {
-    layout: "centered",
   },
   play,
 };

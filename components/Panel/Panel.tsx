@@ -138,7 +138,10 @@ export function Panel() {
                         </div>
                         {/*InfoPanel.TitleGroup*/}
                         <div className="flex flex-col">
-                          <DialogPrimitive.Title className="text-lg font-bold text-neutral-12">
+                          <DialogPrimitive.Title
+                            data-testid="title"
+                            className="text-lg font-bold text-neutral-12"
+                          >
                             {subjectData.name_cn}
                           </DialogPrimitive.Title>
                           <span className="text-xs font-medium text-neutral-11">

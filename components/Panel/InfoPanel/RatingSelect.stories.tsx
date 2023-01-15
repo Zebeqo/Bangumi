@@ -18,9 +18,6 @@ export const RatingSelect: Story = {
   args: {
     subject_id: STORYBOOK_SUBJECT_ID,
   },
-  parameters: {
-    layout: "centered",
-  },
   play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
     const canvas = within(canvasElement);
     const selectEl = await canvas.findByRole(
@@ -33,8 +30,12 @@ export const RatingSelect: Story = {
 
     await userEvent.click(selectEl);
     const listbox = within(screen.getByRole("listbox"));
-    const option = await listbox.findAllByRole("option");
-    await expect(option.length).toEqual(11);
+    const options = await listbox.findAllByRole("option");
+    await expect(options.length).toEqual(11);
+
+    for (const option of options) {
+      await expect(option).toHaveTextContent(/./);
+    }
 
     await userEvent.keyboard("{esc}");
   },
