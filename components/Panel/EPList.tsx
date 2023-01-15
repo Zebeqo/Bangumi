@@ -45,10 +45,10 @@ export function EPList({
 
   return (
     <>
-      <div className="flex flex-col space-y-2 p-2">
-        {episodesData && (
-          <>
-            <ListHeader title={"剧集"} />
+      {episodesData?.data.length ? (
+        <div className="flex flex-col space-y-2 p-2">
+          <ListHeader title={"剧集"} />
+          <div className="flex flex-col space-y-2 py-2">
             {episodesData.data.map((episodeData) => (
               <EPItem
                 key={episodeData.ep}
@@ -60,9 +60,9 @@ export function EPList({
                 }
               />
             ))}
-          </>
-        )}
-      </div>
+          </div>
+        </div>
+      ) : null}
     </>
   );
 }
