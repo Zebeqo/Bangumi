@@ -52,7 +52,7 @@ export function useEpisodesData(
             );
           }
         } else {
-          if (episodesResult.data.data[0].ep !== offset + 1) {
+          if (episodesResult.data.data[0]?.ep !== offset + 1) {
             return null;
           }
           return episodesResult.data;
@@ -170,7 +170,7 @@ export function useEpisodeMutation() {
           .then((data) => {
             const episodes = episodesScheme.parse(data);
             if (
-              episodes.data[0].ep !==
+              episodes.data[0]?.ep !==
               (limit > 0 ? currentEp : targetEp) + 1
             ) {
               throw new ToastError({
