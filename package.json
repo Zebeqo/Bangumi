@@ -62,7 +62,7 @@
     "css-loader": "6.7.3",
     "eslint": "8.32.0",
     "eslint-config-next": "13.1.1",
-    "eslint-plugin-storybook": "0.6.8",
+    "eslint-plugin-storybook": "0.6.10",
     "husky": "8.0.3",
     "lint-staged": "13.1.0",
     "postcss": "8.4.21",
