@@ -154,7 +154,6 @@ module.exports = {
   },
   plugins: [
     require("@tailwindcss/line-clamp"),
-    require("tailwindcss-question-mark"),
     require("prettier-plugin-tailwindcss"),
     require("windy-radix-palette")({
       colors: {
