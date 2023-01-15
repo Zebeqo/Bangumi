@@ -3,6 +3,7 @@ export const subjectScheme = z.object({
   id: z.number().int(),
   date: z.string().nullable(),
   images: z.object({
+    medium: z.string().url(),
     large: z.string().url(),
     common: z.string().url(),
   }),
