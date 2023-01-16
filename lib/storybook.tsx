@@ -18,3 +18,7 @@ export const panelDecorator = (Story: React.ComponentType) => {
     </>
   );
 };
+
+export const headerMarginDecorator = (Story: React.ComponentType) => {
+  return <div className="mt-16">{<Story />}</div>;
+};
