@@ -91,3 +91,36 @@ export const HotSubnav: Story = {
     selectedItemName: "anime",
   },
 };
+
+export const CollectionSubnav: Story = {
+  args: {
+    navItems: [
+      {
+        name: "do",
+        value: "在看",
+        href: "/collection/do",
+      },
+      {
+        name: "wish",
+        value: "想看",
+        href: "/collection/wish",
+      },
+      {
+        name: "collect",
+        value: "看过",
+        href: "/collection/collect",
+      },
+      {
+        name: "on_hold",
+        value: "搁置",
+        href: "/collection/on_hold",
+      },
+      {
+        name: "dropped",
+        value: "抛弃",
+        href: "/collection/dropped",
+      },
+    ],
+    selectedItemName: "do",
+  },
+};
