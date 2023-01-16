@@ -2,7 +2,6 @@
 import { Button } from "@/ui/Button";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { SortDropdownMenu } from "@/components/Panel/InfoPanel/SortDropdownMenu";
 
 export interface NavItem {
   name: string;
@@ -13,9 +12,11 @@ export interface NavItem {
 export function Subnav({
   navItems,
   selectedItemName,
+  children,
 }: {
   navItems: NavItem[];
   selectedItemName: string;
+  children?: React.ReactNode;
 }) {
   const searchParams = useSearchParams();
   return (
@@ -41,9 +42,7 @@ export function Subnav({
           );
         })}
       </div>
-      <div className="flex space-x-2">
-        <SortDropdownMenu />
-      </div>
+      {children}
     </div>
   );
 }

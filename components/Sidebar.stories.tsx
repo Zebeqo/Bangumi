@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Sidebar as SidebarComponent } from "./Sidebar";
+import { headerMarginDecorator } from "@/lib/storybook";
 
 const meta: Meta<typeof SidebarComponent> = {
   title: "Sidebar",
@@ -17,5 +18,7 @@ export const Sidebar: Story = {
         pathname: "/calendar/today",
       },
     },
+    layout: "fullscreen",
   },
+  decorators: [headerMarginDecorator],
 };
