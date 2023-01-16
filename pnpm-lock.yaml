@@ -20,10 +20,10 @@ specifiers:
   '@storybook/test-runner': 0.10.0-next.4
   '@storybook/testing-library': 0.0.14-next.1
   '@tailwindcss/line-clamp': 0.4.2
-  '@tanstack/eslint-plugin-query': 4.20.8
-  '@tanstack/query-core': 4.20.4
-  '@tanstack/react-query': 4.20.4
-  '@tanstack/react-query-devtools': 4.20.4
+  '@tanstack/eslint-plugin-query': 4.21.0
+  '@tanstack/query-core': 4.22.0
+  '@tanstack/react-query': 4.22.0
+  '@tanstack/react-query-devtools': 4.22.0
   '@tomfreudenberg/next-auth-mock': 0.5.6
   '@types/node': 18.11.18
   '@types/react': 18.0.26
@@ -68,9 +68,9 @@ dependencies:
   '@radix-ui/react-dropdown-menu': 2.0.1_ib3m5ricvtkl2cll7qpr2f6lvq
   '@radix-ui/react-select': 1.1.2_ib3m5ricvtkl2cll7qpr2f6lvq
   '@radix-ui/react-toast': 1.1.2_biqbaboplfbrettd7655fr4n2y
-  '@tanstack/query-core': 4.20.4
-  '@tanstack/react-query': 4.20.4_biqbaboplfbrettd7655fr4n2y
-  '@tanstack/react-query-devtools': 4.20.4_fu3ixcwltlssi3ozitelgaebme
+  '@tanstack/query-core': 4.22.0
+  '@tanstack/react-query': 4.22.0_biqbaboplfbrettd7655fr4n2y
+  '@tanstack/react-query-devtools': 4.22.0_gp275tdwez2a4eujt75dnnp754
   cheerio: 1.0.0-rc.12
   class-variance-authority: 0.4.0_typescript@4.9.4
   jotai: 1.13.0_react@18.2.0
@@ -95,7 +95,7 @@ devDependencies:
   '@storybook/test-runner': 0.10.0-next.4_@types+node@18.11.18
   '@storybook/testing-library': 0.0.14-next.1
   '@tailwindcss/line-clamp': 0.4.2_tailwindcss@3.2.4
-  '@tanstack/eslint-plugin-query': 4.20.8
+  '@tanstack/eslint-plugin-query': 4.21.0
   '@tomfreudenberg/next-auth-mock': 0.5.6_3h72zjbl4siw7bb763z3lwjlia
   '@types/node': 18.11.18
   '@types/react': 18.0.26
@@ -4219,8 +4219,8 @@ packages:
       tailwindcss: 3.2.4_postcss@8.4.21
     dev: true
 
-  /@tanstack/eslint-plugin-query/4.20.8:
-    resolution: {integrity: sha512-JnAxUAC9DNmL9fwcfY3UjeFjjQwzV7cmPtf/Iac2o/p1Pmavul/L5bjo95zQNsBiBtJddHg+M17ximjpRybWJg==}
+  /@tanstack/eslint-plugin-query/4.21.0:
+    resolution: {integrity: sha512-4ulPL4mQKb8YUjF8FXo1Dcsq8gkh8eZD5F3p/Y/jBX6UnM03lJFgy5bjWBYjDSphZ2WcIXfRsxT2TWHMFHhbog==}
     dev: true
 
   /@tanstack/match-sorter-utils/8.7.2:
@@ -4230,27 +4230,27 @@ packages:
       remove-accents: 0.4.2
     dev: false
 
-  /@tanstack/query-core/4.20.4:
-    resolution: {integrity: sha512-lhLtGVNJDsJ/DyZXrLzekDEywQqRVykgBqTmkv0La32a/RleILXy6JMLBb7UmS3QCatg/F/0N9/5b0i5j6IKcA==}
+  /@tanstack/query-core/4.22.0:
+    resolution: {integrity: sha512-OeLyBKBQoT265f5G9biReijeP8mBxNFwY7ZUu1dKL+YzqpG5q5z7J/N1eT8aWyKuhyDTiUHuKm5l+oIVzbtrjw==}
     dev: false
 
-  /@tanstack/react-query-devtools/4.20.4_fu3ixcwltlssi3ozitelgaebme:
-    resolution: {integrity: sha512-4e4wOmqAYjLS1RQ7gRBLCk3koCjbOfCMvbxS3CPCAN5+FLBemLAvoYvFJ/i/7DPsIsltGwsnd7YAFFGMzdSx7A==}
+  /@tanstack/react-query-devtools/4.22.0_gp275tdwez2a4eujt75dnnp754:
+    resolution: {integrity: sha512-YeYFBnfqvb+ZlA0IiJqiHNNSzepNhI1p2o9i8NlhQli9+Zrn230M47OBaBUs8qr3DD1dC2zGB1Dis50Ktz8gAA==}
     peerDependencies:
-      '@tanstack/react-query': 4.20.4
+      '@tanstack/react-query': 4.22.0
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
       '@tanstack/match-sorter-utils': 8.7.2
-      '@tanstack/react-query': 4.20.4_biqbaboplfbrettd7655fr4n2y
+      '@tanstack/react-query': 4.22.0_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       superjson: 1.12.1
       use-sync-external-store: 1.2.0_react@18.2.0
     dev: false
 
-  /@tanstack/react-query/4.20.4_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-SJRxx13k/csb9lXAJfycgVA1N/yU/h3bvRNWP0+aHMfMjmbyX82FdoAcckDBbOdEyAupvb0byelNHNeypCFSyA==}
+  /@tanstack/react-query/4.22.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-P9o+HjG42uB/xHR6dMsJaPhtZydSe4v0xdG5G/cEj1oHZAXelMlm67/rYJNQGKgBamKElKogj+HYGF+NY2yHYg==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -4261,7 +4261,7 @@ packages:
       react-native:
         optional: true
     dependencies:
-      '@tanstack/query-core': 4.20.4
+      '@tanstack/query-core': 4.22.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       use-sync-external-store: 1.2.0_react@18.2.0
