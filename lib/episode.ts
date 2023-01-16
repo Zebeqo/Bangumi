@@ -1,5 +1,5 @@
 import { z } from "zod";
-export const episodesScheme = z.object({
+export const episodesPageScheme = z.object({
   data: z.array(
     z.object({
       id: z.number().int(),

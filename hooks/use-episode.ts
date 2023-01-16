@@ -9,7 +9,7 @@ import {
 import { z } from "zod";
 import { errorScheme, ToastError } from "@/lib/error";
 import type { mutateEpisodesScheme } from "@/lib/episode";
-import { episodesScheme } from "@/lib/episode";
+import { episodesPageScheme } from "@/lib/episode";
 import { collectionScheme } from "@/lib/collection";
 
 export function useEpisodesData(
@@ -41,7 +41,7 @@ export function useEpisodesData(
         );
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         const data = await response.json();
-        const episodesResult = episodesScheme.safeParse(data);
+        const episodesResult = episodesPageScheme.safeParse(data);
         if (!episodesResult.success) {
           const errorResult = errorScheme.safeParse(data);
           if (errorResult.success) {
@@ -94,7 +94,7 @@ export function useEpisodesPageData(subject_id: number, limit = 100, type = 0) {
           );
           // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           const data = await response.json();
-          const episodesResult = episodesScheme.safeParse(data);
+          const episodesResult = episodesPageScheme.safeParse(data);
           if (!episodesResult.success) {
             const errorResult = errorScheme.safeParse(data);
             if (errorResult.success) {
@@ -168,7 +168,7 @@ export function useEpisodeMutation() {
         )
           .then((response) => response.json())
           .then((data) => {
-            const episodes = episodesScheme.parse(data);
+            const episodes = episodesPageScheme.parse(data);
             if (
               episodes.data[0]?.ep !==
               (limit > 0 ? currentEp : targetEp) + 1
