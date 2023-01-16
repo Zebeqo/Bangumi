@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Subnav } from "@/components/Subnav";
-import { SortDropdownMenu } from "@/components/Panel/InfoPanel/SortDropdownMenu";
+import { SortDropdownMenu } from "@/components/SortDropdownMenu";
 import { headerMarginDecorator } from "@/lib/storybook";
 
 const meta: Meta<typeof Subnav> = {
