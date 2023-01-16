@@ -76,36 +76,35 @@ export function useEpisodesPageData(subject_id: number, limit = 100, type = 0) {
 
   const { data, isSuccess, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useInfiniteQuery({
-      queryKey: ["episodes", subject_id, limit, type, session?.user.id],
+      queryKey: ["episodes", subject_id, session?.user.id],
       queryFn: async ({ pageParam = 0 }) => {
-        if (!subject_id || !session?.user.id) {
-          return null;
-        }
         try {
           const page = z.number().parse(pageParam);
           const response = await fetch(
             `https://api.bgm.tv/v0/episodes?subject_id=${subject_id}&type=${type}&limit=${limit}&offset=${page}`,
             {
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${session.accessToken}`,
-              },
+              headers:
+                session === null
+                  ? {}
+                  : {
+                      Authorization: `Bearer ${session.accessToken}`,
+                    },
             }
           );
           // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           const data = await response.json();
-          const episodesResult = episodesPageScheme.safeParse(data);
-          if (!episodesResult.success) {
+          const episodesPageResult = episodesPageScheme.safeParse(data);
+          if (!episodesPageResult.success) {
             const errorResult = errorScheme.safeParse(data);
             if (errorResult.success) {
               throw new Error(JSON.stringify(errorResult.data, null, 2));
             } else {
               throw new Error(
-                `FROM ERROR:\n${errorResult.error.message}\n\nFROM EPISODES:\n${episodesResult.error.message}`
+                `FROM ERROR:\n${errorResult.error.message}\n\nFROM EPISODES_PAGE:\n${episodesPageResult.error.message}`
               );
             }
           } else {
-            return episodesResult.data;
+            return episodesPageResult.data;
           }
         } catch (e) {
           if (e instanceof Error) {
