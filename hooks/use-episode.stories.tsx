@@ -5,7 +5,7 @@ import { Button } from "@/ui/Button";
 import { reactQueryDevtoolsDecorator } from "@/lib/storybook";
 
 const meta: Meta = {
-  title: "use-collection",
+  title: "use-episode",
   decorators: [reactQueryDevtoolsDecorator],
 };
 
