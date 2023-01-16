@@ -1,5 +1,14 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { collectionScheme, mutateCollectionScheme } from "@/lib/collection";
+import {
+  useInfiniteQuery,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
+import {
+  collectionScheme,
+  collectionsPageScheme,
+  mutateCollectionScheme,
+} from "@/lib/collection";
 import { errorScheme } from "@/lib/error";
 import { useSession } from "next-auth/react";
 import { useErrorToast, useToast } from "@/hooks/use-toast";
@@ -53,6 +62,68 @@ export function useCollectionData(subject_id?: number) {
   });
 
   return { data, isSuccess };
+}
+
+export function useCollectionsPageData(
+  username: string,
+  subject_type: number,
+  type: number,
+  limit = 30
+) {
+  const { data: session } = useSession();
+  const openErrorToast = useErrorToast();
+
+  const { data, isSuccess, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useInfiniteQuery({
+      queryKey: ["collections", username, subject_type, session?.user.id],
+      queryFn: async ({ pageParam = 0 }) => {
+        if (!session?.user.id) {
+          return null;
+        }
+        try {
+          const page = z.number().parse(pageParam);
+          const response = await fetch(
+            `https://api.bgm.tv/v0/users/${username}/collections?subject_type=${subject_type}&type=${type}&limit=${limit}&offset=${page}`,
+            {
+              headers: {
+                Authorization: `Bearer ${session.accessToken}`,
+              },
+            }
+          );
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+          const data = await response.json();
+          const collectionsPageResult = collectionsPageScheme.safeParse(data);
+          if (!collectionsPageResult.success) {
+            const errorResult = errorScheme.safeParse(data);
+            if (errorResult.success) {
+              throw new Error(JSON.stringify(errorResult.data, null, 2));
+            } else {
+              throw new Error(
+                `FROM ERROR:\n${errorResult.error.message}\n\nFROM COLLECTIONS_PAGE:\n${collectionsPageResult.error.message}`
+              );
+            }
+          } else {
+            return collectionsPageResult.data;
+          }
+        } catch (e) {
+          if (e instanceof Error) {
+            const message = e.message;
+            openErrorToast("获取收藏信息失败", message);
+          }
+        }
+      },
+      getNextPageParam: (lastPage) => {
+        if (lastPage) {
+          if (lastPage.data.length < limit) {
+            return undefined;
+          } else {
+            return lastPage.offset + limit;
+          }
+        }
+      },
+    });
+
+  return { data, isSuccess, fetchNextPage, hasNextPage, isFetchingNextPage };
 }
 
 export function useCollectionMutation() {
