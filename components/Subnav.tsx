@@ -1,51 +1,27 @@
 "use client";
 import { Button } from "@/ui/Button";
 import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { SortDropdownMenu } from "@/components/Panel/InfoPanel/SortDropdownMenu";
 
-const navItems = [
-  {
-    name: "今日",
-    href: "/calendar/today",
-  },
-  {
-    name: "周一",
-    href: "/calendar/monday",
-  },
-  {
-    name: "周二",
-    href: "/calendar/tuesday",
-  },
-  {
-    name: "周三",
-    href: "/calendar/wednesday",
-  },
-  {
-    name: "周四",
-    href: "/calendar/thursday",
-  },
-  {
-    name: "周五",
-    href: "/calendar/friday",
-  },
-  {
-    name: "周六",
-    href: "/calendar/saturday",
-  },
-  {
-    name: "周日",
-    href: "/calendar/sunday",
-  },
-];
+export interface NavItem {
+  name: string;
+  value: string;
+  href: string;
+}
 
-export function Subnav() {
-  const path = usePathname();
+export function Subnav({
+  navItems,
+  selectedItemName,
+}: {
+  navItems: NavItem[];
+  selectedItemName: string;
+}) {
   const searchParams = useSearchParams();
   return (
     <div className="flex justify-between px-16">
       <div className="flex space-x-1">
-        {navItems.map((item) => {
+        {navItems.slice(0).map((item) => {
           return (
             // Sidebar.Item
             <Link
@@ -58,8 +34,8 @@ export function Subnav() {
             >
               <Button
                 colorType="neutral"
-                label={item.name}
-                type={path === item.href ? "selected" : "ghost"}
+                label={item.value}
+                type={selectedItemName === item.name ? "selected" : "ghost"}
               />
             </Link>
           );

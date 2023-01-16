@@ -1,22 +1,25 @@
 import { Card } from "@/components/Card";
-import { redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import type { SearchParams } from "@/lib/calendar";
 import { calendarScheme, sortCalendarData } from "@/lib/calendar";
 
 // https://github.com/nextauthjs/next-auth/issues/5647#issuecomment-1342099364
 // export function generateStaticParams() {
 //   return [
-//     { day: "monday" },
-//     { day: "tuesday" },
-//     { day: "wednesday" },
-//     { day: "thursday" },
-//     { day: "friday" },
-//     { day: "saturday" },
-//     { day: "sunday" },
+//     {},
+//     { day: ["today"] },
+//     { day: ["monday"] },
+//     { day: ["tuesday"] },
+//     { day: ["wednesday"] },
+//     { day: ["thursday"] },
+//     { day: ["friday"] },
+//     { day: ["saturday"] },
+//     { day: ["sunday"] },
 //   ];
 // }
 
 const dayMap = {
+  today: new Date().getDay(),
   monday: 1,
   tuesday: 2,
   wednesday: 3,
@@ -39,11 +42,12 @@ export default async function Page({
   params,
   searchParams,
 }: {
-  params: { day: string };
+  params: { day?: undefined } | { day: string[] };
   searchParams?: SearchParams;
 }) {
   if (
     ![
+      undefined,
       "monday",
       "tuesday",
       "wednesday",
@@ -51,14 +55,17 @@ export default async function Page({
       "friday",
       "saturday",
       "sunday",
-    ].includes(params.day)
+    ].includes(params.day?.at(0))
   ) {
-    redirect("/calendar/today");
+    notFound();
   }
   const calendarData = await getCalendarData();
-  const dayData = calendarData.find(
-    (data) => data.weekday.id === dayMap[params.day as keyof typeof dayMap]
-  );
+  const dayData = params.day
+    ? calendarData.find(
+        (data) =>
+          data.weekday.id === dayMap[params.day[0] as keyof typeof dayMap]
+      )
+    : calendarData.find((data) => data.weekday.id === dayMap.today);
 
   if (!dayData) {
     throw new Error("Failed to fetch data");
