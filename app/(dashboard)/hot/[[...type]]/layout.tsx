@@ -33,9 +33,9 @@ export default function Layout({
   params,
 }: {
   children: React.ReactNode;
-  params: { day?: undefined } | { day: string[] };
+  params: { type?: undefined } | { type: string[] };
 }) {
-  const selectedItem = params.day ? params.day[0] : "anime";
+  const selectedItem = params.type ? params.type[0] : "anime";
 
   return (
     <>
