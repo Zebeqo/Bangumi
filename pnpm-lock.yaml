@@ -39,7 +39,7 @@ specifiers:
   eslint-config-next: 13.1.1
   eslint-plugin-storybook: 0.6.10
   husky: 8.0.3
-  jotai: 1.13.0
+  jotai: 1.13.1
   lint-staged: 13.1.0
   next: 13.1.1
   next-auth: 4.18.8
@@ -73,7 +73,7 @@ dependencies:
   '@tanstack/react-query-devtools': 4.22.0_gp275tdwez2a4eujt75dnnp754
   cheerio: 1.0.0-rc.12
   class-variance-authority: 0.4.0_typescript@4.9.4
-  jotai: 1.13.0_react@18.2.0
+  jotai: 1.13.1_react@18.2.0
   next: 13.1.1_biqbaboplfbrettd7655fr4n2y
   next-auth: 4.18.8_q76c2b4vyoegvsbrcwkfvimnai
   react: 18.2.0
@@ -9286,8 +9286,8 @@ packages:
   /jose/4.11.1:
     resolution: {integrity: sha512-YRv4Tk/Wlug8qicwqFNFVEZSdbROCHRAC6qu/i0dyNKr5JQdoa2pIGoS04lLO/jXQX7Z9omoNewYIVIxqZBd9Q==}
 
-  /jotai/1.13.0_react@18.2.0:
-    resolution: {integrity: sha512-SPTO46Jw1aJTp2i18tiKgk++nKNKJTMNw4qYFy9QRTydceWvD2Eys+YgB7cb1S6pzbM9i0Ik/y7Yl7IH8k9Lig==}
+  /jotai/1.13.1_react@18.2.0:
+    resolution: {integrity: sha512-RUmH1S4vLsG3V6fbGlKzGJnLrDcC/HNb5gH2AeA9DzuJknoVxSGvvg8OBB7lke+gDc4oXmdVsaKn/xDUhWZ0vw==}
     engines: {node: '>=12.20.0'}
     peerDependencies:
       '@babel/core': '*'
