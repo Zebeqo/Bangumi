@@ -1,14 +1,15 @@
-import { Card } from "@/components/Card";
+// export const dynamicParams = false;
+
 import { notFound } from "next/navigation";
 import { Card } from "@/components/Card";
 import type { SearchParams } from "@/lib/calendar";
 import { calendarScheme, sortCalendarData } from "@/lib/calendar";
 
 // https://github.com/nextauthjs/next-auth/issues/5647#issuecomment-1342099364
+// https://github.com/vercel/next.js/issues/44764
 // export function generateStaticParams() {
 //   return [
-//     {},
-//     { day: ["today"] },
+//     { day: [] },
 //     { day: ["monday"] },
 //     { day: ["tuesday"] },
 //     { day: ["wednesday"] },
@@ -46,6 +47,7 @@ export default async function Page({
   params: { day?: undefined } | { day: string[] };
   searchParams?: SearchParams;
 }) {
+  // compromise
   if (
     ![
       undefined,
@@ -60,6 +62,7 @@ export default async function Page({
   ) {
     notFound();
   }
+
   const calendarData = await getCalendarData();
   const dayData = params.day
     ? calendarData.find(
