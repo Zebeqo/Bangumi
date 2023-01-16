@@ -57,7 +57,7 @@ specifiers:
   tailwindcss: 3.2.4
   tailwindcss-radix: 2.6.2
   typescript: 4.9.4
-  windy-radix-palette: 0.4.1
+  windy-radix-palette: 0.5.0
   zod: 3.20.2
 
 dependencies:
@@ -120,7 +120,7 @@ devDependencies:
   tailwind-merge: 1.8.1
   tailwindcss: 3.2.4_postcss@8.4.21
   typescript: 4.9.4
-  windy-radix-palette: 0.4.1_mvcr4ym64jspnkumvjqznijcra
+  windy-radix-palette: 0.5.0_mvcr4ym64jspnkumvjqznijcra
 
 packages:
 
@@ -12986,8 +12986,8 @@ packages:
       string-width: 4.2.3
     dev: true
 
-  /windy-radix-palette/0.4.1_mvcr4ym64jspnkumvjqznijcra:
-    resolution: {integrity: sha512-UlZ12esgTIHEmuYl0t5GUOlQAr0cp1CJ3183+SKjTAaPAY56DNFbX3zVJJw0Y6WSjnD9FRvjnUwBWRXQXSVvRA==}
+  /windy-radix-palette/0.5.0_mvcr4ym64jspnkumvjqznijcra:
+    resolution: {integrity: sha512-rySAAUChIR3qpgJ73HwqpZ5s6ijhfX1mzJpcIn2KRotZv03fj4ppv5GlgQgC1WxijeYtSMsCcaAL0Kr+Bz55zA==}
     peerDependencies:
       '@radix-ui/colors': '>=0.1.0'
       tailwindcss: '>=3.0.0'
