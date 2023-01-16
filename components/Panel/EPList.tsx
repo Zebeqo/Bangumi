@@ -1,4 +1,4 @@
-import type { episodesScheme } from "@/lib/episode";
+import type { episodesPageScheme } from "@/lib/episode";
 import type { z } from "zod";
 import { Button } from "@/ui/Button";
 import {
@@ -89,7 +89,7 @@ function EPItem({
   isSelected,
   onClickIndex,
 }: {
-  episodeData: z.infer<typeof episodesScheme.shape.data.element>;
+  episodeData: z.infer<typeof episodesPageScheme.shape.data.element>;
   isSelected: boolean;
   onClickIndex?: () => void;
 }) {
