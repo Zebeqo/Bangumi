@@ -63,11 +63,17 @@ export function EPList({
                 }
                 onClickIndex={() => {
                   if (collectionData) {
-                    mutateEpisode.mutate({
-                      subject_id,
-                      currentEp: collectionData.ep_status,
-                      targetEp: episodeData.ep,
-                    });
+                    collectionData.ep_status === episodeData.ep
+                      ? mutateEpisode.mutate({
+                          subject_id,
+                          currentEp: collectionData.ep_status,
+                          targetEp: episodeData.ep - 1,
+                        })
+                      : mutateEpisode.mutate({
+                          subject_id,
+                          currentEp: collectionData.ep_status,
+                          targetEp: episodeData.ep,
+                        });
                   } else {
                     openToast({
                       type: "info",
