@@ -1,4 +1,5 @@
 import { Subnav } from "@/components/Subnav";
+import { PersonalViewSwitch } from "@/components/personalViewSwitch";
 
 export default function Layout({
   children,
@@ -40,7 +41,14 @@ export default function Layout({
 
   return (
     <>
-      <Subnav navItems={navItems} selectedItemName={selectedItem} />
+      <Subnav navItems={navItems} selectedItemName={selectedItem}>
+        <div className="flex items-center space-x-3">
+          <span className="font-medium text-neutral-11">
+            个人视角<span className="text-xs font-normal ">（按 p 切换）</span>
+          </span>
+          <PersonalViewSwitch />
+        </div>
+      </Subnav>
       {children}
     </>
   );

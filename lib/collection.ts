@@ -55,6 +55,7 @@ export const collectionsPageScheme = z.object({
       subject_id: z.number().int(),
       subject_type: z.number().int(),
       comment: z.string().nullable(),
+      tags: z.array(z.string()),
       type: z.number().int().positive().lte(5),
       rate: z.number().int().nonnegative().lte(10),
       ep_status: z.number().int().nonnegative(),
