@@ -7,7 +7,7 @@ import { StateProvider } from "@/components/provider/StateProvider";
 
 const notoSansSC = Noto_Sans_SC({
   variable: "--font-noto-sans-sc",
-  weight: ["400", "500", "700"],
+  weight: ["400", "500"],
   subsets: ["chinese-simplified", "latin"],
   display: "auto",
 });
