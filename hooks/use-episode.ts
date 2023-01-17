@@ -163,7 +163,12 @@ export function useEpisodeMutation() {
         return fetch(
           `https://api.bgm.tv/v0/episodes?subject_id=${subject_id}&type=0&offset=${
             limit > 0 ? currentEp : targetEp
-          }&limit=${Math.abs(limit)}`
+          }&limit=${Math.abs(limit)}`,
+          {
+            headers: {
+              Authorization: `Bearer ${session.accessToken}`,
+            },
+          }
         )
           .then((response) => response.json())
           .then((data) => {
