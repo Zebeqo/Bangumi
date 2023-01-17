@@ -139,7 +139,13 @@ export function CollectionCardList({
                       <div className="flex flex-col justify-center space-y-1">
                         {/*Card.RatingStar*/}
                         <div>
-                          <Rating point={collection.subject.score} />
+                          <Rating
+                            point={
+                              pvMode
+                                ? collection.rate
+                                : collection.subject.score
+                            }
+                          />
                         </div>
                         {/*Rating.RatingDescription*/}
                         {collection.comment ? (
@@ -148,7 +154,7 @@ export function CollectionCardList({
                           </div>
                         ) : (
                           <span className="text-xs text-neutral-11">
-                            暂无评论
+                            未发表吐槽
                           </span>
                         )}
                       </div>
