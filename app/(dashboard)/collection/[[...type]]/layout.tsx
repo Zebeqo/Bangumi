@@ -1,33 +1,5 @@
 import { Subnav } from "@/components/Subnav";
 
-const navItems = [
-  {
-    name: "do",
-    value: "在看",
-    href: "/collection/do",
-  },
-  {
-    name: "wish",
-    value: "想看",
-    href: "/collection/wish",
-  },
-  {
-    name: "collect",
-    value: "看过",
-    href: "/collection/collect",
-  },
-  {
-    name: "on_hold",
-    value: "搁置",
-    href: "/collection/on_hold",
-  },
-  {
-    name: "dropped",
-    value: "抛弃",
-    href: "/collection/dropped",
-  },
-];
-
 export default function Layout({
   children,
   params,
@@ -35,14 +7,41 @@ export default function Layout({
   children: React.ReactNode;
   params: { type?: undefined } | { type: string[] };
 }) {
-  const selectedItem = params.type ? params.type[0] : "do";
+  const selectedItem = params.type?.at(1) ?? "anime";
+  const collectionType = params.type?.at(0) ?? "do";
+
+  const navItems = [
+    {
+      name: "anime",
+      value: "动画",
+      href: `/collection/${collectionType}/anime`,
+    },
+    {
+      name: "book",
+      value: "书籍",
+      href: `/collection/${collectionType}/book`,
+    },
+    {
+      name: "music",
+      value: "音乐",
+      href: `/collection/${collectionType}/music`,
+    },
+    {
+      name: "game",
+      value: "游戏",
+      href: `/collection/${collectionType}/game`,
+    },
+    {
+      name: "real",
+      value: "三次元",
+      href: `/collection/${collectionType}/real`,
+    },
+  ];
 
   return (
     <>
       <Subnav navItems={navItems} selectedItemName={selectedItem} />
-      <div className="mt-8 grid grid-cols-1 justify-items-center gap-12 px-12 xl:grid-cols-2 min-[1800px]:grid-cols-3 min-[2400px]:grid-cols-4">
-        {children}
-      </div>
+      {children}
     </>
   );
 }

@@ -29,3 +29,14 @@ export const subjectScheme = z.object({
   eps: z.number(),
   summary: z.string(),
 });
+
+export const subjectTypeEnum = {
+  book: { id: 1, value: "书籍" },
+  anime: { id: 2, value: "动画" },
+  music: { id: 3, value: "音乐" },
+  game: { id: 4, value: "游戏" },
+  real: { id: 6, value: "三次元" },
+} as const;
+export const subjectTypeEnumScheme = z.enum(
+  Object.keys(subjectTypeEnum) as [keyof typeof subjectTypeEnum]
+);
