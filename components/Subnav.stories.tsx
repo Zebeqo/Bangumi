@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Subnav } from "@/components/Subnav";
 import { SortDropdownMenu } from "@/components/SortDropdownMenu";
 import { headerMarginDecorator } from "@/lib/storybook";
+import { PersonalViewSwitch } from "@/components/personalViewSwitch";
 
 const meta: Meta<typeof Subnav> = {
   title: "Subnav",
@@ -92,35 +93,44 @@ export const HotSubnav: Story = {
   },
 };
 
+const collectionType = "do";
 export const CollectionSubnav: Story = {
   args: {
     navItems: [
       {
-        name: "do",
-        value: "在看",
-        href: "/collection/do",
+        name: "anime",
+        value: "动画",
+        href: `/collection/${collectionType}/anime`,
       },
       {
-        name: "wish",
-        value: "想看",
-        href: "/collection/wish",
+        name: "book",
+        value: "书籍",
+        href: `/collection/${collectionType}/book`,
       },
       {
-        name: "collect",
-        value: "看过",
-        href: "/collection/collect",
+        name: "music",
+        value: "音乐",
+        href: `/collection/${collectionType}/music`,
       },
       {
-        name: "on_hold",
-        value: "搁置",
-        href: "/collection/on_hold",
+        name: "game",
+        value: "游戏",
+        href: `/collection/${collectionType}/game`,
       },
       {
-        name: "dropped",
-        value: "抛弃",
-        href: "/collection/dropped",
+        name: "real",
+        value: "三次元",
+        href: `/collection/${collectionType}/real`,
       },
     ],
-    selectedItemName: "do",
+    selectedItemName: "anime",
+    children: (
+      <div className="flex items-center space-x-3">
+        <span className="font-medium text-neutral-11">
+          个人视角<span className="text-xs font-normal ">（按 p 切换）</span>
+        </span>
+        <PersonalViewSwitch />
+      </div>
+    ),
   },
 };

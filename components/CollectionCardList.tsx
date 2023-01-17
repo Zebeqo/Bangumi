@@ -15,6 +15,8 @@ import {
 import { TagBadge } from "@/ui/TagBadge";
 import { Rating } from "@/ui/Rating";
 import { LoadMoreIndicator } from "@/ui/LoadMoreIndicator";
+import { useAtomValue } from "jotai/react";
+import { personalViewModeAtom } from "@/components/personalViewSwitch";
 
 export function CollectionCardList({
   subject_type,
@@ -28,6 +30,7 @@ export function CollectionCardList({
     fetchNextPage,
     hasNextPage,
   } = useCollectionsPageData(subject_type, collection_type);
+  const pvMode = useAtomValue(personalViewModeAtom);
 
   const { ref, inView } = useInView();
   useEffect(() => {
@@ -111,9 +114,17 @@ export function CollectionCardList({
                   </div>
                   {/*Card.TagGroup*/}
                   <div className="h-[4.6rem] overflow-hidden py-1 leading-loose">
-                    {collection.subject.tags.map((tag, index) => (
-                      <TagBadge key={index} color="primary" label={tag.name} />
-                    ))}
+                    {pvMode
+                      ? collection.tags.map((tag, index) => (
+                          <TagBadge key={index} color="primary" label={tag} />
+                        ))
+                      : collection.subject.tags.map((tag, index) => (
+                          <TagBadge
+                            key={index}
+                            color="primary"
+                            label={tag.name}
+                          />
+                        ))}
                   </div>
                   {/*Card.Footer*/}
                   <div className="flex justify-between">
@@ -121,7 +132,9 @@ export function CollectionCardList({
                     <div className="flex space-x-3">
                       {/*Card.RatingPoint*/}
                       <div className="text-4xl font-bold text-accent-11">
-                        {collection.subject.score.toFixed(1)}
+                        {pvMode
+                          ? collection.rate
+                          : collection.subject.score.toFixed(1)}
                       </div>
                       <div className="flex flex-col justify-center space-y-1">
                         {/*Card.RatingStar*/}
