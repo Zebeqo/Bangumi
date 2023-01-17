@@ -1,6 +1,5 @@
 import type { Meta } from "@storybook/react";
 import { useCollectionsPageData } from "@/hooks/use-collection";
-import { STORYBOOK_USERNAME_ID } from "@/lib/constant";
 import { reactQueryDevtoolsDecorator } from "@/lib/storybook";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
@@ -19,7 +18,7 @@ export const CollectionsDataHook = () => {
     hasNextPage,
     isFetchingNextPage,
     isSuccess,
-  } = useCollectionsPageData(STORYBOOK_USERNAME_ID, 2, 2, 2);
+  } = useCollectionsPageData(2, 2);
 
   const { ref, inView } = useInView();
   useEffect(() => {

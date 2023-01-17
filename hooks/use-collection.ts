@@ -65,9 +65,8 @@ export function useCollectionData(subject_id?: number) {
 }
 
 export function useCollectionsPageData(
-  username: string,
   subject_type: number,
-  type: number,
+  collection_type: number,
   limit = 30
 ) {
   const { data: session } = useSession();
@@ -75,7 +74,12 @@ export function useCollectionsPageData(
 
   const { data, isSuccess, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useInfiniteQuery({
-      queryKey: ["collections", username, subject_type, session?.user.id],
+      queryKey: [
+        "collections",
+        subject_type,
+        collection_type,
+        session?.user.id,
+      ],
       queryFn: async ({ pageParam = 0 }) => {
         if (!session?.user.id) {
           return null;
@@ -83,7 +87,7 @@ export function useCollectionsPageData(
         try {
           const page = z.number().parse(pageParam);
           const response = await fetch(
-            `https://api.bgm.tv/v0/users/${username}/collections?subject_type=${subject_type}&type=${type}&limit=${limit}&offset=${page}`,
+            `https://api.bgm.tv/v0/users/${session.user.id}/collections?subject_type=${subject_type}&type=${collection_type}&limit=${limit}&offset=${page}`,
             {
               headers: {
                 Authorization: `Bearer ${session.accessToken}`,

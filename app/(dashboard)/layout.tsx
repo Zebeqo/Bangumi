@@ -13,7 +13,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <Header />
         <div className="flex flex-row ">
           <Sidebar />
-          <div className="ml-52 w-full px-8 py-6">{children}</div>
+          <div className="ml-52 w-full px-8 pt-4 pb-12">{children}</div>
         </div>
         <Panel />
         <Toast />
