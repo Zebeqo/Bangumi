@@ -18,26 +18,22 @@ import { CharacterList } from "@/components/Panel/CharacterList";
 import { EPList } from "@/components/Panel/EPList";
 import { PersonList } from "@/components/Panel/PersonList";
 import { RelationSubjectList } from "@/components/Panel/RelationSubjectList";
-import { useAtomValue } from "jotai/react";
 import { useRef, useState } from "react";
 import { useCollectionData } from "@/hooks/use-collection";
 import { useToast } from "@/hooks/use-toast";
 import { useSubjectData } from "@/hooks/use-subject";
-import { panelAtom } from "@/lib/panel";
 import { PanelNav } from "@/components/Panel/PanelNav";
 
-export function SubjectContent() {
-  const panel = useAtomValue(panelAtom);
+export function SubjectContent({ subject_id }: { subject_id: number }) {
   const [showFullInfo, setShowFullInfo] = useState(false);
   const [isClamped, setIsClamped] = useState(false);
   const descriptionRef = useRef<HTMLParagraphElement>(null);
   const { data: collectionData, isSuccess: isCollectionDataSuccess } =
-    useCollectionData(panel?.subject_id);
+    useCollectionData(subject_id);
   const openToast = useToast();
   const { data: session } = useSession();
-  const { data: subjectData, isSuccess: isSubjectDataSuccess } = useSubjectData(
-    panel?.subject_id
-  );
+  const { data: subjectData, isSuccess: isSubjectDataSuccess } =
+    useSubjectData(subject_id);
 
   return (
     <>
@@ -174,7 +170,7 @@ export function SubjectContent() {
               </div>
             </div>
             {/*SubjectContent.CharacterList*/}
-            <CharacterList subject_id={subjectData.id} />
+            <CharacterList subject_id={subjectData.id} length={10} />
             {/*SubjectContent.EPList*/}
             <EPList subject_id={subjectData.id} length={10} />
             {/*SubjectContent.PersonList*/}

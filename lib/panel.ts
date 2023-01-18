@@ -8,7 +8,7 @@ interface Panel {
     | "episodeList"
     | "personList"
     | "subjectList";
-  subject_id: number;
+  target_id: number;
 }
 export const panelAtom = atom<Panel | null>(null);
 

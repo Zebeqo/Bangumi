@@ -14,14 +14,14 @@ import { useSession } from "next-auth/react";
 import { useErrorToast, useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 
-export function useCollectionData(subject_id?: number) {
+export function useCollectionData(subject_id: number) {
   const { data: session } = useSession();
   const openErrorToast = useErrorToast();
 
   const { data, isSuccess } = useQuery({
     queryKey: ["collection", Number(subject_id), session?.user.id],
     queryFn: async () => {
-      if (!subject_id || !session?.user.id) {
+      if (!session?.user.id) {
         return null;
       }
       try {

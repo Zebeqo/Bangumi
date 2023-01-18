@@ -21,7 +21,7 @@ export const InfoButton = forwardRef<HTMLButtonElement, props>(
         ref={ref}
         onClick={() => {
           setIsOpenPanel(true);
-          setPanel({ subject_id: subject_id, type: "subject" });
+          setPanel({ target_id: subject_id, type: "subject" });
         }}
         aria-label="open-info-panel"
         {...props}

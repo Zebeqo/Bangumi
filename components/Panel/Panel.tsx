@@ -3,11 +3,13 @@
 import { Transition } from "@headlessui/react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { Fragment } from "react";
-import { useAtom } from "jotai/react";
-import { isOpenPanelAtom } from "@/lib/panel";
+import { useAtom, useAtomValue } from "jotai/react";
+import { isOpenPanelAtom, panelAtom } from "@/lib/panel";
 import { SubjectContent } from "@/components/Panel/SubjectContent";
+import { CharacterListContent } from "@/components/Panel/CharacterListContent";
 
 export function Panel() {
+  const panel = useAtomValue(panelAtom);
   const [isOpenPanel, setIsOpenPanel] = useAtom(isOpenPanelAtom);
 
   return (
@@ -64,7 +66,11 @@ export function Panel() {
                     }
                   }}
                 >
-                  <SubjectContent />
+                  {panel?.type === "subject" ? (
+                    <SubjectContent subject_id={panel.target_id} />
+                  ) : panel?.type === "characterList" ? (
+                    <CharacterListContent subject_id={panel.target_id} />
+                  ) : null}
                 </DialogPrimitive.Content>
               </Transition.Child>
             </DialogPrimitive.Overlay>
