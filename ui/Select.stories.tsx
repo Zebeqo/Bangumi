@@ -4,7 +4,7 @@ import { Select } from "./Select";
 import { collectionTypeMap, ratingMap } from "@/lib/collection";
 import { screen, userEvent, within } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
-import { TextWrapper } from "@/components/Panel/InfoPanel/RatingSelect";
+import { TextWrapper } from "@/components/Panel/SubjectPanel/RatingSelect";
 
 const meta: Meta<typeof Select> = {
   title: "Select",

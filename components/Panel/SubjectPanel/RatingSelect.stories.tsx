@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { RatingSelect as RatingSelectComponent } from "@/components/Panel/InfoPanel/RatingSelect";
+import { RatingSelect as RatingSelectComponent } from "@/components/Panel/SubjectPanel/RatingSelect";
 import { STORYBOOK_SUBJECT_ID } from "@/lib/constant";
 import { screen, userEvent, within } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
