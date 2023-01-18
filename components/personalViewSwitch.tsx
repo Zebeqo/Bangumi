@@ -26,6 +26,5 @@ export const PersonalViewSwitch = () => {
     setChecked(checked);
   }
 
-  console.log("render");
   return <Switch checked={checked} onCheckedChange={handleChecked} />;
 };
