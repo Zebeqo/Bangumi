@@ -9,7 +9,9 @@ export function CharacterListContent({ subject_id }: { subject_id: number }) {
       <PanelNav
         title={{ name: subjectData?.name, name_cn: subjectData?.name_cn }}
       />
-      <CharacterList subject_id={subject_id} />
+      <div className="px-8">
+        <CharacterList subject_id={subject_id} />
+      </div>
     </>
   );
 }

@@ -42,7 +42,12 @@ export function PanelNav({
               type="outline"
               icon={<ChevronLeftIcon />}
               onClick={() => {
-                panelHistory.index && dispatch({ type: "back" });
+                if (panelHistory.index) {
+                  dispatch({ type: "back" });
+                  document
+                    .querySelector('[data-state="open"]')
+                    ?.scrollTo({ top: 0, behavior: "smooth" });
+                }
               }}
             />
             <Button
@@ -50,8 +55,12 @@ export function PanelNav({
               type="outline"
               icon={<ChevronRightIcon />}
               onClick={() => {
-                panelHistory.index < panelHistory.history.length - 1 &&
+                if (panelHistory.index < panelHistory.history.length - 1) {
                   dispatch({ type: "forward" });
+                  document
+                    .querySelector('[data-state="open"]')
+                    ?.scrollTo({ top: 0, behavior: "smooth" });
+                }
               }}
             />
           </div>
