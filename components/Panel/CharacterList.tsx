@@ -21,6 +21,7 @@ export function CharacterList({
         <div className="flex flex-col space-y-2 p-2">
           <ListHeader
             title={"角色"}
+            showAction={length ? subjectCharactersData.length > length : false}
             onClickAction={() => {
               dispatch({
                 type: "push",
