@@ -4,12 +4,12 @@ import { Transition } from "@headlessui/react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { Fragment } from "react";
 import { useAtom, useAtomValue } from "jotai/react";
-import { isOpenPanelAtom, panelAtom } from "@/lib/panel";
+import { currentPanelAtom, isOpenPanelAtom } from "@/lib/panel";
 import { SubjectContent } from "@/components/Panel/SubjectContent";
 import { CharacterListContent } from "@/components/Panel/CharacterListContent";
 
 export function Panel() {
-  const panel = useAtomValue(panelAtom);
+  const panel = useAtomValue(currentPanelAtom);
   const [isOpenPanel, setIsOpenPanel] = useAtom(isOpenPanelAtom);
 
   return (
