@@ -8,7 +8,7 @@ export function useSubjectData(subject_id?: number) {
   const { data: session } = useSession();
   const openErrorToast = useErrorToast();
   const { data, isSuccess } = useQuery({
-    queryKey: ["subject", subject_id, session?.user.id],
+    queryKey: ["subject", Number(subject_id), session?.user.id],
     queryFn: async () => {
       if (!subject_id) {
         return null;
