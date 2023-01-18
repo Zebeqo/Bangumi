@@ -56,7 +56,7 @@ specifiers:
   style-loader: 3.3.1
   tailwind-merge: 1.8.1
   tailwindcss: 3.2.4
-  tailwindcss-radix: 2.6.2
+  tailwindcss-radix: 2.7.0
   typescript: 4.9.4
   windy-radix-palette: 0.5.0
   zod: 3.20.2
@@ -81,7 +81,7 @@ dependencies:
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-intersection-observer: 9.4.1_react@18.2.0
-  tailwindcss-radix: 2.6.2
+  tailwindcss-radix: 2.7.0
   zod: 3.20.2
 
 devDependencies:
@@ -12460,8 +12460,8 @@ packages:
     resolution: {integrity: sha512-+fflfPxvHFr81hTJpQ3MIwtqgvefHZFUHFiIHpVIRXvG/nX9+gu2P7JNlFu2bfDMJ+uHhi/pUgzaYacMoXv+Ww==}
     dev: true
 
-  /tailwindcss-radix/2.6.2:
-    resolution: {integrity: sha512-+pqIyqY9mjMXtJHyDlkiJYMfpa8+Gkt2UE6VrmbYjbLAqva7Lg4q2Rffe9JFNv9dBFfoDTVML7gQd4BDJXOrCg==}
+  /tailwindcss-radix/2.7.0:
+    resolution: {integrity: sha512-fIVkT5zQYdsjT9+/Mvp+DTlJDdTFpRDuyS5+PLuJDAIIVr9+rWYKhK6rsB9QtjwUwwb0YF+BkAJN6CjZivOfLA==}
     dev: false
 
   /tailwindcss/3.2.4_postcss@8.4.21:
