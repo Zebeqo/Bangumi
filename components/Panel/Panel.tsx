@@ -3,13 +3,18 @@
 import { Transition } from "@headlessui/react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { Fragment } from "react";
-import { useAtom, useAtomValue } from "jotai/react";
-import { currentPanelAtom, isOpenPanelAtom } from "@/lib/panel";
+import { useAtom, useAtomValue, useSetAtom } from "jotai/react";
+import {
+  currentPanelAtom,
+  isOpenPanelAtom,
+  panelHistoryAtom,
+} from "@/lib/panel";
 import { SubjectContent } from "@/components/Panel/SubjectContent";
 import { CharacterListContent } from "@/components/Panel/CharacterListContent";
 
 export function Panel() {
   const panel = useAtomValue(currentPanelAtom);
+  const setPanelHistory = useSetAtom(panelHistoryAtom);
   const [isOpenPanel, setIsOpenPanel] = useAtom(isOpenPanelAtom);
 
   return (
@@ -18,6 +23,9 @@ export function Panel() {
       onOpenChange={(open) => {
         if (!open) {
           setIsOpenPanel(false);
+          setTimeout(() => {
+            setPanelHistory({ history: [], index: -1 });
+          }, 300);
         }
       }}
     >
