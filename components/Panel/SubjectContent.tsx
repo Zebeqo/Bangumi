@@ -180,7 +180,9 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
           </div>
         </>
       ) : (
-        <div>is fetching</div>
+        <div className="flex flex-col items-center justify-center space-y-4 px-8 py-6 text-neutral-12">
+          is fetching
+        </div>
       )}
     </>
   );
