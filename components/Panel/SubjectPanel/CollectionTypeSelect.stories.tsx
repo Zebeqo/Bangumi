@@ -1,6 +1,6 @@
 import { expect } from "@storybook/jest";
 import type { Meta, StoryObj } from "@storybook/react";
-import { CollectionTypeSelect as CollectionTypeSelectComponent } from "@/components/Panel/InfoPanel/CollectionTypeSelect";
+import { CollectionTypeSelect as CollectionTypeSelectComponent } from "@/components/Panel/SubjectPanel/CollectionTypeSelect";
 import { STORYBOOK_SUBJECT_ID } from "@/lib/constant";
 import { userEvent, within, screen, waitFor } from "@storybook/testing-library";
 import { reactQueryDevtoolsDecorator } from "@/lib/storybook";

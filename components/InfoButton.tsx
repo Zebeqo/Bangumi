@@ -4,7 +4,6 @@ import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import { Button } from "@/ui/Button";
 import { useSetAtom } from "jotai/react";
 import { isOpenPanelAtom, panelAtom } from "@/lib/panel";
-import { showFullInfoAtom } from "@/components/Panel/Panel";
 import { forwardRef } from "react";
 
 interface props extends React.HTMLAttributes<HTMLButtonElement> {
@@ -13,7 +12,6 @@ interface props extends React.HTMLAttributes<HTMLButtonElement> {
 export const InfoButton = forwardRef<HTMLButtonElement, props>(
   ({ subject_id, ...props }, ref) => {
     const setPanel = useSetAtom(panelAtom);
-    const setShowFullInfo = useSetAtom(showFullInfoAtom);
     const setIsOpenPanel = useSetAtom(isOpenPanelAtom);
     return (
       <Button
@@ -23,8 +21,7 @@ export const InfoButton = forwardRef<HTMLButtonElement, props>(
         ref={ref}
         onClick={() => {
           setIsOpenPanel(true);
-          setPanel({ subject_id: subject_id, type: "info" });
-          setShowFullInfo(false);
+          setPanel({ subject_id: subject_id, type: "subject" });
         }}
         aria-label="open-info-panel"
         {...props}
