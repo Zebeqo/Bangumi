@@ -4,15 +4,12 @@ import { useErrorToast } from "@/hooks/use-toast";
 import { useSession } from "next-auth/react";
 import { errorScheme } from "@/lib/error";
 
-export function useSubjectData(subject_id?: number) {
+export function useSubjectData(subject_id: number) {
   const { data: session } = useSession();
   const openErrorToast = useErrorToast();
   const { data, isSuccess } = useQuery({
     queryKey: ["subject", Number(subject_id), session?.user.id],
     queryFn: async () => {
-      if (!subject_id) {
-        return null;
-      }
       try {
         const response = await fetch(
           `https://api.bgm.tv/v0/subjects/${subject_id}`,

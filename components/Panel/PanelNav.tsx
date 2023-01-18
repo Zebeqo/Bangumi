@@ -11,7 +11,7 @@ import { useInView } from "react-intersection-observer";
 export function PanelNav({
   title,
 }: {
-  title: { name: string; name_cn: string };
+  title: { name?: string; name_cn?: string };
 }) {
   const { ref, inView } = useInView({
     threshold: 1,
