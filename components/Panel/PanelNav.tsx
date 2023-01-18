@@ -7,12 +7,15 @@ import {
 } from "@heroicons/react/24/outline";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { useInView } from "react-intersection-observer";
+import { useReducerAtom } from "jotai/react/utils";
+import { panelHistoryAtom, panelReducer } from "@/lib/panel";
 
 export function PanelNav({
   title,
 }: {
   title: { name?: string; name_cn?: string };
 }) {
+  const [, dispatch] = useReducerAtom(panelHistoryAtom, panelReducer);
   const { ref, inView } = useInView({
     threshold: 1,
     rootMargin: "-1px",
@@ -35,11 +38,13 @@ export function PanelNav({
               colorType="neutral"
               type="outline"
               icon={<ChevronLeftIcon />}
+              onClick={() => dispatch({ type: "back" })}
             />
             <Button
               colorType="neutral"
               type="outline"
               icon={<ChevronRightIcon />}
+              onClick={() => dispatch({ type: "forward" })}
             />
           </div>
           {/*SubjectContent.TitleGroup*/}

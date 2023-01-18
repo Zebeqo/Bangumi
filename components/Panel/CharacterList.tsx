@@ -3,8 +3,8 @@
 import { CharacterAvatarCard } from "@/components/Panel/CharacterAvatarCard";
 import { useSubjectCharactersData } from "@/hooks/use-character";
 import { ListHeader } from "@/components/Panel/ListHeader";
-import { useSetAtom } from "jotai/react";
-import { panelAtom } from "@/lib/panel";
+import { panelHistoryAtom, panelReducer } from "@/lib/panel";
+import { useReducerAtom } from "jotai/react/utils";
 
 export function CharacterList({
   subject_id,
@@ -13,7 +13,7 @@ export function CharacterList({
   subject_id: number;
   length?: number;
 }) {
-  const setPanel = useSetAtom(panelAtom);
+  const [, dispatch] = useReducerAtom(panelHistoryAtom, panelReducer);
   const { data: subjectCharactersData } = useSubjectCharactersData(subject_id);
   return (
     <>
@@ -22,7 +22,10 @@ export function CharacterList({
           <ListHeader
             title={"角色"}
             onClickAction={() => {
-              setPanel({ target_id: subject_id, type: "characterList" });
+              dispatch({
+                type: "push",
+                value: { target_id: subject_id, type: "characterList" },
+              });
             }}
           />
           <div className="grid grid-cols-5 gap-4 px-8 py-2">
