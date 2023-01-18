@@ -19,7 +19,7 @@ export function useCollectionData(subject_id?: number) {
   const openErrorToast = useErrorToast();
 
   const { data, isSuccess } = useQuery({
-    queryKey: ["collection", subject_id, session?.user.id],
+    queryKey: ["collection", Number(subject_id), session?.user.id],
     queryFn: async () => {
       if (!subject_id || !session?.user.id) {
         return null;
