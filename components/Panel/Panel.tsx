@@ -17,6 +17,12 @@ export function Panel() {
   const setPanelHistory = useSetAtom(panelHistoryAtom);
   const [isOpenPanel, setIsOpenPanel] = useAtom(isOpenPanelAtom);
 
+  // jotai-devtools 暂时用不了，拿 useEffect 凑合一下 debug
+  // const panelHistory = useAtomValue(panelHistoryAtom);
+  // useEffect(() => {
+  //   console.log("panelHistory:", panelHistory);
+  // }, [panelHistory]);
+
   return (
     <DialogPrimitive.Root
       open={isOpenPanel}

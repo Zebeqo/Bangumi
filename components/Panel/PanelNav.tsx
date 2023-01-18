@@ -15,7 +15,10 @@ export function PanelNav({
 }: {
   title: { name?: string; name_cn?: string };
 }) {
-  const [, dispatch] = useReducerAtom(panelHistoryAtom, panelReducer);
+  const [panelHistory, dispatch] = useReducerAtom(
+    panelHistoryAtom,
+    panelReducer
+  );
   const { ref, inView } = useInView({
     threshold: 1,
     rootMargin: "-1px",
@@ -38,13 +41,18 @@ export function PanelNav({
               colorType="neutral"
               type="outline"
               icon={<ChevronLeftIcon />}
-              onClick={() => dispatch({ type: "back" })}
+              onClick={() => {
+                panelHistory.index && dispatch({ type: "back" });
+              }}
             />
             <Button
               colorType="neutral"
               type="outline"
               icon={<ChevronRightIcon />}
-              onClick={() => dispatch({ type: "forward" })}
+              onClick={() => {
+                panelHistory.index < panelHistory.history.length - 1 &&
+                  dispatch({ type: "forward" });
+              }}
             />
           </div>
           {/*SubjectContent.TitleGroup*/}
