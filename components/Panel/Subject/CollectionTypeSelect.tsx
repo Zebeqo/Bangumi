@@ -31,6 +31,8 @@ export function CollectionTypeSelect({ subject_id }: { subject_id: number }) {
                 type: Number(collection_type) as CollectionType,
               },
               subject_id: subject_id,
+              subject_type: collectionData.subject.type,
+              collection_type: collectionData.type,
               description: value,
             });
           }}
