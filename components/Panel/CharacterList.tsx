@@ -2,7 +2,7 @@
 
 import { CharacterAvatarCard } from "@/components/Panel/CharacterAvatarCard";
 import { useSubjectCharactersData } from "@/hooks/use-character";
-import { ListHeader } from "@/components/Panel/ListHeader";
+import { ListHeader } from "@/ui/Panel/ListHeader";
 import { panelHistoryAtom, panelReducer } from "@/lib/panel";
 import { useReducerAtom } from "jotai/react/utils";
 
