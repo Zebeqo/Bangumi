@@ -169,7 +169,7 @@ const OpenIssueToastButton = () => {
       label="Issue Toast"
       aria-label={"open toast"}
       onClick={() => {
-        openToast(createIssueToast(42, "需要相关 api"));
+        openToast(createIssueToast(42, "暂未开放相关 api"));
       }}
     />
   );
@@ -225,7 +225,7 @@ export const IssueToast: Story = {
     await userEvent.click(canvas.getByRole("button", { name: "open toast" }));
 
     const toast = await canvas.findByRole("status");
-    await expect(within(toast).getByText("需要相关 api")).toBeVisible();
+    await expect(within(toast).getByText("暂未开放相关 api")).toBeVisible();
     await expect(within(toast).getByText("跳转至相关 issue")).toBeVisible();
 
     fireEvent.click(within(toast).getByRole("button", { name: "Close" }));

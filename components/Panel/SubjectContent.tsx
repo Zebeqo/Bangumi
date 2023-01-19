@@ -134,7 +134,7 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
                         label="收藏"
                         onClick={() => {
                           if (session) {
-                            openToast(createIssueToast(42, "需要相关 api"));
+                            openToast(createIssueToast(42, "暂未开放相关 api"));
                           } else {
                             void signIn("bangumi", {
                               redirect: false,
@@ -154,7 +154,10 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
                         }
                         onClick={() => {
                           if (session) {
-                            openToast(createIssueToast(42, "需要相关 api"));
+                            openToast({
+                              type: "info",
+                              title: "请先收藏该条目",
+                            });
                           } else {
                             void signIn("bangumi", {
                               redirect: false,
