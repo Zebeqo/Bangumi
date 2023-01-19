@@ -24,6 +24,7 @@ export const InfoButton = forwardRef<HTMLButtonElement, props>(
           setIsOpenPanel(true);
           dispatch({
             type: "push",
+            // FIX: subject_id turn out to be string for some reason
             value: { type: "subject", target_id: Number(subject_id) },
           });
         }}
