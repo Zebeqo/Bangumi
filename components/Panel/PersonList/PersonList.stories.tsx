@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { PersonList as PersonListComponent } from "@/components/Panel/PersonList";
+import { PersonList as PersonListComponent } from "@/components/Panel/PersonList/PersonList";
 import { reactQueryDevtoolsDecorator } from "@/lib/storybook";
 import { STORYBOOK_SUBJECT_ID } from "@/lib/constant";
 import { waitFor, within } from "@storybook/testing-library";

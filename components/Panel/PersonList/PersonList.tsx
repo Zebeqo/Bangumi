@@ -2,7 +2,7 @@
 
 import { ListHeader } from "@/ui/Panel/ListHeader";
 import { useSubjectPersonsData } from "@/hooks/use-person";
-import { PersonAvatarCard } from "@/components/Panel/PersonAvatarCard";
+import { PersonAvatarCard } from "@/components/Panel/PersonList/PersonAvatarCard";
 import { personRelationEnum, personRelationScheme } from "@/lib/person";
 
 export function PersonList({ subject_id }: { subject_id: number }) {

@@ -5,9 +5,9 @@ import { useEpisodesData } from "@/hooks/use-episode";
 import { ListHeader } from "@/ui/Panel/ListHeader";
 import { useReducerAtom } from "jotai/react/utils";
 import { panelHistoryAtom, panelReducer } from "@/lib/panel";
-import { EPListItemList } from "@/components/Panel/EPListItemList";
+import { EPListItemList } from "@/components/Panel/EPList/EPListItemList";
 
-export function EPList({
+export function EPListDynamic({
   subject_id,
   length,
 }: {

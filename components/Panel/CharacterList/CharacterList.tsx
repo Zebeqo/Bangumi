@@ -1,6 +1,6 @@
 "use client";
 
-import { CharacterAvatarCard } from "@/components/Panel/CharacterAvatarCard";
+import { CharacterAvatarCard } from "@/components/Panel/CharacterList/CharacterAvatarCard";
 import { useSubjectCharactersData } from "@/hooks/use-character";
 import { ListHeader } from "@/ui/Panel/ListHeader";
 import { panelHistoryAtom, panelReducer } from "@/lib/panel";
