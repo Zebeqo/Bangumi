@@ -17,7 +17,7 @@ export function EPListFull({ subject_id }: { subject_id: number }) {
     data: episodesPageData,
     fetchNextPage,
     hasNextPage,
-  } = useEpisodesPageData(subject_id, 20);
+  } = useEpisodesPageData(subject_id, 15);
   const { ref, inView } = useInView();
   useEffect(() => {
     if (inView) {
@@ -52,7 +52,7 @@ export function EPListFull({ subject_id }: { subject_id: number }) {
             </Fragment>
           ))}
         </div>
-        <div className="absolute inset-x-0 -bottom-4 flex w-full items-center justify-center">
+        <div className="flex w-full items-center justify-center">
           <LoadMoreIndicator ref={ref} hasMore={hasNextPage} />
         </div>
       </div>
