@@ -1,21 +1,21 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { RelationSubjectList as RelationSubjectListComponent } from "@/components/Panel/RelationSubjectList";
+import { CharacterList as CharacterListComponent } from "@/components/Panel/CharacterList/CharacterList";
 import { reactQueryDevtoolsDecorator } from "@/lib/storybook";
 import { STORYBOOK_SUBJECT_ID } from "@/lib/constant";
 import { waitFor, within } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
 
-const meta: Meta<typeof RelationSubjectListComponent> = {
-  title: "RelationSubjectList",
-  component: RelationSubjectListComponent,
+const meta: Meta<typeof CharacterListComponent> = {
+  title: "CharacterList",
+  component: CharacterListComponent,
   decorators: [reactQueryDevtoolsDecorator],
 };
 
 export default meta;
-type Story = StoryObj<typeof RelationSubjectListComponent>;
+type Story = StoryObj<typeof CharacterListComponent>;
 
-export const RelationSubjectList: Story = {
+export const CharacterList: Story = {
   args: {
     subject_id: STORYBOOK_SUBJECT_ID,
   },
@@ -24,8 +24,8 @@ export const RelationSubjectList: Story = {
 
     await waitFor(
       async () => {
-        const nameEl = canvas.getAllByTestId("subject-name");
-        await expect(nameEl.length).toBeGreaterThan(0);
+        const nameEl = canvas.getAllByTestId("character-name");
+        await expect(nameEl.length).toEqual(10);
         for (const el of nameEl) {
           await expect(el).toHaveTextContent(/./);
         }

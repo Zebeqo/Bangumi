@@ -2,10 +2,10 @@ import Image from "next/image";
 import { TagBadge } from "@/ui/TagBadge";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { cn } from "@/lib/utils";
-import { CollectionTypeSelect } from "@/components/Panel/SubjectPanel/CollectionTypeSelect";
-import { RatingSelect } from "@/components/Panel/SubjectPanel/RatingSelect";
+import { CollectionTypeSelect } from "@/components/Panel/Subject/CollectionTypeSelect";
+import { RatingSelect } from "@/components/Panel/Subject/RatingSelect";
 import { EpisodeButton as EpisodeButtonComponent } from "@/components/EpisodeButton";
-import { MoreDropdownMenu } from "@/components/Panel/SubjectPanel/MoreDropdownMenu";
+import { MoreDropdownMenu } from "@/components/Panel/Subject/MoreDropdownMenu";
 import { Button } from "@/ui/Button";
 import {
   ChevronDownIcon,
@@ -14,10 +14,10 @@ import {
 } from "@heroicons/react/20/solid";
 import { createIssueToast } from "@/lib/toast";
 import { signIn, useSession } from "next-auth/react";
-import { CharacterList } from "@/components/Panel/CharacterList";
-import { EPList } from "@/components/Panel/EPList";
-import { PersonList } from "@/components/Panel/PersonList";
-import { RelationSubjectList } from "@/components/Panel/RelationSubjectList";
+import { CharacterList } from "@/components/Panel/CharacterList/CharacterList";
+import { EPListDynamic } from "@/components/Panel/EPList/EPListDynamic";
+import { PersonList } from "@/components/Panel/PersonList/PersonList";
+import { RelationSubjectList } from "@/components/Panel/RelationSubjectList/RelationSubjectList";
 import { useRef, useState } from "react";
 import { useCollectionData } from "@/hooks/use-collection";
 import { useToast } from "@/hooks/use-toast";
@@ -171,8 +171,8 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
             </div>
             {/*SubjectContent.CharacterList*/}
             <CharacterList subject_id={subjectData.id} length={10} />
-            {/*SubjectContent.EPList*/}
-            <EPList subject_id={subjectData.id} length={10} />
+            {/*SubjectContent.EPListDynamic*/}
+            <EPListDynamic subject_id={subjectData.id} length={10} />
             {/*SubjectContent.PersonList*/}
             <PersonList subject_id={subjectData.id} />
             {/*SubjectContent.SubjectList*/}

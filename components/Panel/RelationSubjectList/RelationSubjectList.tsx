@@ -3,7 +3,7 @@
 import { ListHeader } from "@/ui/Panel/ListHeader";
 import { useSubjectRelationsData } from "@/hooks/use-relation";
 import { subjectRelationEnum, subjectRelationScheme } from "@/lib/relation";
-import { RelationSubjectAvatarCard } from "@/components/Panel/RelationSubjectAvatarCard";
+import { RelationSubjectAvatarCard } from "@/components/Panel/RelationSubjectList/RelationSubjectAvatarCard";
 
 export function RelationSubjectList({ subject_id }: { subject_id: number }) {
   const { data: subjectRelationsData } = useSubjectRelationsData(subject_id);

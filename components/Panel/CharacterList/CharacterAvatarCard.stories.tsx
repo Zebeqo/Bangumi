@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { CharacterAvatarCard as CharacterAvatarCardComponent } from "@/components/Panel/CharacterAvatarCard";
+import { CharacterAvatarCard as CharacterAvatarCardComponent } from "@/components/Panel/CharacterList/CharacterAvatarCard";
 import { reactQueryDevtoolsDecorator } from "@/lib/storybook";
 import { waitFor, within } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";

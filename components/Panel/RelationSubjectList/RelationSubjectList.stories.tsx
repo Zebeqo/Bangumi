@@ -1,33 +1,32 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { EPList as EPListComponent } from "@/components/Panel/EPList";
+import { RelationSubjectList as RelationSubjectListComponent } from "@/components/Panel/RelationSubjectList/RelationSubjectList";
 import { reactQueryDevtoolsDecorator } from "@/lib/storybook";
 import { STORYBOOK_SUBJECT_ID } from "@/lib/constant";
 import { waitFor, within } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
 
-const meta: Meta<typeof EPListComponent> = {
-  title: "EPList",
-  component: EPListComponent,
+const meta: Meta<typeof RelationSubjectListComponent> = {
+  title: "RelationSubjectList",
+  component: RelationSubjectListComponent,
   decorators: [reactQueryDevtoolsDecorator],
 };
 
 export default meta;
-type Story = StoryObj<typeof EPListComponent>;
+type Story = StoryObj<typeof RelationSubjectListComponent>;
 
-export const EPList: Story = {
+export const RelationSubjectList: Story = {
   args: {
     subject_id: STORYBOOK_SUBJECT_ID,
-    length: 6,
   },
   play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
     const canvas = within(canvasElement);
 
     await waitFor(
       async () => {
-        const commentEls = canvas.getAllByRole("button", { name: "comment" });
-        await expect(commentEls.length).toEqual(6);
-        for (const el of commentEls) {
+        const nameEl = canvas.getAllByTestId("subject-name");
+        await expect(nameEl.length).toBeGreaterThan(0);
+        for (const el of nameEl) {
           await expect(el).toHaveTextContent(/./);
         }
       },
