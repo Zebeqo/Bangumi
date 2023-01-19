@@ -1,11 +1,4 @@
-import type { episodesPageScheme } from "@/lib/episode";
-import type { z } from "zod";
-import { Button } from "@/ui/Button";
-import {
-  CalendarDaysIcon,
-  ChatBubbleLeftRightIcon,
-  ClockIcon,
-} from "@heroicons/react/20/solid";
+"use client";
 
 import { useCollectionData } from "@/hooks/use-collection";
 import { useEpisodesData } from "@/hooks/use-episode";

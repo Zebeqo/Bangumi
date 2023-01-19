@@ -1,3 +1,5 @@
+"use client";
+
 import { PanelNav } from "@/components/Panel/PanelNav";
 import { useSubjectData } from "@/hooks/use-subject";
 import { CharacterList } from "@/components/Panel/CharacterList";
