@@ -5,6 +5,7 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 import {
+  collectionPagesDataScheme,
   collectionScheme,
   collectionsPageScheme,
   mutateCollectionScheme,
@@ -143,7 +144,9 @@ export function useCollectionMutation() {
         z.object({
           mutateCollection: mutateCollectionScheme,
           description: z.string(),
-          subject_id: z.number(),
+          subject_id: z.number().int(),
+          subject_type: z.number().int(),
+          collection_type: z.number().int(),
         })
       )
       .implement(({ mutateCollection, subject_id }) => {
@@ -181,7 +184,16 @@ export function useCollectionMutation() {
       );
       return { previousCollectionData, newCollectionData };
     },
-    onSuccess: async (data, { description }) => {
+    onSuccess: async (
+      data,
+      {
+        subject_id,
+        description,
+        subject_type,
+        collection_type,
+        mutateCollection,
+      }
+    ) => {
       if (data) {
         if (data.status !== 204) {
           const errorResult = errorScheme.safeParse(await data.json());
@@ -193,11 +205,41 @@ export function useCollectionMutation() {
         }
       }
 
+      queryClient.setQueryData(
+        ["collections", subject_type, collection_type, session?.user.id],
+        (oldData) => {
+          if (!oldData) {
+            return oldData;
+          }
+          const oldDataParsed = collectionPagesDataScheme.parse(oldData);
+          const targetPage = oldDataParsed.pages.find((collectionsPage) => {
+            return collectionsPage.data.find((collection) => {
+              return collection.subject_id === subject_id;
+            });
+          });
+
+          if (targetPage) {
+            targetPage.data = targetPage.data.filter((collection) => {
+              return collection.subject_id !== subject_id;
+            });
+          }
+          return oldDataParsed;
+        }
+      );
       openToast({
         type: "success",
         title: "修改收藏状态成功",
         description: `已将条目的收藏状态修改为 ${description}`,
       });
+
+      if (mutateCollection.type) {
+        await queryClient.invalidateQueries([
+          "collections",
+          subject_type,
+          mutateCollection.type,
+          session?.user.id,
+        ]);
+      }
     },
     onError: (error, { subject_id }, context) => {
       if (error instanceof Error) {

@@ -45,6 +45,7 @@ export const collectionScheme = z.object({
   private: z.boolean(),
   subject: z.object({
     eps: z.number().int().nonnegative(),
+    type: z.number().int(),
   }),
   ep_status: z.number().int().nonnegative(),
 });
@@ -86,6 +87,11 @@ export const collectionsPageScheme = z.object({
   total: z.number().int(),
   limit: z.number().int(),
   offset: z.number().int(),
+});
+
+export const collectionPagesDataScheme = z.object({
+  pages: z.array(collectionsPageScheme),
+  pageParams: z.array(z.number().int().nullable().optional()),
 });
 
 export const mutateCollectionScheme = z.object({
