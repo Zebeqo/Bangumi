@@ -45,7 +45,7 @@ export function PanelNav({
                 if (panelHistory.index) {
                   dispatch({ type: "back" });
                   document
-                    .querySelector('[data-state="open"]')
+                    .querySelector("#panel-overlay")
                     ?.scrollTo({ top: 0, behavior: "smooth" });
                 }
               }}
@@ -58,7 +58,7 @@ export function PanelNav({
                 if (panelHistory.index < panelHistory.history.length - 1) {
                   dispatch({ type: "forward" });
                   document
-                    .querySelector('[data-state="open"]')
+                    .querySelector("#panel-overlay")
                     ?.scrollTo({ top: 0, behavior: "smooth" });
                 }
               }}

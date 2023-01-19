@@ -5,7 +5,7 @@ export const ListHeader = ({
 }: {
   title: string;
   showAction?: boolean;
-  onClickAction?: () => void;
+  onClickAction: () => void;
 }) => {
   return (
     <div className="flex items-center justify-between px-6 py-3">
@@ -13,7 +13,12 @@ export const ListHeader = ({
       {showAction && (
         <span
           className="cursor-pointer font-medium text-neutral-11"
-          onClick={onClickAction}
+          onClick={() => {
+            onClickAction();
+            document
+              .querySelector("#panel-overlay")
+              ?.scrollTo({ top: 0, behavior: "smooth" });
+          }}
         >
           显示全部
         </span>

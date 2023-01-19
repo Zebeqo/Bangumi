@@ -25,7 +25,7 @@ export function PersonList({ subject_id }: { subject_id: number }) {
     <>
       {sortedListData?.length ? (
         <div className="flex flex-col space-y-2 p-2">
-          <ListHeader title={"制作人员"} />
+          <ListHeader title={"制作人员"} onClickAction={() => null} />
           <div className="grid grid-cols-5 gap-4 px-8 py-2">
             {sortedListData.slice(0, 5).map((personData) => {
               return (

@@ -25,7 +25,7 @@ export function RelationSubjectList({ subject_id }: { subject_id: number }) {
     <>
       {sortedListData?.length ? (
         <div className="flex flex-col space-y-2 p-2">
-          <ListHeader title={"相关条目"} />
+          <ListHeader title={"相关条目"} onClickAction={() => null} />
           <div className="grid grid-cols-4 gap-4 px-8 py-2">
             {sortedListData.slice(0, 8).map((subjectData) => {
               return (

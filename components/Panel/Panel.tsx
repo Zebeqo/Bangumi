@@ -11,6 +11,7 @@ import {
 } from "@/lib/panel";
 import { SubjectContent } from "@/components/Panel/SubjectContent";
 import { CharacterListContent } from "@/components/Panel/CharacterListContent";
+import { EPListContent } from "@/components/Panel/EPListContent";
 
 export function Panel() {
   const panel = useAtomValue(currentPanelAtom);
@@ -48,6 +49,7 @@ export function Panel() {
           >
             <DialogPrimitive.Overlay
               forceMount
+              id="panel-overlay"
               className="fixed inset-0 z-40 grid place-items-center overflow-y-auto bg-blackA-9 pb-16"
             >
               <Transition.Child
@@ -84,6 +86,8 @@ export function Panel() {
                     <SubjectContent subject_id={panel.target_id} />
                   ) : panel?.type === "characterList" ? (
                     <CharacterListContent subject_id={panel.target_id} />
+                  ) : panel?.type === "episodeList" ? (
+                    <EPListContent subject_id={panel.target_id} />
                   ) : null}
                 </DialogPrimitive.Content>
               </Transition.Child>
