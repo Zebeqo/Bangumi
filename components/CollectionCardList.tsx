@@ -26,7 +26,7 @@ export function CollectionCardList({
   collection_type: number;
 }) {
   const {
-    data: episodesData,
+    data: collectionsPageData,
     fetchNextPage,
     hasNextPage,
   } = useCollectionsPageData(subject_type, collection_type);
@@ -44,7 +44,7 @@ export function CollectionCardList({
   return (
     <>
       <div className="relative grid grid-cols-1 justify-items-center gap-12 py-8 px-12 xl:grid-cols-2 min-[1800px]:grid-cols-3 min-[2400px]:grid-cols-4">
-        {episodesData?.pages.map((page) => (
+        {collectionsPageData?.pages.map((page) => (
           <Fragment key={page?.offset}>
             {page?.data.map((collection) => (
               <div
