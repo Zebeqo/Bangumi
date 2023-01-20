@@ -177,7 +177,7 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
             {/*SubjectContent.EPListDynamic*/}
             <EPListDynamic subject_id={subjectData.id} length={10} />
             {/*SubjectContent.PersonList*/}
-            <PersonList subject_id={subjectData.id} />
+            <PersonList subject_id={subjectData.id} length={5} />
             {/*SubjectContent.SubjectList*/}
             <RelationSubjectList subject_id={subjectData.id} />
           </div>

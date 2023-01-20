@@ -12,6 +12,7 @@ import {
 import { SubjectContent } from "@/components/Panel/SubjectContent";
 import { CharacterListContent } from "@/components/Panel/CharacterListContent";
 import { EPListContent } from "@/components/Panel/EPListContent";
+import { PersonListContent } from "@/components/Panel/PersonListContent";
 
 export function Panel() {
   const panel = useAtomValue(currentPanelAtom);
@@ -88,6 +89,8 @@ export function Panel() {
                     <CharacterListContent subject_id={panel.target_id} />
                   ) : panel?.type === "episodeList" ? (
                     <EPListContent subject_id={panel.target_id} />
+                  ) : panel?.type === "personList" ? (
+                    <PersonListContent subject_id={panel.target_id} />
                   ) : null}
                 </DialogPrimitive.Content>
               </Transition.Child>
