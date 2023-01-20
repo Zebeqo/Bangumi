@@ -17,8 +17,20 @@ type Story = StoryObj<typeof CharacterAvatarCardComponent>;
 export const CharacterAvatarCard: Story = {
   args: {
     character_id: 77,
-    actor_names: ["山寺宏一", "Steven Blum"],
+    actors: [
+      {
+        name: "山寺宏一",
+        id: 3914,
+      },
+      {
+        name: "Steven Blum",
+        id: 28677,
+      },
+    ],
     character_relation: "主角",
+    onClick: () => {
+      window.open(`https://bgm.tv/character/77`, "_blank");
+    },
   },
   play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
     const canvas = within(canvasElement);
