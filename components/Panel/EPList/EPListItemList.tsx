@@ -56,6 +56,9 @@ export function EPListItemList({
               });
             }
           }}
+          onClickBubble={() => {
+            window.open(`https://bgm.tv/ep/${episodeData.id}`, "_blank");
+          }}
         />
       ))}
     </>
@@ -66,10 +69,12 @@ function EPItem({
   episodeData,
   isSelected,
   onClickIndex,
+  onClickBubble,
 }: {
   episodeData: z.infer<typeof episodesPageScheme.shape.data.element>;
   isSelected: boolean;
   onClickIndex?: () => void;
+  onClickBubble?: () => void;
 }) {
   return (
     <div className="flex items-center justify-between px-2">
@@ -112,6 +117,7 @@ function EPItem({
         type={"ghost"}
         label={episodeData.comment.toString()}
         icon={<ChatBubbleLeftRightIcon />}
+        onClick={onClickBubble}
       />
     </div>
   );

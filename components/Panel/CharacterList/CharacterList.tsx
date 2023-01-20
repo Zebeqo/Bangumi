@@ -37,9 +37,13 @@ export function CharacterList({
                       key={characterData.id}
                       character_id={characterData.id}
                       character_relation={characterData.relation}
-                      actor_names={characterData.actors.map(
-                        (actor) => actor.name
-                      )}
+                      actors={characterData.actors}
+                      onClick={() => {
+                        window.open(
+                          `https://bgm.tv/character/${characterData.id}`,
+                          "_blank"
+                        );
+                      }}
                     />
                   );
                 })
@@ -49,9 +53,13 @@ export function CharacterList({
                       key={characterData.id}
                       character_id={characterData.id}
                       character_relation={characterData.relation}
-                      actor_names={characterData.actors.map(
-                        (actor) => actor.name
-                      )}
+                      actors={characterData.actors}
+                      onClick={() => {
+                        window.open(
+                          `https://bgm.tv/character/${characterData.id}`,
+                          "_blank"
+                        );
+                      }}
                     />
                   );
                 })}
