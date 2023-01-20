@@ -38,6 +38,8 @@ export function RatingSelect({ subject_id }: { subject_id: number }) {
               },
               subject_id: subject_id,
               description: value,
+              subject_type: collectionData.subject.type,
+              collection_type: collectionData.type,
             });
           }}
         />
