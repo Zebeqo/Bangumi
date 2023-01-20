@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn, panelScrollToTop } from "@/lib/utils";
 import { Button } from "@/ui/Button";
 import {
   ChevronLeftIcon,
@@ -46,9 +46,7 @@ export function PanelNav({
               onClick={() => {
                 if (panelHistory.index) {
                   dispatch({ type: "back" });
-                  document
-                    .querySelector("#panel-overlay")
-                    ?.scrollTo({ top: 0, behavior: "smooth" });
+                  panelScrollToTop();
                 }
               }}
             />
@@ -59,9 +57,7 @@ export function PanelNav({
               onClick={() => {
                 if (panelHistory.index < panelHistory.history.length - 1) {
                   dispatch({ type: "forward" });
-                  document
-                    .querySelector("#panel-overlay")
-                    ?.scrollTo({ top: 0, behavior: "smooth" });
+                  panelScrollToTop();
                 }
               }}
             />

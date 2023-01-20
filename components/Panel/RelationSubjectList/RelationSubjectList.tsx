@@ -6,6 +6,7 @@ import { subjectRelationEnum, subjectRelationScheme } from "@/lib/relation";
 import { RelationSubjectAvatarCard } from "@/components/Panel/RelationSubjectList/RelationSubjectAvatarCard";
 import { useReducerAtom } from "jotai/react/utils";
 import { panelHistoryAtom, panelReducer } from "@/lib/panel";
+import { panelScrollToTop } from "@/lib/utils";
 
 export function RelationSubjectList({
   subject_id,
@@ -59,9 +60,7 @@ export function RelationSubjectList({
                           type: "push",
                           value: { target_id: subjectData.id, type: "subject" },
                         });
-                        document
-                          .querySelector("#panel-overlay")
-                          ?.scrollTo({ top: 0, behavior: "smooth" });
+                        panelScrollToTop();
                       }}
                     />
                   );
@@ -79,9 +78,7 @@ export function RelationSubjectList({
                           type: "push",
                           value: { target_id: subjectData.id, type: "subject" },
                         });
-                        document
-                          .querySelector("#panel-overlay")
-                          ?.scrollTo({ top: 0, behavior: "smooth" });
+                        panelScrollToTop();
                       }}
                     />
                   );
