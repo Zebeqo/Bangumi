@@ -60,6 +60,7 @@ export function useCollectionData(subject_id: number) {
         }
       }
     },
+    staleTime: 1000,
   });
 
   return { data, isSuccess };
