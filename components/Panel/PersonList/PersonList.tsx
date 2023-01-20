@@ -4,8 +4,17 @@ import { ListHeader } from "@/ui/Panel/ListHeader";
 import { useSubjectPersonsData } from "@/hooks/use-person";
 import { PersonAvatarCard } from "@/components/Panel/PersonList/PersonAvatarCard";
 import { personRelationEnum, personRelationScheme } from "@/lib/person";
+import { useReducerAtom } from "jotai/react/utils";
+import { panelHistoryAtom, panelReducer } from "@/lib/panel";
 
-export function PersonList({ subject_id }: { subject_id: number }) {
+export function PersonList({
+  subject_id,
+  length,
+}: {
+  subject_id: number;
+  length?: number;
+}) {
+  const [, dispatch] = useReducerAtom(panelHistoryAtom, panelReducer);
   const { data: subjectPersonsData } = useSubjectPersonsData(subject_id);
 
   const sortedListData = subjectPersonsData?.sort((a, b) => {
@@ -23,19 +32,38 @@ export function PersonList({ subject_id }: { subject_id: number }) {
 
   return (
     <>
-      {sortedListData?.length ? (
+      {subjectPersonsData && sortedListData?.length ? (
         <div className="flex flex-col space-y-2 p-2">
-          <ListHeader title={"制作人员"} onClickAction={() => null} />
+          <ListHeader
+            title={"制作人员"}
+            showAction={length ? subjectPersonsData.length > length : false}
+            onClickAction={() =>
+              dispatch({
+                type: "push",
+                value: { target_id: subject_id, type: "personList" },
+              })
+            }
+          />
           <div className="grid grid-cols-5 gap-4 px-8 py-2">
-            {sortedListData.slice(0, 5).map((personData) => {
-              return (
-                <PersonAvatarCard
-                  key={personData.id}
-                  id={personData.id}
-                  relation={personData.relation}
-                />
-              );
-            })}
+            {length
+              ? sortedListData.slice(0, length).map((personData) => {
+                  return (
+                    <PersonAvatarCard
+                      key={personData.id}
+                      id={personData.id}
+                      relation={personData.relation}
+                    />
+                  );
+                })
+              : sortedListData.map((personData) => {
+                  return (
+                    <PersonAvatarCard
+                      key={personData.id}
+                      id={personData.id}
+                      relation={personData.relation}
+                    />
+                  );
+                })}
           </div>
         </div>
       ) : null}
