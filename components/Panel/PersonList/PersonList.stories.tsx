@@ -18,6 +18,7 @@ type Story = StoryObj<typeof PersonListComponent>;
 export const PersonList: Story = {
   args: {
     subject_id: STORYBOOK_SUBJECT_ID,
+    length: 10,
   },
   play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
     const canvas = within(canvasElement);
@@ -25,7 +26,7 @@ export const PersonList: Story = {
     await waitFor(
       async () => {
         const nameEl = canvas.getAllByTestId("person-name");
-        await expect(nameEl.length).toEqual(5);
+        await expect(nameEl.length).toEqual(10);
         for (const el of nameEl) {
           await expect(el).toHaveTextContent(/./);
         }

@@ -1,7 +1,10 @@
 import { expect } from "@storybook/jest";
 import type { Meta, StoryObj } from "@storybook/react";
 import { EpisodeButton as EpisodeButtonComponent } from "@/components/EpisodeButton";
-import { STORYBOOK_SUBJECT_ID } from "@/lib/constant";
+import {
+  STORYBOOK_BROKEN_SUBJECT_ID,
+  STORYBOOK_SUBJECT_ID,
+} from "@/lib/constant";
 import { reactQueryDevtoolsDecorator } from "@/lib/storybook";
 import { useCollectionData } from "@/hooks/use-collection";
 import { waitFor, within } from "@storybook/testing-library";
@@ -47,7 +50,9 @@ export const EpisodeButton: Story = {
 
 export const EpisodeButton_Broken: Story = {
   render: () => {
-    const { data: collectionData } = useCollectionData(1600);
+    const { data: collectionData } = useCollectionData(
+      STORYBOOK_BROKEN_SUBJECT_ID
+    );
     return (
       <>
         {collectionData && (

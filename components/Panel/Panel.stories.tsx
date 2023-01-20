@@ -24,7 +24,7 @@ type Story = StoryObj<typeof Panel>;
 const play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
   const canvas = within(canvasElement);
 
-  const button = canvas.getByRole("button", { name: "open-info-panel" });
+  const button = await canvas.findByRole("button", { name: "open-info-panel" });
   await userEvent.click(button);
 
   const panel = await screen.findByRole("dialog");
@@ -37,6 +37,7 @@ const play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
   );
 
   await userEvent.click(within(panel).getByRole("button", { name: "Close" }));
+  await new Promise((r) => setTimeout(r, 400));
 };
 
 export const InfoPanel: Story = {
