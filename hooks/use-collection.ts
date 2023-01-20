@@ -227,6 +227,7 @@ export function useCollectionMutation() {
           return oldDataParsed;
         }
       );
+
       openToast({
         type: "success",
         title: "修改收藏状态成功",

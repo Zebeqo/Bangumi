@@ -10,7 +10,7 @@ import { z } from "zod";
 import { errorScheme, ToastError } from "@/lib/error";
 import type { mutateEpisodesScheme } from "@/lib/episode";
 import { episodesPageScheme } from "@/lib/episode";
-import { collectionScheme } from "@/lib/collection";
+import { collectionPagesDataScheme, collectionScheme } from "@/lib/collection";
 
 export function useEpisodesData(
   subject_id: number,
@@ -141,6 +141,8 @@ export function useEpisodeMutation() {
           currentEp: z.number().int(),
           targetEp: z.number().int(),
           subject_id: z.number().int(),
+          subject_type: z.number().int(),
+          collection_type: z.number().int(),
         })
       )
       .implement(({ currentEp, targetEp, subject_id }) => {
@@ -231,7 +233,10 @@ export function useEpisodeMutation() {
       );
       return { previousCollectionData, newCollectionData };
     },
-    onSuccess: async (data, { targetEp }) => {
+    onSuccess: async (
+      data,
+      { targetEp, subject_type, collection_type, subject_id }
+    ) => {
       if (data) {
         if (data.status !== 204) {
           const errorResult = errorScheme.safeParse(await data.json());
@@ -242,6 +247,36 @@ export function useEpisodeMutation() {
           }
         }
       }
+
+      queryClient.setQueryData(
+        ["collections", subject_type, collection_type, session?.user.id],
+        (oldData) => {
+          if (!oldData) {
+            return oldData;
+          }
+          const oldDataParsed = collectionPagesDataScheme.parse(oldData);
+          const targetPage = oldDataParsed.pages.find((collectionsPage) => {
+            return collectionsPage.data.find((collection) => {
+              return collection.subject_id === subject_id;
+            });
+          });
+
+          if (targetPage) {
+            targetPage.data = targetPage.data.map((collection) => {
+              if (collection.subject_id === subject_id) {
+                return {
+                  ...collection,
+                  ep_status: targetEp,
+                };
+              } else {
+                return collection;
+              }
+            });
+          }
+
+          return oldDataParsed;
+        }
+      );
 
       openToast({
         type: "success",
