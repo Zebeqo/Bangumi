@@ -18,7 +18,7 @@ specifiers:
   '@storybook/jest': 0.0.11-next.0
   '@storybook/nextjs': 7.0.0-beta.28
   '@storybook/react': 7.0.0-beta.28
-  '@storybook/test-runner': 0.10.0-next.4
+  '@storybook/test-runner': 0.10.0-next.5
   '@storybook/testing-library': 0.0.14-next.1
   '@tailwindcss/line-clamp': 0.4.2
   '@tanstack/eslint-plugin-query': 4.21.0
@@ -94,7 +94,7 @@ devDependencies:
   '@storybook/jest': 0.0.11-next.0
   '@storybook/nextjs': 7.0.0-beta.28_c7wt3y5o4girl3ug7gehbiu6be
   '@storybook/react': 7.0.0-beta.28_o4scbtliisanygemawej7x2d6i
-  '@storybook/test-runner': 0.10.0-next.4_@types+node@18.11.18
+  '@storybook/test-runner': 0.10.0-next.5_@types+node@18.11.18
   '@storybook/testing-library': 0.0.14-next.1
   '@tailwindcss/line-clamp': 0.4.2_tailwindcss@3.2.4
   '@tanstack/eslint-plugin-query': 4.21.0
@@ -4255,8 +4255,8 @@ packages:
       - supports-color
     dev: true
 
-  /@storybook/test-runner/0.10.0-next.4_@types+node@18.11.18:
-    resolution: {integrity: sha512-cX9wsJQJ5ES7SknxbZwZoZZVenbkMmWD5fO4dI0ndPpxU1MIudxIKrds1rj+cRCAXvk9HG42TGVq2UVXFl1OTQ==}
+  /@storybook/test-runner/0.10.0-next.5_@types+node@18.11.18:
+    resolution: {integrity: sha512-y9sCl6dMEuAcLUtjVKgknwaKDG2jjJaXnWVwgPEOtecLMfL2cuDs2pc3LWtq18IfCarG8LGDXWWHsYnglYLPEA==}
     hasBin: true
     dependencies:
       '@babel/core': 7.20.7
