@@ -115,11 +115,23 @@ export function Sidebar() {
                     <Link href={item.href} key={item.name}>
                       <Button
                         colorType={
-                          path?.startsWith(item.href) ? "primary" : "neutral"
+                          path === "/collection"
+                            ? item.href === "/collection/do"
+                              ? "primary"
+                              : "neutral"
+                            : path?.startsWith(item.href)
+                            ? "primary"
+                            : "neutral"
                         }
                         label={item.name}
                         type={
-                          path?.startsWith(item.href) ? "selected" : "ghost"
+                          path === "/collection"
+                            ? item.href === "/collection/do"
+                              ? "selected"
+                              : "ghost"
+                            : path?.startsWith(item.href)
+                            ? "selected"
+                            : "ghost"
                         }
                         icon={item.icon}
                         className="w-full justify-start"
