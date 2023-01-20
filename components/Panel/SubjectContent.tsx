@@ -179,7 +179,7 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
             {/*SubjectContent.PersonList*/}
             <PersonList subject_id={subjectData.id} length={5} />
             {/*SubjectContent.SubjectList*/}
-            <RelationSubjectList subject_id={subjectData.id} />
+            <RelationSubjectList subject_id={subjectData.id} length={8} />
           </div>
         </>
       ) : (
