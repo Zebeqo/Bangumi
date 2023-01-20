@@ -3,6 +3,7 @@
 import { notFound } from "next/navigation";
 import { Card } from "@/components/Card";
 import * as cheerio from "cheerio";
+import { GridWrapper } from "@/ui/GridWrapper";
 
 // https://github.com/nextauthjs/next-auth/issues/5647#issuecomment-1342099364
 // https://github.com/vercel/next.js/issues/44764
@@ -64,11 +65,11 @@ export default async function Page({
   const list = list1.concat(list2).map((item) => item.replace("/subject/", ""));
 
   return (
-    <>
+    <GridWrapper>
       {list.map((id) => (
         /* @ts-expect-error Server Component */
         <Card key={id} subject_id={id} />
       ))}
-    </>
+    </GridWrapper>
   );
 }
