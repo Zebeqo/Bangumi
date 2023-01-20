@@ -7,11 +7,13 @@ import { CommentBadge } from "@/ui/CommentBadge";
 export function CharacterAvatarCard({
   character_id,
   character_relation,
-  actor_names,
+  actors,
+  onClick,
 }: {
   character_id: number;
   character_relation: string;
-  actor_names: string[];
+  actors: { id: number; name: string }[];
+  onClick?: () => void;
 }) {
   const { data: characterData } = useCharacterData(character_id);
 
@@ -34,6 +36,7 @@ export function CharacterAvatarCard({
                 alt="Avatar"
                 fill={true}
                 unoptimized={true}
+                onClick={onClick}
               />
             </div>
             <div className="flex flex-col space-y-1">
@@ -61,17 +64,22 @@ export function CharacterAvatarCard({
                 </span>
 
                 <span>
-                  {actor_names.map((actor_name, index) => (
+                  {actors.map(({ name, id }, index) => (
                     <div
-                      key={index}
+                      key={id}
                       className="truncate whitespace-pre-wrap text-xs font-medium text-neutral-12 "
-                      title={actor_name}
+                      title={name}
                     >
-                      <span className="cursor-pointer hover:text-accent-11">
-                        {actor_name}
+                      <span
+                        className="cursor-pointer hover:text-accent-11"
+                        onClick={() => {
+                          window.open(`https://bgm.tv/person/${id}`, "_blank");
+                        }}
+                      >
+                        {name}
                       </span>
                       <span className="select-none">
-                        {index !== actor_names.length - 1 && "  /"}
+                        {index !== actors.length - 1 && "  /"}
                       </span>
                     </div>
                   ))}

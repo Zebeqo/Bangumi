@@ -32,6 +32,9 @@ export function PersonAvatarCard({
                 alt="Avatar"
                 fill={true}
                 unoptimized={true}
+                onClick={() => {
+                  window.open(`https://bgm.tv/person/${id}`, "_blank");
+                }}
               />
             </div>
             <div className="flex flex-col space-y-1">
