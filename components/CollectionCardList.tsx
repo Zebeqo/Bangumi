@@ -100,7 +100,7 @@ export function CollectionCardList({
                       </span>
                       <span>
                         {collection.subject.eps
-                          ? `${collection.subject.eps} 集`
+                          ? `${collection.ep_status} / ${collection.subject.eps} 集`
                           : "未知"}
                       </span>
                     </div>

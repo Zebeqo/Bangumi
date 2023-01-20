@@ -39,11 +39,15 @@ export function EPListItemList({
                     subject_id,
                     currentEp: collectionData.ep_status,
                     targetEp: episodeData.ep - 1,
+                    subject_type: collectionData.subject.type,
+                    collection_type: collectionData.type,
                   })
                 : mutateEpisode.mutate({
                     subject_id,
                     currentEp: collectionData.ep_status,
                     targetEp: episodeData.ep,
+                    subject_type: collectionData.subject.type,
+                    collection_type: collectionData.type,
                   });
             } else {
               openToast({
