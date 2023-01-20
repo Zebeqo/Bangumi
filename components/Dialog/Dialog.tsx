@@ -81,7 +81,7 @@ export function Dialog() {
                     ref={ref}
                   >
                     {/*Dialog.Title*/}
-                    <DialogPrimitive.Title className="text-lg font-medium text-neutral-12">
+                    <DialogPrimitive.Title className="text-lg font-bold text-neutral-12">
                       {dialog?.title}
                     </DialogPrimitive.Title>
                     {/*Dialog.CloseButton*/}
@@ -94,7 +94,7 @@ export function Dialog() {
                     </DialogPrimitive.Close>
                   </div>
                   {/*Dialog.Description*/}
-                  <DialogPrimitive.Description className="w-full whitespace-pre-wrap px-6 text-sm text-neutral-11">
+                  <DialogPrimitive.Description className="w-full whitespace-pre-wrap px-6 text-neutral-12">
                     {dialog?.description}
                   </DialogPrimitive.Description>
                   {/*Dialog.Action*/}

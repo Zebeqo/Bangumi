@@ -16,7 +16,7 @@ export function PersonAvatarCard({
   return (
     <>
       {personData && (
-        <div className="relative  rounded-md bg-neutral-3 px-4 py-6 hover:bg-neutral-5">
+        <div className="relative rounded-md bg-neutral-3 px-4 py-6 hover:bg-neutral-5">
           <CommentBadge
             count={personData.stat.comments}
             className="absolute top-2 right-2 z-10"
