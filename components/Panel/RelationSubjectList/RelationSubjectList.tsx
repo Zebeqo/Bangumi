@@ -54,6 +54,15 @@ export function RelationSubjectList({
                       name_cn={subjectData.name_cn}
                       relation={subjectData.relation}
                       imageURL={subjectData.images.common}
+                      onClick={() => {
+                        dispatch({
+                          type: "push",
+                          value: { target_id: subjectData.id, type: "subject" },
+                        });
+                        document
+                          .querySelector("#panel-overlay")
+                          ?.scrollTo({ top: 0, behavior: "smooth" });
+                      }}
                     />
                   );
                 })
@@ -65,6 +74,15 @@ export function RelationSubjectList({
                       name_cn={subjectData.name_cn}
                       relation={subjectData.relation}
                       imageURL={subjectData.images.common}
+                      onClick={() => {
+                        dispatch({
+                          type: "push",
+                          value: { target_id: subjectData.id, type: "subject" },
+                        });
+                        document
+                          .querySelector("#panel-overlay")
+                          ?.scrollTo({ top: 0, behavior: "smooth" });
+                      }}
                     />
                   );
                 })}

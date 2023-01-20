@@ -5,11 +5,13 @@ export function RelationSubjectAvatarCard({
   name_cn,
   relation,
   imageURL,
+  onClick,
 }: {
   name: string;
   name_cn: string;
   relation: string;
   imageURL: string;
+  onClick: () => void;
 }) {
   return (
     <>
@@ -25,6 +27,7 @@ export function RelationSubjectAvatarCard({
                 alt="Avatar"
                 fill={true}
                 unoptimized={true}
+                onClick={onClick}
               />
             </div>
             <div className="flex flex-col space-y-1">
