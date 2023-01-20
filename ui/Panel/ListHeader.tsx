@@ -1,3 +1,5 @@
+import { panelScrollToTop } from "@/lib/utils";
+
 export const ListHeader = ({
   title,
   showAction = true,
@@ -15,9 +17,7 @@ export const ListHeader = ({
           className="cursor-pointer font-medium text-neutral-11"
           onClick={() => {
             onClickAction();
-            document
-              .querySelector("#panel-overlay")
-              ?.scrollTo({ top: 0, behavior: "smooth" });
+            panelScrollToTop();
           }}
         >
           显示全部
