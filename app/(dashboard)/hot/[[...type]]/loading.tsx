@@ -1,12 +1,5 @@
-import { CardSkeleton } from "@/components/CardSkeleton";
-import { GridWrapper } from "@/ui/GridWrapper";
+import { CardGridSkeleton } from "@/ui/CardGridSkeleton";
 
 export default function Loading() {
-  return (
-    <GridWrapper className="animate-pulse">
-      {Array.from({ length: 20 }).map((_, index) => (
-        <CardSkeleton key={index} />
-      ))}
-    </GridWrapper>
-  );
+  return <CardGridSkeleton />;
 }
