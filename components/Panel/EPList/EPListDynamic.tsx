@@ -8,6 +8,7 @@ import { panelHistoryAtom, panelReducer } from "@/lib/panel";
 import { EPListItemList } from "@/components/Panel/EPList/EPListItemList";
 import { Suspense } from "react";
 import { EPItemSkeleton } from "@/components/EPItemSkeleton";
+import { useSubjectData } from "@/hooks/use-subject";
 
 export function EPListDynamic({
   subject_id,
@@ -18,6 +19,7 @@ export function EPListDynamic({
 }) {
   const [, dispatch] = useReducerAtom(panelHistoryAtom, panelReducer);
   const { data: collectionData } = useCollectionData(subject_id);
+  const { data: subjectData } = useSubjectData(subject_id);
   const halfLength = Math.ceil(length / 2);
 
   let episodesStart = 0;
@@ -58,9 +60,7 @@ export function EPListDynamic({
         <div className="flex flex-col space-y-2 p-2">
           <ListHeader
             title={"剧集"}
-            showAction={
-              length ? (collectionData?.subject.eps ?? 0) > length : false
-            }
+            showAction={length ? (subjectData?.eps ?? 0) > length : false}
             onClickAction={() => {
               dispatch({
                 type: "push",
