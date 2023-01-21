@@ -96,7 +96,7 @@ function EPItem({
                 episodeData.name === "" && "hidden"
               )}
             >
-              （{episodeData.name_cn}）
+              {episodeData.name_cn === "" ? "" : `（${episodeData.name_cn}）`}
             </span>
           </div>
           <div className="flex space-x-2 text-xs font-medium text-neutral-11">
