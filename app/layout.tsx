@@ -3,6 +3,7 @@ import SessionProvider from "@/components/provider/SessionProvider";
 import { unstable_getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
 import { Noto_Sans_SC } from "@next/font/google";
+import { Providers } from "@/components/provider/ThemeProvider";
 import { StateProvider } from "@/components/provider/StateProvider";
 
 const notoSansSC = Noto_Sans_SC({
@@ -20,7 +21,8 @@ export default async function RootLayout({
   const session = await unstable_getServerSession(authOptions);
 
   return (
-    <html lang="en" className={notoSansSC.variable}>
+    // https://github.com/pacocoursey/next-themes/issues/152#issuecomment-1364280564
+    <html lang="en" className={notoSansSC.variable} suppressHydrationWarning>
       {/*
         <head /> will contain the components returned by the nearest parent
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
@@ -28,9 +30,11 @@ export default async function RootLayout({
       <head />
 
       <body className="bg-neutral-1">
-        <StateProvider>
-          <SessionProvider session={session}>{children}</SessionProvider>
-        </StateProvider>
+        <Providers>
+          <StateProvider>
+            <SessionProvider session={session}>{children}</SessionProvider>
+          </StateProvider>
+        </Providers>
       </body>
     </html>
   );

@@ -44,6 +44,7 @@ specifiers:
   lint-staged: 13.1.0
   next: 13.1.1
   next-auth: 4.18.8
+  next-themes: 0.2.1
   postcss: 8.4.21
   postcss-loader: 7.0.2
   prettier: 2.8.3
@@ -78,6 +79,7 @@ dependencies:
   jotai: 1.13.1_react@18.2.0
   next: 13.1.1_biqbaboplfbrettd7655fr4n2y
   next-auth: 4.18.8_q76c2b4vyoegvsbrcwkfvimnai
+  next-themes: 0.2.1_q76c2b4vyoegvsbrcwkfvimnai
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-intersection-observer: 9.4.1_react@18.2.0
@@ -3022,7 +3024,7 @@ packages:
       '@storybook/csf-plugin': 7.0.0-beta.28
       '@storybook/csf-tools': 7.0.0-beta.28
       '@storybook/global': 5.0.0
-      '@storybook/mdx2-csf': 1.0.0-next.4
+      '@storybook/mdx2-csf': 1.0.0-next.5
       '@storybook/node-logger': 7.0.0-beta.28
       '@storybook/postinstall': 7.0.0-beta.28
       '@storybook/preview-api': 7.0.0-beta.28
@@ -3928,8 +3930,8 @@ packages:
     resolution: {integrity: sha512-z+Tt2D3BlWU06pXd3dFlUuyJPFG7/n7eA9KCbX5AV6HAzpNGDEV8pizOIMnW2IPgM+iXuNJthc5WBT8R17wkrg==}
     dev: true
 
-  /@storybook/mdx2-csf/1.0.0-next.4:
-    resolution: {integrity: sha512-nvRgYdpYvXsvSgCzKc4LQA1JxtJzmv47IsFAsh1rTz5FoHyK8watLU2WqX9T4w52fpFXBHx7RwGEsCRt0XgZlQ==}
+  /@storybook/mdx2-csf/1.0.0-next.5:
+    resolution: {integrity: sha512-02w0sgGZaK1agT050yCVhJ+o4rLHANWvLKWjQjeAsYbjneLC5ITt+3GDB4jRiWwJboZ8dHW1fGSK1Vg5fA34aQ==}
     dev: true
 
   /@storybook/nextjs/7.0.0-beta.28_c7wt3y5o4girl3ug7gehbiu6be:
@@ -10226,6 +10228,18 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       uuid: 8.3.2
+
+  /next-themes/0.2.1_q76c2b4vyoegvsbrcwkfvimnai:
+    resolution: {integrity: sha512-B+AKNfYNIzh0vqQQKqQItTS8evEouKD7H5Hj3kmuPERwddR2TxvDSFZuTj6T7Jfn1oyeUyJMydPl1Bkxkh0W7A==}
+    peerDependencies:
+      next: '*'
+      react: '*'
+      react-dom: '*'
+    dependencies:
+      next: 13.1.1_biqbaboplfbrettd7655fr4n2y
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
 
   /next/13.1.1_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-R5eBAaIa3X7LJeYvv1bMdGnAVF4fVToEjim7MkflceFPuANY3YyvFxXee/A+acrSYwYPvOvf7f6v/BM/48ea5w==}
