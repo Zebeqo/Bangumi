@@ -23,7 +23,17 @@ export const MoreDropdownMenu = ({
     {
       label: "取消收藏",
       handleSelect: () => {
-        openToast(createIssueToast(42));
+        openToast({
+          type: "info",
+          title: "取消收藏条目失败",
+          description: "收藏 api 暂未开放，请先自行前往主站取消收藏。",
+          action: {
+            label: "前往主站",
+            onClick: () => {
+              window.open(`https://bgm.tv/subject/${subject_id}`, "_blank");
+            },
+          },
+        });
       },
     },
     {
