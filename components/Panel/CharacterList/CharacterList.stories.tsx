@@ -18,6 +18,7 @@ type Story = StoryObj<typeof CharacterListComponent>;
 export const CharacterList: Story = {
   args: {
     subject_id: STORYBOOK_SUBJECT_ID,
+    length: 10,
   },
   play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
     const canvas = within(canvasElement);
