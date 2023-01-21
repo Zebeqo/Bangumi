@@ -22,7 +22,7 @@ export function useEpisodesData(
   const openErrorToast = useErrorToast();
 
   const { data, isSuccess } = useQuery({
-    queryKey: ["episodes", subject_id, offset, limit, type, session?.user.id],
+    queryKey: ["episodes", subject_id, offset, limit, type, session?.user.name],
     queryFn: async () => {
       try {
         if (offset === -1) {
@@ -76,7 +76,7 @@ export function useEpisodesPageData(subject_id: number, limit = 100, type = 0) {
 
   const { data, isSuccess, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useInfiniteQuery({
-      queryKey: ["episodes", subject_id, session?.user.id],
+      queryKey: ["episodes", subject_id, session?.user.name],
       queryFn: async ({ pageParam = 0 }) => {
         try {
           const page = z.number().parse(pageParam);
@@ -221,14 +221,14 @@ export function useEpisodeMutation() {
     onMutate: async ({ targetEp, subject_id }) => {
       await queryClient.cancelQueries(["collection", subject_id]);
       const previousCollectionData = collectionScheme.parse(
-        queryClient.getQueryData(["collection", subject_id, session?.user.id])
+        queryClient.getQueryData(["collection", subject_id, session?.user.name])
       );
       const newCollectionData: z.infer<typeof collectionScheme> = {
         ...previousCollectionData,
         ep_status: targetEp,
       };
       queryClient.setQueryData(
-        ["collection", subject_id, session?.user.id],
+        ["collection", subject_id, session?.user.name],
         newCollectionData
       );
       return { previousCollectionData, newCollectionData };
@@ -249,7 +249,7 @@ export function useEpisodeMutation() {
       }
 
       queryClient.setQueryData(
-        ["collections", subject_type, collection_type, session?.user.id],
+        ["collections", subject_type, collection_type, session?.user.name],
         (oldData) => {
           if (!oldData) {
             return oldData;
@@ -300,13 +300,13 @@ export function useEpisodeMutation() {
 
       context &&
         queryClient.setQueryData(
-          ["collection", subject_id, session?.user.id],
+          ["collection", subject_id, session?.user.name],
           context.previousCollectionData
         );
     },
     onSettled: async (data, error, { subject_id }) => {
       await queryClient.invalidateQueries({
-        queryKey: ["collection", subject_id, session?.user.id],
+        queryKey: ["collection", subject_id, session?.user.name],
         exact: true,
       });
     },

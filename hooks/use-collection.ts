@@ -20,14 +20,14 @@ export function useCollectionData(subject_id: number) {
   const openErrorToast = useErrorToast();
 
   const { data, isSuccess } = useQuery({
-    queryKey: ["collection", subject_id, session?.user.id],
+    queryKey: ["collection", subject_id, session?.user.name],
     queryFn: async () => {
-      if (!session?.user.id) {
+      if (!session?.user.name) {
         return null;
       }
       try {
         const response = await fetch(
-          `https://api.bgm.tv/v0/users/${session.user.id}/collections/${subject_id}`,
+          `https://api.bgm.tv/v0/users/${session.user.name}/collections/${subject_id}`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -80,16 +80,16 @@ export function useCollectionsPageData(
         "collections",
         subject_type,
         collection_type,
-        session?.user.id,
+        session?.user.name,
       ],
       queryFn: async ({ pageParam = 0 }) => {
-        if (!session?.user.id) {
+        if (!session?.user.name) {
           return null;
         }
         try {
           const page = z.number().parse(pageParam);
           const response = await fetch(
-            `https://api.bgm.tv/v0/users/${session.user.id}/collections?subject_type=${subject_type}&type=${collection_type}&limit=${limit}&offset=${page}`,
+            `https://api.bgm.tv/v0/users/${session.user.name}/collections?subject_type=${subject_type}&type=${collection_type}&limit=${limit}&offset=${page}`,
             {
               headers: {
                 Authorization: `Bearer ${session.accessToken}`,
@@ -173,14 +173,14 @@ export function useCollectionMutation() {
     onMutate: async ({ mutateCollection, subject_id }) => {
       await queryClient.cancelQueries(["collection", subject_id]);
       const previousCollectionData = collectionScheme.parse(
-        queryClient.getQueryData(["collection", subject_id, session?.user.id])
+        queryClient.getQueryData(["collection", subject_id, session?.user.name])
       );
       const newCollectionData = {
         ...previousCollectionData,
         ...mutateCollection,
       };
       queryClient.setQueryData(
-        ["collection", subject_id, session?.user.id],
+        ["collection", subject_id, session?.user.name],
         newCollectionData
       );
       return { previousCollectionData, newCollectionData };
@@ -207,7 +207,7 @@ export function useCollectionMutation() {
       }
 
       queryClient.setQueryData(
-        ["collections", subject_type, collection_type, session?.user.id],
+        ["collections", subject_type, collection_type, session?.user.name],
         (oldData) => {
           if (!oldData) {
             return oldData;
@@ -239,7 +239,7 @@ export function useCollectionMutation() {
           "collections",
           subject_type,
           mutateCollection.type,
-          session?.user.id,
+          session?.user.name,
         ]);
       }
     },
@@ -250,13 +250,13 @@ export function useCollectionMutation() {
 
       context &&
         queryClient.setQueryData(
-          ["collection", subject_id, session?.user.id],
+          ["collection", subject_id, session?.user.name],
           context.previousCollectionData
         );
     },
     onSettled: async (data, error, { subject_id }) => {
       await queryClient.invalidateQueries({
-        queryKey: ["collection", subject_id, session?.user.id],
+        queryKey: ["collection", subject_id, session?.user.name],
         exact: true,
       });
     },
