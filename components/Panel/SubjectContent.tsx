@@ -23,9 +23,6 @@ import { useCollectionData } from "@/hooks/use-collection";
 import { useToast } from "@/hooks/use-toast";
 import { useSubjectData } from "@/hooks/use-subject";
 import { PanelNav } from "@/components/Panel/PanelNav";
-import { AvatarCardSkeleton } from "@/components/AvatarCardSkeleton";
-import { EPItemSkeleton } from "@/components/EPItemSkeleton";
-import { RelationSubjectSkeleton } from "@/components/RelationSubjectSkeleton";
 
 export function SubjectContent({ subject_id }: { subject_id: number }) {
   const [showFullInfo, setShowFullInfo] = useState(false);
@@ -42,17 +39,9 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
     <>
       {subjectData && isSubjectDataSuccess && isCollectionDataSuccess && (
         <>
-          <Suspense
-            fallback={
-              <div className="flex h-[76px] animate-pulse items-center px-8 py-4">
-                <div className="h-8 w-[360px] rounded-full bg-neutral-6" />
-              </div>
-            }
-          >
-            <PanelNav
-              title={{ name: subjectData.name, name_cn: subjectData.name_cn }}
-            />
-          </Suspense>
+          <PanelNav
+            title={{ name: subjectData.name, name_cn: subjectData.name_cn }}
+          />
           <div className="flex flex-col space-y-2 px-8">
             {/*SubjectContent.Info*/}
             <Suspense
@@ -228,65 +217,13 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
               </div>
             </Suspense>
             {/*SubjectContent.CharacterList*/}
-            <Suspense
-              fallback={
-                <div className="flex animate-pulse flex-col space-y-2 p-2">
-                  <div className="h-[60px] w-full" />
-                  <div className="grid grid-cols-5 gap-4 px-8 py-2">
-                    {Array.from({ length: 10 }).map((_, i) => (
-                      <AvatarCardSkeleton key={i} />
-                    ))}
-                  </div>
-                </div>
-              }
-            >
-              <CharacterList subject_id={subjectData.id} length={10} />
-            </Suspense>
+            <CharacterList subject_id={subjectData.id} length={10} />
             {/*SubjectContent.EPListDynamic*/}
-            <Suspense
-              fallback={
-                <div className="flex animate-pulse flex-col space-y-2 p-2">
-                  <div className="h-[60px] w-full" />
-                  <div className="flex flex-col space-y-2 py-2">
-                    {Array.from({ length: 10 }).map((_, i) => (
-                      <EPItemSkeleton key={i} />
-                    ))}
-                  </div>
-                </div>
-              }
-            >
-              <EPListDynamic subject_id={subjectData.id} length={10} />
-            </Suspense>
+            <EPListDynamic subject_id={subjectData.id} length={10} />
             {/*SubjectContent.PersonList*/}
-            <Suspense
-              fallback={
-                <div className="flex animate-pulse flex-col space-y-2 p-2">
-                  <div className="h-[60px] w-full" />
-                  <div className="grid grid-cols-5 gap-4 px-8 py-2">
-                    {Array.from({ length: 10 }).map((_, i) => (
-                      <AvatarCardSkeleton key={i} />
-                    ))}
-                  </div>
-                </div>
-              }
-            >
-              <PersonList subject_id={subjectData.id} length={5} />
-            </Suspense>
+            <PersonList subject_id={subjectData.id} length={5} />
             {/*SubjectContent.SubjectList*/}
-            <Suspense
-              fallback={
-                <div className="flex animate-pulse flex-col space-y-2 p-2">
-                  <div className="h-12 w-full" />
-                  <div className="grid grid-cols-4 gap-4 px-8 py-2">
-                    {Array.from({ length: 8 }).map((_, i) => (
-                      <RelationSubjectSkeleton key={i} />
-                    ))}
-                  </div>
-                </div>
-              }
-            >
-              <RelationSubjectList subject_id={subjectData.id} length={8} />
-            </Suspense>
+            <RelationSubjectList subject_id={subjectData.id} length={8} />
           </div>
         </>
       )}

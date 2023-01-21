@@ -11,6 +11,7 @@ import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { useInView } from "react-intersection-observer";
 import { useReducerAtom } from "jotai/react/utils";
 import { panelHistoryAtom, panelReducer } from "@/lib/panel";
+import { Suspense } from "react";
 
 export function PanelNav({
   title,
@@ -26,7 +27,13 @@ export function PanelNav({
     rootMargin: "-1px",
   });
   return (
-    <>
+    <Suspense
+      fallback={
+        <div className="flex h-[76px] animate-pulse items-center px-8 py-4">
+          <div className="h-8 w-[360px] rounded-full bg-neutral-6" />
+        </div>
+      }
+    >
       {/*SubjectContent.Nav*/}
       <div
         className={cn(
@@ -87,7 +94,7 @@ export function PanelNav({
           </DialogPrimitive.Close>
         </div>
       </div>
-    </>
+    </Suspense>
   );
 }
 
