@@ -2,7 +2,7 @@
 
 import { Transition } from "@headlessui/react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { Fragment } from "react";
+import { Fragment, Suspense } from "react";
 import { useAtom, useAtomValue, useSetAtom } from "jotai/react";
 import {
   currentPanelAtom,
@@ -14,6 +14,7 @@ import { CharacterListContent } from "@/components/Panel/CharacterListContent";
 import { EPListContent } from "@/components/Panel/EPListContent";
 import { PersonListContent } from "@/components/Panel/PersonListContent";
 import { RelationSubjectList } from "@/components/Panel/RelationSubjectList/RelationSubjectList";
+import { SubjectContentSkeleton } from "@/components/SubjectContentSkeleton";
 
 export function Panel() {
   const panel = useAtomValue(currentPanelAtom);
@@ -85,7 +86,9 @@ export function Panel() {
                   }}
                 >
                   {panel?.type === "subject" ? (
-                    <SubjectContent subject_id={panel.target_id} />
+                    <Suspense fallback={<SubjectContentSkeleton />}>
+                      <SubjectContent subject_id={panel.target_id} />
+                    </Suspense>
                   ) : panel?.type === "characterList" ? (
                     <CharacterListContent subject_id={panel.target_id} />
                   ) : panel?.type === "episodeList" ? (
