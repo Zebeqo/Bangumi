@@ -125,12 +125,6 @@ export function CollectionCard({
                   )}
                   onMouseEnter={() => {
                     if (commentRef.current) {
-                      console.log(
-                        "scrollHeight",
-                        commentRef.current.scrollHeight,
-                        "clientHeight",
-                        commentRef.current.clientHeight
-                      );
                       setIsClamped(
                         commentRef.current.scrollHeight >
                           commentRef.current.clientHeight + 1
