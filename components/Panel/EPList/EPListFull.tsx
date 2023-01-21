@@ -12,7 +12,6 @@ import { useInView } from "react-intersection-observer";
 
 export function EPListFull({ subject_id }: { subject_id: number }) {
   const [, dispatch] = useReducerAtom(panelHistoryAtom, panelReducer);
-  const { data: collectionData } = useCollectionData(subject_id);
   const {
     data: episodesPageData,
     fetchNextPage,
@@ -32,9 +31,7 @@ export function EPListFull({ subject_id }: { subject_id: number }) {
       <div className="relative flex flex-col space-y-2 p-2">
         <ListHeader
           title={"剧集"}
-          showAction={
-            length ? (collectionData?.subject.eps ?? 0) > length : false
-          }
+          showAction={false}
           onClickAction={() => {
             dispatch({
               type: "push",
