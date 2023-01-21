@@ -1,6 +1,6 @@
 import { expect } from "@storybook/jest";
 import type { Meta, StoryObj } from "@storybook/react";
-import { EpisodeButton as EpisodeButtonComponent } from "@/components/EpisodeButton";
+import { EpisodeButton as EpisodeButtonComponent } from "@/components/Panel/Subject/EpisodeButton";
 import {
   STORYBOOK_BROKEN_SUBJECT_ID,
   STORYBOOK_SUBJECT_ID,

@@ -4,7 +4,7 @@ import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { cn } from "@/lib/utils";
 import { CollectionTypeSelect } from "@/components/Panel/Subject/CollectionTypeSelect";
 import { RatingSelect } from "@/components/Panel/Subject/RatingSelect";
-import { EpisodeButton as EpisodeButtonComponent } from "@/components/EpisodeButton";
+import { EpisodeButton as EpisodeButtonComponent } from "@/components/Panel/Subject/EpisodeButton";
 import { MoreDropdownMenu } from "@/components/Panel/Subject/MoreDropdownMenu";
 import { Button } from "@/ui/Button";
 import {

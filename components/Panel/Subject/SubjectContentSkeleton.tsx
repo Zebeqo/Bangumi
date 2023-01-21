@@ -1,6 +1,6 @@
 import { AvatarCardSkeleton } from "@/components/AvatarCardSkeleton";
-import { EPItemSkeleton } from "@/components/EPItemSkeleton";
-import { RelationSubjectSkeleton } from "@/components/RelationSubjectSkeleton";
+import { EPItemSkeleton } from "@/components/Panel/EPList/EPItemSkeleton";
+import { RelationSubjectSkeleton } from "@/components/Panel/RelationSubjectList/RelationSubjectSkeleton";
 
 export function SubjectContentSkeleton() {
   return (

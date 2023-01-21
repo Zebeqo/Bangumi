@@ -8,7 +8,7 @@ import { useReducerAtom } from "jotai/react/utils";
 import { panelHistoryAtom, panelReducer } from "@/lib/panel";
 import { panelScrollToTop } from "@/lib/utils";
 import { Suspense } from "react";
-import { RelationSubjectSkeleton } from "@/components/RelationSubjectSkeleton";
+import { RelationSubjectSkeleton } from "@/components/Panel/RelationSubjectList/RelationSubjectSkeleton";
 
 export function RelationSubjectList({
   subject_id,
