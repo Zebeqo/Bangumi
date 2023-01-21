@@ -23,6 +23,9 @@ import { useCollectionData } from "@/hooks/use-collection";
 import { useToast } from "@/hooks/use-toast";
 import { useSubjectData } from "@/hooks/use-subject";
 import { PanelNav } from "@/components/Panel/PanelNav";
+import { AvatarCardSkeleton } from "@/components/AvatarCardSkeleton";
+import { EPItemSkeleton } from "@/components/EPItemSkeleton";
+import { RelationSubjectSkeleton } from "@/components/RelationSubjectSkeleton";
 
 export function SubjectContent({ subject_id }: { subject_id: number }) {
   const [showFullInfo, setShowFullInfo] = useState(false);
@@ -37,14 +40,61 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
 
   return (
     <>
-      <Suspense fallback={<p>Loading test...</p>}>
-        {subjectData && isSubjectDataSuccess && isCollectionDataSuccess ? (
-          <>
+      {subjectData && isSubjectDataSuccess && isCollectionDataSuccess && (
+        <>
+          <Suspense
+            fallback={
+              <div className="flex h-[76px] animate-pulse items-center px-8 py-4">
+                <div className="h-8 w-[360px] rounded-full bg-neutral-6" />
+              </div>
+            }
+          >
             <PanelNav
               title={{ name: subjectData.name, name_cn: subjectData.name_cn }}
             />
-            <div className="flex flex-col space-y-2 px-8">
-              {/*SubjectContent.Info*/}
+          </Suspense>
+          <div className="flex flex-col space-y-2 px-8">
+            {/*SubjectContent.Info*/}
+            <Suspense
+              fallback={
+                <div className="flex min-h-[384px] animate-pulse space-x-4">
+                  {/*SubjectContent.InfoImage*/}
+                  {/*ImageSkeleton*/}
+                  <div className="flex flex-shrink-0 items-center justify-center">
+                    <div
+                      className={"h-[402px] w-[288px] rounded-xl bg-neutral-6"}
+                    />
+                  </div>
+
+                  {/*SubjectContent.InfoContent*/}
+                  <div className="flex h-[420px] w-full flex-col space-y-2">
+                    {/*SubjectContent.InfoContentHeader*/}
+                    <div className="flex space-x-2 p-2">
+                      {/*SubjectContent.Rating*/}
+                      {/*RatingSkeleton*/}
+                      <div className="h-20 w-20 flex-shrink-0 rounded-full bg-neutral-6" />
+                      {/*SubjectContent.InfoContentDivider*/}
+                      <div className="h-full w-0 bg-neutral-6"></div>
+                      {/*SubjectContent.TagGroup*/}
+                      <div className="flex h-[192px] w-full flex-col justify-between">
+                        <div className="h-8 w-5/6 rounded-full bg-neutral-6" />
+                        <div className="h-8 w-full rounded-full bg-neutral-6" />
+                        <div className="h-8 w-4/5 rounded-full bg-neutral-6" />
+                        <div className="h-8 w-4/6 rounded-full bg-neutral-6" />
+                      </div>
+                    </div>
+                    {/*SubjectContent.InfoContentBody*/}
+                    <div className="flex h-full flex-col justify-between px-4 py-2 pr-12 ">
+                      <div className="h-8 w-5/6 rounded-full bg-neutral-6" />
+                      <div className="h-8 w-full rounded-full bg-neutral-6" />
+                      <div className="h-8 w-4/5 rounded-full bg-neutral-6" />
+                      <div className="h-8 w-4/6 rounded-full bg-neutral-6" />
+                      <div className="h-8 w-1/3 rounded-full bg-neutral-6" />
+                    </div>
+                  </div>
+                </div>
+              }
+            >
               <div className="flex min-h-[384px] space-x-4">
                 {/*SubjectContent.InfoImage*/}
                 <Image
@@ -176,22 +226,70 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
                   </div>
                 </div>
               </div>
-              {/*SubjectContent.CharacterList*/}
+            </Suspense>
+            {/*SubjectContent.CharacterList*/}
+            <Suspense
+              fallback={
+                <div className="flex animate-pulse flex-col space-y-2 p-2">
+                  <div className="h-[60px] w-full" />
+                  <div className="grid grid-cols-5 gap-4 px-8 py-2">
+                    {Array.from({ length: 10 }).map((_, i) => (
+                      <AvatarCardSkeleton key={i} />
+                    ))}
+                  </div>
+                </div>
+              }
+            >
               <CharacterList subject_id={subjectData.id} length={10} />
-              {/*SubjectContent.EPListDynamic*/}
+            </Suspense>
+            {/*SubjectContent.EPListDynamic*/}
+            <Suspense
+              fallback={
+                <div className="flex animate-pulse flex-col space-y-2 p-2">
+                  <div className="h-[60px] w-full" />
+                  <div className="flex flex-col space-y-2 py-2">
+                    {Array.from({ length: 10 }).map((_, i) => (
+                      <EPItemSkeleton key={i} />
+                    ))}
+                  </div>
+                </div>
+              }
+            >
               <EPListDynamic subject_id={subjectData.id} length={10} />
-              {/*SubjectContent.PersonList*/}
+            </Suspense>
+            {/*SubjectContent.PersonList*/}
+            <Suspense
+              fallback={
+                <div className="flex animate-pulse flex-col space-y-2 p-2">
+                  <div className="h-[60px] w-full" />
+                  <div className="grid grid-cols-5 gap-4 px-8 py-2">
+                    {Array.from({ length: 10 }).map((_, i) => (
+                      <AvatarCardSkeleton key={i} />
+                    ))}
+                  </div>
+                </div>
+              }
+            >
               <PersonList subject_id={subjectData.id} length={5} />
-              {/*SubjectContent.SubjectList*/}
+            </Suspense>
+            {/*SubjectContent.SubjectList*/}
+            <Suspense
+              fallback={
+                <div className="flex animate-pulse flex-col space-y-2 p-2">
+                  <div className="h-12 w-full" />
+                  <div className="grid grid-cols-4 gap-4 px-8 py-2">
+                    {Array.from({ length: 8 }).map((_, i) => (
+                      <RelationSubjectSkeleton key={i} />
+                    ))}
+                  </div>
+                </div>
+              }
+            >
               <RelationSubjectList subject_id={subjectData.id} length={8} />
-            </div>
-          </>
-        ) : (
-          <div className="flex flex-col items-center justify-center space-y-4 px-8 py-6 text-neutral-12">
-            is fetching
+            </Suspense>
           </div>
-        )}
-      </Suspense>
+        </>
+      )}
     </>
   );
 }

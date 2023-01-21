@@ -6,12 +6,12 @@ export function SubjectContentSkeleton() {
   return (
     <div className="w-[1040.62px]">
       {/*PanelNav.Skeleton*/}
-      <div className="flex h-[76px] items-center px-8 py-4">
+      <div className="flex h-[76px] animate-pulse items-center px-8 py-4">
         <div className="h-8 w-[360px] rounded-full bg-neutral-6" />
       </div>
       <div className="flex flex-col space-y-2 px-8">
         {/*SubjectContent.Info*/}
-        <div className="flex min-h-[384px] space-x-4">
+        <div className="flex min-h-[384px] animate-pulse space-x-4">
           {/*SubjectContent.InfoImage*/}
           {/*ImageSkeleton*/}
           <div className="flex flex-shrink-0 items-center justify-center">
@@ -46,7 +46,7 @@ export function SubjectContentSkeleton() {
           </div>
         </div>
         {/*SubjectContent.CharacterList*/}
-        <div className="flex flex-col space-y-2 p-2">
+        <div className="flex animate-pulse flex-col space-y-2 p-2">
           <div className="h-[60px] w-full" />
           <div className="grid grid-cols-5 gap-4 px-8 py-2">
             {Array.from({ length: 10 }).map((_, i) => (
@@ -55,7 +55,7 @@ export function SubjectContentSkeleton() {
           </div>
         </div>
         {/*SubjectContent.EPListDynamic*/}
-        <div className="flex flex-col space-y-2 p-2">
+        <div className="flex animate-pulse flex-col space-y-2 p-2">
           <div className="h-[60px] w-full" />
           <div className="flex flex-col space-y-2 py-2">
             {Array.from({ length: 10 }).map((_, i) => (
@@ -64,7 +64,7 @@ export function SubjectContentSkeleton() {
           </div>
         </div>
         {/*SubjectContent.PersonList*/}
-        <div className="flex flex-col space-y-2 p-2">
+        <div className="flex animate-pulse flex-col space-y-2 p-2">
           <div className="h-[60px] w-full" />
           <div className="grid grid-cols-5 gap-4 px-8 py-2">
             {Array.from({ length: 10 }).map((_, i) => (
@@ -73,7 +73,7 @@ export function SubjectContentSkeleton() {
           </div>
         </div>
         {/*SubjectContent.SubjectList*/}
-        <div className="flex flex-col space-y-2 p-2">
+        <div className="flex animate-pulse flex-col space-y-2 p-2">
           <div className="h-12 w-full" />
           <div className="grid grid-cols-4 gap-4 px-8 py-2">
             {Array.from({ length: 8 }).map((_, i) => (
