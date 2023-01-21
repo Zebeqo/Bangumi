@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-
+// FIX: Bad Pattern
 export const WrappedColor = () => (
   <div
     className={cn(
