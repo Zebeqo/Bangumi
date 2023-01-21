@@ -7,6 +7,8 @@ import { RelationSubjectAvatarCard } from "@/components/Panel/RelationSubjectLis
 import { useReducerAtom } from "jotai/react/utils";
 import { panelHistoryAtom, panelReducer } from "@/lib/panel";
 import { panelScrollToTop } from "@/lib/utils";
+import { Suspense } from "react";
+import { RelationSubjectSkeleton } from "@/components/RelationSubjectSkeleton";
 
 export function RelationSubjectList({
   subject_id,
@@ -32,7 +34,18 @@ export function RelationSubjectList({
   });
 
   return (
-    <>
+    <Suspense
+      fallback={
+        <div className="flex animate-pulse flex-col space-y-2 p-2">
+          <div className="h-12 w-full" />
+          <div className="grid grid-cols-4 gap-4 px-8 py-2">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <RelationSubjectSkeleton key={i} />
+            ))}
+          </div>
+        </div>
+      }
+    >
       {subjectRelationsData && sortedListData?.length ? (
         <div className="flex flex-col space-y-2 p-2">
           <ListHeader
@@ -86,6 +99,6 @@ export function RelationSubjectList({
           </div>
         </div>
       ) : null}
-    </>
+    </Suspense>
   );
 }
