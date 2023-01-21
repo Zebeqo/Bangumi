@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Subnav } from "@/components/Subnav";
 import { SortDropdownMenu } from "@/components/SortDropdownMenu";
 import { headerMarginDecorator } from "@/lib/storybook";
-import { PersonalViewSwitch } from "@/components/personalViewSwitch";
+import { PersonalViewSwitch } from "@/components/collection/personalViewSwitch";
 
 const meta: Meta<typeof Subnav> = {
   title: "Subnav",
