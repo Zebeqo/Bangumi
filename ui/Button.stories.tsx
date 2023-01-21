@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "./Button";
 import { BoltIcon } from "@heroicons/react/20/solid";
 import { BangumiRawIcon } from "@/ui/icon/20/BangumiRawIcon";
+import { LoadingSpinner } from "./LoadingSpinner";
 
 const meta: Meta<typeof Button> = {
   title: "Button",
@@ -103,5 +104,14 @@ export const ItemButtonSelected: Story = {
     type: "selected",
     icon: <BoltIcon />,
     className: "w-full justify-start",
+  },
+};
+
+export const LoadingSpinnerButton: Story = {
+  args: {
+    colorType: "neutral",
+    type: "ghost",
+    icon: <LoadingSpinner />,
+    className: "active:bg-transparent hover:bg-transparent",
   },
 };
