@@ -1,3 +1,3 @@
 export default function page() {
-  return <></>;
+  return <div className="text-neutral-12">TODO</div>;
 }
