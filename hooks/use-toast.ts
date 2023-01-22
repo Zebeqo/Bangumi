@@ -34,10 +34,7 @@ export function useErrorToast() {
     action = {
       label: "提交 issue",
       onClick: () => {
-        window.open(
-          "https://github.com/Zebeqo/bangumi-dashboard/issues/new",
-          "_blank"
-        );
+        window.open("https://github.com/Zebeqo/Bangumi/issues/new", "_blank");
       },
     }
   ) => {

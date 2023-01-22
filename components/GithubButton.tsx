@@ -9,9 +9,7 @@ export function GithubButton() {
       colorType="neutral"
       type="ghost"
       icon={<GithubIcon />}
-      onClick={() =>
-        window.open("https://github.com/Zebeqo/bangumi-dashboard", "_blank")
-      }
+      onClick={() => window.open("https://github.com/Zebeqo/Bangumi", "_blank")}
     />
   );
 }

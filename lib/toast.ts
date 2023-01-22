@@ -24,10 +24,7 @@ export const createIssueToast = (id: number, description?: string): Toast => {
     action: {
       label: "跳转至相关 issue",
       onClick: () => {
-        window.open(
-          `https://github.com/Zebeqo/bangumi-dashboard/issues/${id}`,
-          "_blank"
-        );
+        window.open(`https://github.com/Zebeqo/Bangumi/issues/${id}`, "_blank");
       },
     },
   };
