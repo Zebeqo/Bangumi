@@ -26,7 +26,7 @@
 - 🥽 Fully Streaming and Suspense
 - 📖 [Storybook](https://github.com/storybookjs/storybook) 7.0 integration
 - 🔬 Interaction tests with [Storybook](https://github.com/storybookjs/storybook)
--  Global stage managed by [Jotai](https://github.com/pmndrs/jotai) v2 API
+- 🗃 Global stage managed by [Jotai](https://github.com/pmndrs/jotai) v2 API
 - Server side data fetching with Server Components `fetch()` API
 - Client side data fetching with [Tanstack Query](https://github.com/TanStack/query) (Auto Caching + Refetching, Load-More + Infinite Scroll, Optimistic Updates...)
 
