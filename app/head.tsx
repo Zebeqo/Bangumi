@@ -7,7 +7,7 @@ export default function Head() {
         name="description"
         content="A third-party web application built on https://bangumi.github.io/api/, using Next.js 13 appDir."
       />
-      <link rel="icon" href="/bangumi-logo.ico" />
+      <link rel="icon" href="/bangumi-icon.svg" />
     </>
   );
 }
