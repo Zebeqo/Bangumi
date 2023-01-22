@@ -50,7 +50,7 @@ export default function Layout({
 }) {
   const selectedItem = params.day
     ? params.day[0]
-    : navItems[new Date().getDay() - 1].name;
+    : navItems[new Date().getDay()].name;
 
   return (
     <>

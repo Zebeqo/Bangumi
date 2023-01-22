@@ -22,7 +22,7 @@ import { GridWrapper } from "@/ui/GridWrapper";
 // }
 
 const dayMap = {
-  today: new Date().getDay(),
+  today: new Date().getDay() + 1,
   monday: 1,
   tuesday: 2,
   wednesday: 3,
