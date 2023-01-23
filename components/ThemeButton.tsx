@@ -19,6 +19,7 @@ export function ThemeButton() {
   if (!mounted) {
     return (
       <Button
+        aria-label="Loading Theme"
         colorType="neutral"
         type="ghost"
         icon={<LoadingSpinner />}
@@ -29,6 +30,7 @@ export function ThemeButton() {
 
   return (
     <Button
+      aria-label="Toggle Dark Mode"
       colorType="neutral"
       type="ghost"
       icon={theme === "dark" ? <SunIcon /> : <MoonIcon />}

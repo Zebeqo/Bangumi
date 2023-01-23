@@ -6,6 +6,7 @@ import { GithubIcon } from "@/ui/icon/24/GithubIcon";
 export function GithubButton() {
   return (
     <Button
+      aria-label={"Github"}
       colorType="neutral"
       type="ghost"
       icon={<GithubIcon />}
