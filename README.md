@@ -1,7 +1,6 @@
 # Bangumi App
 
-基于 [Bangumi Api](https://bangumi.github.io/api/) 构建的 [Bangumi](https://bgm.tv/) 第三方 Web 客户端，使用 Next.js 13 appDir 开发。
-
+基于 [Bangumi Api](https://bangumi.github.io/api/) 构建的 [Bangumi](https://bgm.tv/) 第三方 Web 客户端，使用 Next.js 13 appDir 开发。logo 图标来自 [bangumi-frontend](https://github.com/bangumi/frontend)
 
 > **Warning**
 > The project is at an early stage and lacks some core apis and features, making it unsuitable for new bangumi users at the moment. 该项目处于早期阶段，缺少一些核心 api 和功能，目前不适合 bangumi 新用户使用。
@@ -38,11 +37,11 @@
 - [daily.dev](https://app.daily.dev/) – Grid card and panel system
 - [YesPlayMusic](https://github.com/qier222/YesPlayMusic) - Panel layout and readme doc
 - [taxonomy](https://github.com/shadcn/taxonomy) - Stack choice and set up
-- [tailwindcss-radix](https://github.com/ecklf/tailwindcss-radix) - use its demo as boilerplate to style radix primitive
+- [tailwindcss-radix](https://github.com/ecklf/tailwindcss-radix) - Use its demo as boilerplate to style radix primitive
 
 ## ☑️ Todo
 
-Check out my Github [Project](https://github.com/users/Zebeqo/projects/1)
+Check out my [Github Project](https://github.com/users/Zebeqo/projects/1)
 
 ## ⚙️ Running locally
 
