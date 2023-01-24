@@ -1,40 +1,5 @@
 import { z } from "zod";
 
-export const collectionTypeMap = {
-  1: "想看",
-  2: "看过",
-  3: "在看",
-  4: "搁置",
-  5: "抛弃",
-};
-export const ratingMap = {
-  0: "未评分",
-  1: "(1) 不忍直视",
-  2: "(2) 很差",
-  3: "(3) 差",
-  4: "(4) 较差",
-  5: "(5) 不过不失",
-  6: "(6) 还行",
-  7: "(7) 推荐",
-  8: "(8) 力荐",
-  9: "(9) 神作",
-  10: "(10) 超神作",
-};
-
-export type CollectionType = 1 | 2 | 3 | 4 | 5;
-export type Rating = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
-
-export const collectionTypeEnum = {
-  wish: { id: 1, value: "想看" },
-  collect: { id: 2, value: "看过" },
-  do: { id: 3, value: "在看" },
-  on_hold: { id: 4, value: "搁置" },
-  dropped: { id: 5, value: "抛弃" },
-} as const;
-export const collectionTypeEnumScheme = z.enum(
-  Object.keys(collectionTypeEnum) as [keyof typeof collectionTypeEnum]
-);
-
 export const collectionScheme = z.object({
   subject_id: z.number().int(),
   updated_at: z.string().datetime(),

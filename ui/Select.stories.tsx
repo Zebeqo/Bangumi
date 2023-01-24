@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Select } from "./Select";
-import { collectionTypeMap, ratingMap } from "@/lib/collection";
+import { ratingMap } from "@/lib/map/ratingMap";
+import { collectionTypeMap } from "@/lib/map/collectionTypeMap";
 import { screen, userEvent, within } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
 import { TextWrapper } from "@/components/Panel/Subject/RatingSelect";
@@ -29,7 +30,9 @@ const play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
 export const CollectionTypeSelect: Story = {
   args: {
     color: "accent",
-    selectMap: collectionTypeMap,
+    selectOptions: Object.values(collectionTypeMap).map(
+      (value) => value.name_cn
+    ),
     defaultValue: "看过",
   },
   play,
@@ -38,7 +41,9 @@ export const CollectionTypeSelect: Story = {
 export const CollectionTypeSelect_Edge: Story = {
   args: {
     color: "accent",
-    selectMap: collectionTypeMap,
+    selectOptions: Object.values(collectionTypeMap).map(
+      (value) => value.name_cn
+    ),
     defaultValue: "看过",
   },
   play,
@@ -47,7 +52,7 @@ export const CollectionTypeSelect_Edge: Story = {
 export const RatingSelect: Story = {
   args: {
     color: "accent",
-    selectMap: ratingMap,
+    selectOptions: Object.values(ratingMap).map((value) => value.name_cn),
     defaultValue: "(6) 还行",
     textWrapper: <TextWrapper />,
   },
@@ -57,7 +62,7 @@ export const RatingSelect: Story = {
 export const RatingSelect_Edge: Story = {
   args: {
     color: "accent",
-    selectMap: ratingMap,
+    selectOptions: Object.values(ratingMap).map((value) => value.name_cn),
     defaultValue: "(6) 还行",
     textWrapper: <TextWrapper />,
   },
