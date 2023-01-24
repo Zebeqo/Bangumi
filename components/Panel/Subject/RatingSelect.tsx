@@ -5,8 +5,11 @@ import {
   useCollectionMutation,
 } from "@/hooks/use-collection";
 import { Select } from "@/ui/Select";
-import type { Rating } from "@/lib/collection";
-import { ratingMap } from "@/lib/collection";
+import {
+  ratingKeyScheme,
+  ratingMap,
+  ratingNameCNToTypeScheme,
+} from "@/lib/map/ratingMap";
 import { StarIcon } from "@heroicons/react/20/solid";
 
 export const TextWrapper = ({ children }: { children?: React.ReactNode }) => (
@@ -25,16 +28,16 @@ export function RatingSelect({ subject_id }: { subject_id: number }) {
       {collectionData && (
         <Select
           color={"accent"}
-          selectMap={ratingMap}
-          defaultValue={ratingMap[collectionData.rate as Rating]}
+          selectOptions={Object.values(ratingMap).map((value) => value.name_cn)}
+          defaultValue={
+            ratingMap[ratingKeyScheme.parse(collectionData.rate)].name_cn
+          }
           textWrapper={<TextWrapper />}
           handleValueChange={(value: string) => {
-            const rating = Object.keys(ratingMap).find(
-              (key) => ratingMap[Number(key) as Rating] === value
-            );
+            const rating = ratingNameCNToTypeScheme.parse(value);
             mutateCollection.mutate({
               mutateCollection: {
-                rate: Number(rating) as Rating,
+                rate: Number(rating),
               },
               subject_id: subject_id,
               description: value,

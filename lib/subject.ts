@@ -30,13 +30,24 @@ export const subjectScheme = z.object({
   summary: z.string(),
 });
 
-export const subjectTypeEnum = {
-  book: { id: 1, value: "书籍" },
-  anime: { id: 2, value: "动画" },
-  music: { id: 3, value: "音乐" },
-  game: { id: 4, value: "游戏" },
-  real: { id: 6, value: "三次元" },
+export const subjectTypeMap = {
+  "1": { name: "book", name_cn: "书籍" },
+  "2": { name: "anime", name_cn: "动画" },
+  "3": { name: "music", name_cn: "音乐" },
+  "4": { name: "game", name_cn: "游戏" },
+  "6": { name: "real", name_cn: "三次元" },
 } as const;
-export const subjectTypeEnumScheme = z.enum(
-  Object.keys(subjectTypeEnum) as [keyof typeof subjectTypeEnum]
+
+export const subjectTypeKeyScheme = z.preprocess(
+  (value) => String(value),
+  z.enum(Object.keys(subjectTypeMap) as [keyof typeof subjectTypeMap])
 );
+
+type SubjectTypeName =
+  (typeof subjectTypeMap)[keyof typeof subjectTypeMap]["name"];
+
+export const subjectNameToTypeScheme = z.preprocess((name) => {
+  return Object.keys(subjectTypeMap).find((key) => {
+    return subjectTypeMap[key as keyof typeof subjectTypeMap].name === name;
+  }) as SubjectTypeName;
+}, subjectTypeKeyScheme);

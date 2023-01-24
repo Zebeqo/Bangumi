@@ -13,7 +13,7 @@ import { colorWrapper } from "@/lib/colorWrapper";
 
 interface SelectProps {
   defaultValue: string;
-  selectMap: Record<string, string>;
+  selectOptions: string[];
   color: Color;
   handleValueChange?: (value: string) => void;
   textWrapper?: JSX.Element;
@@ -22,7 +22,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
   (
     {
       defaultValue,
-      selectMap,
+      selectOptions,
       color,
       handleValueChange,
       textWrapper,
@@ -57,7 +57,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
             </SelectPrimitive.ScrollUpButton>
             <SelectPrimitive.Viewport className="rounded-lg bg-neutral-1 p-2 shadow-lg">
               <SelectPrimitive.Group>
-                {Object.values(selectMap).map((value, index) => (
+                {selectOptions.map((value, index) => (
                   <SelectPrimitive.Item
                     key={`${value}-${index}`}
                     value={value}

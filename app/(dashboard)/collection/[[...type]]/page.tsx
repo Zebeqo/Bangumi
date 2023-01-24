@@ -2,10 +2,10 @@
 
 import { notFound } from "next/navigation";
 import { CollectionCardList } from "@/components/CollectionCardList";
-import { collectionTypeEnum, collectionTypeEnumScheme } from "@/lib/collection";
-import { subjectTypeEnum, subjectTypeEnumScheme } from "@/lib/subject";
+import { subjectNameToTypeScheme } from "@/lib/subject";
 import { Suspense } from "react";
 import { CardGridSkeleton } from "@/ui/CardGridSkeleton";
+import { collectionNameToTypeScheme } from "@/lib/map/collectionTypeMap";
 
 // https://github.com/nextauthjs/next-auth/issues/5647#issuecomment-1342099364
 // https://github.com/vercel/next.js/issues/44764
@@ -39,12 +39,10 @@ export default function Page({
   return (
     <Suspense fallback={<CardGridSkeleton />}>
       <CollectionCardList
-        subject_type={
-          subjectTypeEnum[subjectTypeEnumScheme.parse(subject_type)].id
-        }
-        collection_type={
-          collectionTypeEnum[collectionTypeEnumScheme.parse(collection_type)].id
-        }
+        subject_type={Number(subjectNameToTypeScheme.parse(subject_type))}
+        collection_type={Number(
+          collectionNameToTypeScheme.parse(collection_type)
+        )}
       />
     </Suspense>
   );
