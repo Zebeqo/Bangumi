@@ -44,7 +44,7 @@ specifiers:
   jotai: 1.13.1
   lint-staged: 13.1.0
   next: 13.1.5
-  next-auth: 4.18.8
+  next-auth: 4.18.9
   next-themes: 0.2.1
   postcss: 8.4.21
   postcss-loader: 7.0.2
@@ -80,7 +80,7 @@ dependencies:
   class-variance-authority: 0.4.0_typescript@4.9.4
   jotai: 1.13.1_react@18.2.0
   next: 13.1.5_biqbaboplfbrettd7655fr4n2y
-  next-auth: 4.18.8_s6zlkfvllybxhmcq5pkr2zsuza
+  next-auth: 4.18.9_s6zlkfvllybxhmcq5pkr2zsuza
   next-themes: 0.2.1_s6zlkfvllybxhmcq5pkr2zsuza
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -102,7 +102,7 @@ devDependencies:
   '@storybook/testing-library': 0.0.14-next.1
   '@tailwindcss/line-clamp': 0.4.2_tailwindcss@3.2.4
   '@tanstack/eslint-plugin-query': 4.21.0
-  '@tomfreudenberg/next-auth-mock': 0.5.6_3h72zjbl4siw7bb763z3lwjlia
+  '@tomfreudenberg/next-auth-mock': 0.5.6_4ymw4yij7phicn7qtsqroaruu4
   '@types/node': 18.11.18
   '@types/react': 18.0.27
   '@types/react-dom': 18.0.10
@@ -4467,13 +4467,13 @@ packages:
       '@testing-library/dom': 8.19.1
     dev: true
 
-  /@tomfreudenberg/next-auth-mock/0.5.6_3h72zjbl4siw7bb763z3lwjlia:
+  /@tomfreudenberg/next-auth-mock/0.5.6_4ymw4yij7phicn7qtsqroaruu4:
     resolution: {integrity: sha512-fSZJY5rUyj8GIcJI450ZV7FV/CMzpjUUGhPiaRyQo9l7l5mLvrnNe1MymzOnLpgXIkFja+CF/UHFGW807QcwmA==}
     peerDependencies:
       next-auth: ^4.12.3
       react: ^18
     dependencies:
-      next-auth: 4.18.8_s6zlkfvllybxhmcq5pkr2zsuza
+      next-auth: 4.18.9_s6zlkfvllybxhmcq5pkr2zsuza
       react: 18.2.0
     dev: true
 
@@ -10214,9 +10214,8 @@ packages:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
     dev: true
 
-  /next-auth/4.18.8_s6zlkfvllybxhmcq5pkr2zsuza:
-    resolution: {integrity: sha512-USP8ihmvB7iCGtkS0+toe2QPrzdbZfkydQZX56JOI9Ft5n/BardOXh3D4wQ2An+vpq/jDKojGlgfv21wVElW7A==}
-    engines: {node: ^12.19.0 || ^14.15.0 || ^16.13.0 || ^18.12.0}
+  /next-auth/4.18.9_s6zlkfvllybxhmcq5pkr2zsuza:
+    resolution: {integrity: sha512-bcwgyVBFsl16eBs4XV4O327fS/zvr0X2smOy7Nha6hzB9bI8Yq95atM9F1vwXlLk2oHScj/DSoVUYv05gTjB3g==}
     peerDependencies:
       next: ^12.2.5 || ^13
       nodemailer: ^6.6.5
