@@ -9,8 +9,8 @@ import { AnalyticsWrapper } from "@/components/analytics";
 
 const notoSansSC = Noto_Sans_SC({
   variable: "--font-noto-sans-sc",
-  weight: ["400", "500"],
-  subsets: ["chinese-simplified", "latin"],
+  weight: ["400", "500", "700"],
+  subsets: ["latin"],
   display: "auto",
 });
 
