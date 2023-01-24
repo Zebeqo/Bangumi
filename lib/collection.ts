@@ -25,6 +25,7 @@ export const collectionsPageScheme = z.object({
       type: z.number().int().positive().lte(5),
       rate: z.number().int().nonnegative().lte(10),
       ep_status: z.number().int().nonnegative(),
+      vol_status: z.number().int().nonnegative(),
       private: z.boolean(),
       subject: z.object({
         id: z.number().int(),
@@ -65,6 +66,6 @@ export const mutateCollectionScheme = z.object({
   ep_status: z.number().int().nonnegative().optional(),
   vol_status: z.number().int().nonnegative().optional(),
   comment: z.string().optional(),
-  privacy: z.boolean().optional(),
+  private: z.boolean().optional(),
   tags: z.array(z.string()).optional(),
 });
