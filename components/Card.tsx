@@ -23,9 +23,13 @@ async function getSubjectData(id: number) {
 
 interface CardProps {
   subject_id: number;
+  showCollectionNumber?: boolean;
 }
 
-export async function Card({ subject_id }: CardProps) {
+export async function Card({
+  subject_id,
+  showCollectionNumber = false,
+}: CardProps) {
   const result = await getSubjectData(subject_id);
   if (!result.success) {
     return null;
@@ -89,7 +93,17 @@ export async function Card({ subject_id }: CardProps) {
             <span className="h-4 w-4">
               <ClockIcon />
             </span>
-            <span>{collection.doing} 人在看</span>
+            <span>
+              {showCollectionNumber
+                ? `${
+                    collection.doing +
+                    collection.collect +
+                    collection.dropped +
+                    collection.wish +
+                    collection.on_hold
+                  } 人收藏`
+                : `${collection.doing} 人在看`}
+            </span>
           </div>
         </div>
         {/*Card.TagGroup*/}
