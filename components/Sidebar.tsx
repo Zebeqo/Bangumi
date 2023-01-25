@@ -78,7 +78,7 @@ export function Sidebar() {
                 <Button
                   colorType={
                     path === "/"
-                      ? item.href === "/hot"
+                      ? item.href === "/top"
                         ? "primary"
                         : "neutral"
                       : path?.startsWith(item.href)
@@ -88,7 +88,7 @@ export function Sidebar() {
                   label={item.name}
                   type={
                     path === "/"
-                      ? item.href === "/hot"
+                      ? item.href === "/top"
                         ? "selected"
                         : "ghost"
                       : path?.startsWith(item.href)
