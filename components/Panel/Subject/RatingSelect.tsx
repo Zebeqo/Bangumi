@@ -16,7 +16,7 @@ import {
   SelectGroup,
   SelectItem,
   SelectTrigger,
-} from "@/ui/Select";
+} from "@/ui/primitive/Select";
 
 export const TextWrapper = ({ children }: { children?: React.ReactNode }) => (
   <span className="flex items-center space-x-1">

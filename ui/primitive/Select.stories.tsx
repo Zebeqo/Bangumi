@@ -8,7 +8,7 @@ import {
   SelectItem,
   SelectOptionsContent,
   SelectTrigger,
-} from "@/ui/Select";
+} from "@/ui/primitive/Select";
 import { ratingMap } from "@/lib/map/ratingMap";
 import { StarIcon } from "@heroicons/react/20/solid";
 import { collectionTypeMap } from "@/lib/map/collectionTypeMap";

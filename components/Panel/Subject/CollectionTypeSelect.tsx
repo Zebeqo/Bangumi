@@ -9,7 +9,11 @@ import {
   collectionTypeKeyScheme,
   collectionTypeMap,
 } from "@/lib/map/collectionTypeMap";
-import { Select, SelectOptionsContent, SelectTrigger } from "@/ui/Select";
+import {
+  Select,
+  SelectOptionsContent,
+  SelectTrigger,
+} from "@/ui/primitive/Select";
 
 export function CollectionTypeSelect({ subject_id }: { subject_id: number }) {
   const { data: collectionData } = useCollectionData(subject_id);
