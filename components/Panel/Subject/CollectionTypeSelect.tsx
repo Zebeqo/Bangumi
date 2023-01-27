@@ -4,12 +4,12 @@ import {
   useCollectionData,
   useCollectionMutation,
 } from "@/hooks/use-collection";
-import { Select } from "@/ui/Select";
 import {
   collectionNameCNToTypeScheme,
   collectionTypeKeyScheme,
   collectionTypeMap,
 } from "@/lib/map/collectionTypeMap";
+import { Select, SelectOptionsContent, SelectTrigger } from "@/ui/Select";
 
 export function CollectionTypeSelect({ subject_id }: { subject_id: number }) {
   const { data: collectionData } = useCollectionData(subject_id);
@@ -19,16 +19,12 @@ export function CollectionTypeSelect({ subject_id }: { subject_id: number }) {
     <>
       {collectionData && (
         <Select
-          color={"accent"}
-          selectOptions={Object.values(collectionTypeMap).map(
-            (value) => value.name_cn
-          )}
           defaultValue={
             collectionTypeMap[
               collectionTypeKeyScheme.parse(collectionData.type)
             ].name_cn
           }
-          handleValueChange={(value: string) => {
+          onValueChange={(value: string) => {
             const collection_type = collectionNameCNToTypeScheme.parse(value);
             mutateCollection.mutate({
               mutateCollection: {
@@ -40,7 +36,14 @@ export function CollectionTypeSelect({ subject_id }: { subject_id: number }) {
               description: value,
             });
           }}
-        />
+        >
+          <SelectTrigger asChild colorType="accent" />
+          <SelectOptionsContent
+            options={Object.values(collectionTypeMap).map(
+              (value) => value.name_cn
+            )}
+          />
+        </Select>
       )}
     </>
   );

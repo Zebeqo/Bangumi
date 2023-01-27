@@ -4,13 +4,19 @@ import {
   useCollectionData,
   useCollectionMutation,
 } from "@/hooks/use-collection";
-import { Select } from "@/ui/Select";
 import {
   ratingKeyScheme,
   ratingMap,
   ratingNameCNToTypeScheme,
 } from "@/lib/map/ratingMap";
 import { StarIcon } from "@heroicons/react/20/solid";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+} from "@/ui/Select";
 
 export const TextWrapper = ({ children }: { children?: React.ReactNode }) => (
   <span className="flex items-center space-x-1">
@@ -27,13 +33,10 @@ export function RatingSelect({ subject_id }: { subject_id: number }) {
     <>
       {collectionData && (
         <Select
-          color={"accent"}
-          selectOptions={Object.values(ratingMap).map((value) => value.name_cn)}
           defaultValue={
             ratingMap[ratingKeyScheme.parse(collectionData.rate)].name_cn
           }
-          textWrapper={<TextWrapper />}
-          handleValueChange={(value: string) => {
+          onValueChange={(value: string) => {
             const rating = ratingNameCNToTypeScheme.parse(value);
             mutateCollection.mutate({
               mutateCollection: {
@@ -45,7 +48,22 @@ export function RatingSelect({ subject_id }: { subject_id: number }) {
               collection_type: collectionData.type,
             });
           }}
-        />
+        >
+          <SelectTrigger asChild colorType="accent" />
+          <SelectContent>
+            <SelectGroup>
+              {Object.values(ratingMap)
+                .map((value) => value.name_cn)
+                .map((value, index) => (
+                  <SelectItem value={value} key={index}>
+                    <span className="flex items-center space-x-1">
+                      <StarIcon className="h-5 w-5" /> <span>{value}</span>
+                    </span>
+                  </SelectItem>
+                ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
       )}
     </>
   );

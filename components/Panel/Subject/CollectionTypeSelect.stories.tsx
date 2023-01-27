@@ -6,7 +6,7 @@ import { userEvent, within, screen, waitFor } from "@storybook/testing-library";
 import { reactQueryDevtoolsDecorator } from "@/lib/storybook";
 
 const meta: Meta<typeof CollectionTypeSelectComponent> = {
-  title: "CollectionTypeSelect",
+  title: "Select/CollectionTypeSelect",
   component: CollectionTypeSelectComponent,
   decorators: [reactQueryDevtoolsDecorator],
 };
@@ -20,10 +20,9 @@ export const CollectionTypeSelect: Story = {
   },
   play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
     const canvas = within(canvasElement);
-
     await waitFor(
       async () => {
-        const selectEl = await canvas.getByRole("combobox", { name: "Select" });
+        const selectEl = await canvas.getByRole("combobox");
 
         await expect(selectEl).toHaveTextContent(/./);
         await userEvent.click(selectEl);
