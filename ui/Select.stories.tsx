@@ -1,19 +1,25 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
-import { Select } from "./Select";
-import { ratingMap } from "@/lib/map/ratingMap";
-import { collectionTypeMap } from "@/lib/map/collectionTypeMap";
 import { screen, userEvent, within } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
-import { TextWrapper } from "@/components/Panel/Subject/RatingSelect";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectOptionsContent,
+  SelectTrigger,
+} from "@/ui/Select";
+import { ratingMap } from "@/lib/map/ratingMap";
+import { StarIcon } from "@heroicons/react/20/solid";
+import { collectionTypeMap } from "@/lib/map/collectionTypeMap";
 
-const meta: Meta<typeof Select> = {
+const meta: Meta = {
   title: "Select",
-  component: Select,
 };
 
 export default meta;
-type Story = StoryObj<typeof Select>;
+
+type Story = StoryObj;
 
 const play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
   const canvas = within(canvasElement);
@@ -27,44 +33,36 @@ const play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
   await userEvent.keyboard("{esc}");
 };
 
-export const CollectionTypeSelect: Story = {
-  args: {
-    color: "accent",
-    selectOptions: Object.values(collectionTypeMap).map(
-      (value) => value.name_cn
-    ),
-    defaultValue: "看过",
-  },
-  play,
-};
-
-export const CollectionTypeSelect_Edge: Story = {
-  args: {
-    color: "accent",
-    selectOptions: Object.values(collectionTypeMap).map(
-      (value) => value.name_cn
-    ),
-    defaultValue: "看过",
-  },
-  play,
-};
-
 export const RatingSelect: Story = {
-  args: {
-    color: "accent",
-    selectOptions: Object.values(ratingMap).map((value) => value.name_cn),
-    defaultValue: "(6) 还行",
-    textWrapper: <TextWrapper />,
-  },
+  render: () => (
+    <Select defaultValue="(6) 还行">
+      <SelectTrigger asChild colorType="accent" />
+      <SelectContent>
+        <SelectGroup>
+          {Object.values(ratingMap)
+            .map((value) => value.name_cn)
+            .map((value, index) => (
+              <SelectItem value={value} key={index}>
+                <span className="flex items-center space-x-1">
+                  <StarIcon className="h-5 w-5" /> <span>{value}</span>
+                </span>
+              </SelectItem>
+            ))}
+        </SelectGroup>
+      </SelectContent>
+    </Select>
+  ),
   play,
 };
 
-export const RatingSelect_Edge: Story = {
-  args: {
-    color: "accent",
-    selectOptions: Object.values(ratingMap).map((value) => value.name_cn),
-    defaultValue: "(6) 还行",
-    textWrapper: <TextWrapper />,
-  },
+export const CollectionTypeSelect: Story = {
+  render: () => (
+    <Select defaultValue="想看">
+      <SelectTrigger asChild colorType="accent" />
+      <SelectOptionsContent
+        options={Object.values(collectionTypeMap).map((value) => value.name_cn)}
+      />
+    </Select>
+  ),
   play,
 };
