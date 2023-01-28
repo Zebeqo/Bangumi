@@ -41,7 +41,6 @@ export function CollectionTypeSelect({ subject_id }: { subject_id: number }) {
             });
           }}
         >
-          <SelectTrigger asChild colorType="accent" />
           <SelectOptionsContent
             options={Object.values(collectionTypeMap).map(
               (value) => value.name_cn

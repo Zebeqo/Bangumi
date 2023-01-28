@@ -18,13 +18,13 @@ const SelectGroup = SelectPrimitive.Group;
 
 interface SelectTriggerProps
   extends React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger> {
-  colorType: Color;
+  colorType?: Color;
 }
 const SelectTrigger = forwardRef<
   React.ElementRef<typeof SelectPrimitive.Trigger>,
   SelectTriggerProps
->(({ children, colorType, ...props }, ref) => (
-  <SelectPrimitive.Trigger ref={ref} {...props}>
+>(({ children, colorType = "accent", ...props }, ref) => (
+  <SelectPrimitive.Trigger ref={ref} {...props} asChild>
     {children ?? (
       <Button
         ref={ref}
@@ -47,23 +47,26 @@ const SelectContent = forwardRef<
   React.ElementRef<typeof SelectPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.Content>
 >(({ className, children, ...props }, ref) => (
-  <SelectPrimitive.Portal>
-    <SelectPrimitive.Content
-      ref={ref}
-      className={cn("z-50", className)}
-      {...props}
-    >
-      <SelectPrimitive.ScrollUpButton className="flex items-center justify-center text-neutral-11">
-        <ChevronUpIcon className="h-5 w-5" />
-      </SelectPrimitive.ScrollUpButton>
-      <SelectPrimitive.Viewport className="rounded-lg bg-neutral-1 p-2 shadow-lg">
-        {children}
-      </SelectPrimitive.Viewport>
-      <SelectPrimitive.ScrollDownButton className="flex items-center justify-center text-neutral-11">
-        <ChevronDownIcon className="h-5 w-5" />
-      </SelectPrimitive.ScrollDownButton>
-    </SelectPrimitive.Content>
-  </SelectPrimitive.Portal>
+  <>
+    <SelectTrigger />
+    <SelectPrimitive.Portal>
+      <SelectPrimitive.Content
+        ref={ref}
+        className={cn("z-50", className)}
+        {...props}
+      >
+        <SelectPrimitive.ScrollUpButton className="flex items-center justify-center text-neutral-11">
+          <ChevronUpIcon className="h-5 w-5" />
+        </SelectPrimitive.ScrollUpButton>
+        <SelectPrimitive.Viewport className="rounded-lg bg-neutral-1 p-2 shadow-lg">
+          {children}
+        </SelectPrimitive.Viewport>
+        <SelectPrimitive.ScrollDownButton className="flex items-center justify-center text-neutral-11">
+          <ChevronDownIcon className="h-5 w-5" />
+        </SelectPrimitive.ScrollDownButton>
+      </SelectPrimitive.Content>
+    </SelectPrimitive.Portal>
+  </>
 ));
 SelectContent.displayName = SelectPrimitive.Content.displayName;
 
