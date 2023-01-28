@@ -1,5 +1,5 @@
 import { Subnav } from "@/components/Subnav";
-import { PersonalViewSwitch } from "@/components/collection/personalViewSwitch";
+import { PersonalViewSwitch } from "@/components/Switch/personalViewSwitch";
 
 export default function Layout({
   children,

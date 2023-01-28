@@ -1,7 +1,7 @@
 // export const dynamicParams = false;
 
 import { notFound } from "next/navigation";
-import { Card } from "@/components/Card";
+import { Card } from "@/components/Card/Card";
 import type { SearchParams } from "@/lib/calendar";
 import { calendarScheme, sortCalendarData } from "@/lib/calendar";
 import { GridWrapper } from "@/ui/GridWrapper";

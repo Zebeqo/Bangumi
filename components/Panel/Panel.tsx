@@ -13,7 +13,7 @@ import { SubjectContent } from "@/components/Panel/SubjectContent";
 import { CharacterListContent } from "@/components/Panel/CharacterListContent";
 import { EPListContent } from "@/components/Panel/EPListContent";
 import { PersonListContent } from "@/components/Panel/PersonListContent";
-import { SubjectContentSkeleton } from "@/components/Panel/Subject/SubjectContentSkeleton";
+import { SubjectContentSkeleton } from "@/components/Skeleton/SubjectContentSkeleton";
 import { RelationSubjectContent } from "@/components/Panel/RelationSubjectContent";
 
 export function Panel() {

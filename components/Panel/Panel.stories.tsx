@@ -1,7 +1,7 @@
 import { expect } from "@storybook/jest";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Panel } from "@/components/Panel/Panel";
-import { InfoButton } from "@/components/InfoButton";
+import { InfoButton } from "@/components/Button/InfoButton";
 import { userEvent, within, waitFor, screen } from "@storybook/testing-library";
 import {
   STORYBOOK_BROKEN_NOT_COLLECTED_SUBJECT_ID,

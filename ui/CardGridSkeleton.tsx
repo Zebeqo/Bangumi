@@ -1,4 +1,4 @@
-import { CardSkeleton } from "@/components/CardSkeleton";
+import { CardSkeleton } from "@/components/Skeleton/CardSkeleton";
 import { GridWrapper } from "@/ui/GridWrapper";
 
 export function CardGridSkeleton() {

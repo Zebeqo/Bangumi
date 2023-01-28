@@ -3,12 +3,12 @@
 import { ListHeader } from "@/ui/Panel/ListHeader";
 import { useSubjectRelationsData } from "@/hooks/use-relation";
 import { subjectRelationEnum, subjectRelationScheme } from "@/lib/relation";
-import { RelationSubjectAvatarCard } from "@/components/Panel/RelationSubjectList/RelationSubjectAvatarCard";
+import { RelationSubjectAvatarCard } from "@/components/Card/RelationSubjectAvatarCard";
 import { useReducerAtom } from "jotai/react/utils";
 import { panelHistoryAtom, panelReducer } from "@/lib/panel";
 import { panelScrollToTop } from "@/lib/utils";
 import { Suspense } from "react";
-import { RelationSubjectSkeleton } from "@/components/Panel/RelationSubjectList/RelationSubjectSkeleton";
+import { RelationSubjectSkeleton } from "@/components/Skeleton/RelationSubjectSkeleton";
 
 export function RelationSubjectList({
   subject_id,

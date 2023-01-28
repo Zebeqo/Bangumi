@@ -1,6 +1,6 @@
 import "@/styles/globals.css";
-import ToastProvider from "../components/provider/ToastProvider";
-import { StateProvider } from "../components/provider/StateProvider";
+import ToastProvider from "../components/Provider/ToastProvider";
+import { StateProvider } from "../components/Provider/StateProvider";
 import { Toast } from "../components/Toast/Toast";
 import { Dialog } from "../components/Dialog/Dialog";
 

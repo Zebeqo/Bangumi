@@ -2,12 +2,12 @@
 
 import { ListHeader } from "@/ui/Panel/ListHeader";
 import { useSubjectPersonsData } from "@/hooks/use-person";
-import { PersonAvatarCard } from "@/components/Panel/PersonList/PersonAvatarCard";
+import { PersonAvatarCard } from "@/components/Card/PersonAvatarCard";
 import { personRelationEnum, personRelationScheme } from "@/lib/person";
 import { useReducerAtom } from "jotai/react/utils";
 import { panelHistoryAtom, panelReducer } from "@/lib/panel";
 import { Suspense } from "react";
-import { AvatarCardSkeleton } from "@/components/AvatarCardSkeleton";
+import { AvatarCardSkeleton } from "@/components/Skeleton/AvatarCardSkeleton";
 
 export function PersonList({
   subject_id,

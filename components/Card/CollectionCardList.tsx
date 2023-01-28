@@ -4,7 +4,7 @@ import { useCollectionsPageData } from "@/hooks/use-collection";
 import { useInView } from "react-intersection-observer";
 import { Fragment, useEffect } from "react";
 import { LoadMoreIndicator } from "@/ui/LoadMoreIndicator";
-import { CollectionCard } from "@/components/CollectionCard";
+import { CollectionCard } from "@/components/Card/CollectionCard";
 
 export function CollectionCardList({
   subject_type,

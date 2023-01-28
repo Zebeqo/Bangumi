@@ -1,7 +1,7 @@
 // export const dynamicParams = false;
 
 import { notFound } from "next/navigation";
-import { Card } from "@/components/Card";
+import { Card } from "@/components/Card/Card";
 import * as cheerio from "cheerio";
 import { GridWrapper } from "@/ui/GridWrapper";
 

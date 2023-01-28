@@ -1,6 +1,6 @@
 import { expect } from "@storybook/jest";
 import type { Meta, StoryObj } from "@storybook/react";
-import { AvatarDropdownMenu as AvatarDropdownMenuComponent } from "@/components/AvatarDropdownMenu";
+import { AvatarDropdownMenu as AvatarDropdownMenuComponent } from "@/components/DropdownMenu/AvatarDropdownMenu";
 import { userEvent, within, screen } from "@storybook/testing-library";
 
 const meta: Meta<typeof AvatarDropdownMenuComponent> = {

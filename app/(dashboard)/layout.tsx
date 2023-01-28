@@ -1,7 +1,7 @@
 import { Header } from "@/components/Header";
 import { Sidebar } from "@/components/Sidebar";
 import { Panel } from "@/components/Panel/Panel";
-import ToastProvider from "@/components/provider/ToastProvider";
+import ToastProvider from "@/components/Provider/ToastProvider";
 import { Toast } from "@/components/Toast/Toast";
 import { Dialog } from "@/components/Dialog/Dialog";
 

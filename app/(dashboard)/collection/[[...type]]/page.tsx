@@ -1,7 +1,7 @@
 // export const dynamicParams = false;
 
 import { notFound } from "next/navigation";
-import { CollectionCardList } from "@/components/CollectionCardList";
+import { CollectionCardList } from "@/components/Card/CollectionCardList";
 import { subjectNameToTypeScheme } from "@/lib/subject";
 import { Suspense } from "react";
 import { CardGridSkeleton } from "@/ui/CardGridSkeleton";
