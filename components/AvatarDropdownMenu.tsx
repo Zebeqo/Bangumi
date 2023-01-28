@@ -1,33 +1,25 @@
 "use client";
 
-import type { ReactNode } from "react";
 import {
   UserIcon,
   Cog6ToothIcon,
   ArrowRightOnRectangleIcon,
 } from "@heroicons/react/20/solid";
-import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 import Image from "next/image";
 import { signOut } from "next-auth/react";
-import { Button } from "@/ui/Button";
 import { useToast } from "@/hooks/use-toast";
 import { createIssueToast } from "@/lib/toast";
+import type { MenuItem } from "@/ui/primitive/DropdownMenu";
+import {
+  DropdownMenu,
+  DropdownMenuContent_Simple,
+  DropdownMenuTrigger,
+} from "@/ui/primitive/DropdownMenu";
 
-interface RadixMenuItem {
-  label: string;
-  icon: ReactNode;
-  handleSelect: () => void;
-}
-
-export const AvatarDropdownMenu = ({
-  imageURL,
-  ...props
-}: {
-  imageURL: string;
-}) => {
+export const AvatarDropdownMenu = ({ imageURL }: { imageURL: string }) => {
   const openToast = useToast();
 
-  const avatarMenuItems: RadixMenuItem[] = [
+  const menuItems: MenuItem[] = [
     {
       label: "个人主页",
       icon: <UserIcon />,
@@ -52,11 +44,8 @@ export const AvatarDropdownMenu = ({
   ];
 
   return (
-    <DropdownMenuPrimitive.Root {...props}>
-      <DropdownMenuPrimitive.Trigger
-        aria-label="more"
-        className="relative outline-none"
-      >
+    <DropdownMenu>
+      <DropdownMenuTrigger className="relative outline-none" aria-label="more">
         <Image
           src={imageURL}
           alt={"Avatar"}
@@ -66,30 +55,12 @@ export const AvatarDropdownMenu = ({
           unoptimized={true}
         />
         <div className="absolute top-0 left-0 h-full w-full rounded-lg shadow-[inset_0_0_8px_rgba(0,0,0,0.15)]" />
-      </DropdownMenuPrimitive.Trigger>
-      <DropdownMenuPrimitive.Portal>
-        <DropdownMenuPrimitive.Content
-          align="end"
-          sideOffset={4}
-          className="z-50 w-auto rounded-lg bg-neutral-1 px-2 py-2 shadow-lg outline-none ring-1 ring-neutral-6 radix-side-bottom:animate-slide-down radix-side-top:animate-slide-up"
-        >
-          {avatarMenuItems.map(({ label, icon, handleSelect }, i) => (
-            <DropdownMenuPrimitive.Item
-              key={i}
-              onSelect={handleSelect}
-              className="outline-none"
-            >
-              <Button
-                colorType="neutral"
-                icon={icon}
-                type="ghost"
-                label={label}
-                className="w-full justify-start"
-              />
-            </DropdownMenuPrimitive.Item>
-          ))}
-        </DropdownMenuPrimitive.Content>
-      </DropdownMenuPrimitive.Portal>
-    </DropdownMenuPrimitive.Root>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent_Simple
+        menuItems={menuItems}
+        align="end"
+        sideOffset={4}
+      />
+    </DropdownMenu>
   );
 };

@@ -1,15 +1,14 @@
 "use client";
 
 import { EllipsisVerticalIcon } from "@heroicons/react/20/solid";
-import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 import { Button } from "@/ui/Button";
 import { useToast } from "@/hooks/use-toast";
-import { createIssueToast } from "@/lib/toast";
-
-interface RadixMenuItem {
-  label: string;
-  handleSelect: () => void;
-}
+import type { MenuItem } from "@/ui/primitive/DropdownMenu";
+import {
+  DropdownMenu,
+  DropdownMenuContent_Simple,
+  DropdownMenuTrigger,
+} from "@/ui/primitive/DropdownMenu";
 
 export const MoreDropdownMenu = ({
   subject_id,
@@ -19,7 +18,7 @@ export const MoreDropdownMenu = ({
   hasCollectionData?: boolean;
 }) => {
   const openToast = useToast();
-  const avatarMenuItems: RadixMenuItem[] = [
+  const menuItems: MenuItem[] = [
     {
       label: "取消收藏",
       handleSelect: () => {
@@ -54,41 +53,20 @@ export const MoreDropdownMenu = ({
     },
   ];
   if (!hasCollectionData) {
-    avatarMenuItems.shift();
+    menuItems.shift();
   }
 
   return (
-    <DropdownMenuPrimitive.Root>
-      <DropdownMenuPrimitive.Trigger asChild>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
         <Button
           aria-label={"more"}
           colorType={"neutral"}
           type={"outline"}
           icon={<EllipsisVerticalIcon />}
         />
-      </DropdownMenuPrimitive.Trigger>
-      <DropdownMenuPrimitive.Portal>
-        <DropdownMenuPrimitive.Content
-          align="start"
-          sideOffset={8}
-          className="z-50 w-auto rounded-lg bg-neutral-1 px-2 py-2 shadow-lg outline-none ring-1 ring-neutral-6 radix-side-bottom:animate-slide-down radix-side-top:animate-slide-up"
-        >
-          {avatarMenuItems.map(({ label, handleSelect }, i) => (
-            <DropdownMenuPrimitive.Item
-              key={i}
-              onSelect={handleSelect}
-              className="outline-none"
-            >
-              <Button
-                colorType="neutral"
-                type="ghost"
-                label={label}
-                className="w-full justify-start"
-              />
-            </DropdownMenuPrimitive.Item>
-          ))}
-        </DropdownMenuPrimitive.Content>
-      </DropdownMenuPrimitive.Portal>
-    </DropdownMenuPrimitive.Root>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent_Simple menuItems={menuItems} />
+    </DropdownMenu>
   );
 };
