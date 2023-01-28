@@ -49,7 +49,6 @@ export function RatingSelect({ subject_id }: { subject_id: number }) {
             });
           }}
         >
-          <SelectTrigger asChild colorType="accent" />
           <SelectContent>
             <SelectGroup>
               {Object.values(ratingMap)

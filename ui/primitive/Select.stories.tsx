@@ -7,7 +7,6 @@ import {
   SelectGroup,
   SelectItem,
   SelectOptionsContent,
-  SelectTrigger,
 } from "@/ui/primitive/Select";
 import { ratingMap } from "@/lib/map/ratingMap";
 import { StarIcon } from "@heroicons/react/20/solid";
@@ -36,7 +35,6 @@ const play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
 export const RatingSelect: Story = {
   render: () => (
     <Select defaultValue="(6) 还行">
-      <SelectTrigger asChild colorType="accent" />
       <SelectContent>
         <SelectGroup>
           {Object.values(ratingMap)
@@ -58,7 +56,6 @@ export const RatingSelect: Story = {
 export const CollectionTypeSelect: Story = {
   render: () => (
     <Select defaultValue="想看">
-      <SelectTrigger asChild colorType="accent" />
       <SelectOptionsContent
         options={Object.values(collectionTypeMap).map((value) => value.name_cn)}
       />
