@@ -1,7 +1,7 @@
 "use client";
 
 import { atomWithStorage } from "jotai/vanilla/utils";
-import { Switch } from "@/ui/Switch";
+import { Switch } from "@/ui/primitive/Switch";
 import { useAtom } from "jotai/react";
 import { useEffect } from "react";
 
