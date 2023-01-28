@@ -23,6 +23,8 @@ import { createIssueToast } from "@/lib/toast";
 import { signOut } from "next-auth/react";
 import Image from "next/image";
 import { useState } from "react";
+import { screen, userEvent, within } from "@storybook/testing-library";
+import { expect } from "@storybook/jest";
 
 const meta: Meta = {
   title: "DropdownMenu",
@@ -91,6 +93,17 @@ export const MoreDropdownMenu: Story = {
       </DropdownMenu>
     );
   },
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    const canvas = within(canvasElement);
+    const button = await canvas.findByRole("button", { name: "more" });
+    await userEvent.click(button);
+    const menu = await screen.findByRole("menu");
+    const items = within(menu).getAllByRole("menuitem");
+    await expect(items.length).toEqual(3);
+    for (const item of items) {
+      await expect(item).toHaveTextContent(/./);
+    }
+  },
 };
 
 export const AvatarDropdownMenu: Story = {
@@ -142,6 +155,17 @@ export const AvatarDropdownMenu: Story = {
         <DropdownMenuContent_Simple menuItems={menuItems} />
       </DropdownMenu>
     );
+  },
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    const canvas = within(canvasElement);
+    const button = await canvas.findByRole("button", { name: "more" });
+    await userEvent.click(button);
+    const menu = await screen.findByRole("menu");
+    const items = within(menu).getAllByRole("menuitem");
+    await expect(items.length).toEqual(3);
+    for (const item of items) {
+      await expect(item).toHaveTextContent(/./);
+    }
   },
 };
 
@@ -212,5 +236,16 @@ export const SortDropdownMenu: Story = {
         </DropdownMenuContent>
       </DropdownMenu>
     );
+  },
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    const canvas = within(canvasElement);
+    const button = await canvas.findByRole("button", { name: "sort" });
+    await userEvent.click(button);
+    const menu = await screen.findByRole("menu");
+    const items = within(menu).getAllByRole("menuitemradio");
+    await expect(items.length).toEqual(5);
+    for (const item of items) {
+      await expect(item).toHaveTextContent(/./);
+    }
   },
 };
