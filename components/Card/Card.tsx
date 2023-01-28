@@ -8,7 +8,7 @@ import { TagBadge } from "@/ui/TagBadge";
 import { Rating } from "@/ui/Rating";
 import { Button } from "@/ui/Button";
 import { ChatBubbleLeftRightIcon } from "@heroicons/react/24/outline";
-import { InfoButton } from "@/components/InfoButton";
+import { InfoButton } from "@/components/Button/InfoButton";
 import { subjectScheme } from "@/lib/subject";
 
 async function getSubjectData(id: number) {

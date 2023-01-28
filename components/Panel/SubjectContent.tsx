@@ -2,10 +2,10 @@ import Image from "next/image";
 import { TagBadge } from "@/ui/TagBadge";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { cn } from "@/lib/utils";
-import { CollectionTypeSelect } from "@/components/Panel/Subject/CollectionTypeSelect";
-import { RatingSelect } from "@/components/Panel/Subject/RatingSelect";
-import { EpisodeButton as EpisodeButtonComponent } from "@/components/Panel/Subject/EpisodeButton";
-import { MoreDropdownMenu } from "@/components/Panel/Subject/MoreDropdownMenu";
+import { CollectionTypeSelect } from "@/components/Select/CollectionTypeSelect";
+import { RatingSelect } from "@/components/Select/RatingSelect";
+import { EpisodeButton as EpisodeButtonComponent } from "@/components/Button/EpisodeButton";
+import { MoreDropdownMenu } from "@/components/DropdownMenu/MoreDropdownMenu";
 import { Button } from "@/ui/Button";
 import {
   ChevronDownIcon,

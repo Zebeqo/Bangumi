@@ -1,7 +1,7 @@
 // export const dynamicParams = false;
 
 import { Subnav } from "@/components/Subnav";
-import { SortDropdownMenu } from "@/components/SortDropdownMenu";
+import { SortDropdownMenu } from "@/components/DropdownMenu/SortDropdownMenu";
 
 const navItems = [
   {

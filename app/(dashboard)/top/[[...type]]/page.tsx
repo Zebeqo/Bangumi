@@ -1,7 +1,7 @@
 // export const dynamicParams = false;
 
 import { notFound } from "next/navigation";
-import { Card } from "@/components/Card";
+import { Card } from "@/components/Card/Card";
 import { GridWrapper } from "@/ui/GridWrapper";
 import { subjectNameToTypeScheme } from "@/lib/subject";
 import { searchResultScheme } from "@/lib/search";

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { CardSkeleton as CardSkeletonComponent } from "@/components/CardSkeleton";
+import { CardSkeleton as CardSkeletonComponent } from "@/components/Skeleton/CardSkeleton";
 
 const meta: Meta<typeof CardSkeletonComponent> = {
   title: "CardSkeleton",

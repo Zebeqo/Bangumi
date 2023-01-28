@@ -1,20 +1,20 @@
-import { expect } from "@storybook/jest";
 import type { Meta, StoryObj } from "@storybook/react";
-import { CollectionTypeSelect as CollectionTypeSelectComponent } from "@/components/Panel/Subject/CollectionTypeSelect";
+import { RatingSelect as RatingSelectComponent } from "@/components/Select/RatingSelect";
 import { STORYBOOK_SUBJECT_ID } from "@/lib/constant";
-import { userEvent, within, screen, waitFor } from "@storybook/testing-library";
+import { screen, userEvent, waitFor, within } from "@storybook/testing-library";
+import { expect } from "@storybook/jest";
 import { reactQueryDevtoolsDecorator } from "@/lib/storybook";
 
-const meta: Meta<typeof CollectionTypeSelectComponent> = {
-  title: "Select/CollectionTypeSelect",
-  component: CollectionTypeSelectComponent,
+const meta: Meta<typeof RatingSelectComponent> = {
+  title: "Select/RatingSelect",
+  component: RatingSelectComponent,
   decorators: [reactQueryDevtoolsDecorator],
 };
 
 export default meta;
-type Story = StoryObj<typeof CollectionTypeSelectComponent>;
+type Story = StoryObj<typeof RatingSelectComponent>;
 
-export const CollectionTypeSelect: Story = {
+export const RatingSelect: Story = {
   args: {
     subject_id: STORYBOOK_SUBJECT_ID,
   },
@@ -28,7 +28,7 @@ export const CollectionTypeSelect: Story = {
         await userEvent.click(selectEl);
         const listbox = within(screen.getByRole("listbox"));
         const options = await listbox.findAllByRole("option");
-        await expect(options.length).toEqual(5);
+        await expect(options.length).toEqual(11);
         for (const option of options) {
           await expect(option).toHaveTextContent(/./);
         }

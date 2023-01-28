@@ -4,7 +4,7 @@ import { PanelNav } from "@/components/Panel/PanelNav";
 import { useSubjectData } from "@/hooks/use-subject";
 import { EPListFull } from "@/components/Panel/EPList/EPListFull";
 import { Suspense } from "react";
-import { EPItemSkeleton } from "@/components/Panel/EPList/EPItemSkeleton";
+import { EPItemSkeleton } from "@/components/Skeleton/EPItemSkeleton";
 
 export function EPListContent({ subject_id }: { subject_id: number }) {
   const { data: subjectData } = useSubjectData(subject_id);

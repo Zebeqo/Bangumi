@@ -1,12 +1,12 @@
 "use client";
 
-import { CharacterAvatarCard } from "@/components/Panel/CharacterList/CharacterAvatarCard";
+import { CharacterAvatarCard } from "@/components/Card/CharacterAvatarCard";
 import { useSubjectCharactersData } from "@/hooks/use-character";
 import { ListHeader } from "@/ui/Panel/ListHeader";
 import { panelHistoryAtom, panelReducer } from "@/lib/panel";
 import { useReducerAtom } from "jotai/react/utils";
 import { Suspense } from "react";
-import { AvatarCardSkeleton } from "@/components/AvatarCardSkeleton";
+import { AvatarCardSkeleton } from "@/components/Skeleton/AvatarCardSkeleton";
 
 export function CharacterList({
   subject_id,

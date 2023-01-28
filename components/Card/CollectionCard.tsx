@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { InfoButton } from "@/components/InfoButton";
+import { InfoButton } from "@/components/Button/InfoButton";
 import { Button } from "@/ui/Button";
 import { ChatBubbleLeftRightIcon } from "@heroicons/react/24/outline";
 import {
@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 import type { z } from "zod";
 import type { collectionsPageScheme } from "@/lib/collection";
 import { useAtomValue } from "jotai/react";
-import { personalViewModeAtom } from "@/components/collection/personalViewSwitch";
+import { personalViewModeAtom } from "@/components/Switch/personalViewSwitch";
 import { useRef, useState } from "react";
 import { useDialog } from "@/hooks/use-dialog";
 

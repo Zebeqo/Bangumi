@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { SortDropdownMenu as SortDropdownMenuComponent } from "@/components/SortDropdownMenu";
+import { SortDropdownMenu as SortDropdownMenuComponent } from "@/components/DropdownMenu/SortDropdownMenu";
 import { screen, userEvent, within } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
 
