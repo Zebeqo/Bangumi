@@ -6,7 +6,7 @@ import { userEvent, within, screen, waitFor } from "@storybook/testing-library";
 import { reactQueryDevtoolsDecorator } from "@/lib/storybook";
 
 const meta: Meta<typeof CollectionTypeSelectComponent> = {
-  title: "Select/CollectionTypeSelect",
+  title: "CollectionTypeSelect",
   component: CollectionTypeSelectComponent,
   decorators: [reactQueryDevtoolsDecorator],
 };
