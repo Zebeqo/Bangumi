@@ -1,7 +1,7 @@
 import "@/styles/globals.css";
 import ToastProvider from "../components/Provider/ToastProvider";
 import { StateProvider } from "../components/Provider/StateProvider";
-import { Toast } from "../components/Toast/Toast";
+import { MainToast } from "../components/Toast/MainToast";
 import { Dialog } from "../components/Dialog/Dialog";
 
 export const parameters = {
@@ -35,7 +35,7 @@ const Provider = (Story) => {
       <StateProvider noDevtools>
         <ToastProvider swipeDirection="right" duration={3000}>
           <Story />
-          <Toast />
+          <MainToast />
           <Dialog />
         </ToastProvider>
       </StateProvider>

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Toast } from "@/components/Toast/Toast";
+import { MainToast } from "@/components/Toast/MainToast";
 import { useErrorToast, useToast } from "@/hooks/use-toast";
 import { Button } from "@/ui/Button";
 import { createIssueToast } from "@/lib/toast";
@@ -11,13 +11,13 @@ import {
 } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
 
-const meta: Meta<typeof Toast> = {
+const meta: Meta<typeof MainToast> = {
   title: "Toast",
-  component: Toast,
+  component: MainToast,
 };
 
 export default meta;
-type Story = StoryObj<typeof Toast>;
+type Story = StoryObj<typeof MainToast>;
 
 const OpenSuccessToastButton = () => {
   const openToast = useToast();
