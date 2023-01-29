@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { TagBadge } from "@/ui/TagBadge";
-import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { cn } from "@/lib/utils";
 import { CollectionTypeSelect } from "@/components/Select/CollectionTypeSelect";
 import { RatingSelect } from "@/components/Select/RatingSelect";
@@ -12,7 +11,6 @@ import {
   InboxArrowDownIcon,
   StarIcon,
 } from "@heroicons/react/20/solid";
-import { createIssueToast } from "@/lib/toast";
 import { signIn, useSession } from "next-auth/react";
 import { CharacterList } from "@/components/Panel/CharacterList/CharacterList";
 import { EPListDynamic } from "@/components/Panel/EPList/EPListDynamic";
@@ -124,7 +122,7 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
                   </div>
                   {/*SubjectContent.InfoContentBody*/}
                   <div className="flex-grow whitespace-pre-wrap px-4 text-sm text-neutral-12">
-                    <DialogPrimitive.Description
+                    <p
                       ref={descriptionRef}
                       onMouseEnter={() => {
                         if (descriptionRef.current) {
@@ -146,7 +144,7 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
                       )}
                     >
                       {subjectData.summary}
-                    </DialogPrimitive.Description>
+                    </p>
                   </div>
                   {/*SubjectContent.InfoContentFooter*/}
                   <div className="flex space-x-2 p-2">

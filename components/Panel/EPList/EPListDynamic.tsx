@@ -2,7 +2,7 @@
 
 import { useCollectionData } from "@/hooks/use-collection";
 import { useEpisodesData } from "@/hooks/use-episode";
-import { ListHeader } from "@/ui/Panel/ListHeader";
+import { ListHeader } from "@/components/Panel/ListHeader";
 import { useReducerAtom } from "jotai/react/utils";
 import { panelHistoryAtom, panelReducer } from "@/lib/panel";
 import { EPListItemList } from "@/components/Panel/EPList/EPListItemList";
