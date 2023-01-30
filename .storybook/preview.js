@@ -1,7 +1,7 @@
 import "@/styles/globals.css";
 import ToastProvider from "../components/Provider/ToastProvider";
 import { StateProvider } from "../components/Provider/StateProvider";
-import { MainToast } from "../components/Toast/MainToast";
+import { MainToast } from "../components/MainToast/MainToast";
 import { MainDialog } from "../components/Dialog/MainDialog";
 
 export const parameters = {
