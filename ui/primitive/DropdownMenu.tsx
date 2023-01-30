@@ -82,7 +82,9 @@ const DropdownMenuContent_Simple = forwardRef<
         className="outline-none"
       >
         <GhostButton colorType="neutral" className="w-full justify-start">
-          <span className="mr-2 h-5 w-5">{menuItems[i].icon}</span>
+          {menuItems[i].icon && (
+            <span className="mr-2 h-5 w-5">{menuItems[i].icon}</span>
+          )}
           {label}
         </GhostButton>
       </DropdownMenuPrimitive.Item>
