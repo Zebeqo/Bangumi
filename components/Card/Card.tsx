@@ -6,10 +6,10 @@ import {
 } from "@heroicons/react/20/solid";
 import { TagBadge } from "@/ui/TagBadge";
 import { Rating } from "@/ui/Rating";
-import { Button } from "@/ui/Button";
 import { ChatBubbleLeftRightIcon } from "@heroicons/react/24/outline";
 import { InfoButton } from "@/components/Button/InfoButton";
 import { subjectScheme } from "@/lib/subject";
+import { PrimaryButton_Icon } from "@/ui/primitive/Button";
 
 async function getSubjectData(id: number) {
   return subjectScheme.safeParse(
@@ -65,11 +65,9 @@ export async function Card({
           {/*Card.HoverButton*/}
           <div className="hidden space-x-1 group-hover:flex">
             <InfoButton subject_id={subject_id} />
-            <Button
-              colorType="accent"
-              type="primary"
-              icon={<ChatBubbleLeftRightIcon />}
-            />
+            <PrimaryButton_Icon colorType={"accent"}>
+              <ChatBubbleLeftRightIcon className="h-6 w-6" />
+            </PrimaryButton_Icon>
           </div>
         </div>
         {/*Card.Info*/}

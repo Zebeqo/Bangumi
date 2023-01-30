@@ -9,8 +9,8 @@ import {
 } from "@heroicons/react/20/solid";
 import { forwardRef } from "react";
 import { cn } from "@/lib/utils";
-import { Button } from "@/ui/Button";
 import type { Color } from "@/lib/colorWrapper";
+import { OutlineButton } from "@/ui/primitive/Button";
 
 const Select = SelectPrimitive.Root;
 
@@ -26,18 +26,12 @@ const SelectTrigger = forwardRef<
 >(({ children, colorType = "accent", ...props }, ref) => (
   <SelectPrimitive.Trigger ref={ref} {...props} asChild>
     {children ?? (
-      <Button
-        ref={ref}
-        colorType={colorType}
-        type={"outline"}
-        icon={
-          <SelectPrimitive.Icon>
-            <ChevronDownIcon />
-          </SelectPrimitive.Icon>
-        }
-        label={<SelectPrimitive.Value />}
-        revert
-      />
+      <OutlineButton ref={ref} colorType={colorType}>
+        <SelectPrimitive.Value />
+        <SelectPrimitive.Icon className="ml-2 h-5 w-5">
+          <ChevronDownIcon />
+        </SelectPrimitive.Icon>
+      </OutlineButton>
     )}
   </SelectPrimitive.Trigger>
 ));

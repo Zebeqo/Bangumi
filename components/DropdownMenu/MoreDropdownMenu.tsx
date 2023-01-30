@@ -1,7 +1,7 @@
 "use client";
 
 import { EllipsisVerticalIcon } from "@heroicons/react/20/solid";
-import { Button } from "@/ui/Button";
+import { Button } from "@/ui/primitive/Button";
 import { useToast } from "@/hooks/use-toast";
 import type { MenuItem } from "@/ui/primitive/DropdownMenu";
 import {
@@ -9,6 +9,7 @@ import {
   DropdownMenuContent_Simple,
   DropdownMenuTrigger,
 } from "@/ui/primitive/DropdownMenu";
+import { OutlineButton_Icon } from "@/ui/primitive/Button";
 
 export const MoreDropdownMenu = ({
   subject_id,
@@ -59,12 +60,9 @@ export const MoreDropdownMenu = ({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button
-          aria-label={"more"}
-          colorType={"neutral"}
-          type={"outline"}
-          icon={<EllipsisVerticalIcon />}
-        />
+        <OutlineButton_Icon colorType={"neutral"} aria-label={"more"}>
+          <EllipsisVerticalIcon className="h-6 w-6" />
+        </OutlineButton_Icon>
       </DropdownMenuTrigger>
       <DropdownMenuContent_Simple menuItems={menuItems} />
     </DropdownMenu>

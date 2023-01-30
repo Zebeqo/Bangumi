@@ -11,7 +11,7 @@ import {
   DialogDescription,
   DialogTitle,
 } from "@/ui/primitive/Dialog";
-import { Button } from "@/ui/Button";
+import { PrimaryButton } from "@/ui/primitive/Button";
 
 export function MainDialog() {
   const dialog = useAtomValue(dialogAtom);
@@ -42,13 +42,13 @@ export function MainDialog() {
         </DialogContentHeader_Main>
         <DialogDescription>{dialog?.description}</DialogDescription>
         {dialog?.action && (
-          <Button
+          <PrimaryButton
             colorType={"accent"}
-            type={"primary"}
-            label={dialog.action.label}
-            onClick={dialog.action.onClick}
             className="mt-4 mr-6"
-          />
+            onClick={dialog.action.onClick}
+          >
+            {dialog.action.label}
+          </PrimaryButton>
         )}
       </DialogContent_Main>
     </Dialog>

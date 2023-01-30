@@ -1,16 +1,16 @@
 "use client";
 
-import { Button } from "@/ui/Button";
 import { GithubIcon } from "@/ui/icon/24/GithubIcon";
+import { GhostButton_Icon } from "@/ui/primitive/Button";
 
 export function GithubButton() {
   return (
-    <Button
+    <GhostButton_Icon
       aria-label={"Github"}
       colorType="neutral"
-      type="ghost"
-      icon={<GithubIcon />}
       onClick={() => window.open("https://github.com/Zebeqo/Bangumi", "_blank")}
-    />
+    >
+      <GithubIcon className="h-6 w-6" />
+    </GhostButton_Icon>
   );
 }

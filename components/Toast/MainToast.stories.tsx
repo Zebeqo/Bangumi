@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { MainToast } from "@/components/Toast/MainToast";
 import { useErrorToast, useToast } from "@/hooks/use-toast";
-import { Button } from "@/ui/Button";
+import { Button } from "@/ui/primitive/Button";
 import { createIssueToast } from "@/lib/toast";
 import {
   fireEvent,
@@ -10,6 +10,7 @@ import {
   within,
 } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
+import { SecondaryButton } from "@/ui/primitive/Button";
 
 const meta: Meta<typeof MainToast> = {
   title: "Toast",
@@ -22,10 +23,8 @@ type Story = StoryObj<typeof MainToast>;
 const OpenSuccessToastButton = () => {
   const openToast = useToast();
   return (
-    <Button
+    <SecondaryButton
       colorType={"accent"}
-      type={"secondary"}
-      label="Success Toast"
       aria-label={"open toast"}
       onClick={() => {
         openToast({
@@ -40,17 +39,17 @@ const OpenSuccessToastButton = () => {
           },
         });
       }}
-    />
+    >
+      Success Toast
+    </SecondaryButton>
   );
 };
 
 const OpenErrorToastButton = () => {
   const openErrorToast = useErrorToast();
   return (
-    <Button
+    <SecondaryButton
       colorType={"accent"}
-      type={"secondary"}
-      label="Error Toast"
       aria-label={"open toast"}
       onClick={() => {
         openErrorToast(
@@ -156,22 +155,24 @@ const OpenErrorToastButton = () => {
             "}"
         );
       }}
-    />
+    >
+      Error Toast
+    </SecondaryButton>
   );
 };
 
 const OpenIssueToastButton = () => {
   const openToast = useToast();
   return (
-    <Button
+    <SecondaryButton
       colorType={"accent"}
-      type={"secondary"}
-      label="Issue Toast"
       aria-label={"open toast"}
       onClick={() => {
         openToast(createIssueToast(42, "暂未开放相关 api"));
       }}
-    />
+    >
+      Issue Toast
+    </SecondaryButton>
   );
 };
 

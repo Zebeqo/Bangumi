@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { InfoButton } from "@/components/Button/InfoButton";
-import { Button } from "@/ui/Button";
+import { Button } from "@/ui/primitive/Button";
 import { ChatBubbleLeftRightIcon } from "@heroicons/react/24/outline";
 import {
   CalendarDaysIcon,
@@ -16,6 +16,7 @@ import { useAtomValue } from "jotai/react";
 import { personalViewModeAtom } from "@/components/Switch/personalViewSwitch";
 import { useRef, useState } from "react";
 import { useDialog } from "@/hooks/use-dialog";
+import { PrimaryButton_Icon } from "@/ui/primitive/Button";
 
 export function CollectionCard({
   collection,
@@ -55,11 +56,9 @@ export function CollectionCard({
           {/*Card.HoverButton*/}
           <div className="hidden space-x-1 group-hover:flex">
             <InfoButton subject_id={collection.subject.id} />
-            <Button
-              colorType="accent"
-              type="primary"
-              icon={<ChatBubbleLeftRightIcon />}
-            />
+            <PrimaryButton_Icon colorType={"accent"}>
+              <ChatBubbleLeftRightIcon className="h-6 w-6" />
+            </PrimaryButton_Icon>
           </div>
         </div>
         {/*Card.Info*/}

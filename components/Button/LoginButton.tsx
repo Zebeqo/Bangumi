@@ -1,17 +1,17 @@
 "use client";
 
 import { signIn } from "next-auth/react";
-import { Button } from "@/ui/Button";
 import { BangumiRawIcon } from "@/ui/icon/20/BangumiRawIcon";
+import { PrimaryButton } from "@/ui/primitive/Button";
 
 export function LoginButton() {
   return (
-    <Button
-      colorType="primary"
-      type="primary"
-      label="使用 Bangumi 登录"
+    <PrimaryButton
+      colorType={"primary"}
       onClick={() => signIn("bangumi", { redirect: false })}
-      icon={<BangumiRawIcon />}
-    />
+    >
+      <BangumiRawIcon className="mr-2 h-5 w-5" />
+      使用 Bangumi 登录
+    </PrimaryButton>
   );
 }

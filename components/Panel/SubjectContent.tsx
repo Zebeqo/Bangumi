@@ -5,7 +5,7 @@ import { CollectionTypeSelect } from "@/components/Select/CollectionTypeSelect";
 import { RatingSelect } from "@/components/Select/RatingSelect";
 import { EpisodeButton as EpisodeButtonComponent } from "@/components/Button/EpisodeButton";
 import { MoreDropdownMenu } from "@/components/DropdownMenu/MoreDropdownMenu";
-import { Button } from "@/ui/Button";
+import { Button } from "@/ui/primitive/Button";
 import {
   ChevronDownIcon,
   InboxArrowDownIcon,
@@ -21,6 +21,7 @@ import { useCollectionData } from "@/hooks/use-collection";
 import { useToast } from "@/hooks/use-toast";
 import { useSubjectData } from "@/hooks/use-subject";
 import { PanelNav } from "@/components/Panel/PanelNav";
+import { OutlineButton, PrimaryButton } from "@/ui/primitive/Button";
 
 export function SubjectContent({ subject_id }: { subject_id: number }) {
   const [showFullInfo, setShowFullInfo] = useState(false);
@@ -166,11 +167,8 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
                       </>
                     ) : (
                       <>
-                        <Button
+                        <PrimaryButton
                           colorType={"neutral"}
-                          type={"primary"}
-                          icon={<InboxArrowDownIcon />}
-                          label="收藏"
                           onClick={() => {
                             if (session) {
                               openToast({
@@ -194,17 +192,12 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
                               });
                             }
                           }}
-                        />
-                        <Button
+                        >
+                          <InboxArrowDownIcon className="mr-2 h-5 w-5" />
+                          收藏
+                        </PrimaryButton>
+                        <OutlineButton
                           colorType={"neutral"}
-                          type={"outline"}
-                          icon={<ChevronDownIcon />}
-                          label={
-                            <span className="flex items-center space-x-1">
-                              <StarIcon className="h-5 w-5" />
-                              <span>评分</span>
-                            </span>
-                          }
                           onClick={() => {
                             if (session) {
                               openToast({
@@ -217,8 +210,13 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
                               });
                             }
                           }}
-                          revert
-                        />
+                        >
+                          <ChevronDownIcon className="mr-2 h-5 w-5" />
+                          <span className="flex items-center space-x-1">
+                            <StarIcon className="h-5 w-5" />
+                            <span>评分</span>
+                          </span>
+                        </OutlineButton>
                         <MoreDropdownMenu subject_id={subjectData.id} />
                       </>
                     )}

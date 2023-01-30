@@ -16,7 +16,6 @@ import {
   EllipsisVerticalIcon,
   UserIcon,
 } from "@heroicons/react/20/solid";
-import { Button } from "@/ui/Button";
 import { STORYBOOK_SUBJECT_ID } from "@/lib/constant";
 import { useToast } from "@/hooks/use-toast";
 import { createIssueToast } from "@/lib/toast";
@@ -25,6 +24,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { screen, userEvent, within } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
+import { OutlineButton, OutlineButton_Icon } from "@/ui/primitive/Button";
 
 const meta: Meta = {
   title: "DropdownMenu",
@@ -82,12 +82,9 @@ export const MoreDropdownMenu: Story = {
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button
-            aria-label={"more"}
-            colorType={"neutral"}
-            type={"outline"}
-            icon={<EllipsisVerticalIcon />}
-          />
+          <OutlineButton_Icon aria-label={"more"} colorType={"neutral"}>
+            <EllipsisVerticalIcon className="h-6 w-6" />
+          </OutlineButton_Icon>
         </DropdownMenuTrigger>
         <DropdownMenuContent_Simple menuItems={menuItems} align="start" />
       </DropdownMenu>
@@ -203,13 +200,10 @@ export const SortDropdownMenu: Story = {
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button
-            aria-label={"sort"}
-            colorType={"neutral"}
-            type={"outline"}
-            label="排序"
-            icon={<ArrowsUpDownIcon />}
-          />
+          <OutlineButton aria-label={"sort"} colorType={"neutral"}>
+            <ArrowsUpDownIcon className="mr-2 h-5 w-5" />
+            排序
+          </OutlineButton>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" sideOffset={8} className="w-36">
           <DropdownMenuRadioGroup

@@ -1,8 +1,8 @@
 import type { Meta } from "@storybook/react";
 import { useEpisodesPageData } from "@/hooks/use-episode";
 import { STORYBOOK_SUBJECT_ID } from "@/lib/constant";
-import { Button } from "@/ui/Button";
 import { reactQueryDevtoolsDecorator } from "@/lib/storybook";
+import { SecondaryButton } from "@/ui/primitive/Button";
 
 const meta: Meta = {
   title: "use-episode",
@@ -23,23 +23,21 @@ export const EpisodesDataHook = () => {
     <>
       {isSuccess ? (
         <div className="relative">
-          <Button
+          <SecondaryButton
             colorType={"accent"}
-            type={"secondary"}
             className="absolute right-0 bottom-0 select-none"
-            label={
-              isFetchingNextPage
-                ? "Loading more..."
-                : hasNextPage
-                ? "Load More"
-                : "Nothing more to load"
-            }
             onClick={() => {
               void (async () => {
                 await fetchNextPage();
               })();
             }}
-          />
+          >
+            {isFetchingNextPage
+              ? "Loading more..."
+              : hasNextPage
+              ? "Load More"
+              : "Nothing more to load"}
+          </SecondaryButton>
           <div>
             <pre className="text-xs">
               data: {JSON.stringify(episodesData, null, 2)}
