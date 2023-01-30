@@ -22,3 +22,7 @@ export const panelDecorator = (Story: React.ComponentType) => {
 export const headerMarginDecorator = (Story: React.ComponentType) => {
   return <div className="mt-16">{<Story />}</div>;
 };
+
+export const rowDecorator = (Story: React.ComponentType) => {
+  return <div className="grid grid-cols-4 gap-4">{<Story />}</div>;
+};

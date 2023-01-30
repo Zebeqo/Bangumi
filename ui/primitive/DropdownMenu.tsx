@@ -3,8 +3,8 @@
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 import { forwardRef } from "react";
 import { cn } from "@/lib/utils";
-import { Button } from "@/ui/Button";
 import { CheckIcon } from "@heroicons/react/20/solid";
+import { GhostButton } from "@/ui/primitive/Button";
 
 const DropdownMenu = DropdownMenuPrimitive.Root;
 
@@ -77,17 +77,14 @@ const DropdownMenuContent_Simple = forwardRef<
   <DropdownMenuContent {...props} ref={ref}>
     {menuItems.map(({ label, handleSelect }, i) => (
       <DropdownMenuPrimitive.Item
-        key={i}
+        key={`${label}-${i}`}
         onSelect={handleSelect}
         className="outline-none"
       >
-        <Button
-          colorType="neutral"
-          icon={menuItems[i].icon}
-          type="ghost"
-          label={label}
-          className="w-full justify-start"
-        />
+        <GhostButton colorType="neutral" className="w-full justify-start">
+          {menuItems[i].icon}
+          {label}
+        </GhostButton>
       </DropdownMenuPrimitive.Item>
     ))}
   </DropdownMenuContent>

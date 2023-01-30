@@ -2,7 +2,6 @@
 
 import type { z } from "zod";
 import type { episodesPageScheme } from "@/lib/episode";
-import { Button } from "@/ui/Button";
 import { cn } from "@/lib/utils";
 import {
   CalendarDaysIcon,
@@ -12,6 +11,7 @@ import {
 import { useCollectionData } from "@/hooks/use-collection";
 import { useEpisodeMutation } from "@/hooks/use-episode";
 import { useToast } from "@/hooks/use-toast";
+import { GhostButton, SelectedButton } from "@/ui/primitive/Button";
 
 export function EPListItemList({
   episodesData,
@@ -79,12 +79,15 @@ function EPItem({
   return (
     <div className="flex items-center justify-between px-2">
       <div className="flex items-center space-x-4 p-2">
-        <Button
-          colorType={"neutral"}
-          type={isSelected ? "selected" : "ghost"}
-          label={episodeData.ep}
-          onClick={onClickIndex}
-        />
+        {isSelected ? (
+          <SelectedButton colorType={"neutral"} onClick={onClickIndex}>
+            {episodeData.ep}
+          </SelectedButton>
+        ) : (
+          <GhostButton colorType={"neutral"} onClick={onClickIndex}>
+            {episodeData.ep}
+          </GhostButton>
+        )}
         <div className="flex flex-col space-y-1">
           <div className="flex items-center font-medium">
             <span className="text-xl text-neutral-12">
@@ -111,14 +114,14 @@ function EPItem({
           </div>
         </div>
       </div>
-      <Button
+      <GhostButton
         colorType={"neutral"}
-        aria-label="comment"
-        type={"ghost"}
-        label={episodeData.comment.toString()}
-        icon={<ChatBubbleLeftRightIcon />}
         onClick={onClickBubble}
-      />
+        aria-label="comment"
+      >
+        <ChatBubbleLeftRightIcon className="mr-2 h-5 w-5" />
+        {episodeData.comment.toString()}
+      </GhostButton>
     </div>
   );
 }

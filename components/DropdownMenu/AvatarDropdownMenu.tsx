@@ -22,21 +22,21 @@ export const AvatarDropdownMenu = ({ imageURL }: { imageURL: string }) => {
   const menuItems: MenuItem[] = [
     {
       label: "个人主页",
-      icon: <UserIcon />,
+      icon: <UserIcon className="mr-2 h-5 w-5" />,
       handleSelect: () => {
         openToast(createIssueToast(38));
       },
     },
     {
       label: "设置",
-      icon: <Cog6ToothIcon />,
+      icon: <Cog6ToothIcon className="mr-2 h-5 w-5" />,
       handleSelect: () => {
         openToast(createIssueToast(40));
       },
     },
     {
       label: "登出",
-      icon: <ArrowRightOnRectangleIcon />,
+      icon: <ArrowRightOnRectangleIcon className="mr-2 h-5 w-5" />,
       handleSelect: () => {
         void signOut();
       },

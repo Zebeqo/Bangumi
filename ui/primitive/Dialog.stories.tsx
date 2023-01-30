@@ -11,7 +11,7 @@ import {
 } from "@/ui/primitive/Dialog";
 import { SubjectContentSkeleton } from "@/components/Skeleton/SubjectContentSkeleton";
 import { useState } from "react";
-import { Button } from "@/ui/Button";
+import { SecondaryButton } from "@/ui/primitive/Button";
 
 const meta: Meta = {
   title: "Dialog",
@@ -28,12 +28,9 @@ export const Panel: Story = {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button
-            colorType={"accent"}
-            type={"secondary"}
-            label="open panel"
-            aria-label={"open panel"}
-          />
+          <SecondaryButton colorType={"accent"} aria-label={"open panel"}>
+            open panel
+          </SecondaryButton>
         </DialogTrigger>
         <DialogContent_Panel isOpen={open}>
           <SubjectContentSkeleton />
@@ -50,12 +47,9 @@ export const MainDialog: Story = {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button
-            colorType={"accent"}
-            type={"secondary"}
-            label="pop dialog"
-            aria-label={"pop dialog"}
-          />
+          <SecondaryButton colorType={"accent"} aria-label={"pop dialog"}>
+            pop dialog
+          </SecondaryButton>
         </DialogTrigger>
         <DialogContent_Main isOpen={open}>
           <DialogContentHeader_Main>
@@ -76,12 +70,9 @@ export const MainDialog_Action: Story = {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button
-            colorType={"accent"}
-            type={"secondary"}
-            label="pop dialog"
-            aria-label={"pop dialog"}
-          />
+          <SecondaryButton colorType={"accent"} aria-label={"pop dialog"}>
+            pop dialog
+          </SecondaryButton>
         </DialogTrigger>
         <DialogContent_Main isOpen={open}>
           <DialogContentHeader_Main>
@@ -89,13 +80,13 @@ export const MainDialog_Action: Story = {
             <DialogClose asChild />
           </DialogContentHeader_Main>
           <DialogDescription>很好看啊!</DialogDescription>
-          <Button
+          <SecondaryButton
             colorType={"accent"}
-            type={"primary"}
-            label="关闭"
             onClick={() => setOpen(false)}
             className="mt-4 mr-6"
-          />
+          >
+            关闭
+          </SecondaryButton>
         </DialogContent_Main>
       </Dialog>
     );

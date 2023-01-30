@@ -5,7 +5,7 @@ import { forwardRef, Fragment } from "react";
 import { Transition } from "@headlessui/react";
 import { cn } from "@/lib/utils";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { Button } from "@/ui/Button";
+import { GhostButton_Icon } from "@/ui/primitive/Button";
 
 const Dialog = DialogPrimitive.Root;
 
@@ -153,7 +153,9 @@ const DialogClose = forwardRef<
 >(({ children, ...props }, ref) => (
   <DialogPrimitive.Close ref={ref} {...props}>
     {children ?? (
-      <Button colorType={"neutral"} type={"ghost"} icon={<XMarkIcon />} />
+      <GhostButton_Icon colorType={"neutral"}>
+        <XMarkIcon className="h-6 w-6" />
+      </GhostButton_Icon>
     )}
   </DialogPrimitive.Close>
 ));

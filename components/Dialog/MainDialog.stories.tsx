@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { MainDialog } from "@/components/Dialog/MainDialog";
 import { useDialog } from "@/hooks/use-dialog";
-import { Button } from "@/ui/Button";
+import { Button } from "@/ui/primitive/Button";
+import { SecondaryButton } from "@/ui/primitive/Button";
 
 const meta: Meta<typeof MainDialog> = {
   title: "Dialog",
@@ -15,10 +16,8 @@ export const commentDialog: Story = {
   render: () => {
     const openDialog = useDialog();
     return (
-      <Button
+      <SecondaryButton
         colorType={"accent"}
-        type={"secondary"}
-        label="Success Toast"
         aria-label={"open toast"}
         onClick={() => {
           openDialog({
@@ -26,7 +25,9 @@ export const commentDialog: Story = {
             description: "真好看！",
           });
         }}
-      />
+      >
+        Success Toast
+      </SecondaryButton>
     );
   },
 };

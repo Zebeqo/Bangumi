@@ -1,7 +1,6 @@
 "use client";
 
 import { cn, panelScrollToTop } from "@/lib/utils";
-import { Button } from "@/ui/Button";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
@@ -12,6 +11,7 @@ import { useInView } from "react-intersection-observer";
 import { useReducerAtom } from "jotai/react/utils";
 import { panelHistoryAtom, panelReducer } from "@/lib/panel";
 import { Suspense } from "react";
+import { GhostButton_Icon, OutlineButton_Icon } from "@/ui/primitive/Button";
 
 export function PanelNav({
   title,
@@ -46,28 +46,28 @@ export function PanelNav({
         <div className="flex items-center space-x-8">
           {/*SubjectContent.NavButtonGroup*/}
           <div className="flex space-x-2">
-            <Button
+            <OutlineButton_Icon
               colorType="neutral"
-              type="outline"
-              icon={<ChevronLeftIcon />}
               onClick={() => {
                 if (panelHistory.index) {
                   dispatch({ type: "back" });
                   panelScrollToTop();
                 }
               }}
-            />
-            <Button
+            >
+              <ChevronLeftIcon className="h-6 w-6" />
+            </OutlineButton_Icon>
+            <OutlineButton_Icon
               colorType="neutral"
-              type="outline"
-              icon={<ChevronRightIcon />}
               onClick={() => {
                 if (panelHistory.index < panelHistory.history.length - 1) {
                   dispatch({ type: "forward" });
                   panelScrollToTop();
                 }
               }}
-            />
+            >
+              <ChevronRightIcon className="h-6 w-6" />
+            </OutlineButton_Icon>
           </div>
           {/*SubjectContent.TitleGroup*/}
           <div className="flex flex-col">
@@ -84,26 +84,13 @@ export function PanelNav({
         </div>
         {/*SubjectContent.NavRight*/}
         <div>
-          <DialogPrimitive.Close>
-            <Button
-              colorType="neutral"
-              type={"ghost"}
-              icon={<XMarkIcon />}
-              aria-label="Close"
-            />
+          <DialogPrimitive.Close asChild>
+            <GhostButton_Icon colorType="neutral" aria-label="Close">
+              <XMarkIcon className="h-6 w-6" />
+            </GhostButton_Icon>
           </DialogPrimitive.Close>
         </div>
       </div>
     </Suspense>
   );
 }
-
-const Skeleton = () => {
-  return (
-    <div className="flex h-[76px] items-center px-8 py-4">
-      <div className="h-8 w-[360px] rounded-full bg-neutral-6" />
-    </div>
-  );
-};
-
-PanelNav.Skeleton = Skeleton;

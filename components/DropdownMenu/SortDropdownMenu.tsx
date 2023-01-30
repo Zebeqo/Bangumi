@@ -2,7 +2,6 @@
 
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { ArrowsUpDownIcon } from "@heroicons/react/20/solid";
-import { Button } from "@/ui/Button";
 import {
   DropdownMenu,
   DropdownMenuRadioGroup,
@@ -11,6 +10,7 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
 } from "@/ui/primitive/DropdownMenu";
+import { OutlineButton } from "@/ui/primitive/Button";
 
 const sortRadioItems = [
   {
@@ -59,13 +59,10 @@ export function SortDropdownMenu() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button
-          aria-label={"sort"}
-          colorType={"neutral"}
-          type={"outline"}
-          label="排序"
-          icon={<ArrowsUpDownIcon />}
-        />
+        <OutlineButton colorType={"neutral"} aria-label={"sort"}>
+          <ArrowsUpDownIcon className="mr-2 h-5 w-5" />
+          排序
+        </OutlineButton>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" sideOffset={8} className="w-36">
         <DropdownMenuRadioGroup
