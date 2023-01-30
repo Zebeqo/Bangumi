@@ -1,7 +1,6 @@
 "use client";
 
 import { EllipsisVerticalIcon } from "@heroicons/react/20/solid";
-import { Button } from "@/ui/primitive/Button";
 import { useToast } from "@/hooks/use-toast";
 import type { MenuItem } from "@/ui/primitive/DropdownMenu";
 import {

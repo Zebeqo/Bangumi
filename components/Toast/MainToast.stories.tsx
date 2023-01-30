@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { MainToast } from "@/components/Toast/MainToast";
 import { useErrorToast, useToast } from "@/hooks/use-toast";
-import { Button } from "@/ui/primitive/Button";
 import { createIssueToast } from "@/lib/toast";
 import {
   fireEvent,
