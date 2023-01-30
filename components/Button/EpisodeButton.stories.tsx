@@ -10,7 +10,7 @@ import { useCollectionData } from "@/hooks/use-collection";
 import { waitFor, within } from "@storybook/testing-library";
 
 const meta: Meta<typeof EpisodeButtonComponent> = {
-  title: "EpisodeButton",
+  title: "Button/EpisodeButton",
   component: EpisodeButtonComponent,
   decorators: [reactQueryDevtoolsDecorator],
 };

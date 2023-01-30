@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { LoginButton as LoginButtonComponent } from "./LoginButton";
 
 const meta: Meta = {
-  title: "LoginButton",
+  title: "Button/LoginButton",
 };
 
 export default meta;

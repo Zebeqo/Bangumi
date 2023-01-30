@@ -6,7 +6,7 @@ import { expect } from "@storybook/jest";
 import { reactQueryDevtoolsDecorator } from "@/lib/storybook";
 
 const meta: Meta<typeof RatingSelectComponent> = {
-  title: "RatingSelect",
+  title: "Select/RatingSelect",
   component: RatingSelectComponent,
   decorators: [reactQueryDevtoolsDecorator],
 };
