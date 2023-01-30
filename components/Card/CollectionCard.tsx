@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { InfoButton } from "@/components/Button/InfoButton";
-import { Button } from "@/ui/primitive/Button";
 import { ChatBubbleLeftRightIcon } from "@heroicons/react/24/outline";
 import {
   CalendarDaysIcon,

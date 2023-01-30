@@ -1,5 +1,4 @@
 "use client";
-import { Button } from "@/ui/primitive/Button";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { GhostButton, SelectedButton } from "@/ui/primitive/Button";

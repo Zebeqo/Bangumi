@@ -5,7 +5,6 @@ import { CollectionTypeSelect } from "@/components/Select/CollectionTypeSelect";
 import { RatingSelect } from "@/components/Select/RatingSelect";
 import { EpisodeButton as EpisodeButtonComponent } from "@/components/Button/EpisodeButton";
 import { MoreDropdownMenu } from "@/components/DropdownMenu/MoreDropdownMenu";
-import { Button } from "@/ui/primitive/Button";
 import {
   ChevronDownIcon,
   InboxArrowDownIcon,

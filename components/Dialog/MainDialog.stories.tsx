@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { MainDialog } from "@/components/Dialog/MainDialog";
 import { useDialog } from "@/hooks/use-dialog";
-import { Button } from "@/ui/primitive/Button";
 import { SecondaryButton } from "@/ui/primitive/Button";
 
 const meta: Meta<typeof MainDialog> = {
