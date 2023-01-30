@@ -5,7 +5,7 @@ import { userEvent, screen, within } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
 
 const meta: Meta<typeof MoreDropdownMenuComponent> = {
-  title: "MoreDropdownMenu",
+  title: "DropdownMenu/MoreDropdownMenu",
   component: MoreDropdownMenuComponent,
 };
 

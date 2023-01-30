@@ -13,7 +13,7 @@ import {
 import { panelDecorator, reactQueryDevtoolsDecorator } from "@/lib/storybook";
 
 const meta: Meta<typeof Panel> = {
-  title: "Panel",
+  title: "Dialog/Panel",
   component: Panel,
   decorators: [panelDecorator, reactQueryDevtoolsDecorator],
 };

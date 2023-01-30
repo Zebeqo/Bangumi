@@ -4,7 +4,7 @@ import { STORYBOOK_SUBJECT_ID } from "@/lib/constant";
 import { panelDecorator } from "@/lib/storybook";
 
 const meta: Meta = {
-  title: "InfoButton",
+  title: "Button/InfoButton",
   decorators: [panelDecorator],
 };
 

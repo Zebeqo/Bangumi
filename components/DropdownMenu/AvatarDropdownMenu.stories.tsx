@@ -4,7 +4,7 @@ import { AvatarDropdownMenu as AvatarDropdownMenuComponent } from "@/components/
 import { userEvent, within, screen } from "@storybook/testing-library";
 
 const meta: Meta<typeof AvatarDropdownMenuComponent> = {
-  title: "AvatarDropdownMenu",
+  title: "DropdownMenu/AvatarDropdownMenu",
   component: AvatarDropdownMenuComponent,
 };
 

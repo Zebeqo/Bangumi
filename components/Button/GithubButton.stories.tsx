@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { GithubButton as GithubButtonComponent } from "./GithubButton";
 
 const meta: Meta = {
-  title: "GithubButton",
+  title: "Button/GithubButton",
 };
 
 export default meta;
