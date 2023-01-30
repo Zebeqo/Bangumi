@@ -1,6 +1,6 @@
 export function EPItemSkeleton() {
   return (
-    <div className="flex h-16 items-center justify-between px-2">
+    <div className="flex h-16 animate-pulse items-center justify-between px-2">
       <div className="flex items-center space-x-4 p-2">
         <div className="w-6" />
         <div className="flex flex-col space-y-1">

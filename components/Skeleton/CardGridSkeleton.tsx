@@ -3,7 +3,7 @@ import { GridWrapper } from "@/ui/GridWrapper";
 
 export function CardGridSkeleton() {
   return (
-    <GridWrapper className="animate-pulse">
+    <GridWrapper>
       {Array.from({ length: 20 }).map((_, index) => (
         <CardSkeleton key={index} />
       ))}

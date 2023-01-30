@@ -1,7 +1,7 @@
 import TopPage from "./top/[[...type]]/page";
 import TopLayout from "./top/[[...type]]/layout";
 import { Suspense } from "react";
-import { CardGridSkeleton } from "@/ui/CardGridSkeleton";
+import { CardGridSkeleton } from "@/components/Skeleton/CardGridSkeleton";
 
 export default function Page() {
   return (

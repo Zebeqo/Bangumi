@@ -16,7 +16,7 @@ export function EPListContent({ subject_id }: { subject_id: number }) {
       <div className="px-8">
         <Suspense
           fallback={
-            <div className="flex animate-pulse flex-col space-y-2 p-2">
+            <div className="flex flex-col space-y-2 p-2">
               <div className="h-[60px] w-full" />
               <div className="flex flex-col space-y-2 py-2">
                 {Array.from({ length: 10 }).map((_, i) => (
