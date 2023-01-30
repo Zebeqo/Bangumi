@@ -36,7 +36,7 @@ export function RelationSubjectList({
   return (
     <Suspense
       fallback={
-        <div className="flex animate-pulse flex-col space-y-2 p-2">
+        <div className="flex flex-col space-y-2 p-2">
           <div className="h-12 w-full" />
           <div className="grid grid-cols-4 gap-4 px-8 py-2">
             {Array.from({ length: 8 }).map((_, i) => (

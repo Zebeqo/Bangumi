@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { CollectionCardList } from "@/components/Card/CollectionCardList";
 import { subjectNameToTypeScheme } from "@/lib/subject";
 import { Suspense } from "react";
-import { CardGridSkeleton } from "@/ui/CardGridSkeleton";
+import { CardGridSkeleton } from "@/components/Skeleton/CardGridSkeleton";
 import { collectionNameToTypeScheme } from "@/lib/map/collectionTypeMap";
 
 // https://github.com/nextauthjs/next-auth/issues/5647#issuecomment-1342099364

@@ -1,6 +1,6 @@
 export function CardSkeleton() {
   return (
-    <div className="flex h-[201.59px] w-[30rem]">
+    <div className="flex h-[201.59px] w-[30rem] animate-pulse">
       <div className="aspect-[75/106] h-full rounded-2xl rounded-2xl bg-neutral-6" />
       <div className="flex w-full flex-col px-2 py-4">
         <div className="h-6 w-52 rounded-full bg-neutral-6 py-2" />
