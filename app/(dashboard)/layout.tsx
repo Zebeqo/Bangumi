@@ -2,7 +2,7 @@ import { Header } from "@/components/Header";
 import { Sidebar } from "@/components/Sidebar";
 import { Panel } from "@/components/Panel/Panel";
 import ToastProvider from "@/components/Provider/ToastProvider";
-import { MainToast } from "@/components/Toast/MainToast";
+import { MainToast } from "@/components/MainToast/MainToast";
 import { MainDialog } from "@/components/Dialog/MainDialog";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
