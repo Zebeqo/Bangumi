@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { CommentBadge } from "@/ui/CommentBadge";
 import { usePersonData } from "@/hooks/use-person";
+import { ChatBubbleLeftRightIcon } from "@heroicons/react/20/solid";
+import { Badge } from "@/ui/primitive/Badge";
 
 export function PersonAvatarCard({
   id,
@@ -17,10 +18,13 @@ export function PersonAvatarCard({
     <>
       {personData && (
         <div className="relative rounded-md bg-neutral-3 px-4 py-6 hover:bg-neutral-5">
-          <CommentBadge
-            count={personData.stat.comments}
-            className="absolute top-2 right-2 z-10"
-          />
+          <Badge
+            colorType={"success"}
+            className="absolute top-2 right-2 z-10 rounded-full py-2"
+          >
+            <ChatBubbleLeftRightIcon className="mr-1 h-4 w-4" />
+            {personData.stat.comments}
+          </Badge>
           <div className="flex flex-col space-y-4">
             <div className="relative h-32 w-32 self-center overflow-hidden rounded-full">
               <Image

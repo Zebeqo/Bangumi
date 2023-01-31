@@ -4,12 +4,12 @@ import {
   ClockIcon,
   TableCellsIcon,
 } from "@heroicons/react/20/solid";
-import { TagBadge } from "@/ui/TagBadge";
 import { Rating } from "@/ui/Rating";
 import { ChatBubbleLeftRightIcon } from "@heroicons/react/24/outline";
 import { InfoButton } from "@/components/Button/InfoButton";
 import { subjectScheme } from "@/lib/subject";
 import { PrimaryButton_Icon } from "@/ui/primitive/Button";
+import { Badge } from "@/ui/primitive/Badge";
 
 async function getSubjectData(id: number) {
   return subjectScheme.safeParse(
@@ -106,8 +106,10 @@ export async function Card({
         </div>
         {/*Card.TagGroup*/}
         <div className="h-[4.6rem] overflow-hidden py-1 leading-loose">
-          {tags.slice(0, 10).map((tag, index) => (
-            <TagBadge key={index} color="primary" label={tag.name} />
+          {tags.slice(0, 10).map((tag) => (
+            <Badge key={tag.name} className="mr-2" colorType={"primary"}>
+              {tag.name}
+            </Badge>
           ))}
         </div>
         {/*Card.Footer*/}

@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { TagBadge } from "@/ui/TagBadge";
 import { cn } from "@/lib/utils";
 import { CollectionTypeSelect } from "@/components/Select/CollectionTypeSelect";
 import { RatingSelect } from "@/components/Select/RatingSelect";
@@ -21,6 +20,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useSubjectData } from "@/hooks/use-subject";
 import { PanelNav } from "@/components/Panel/PanelNav";
 import { OutlineButton, PrimaryButton } from "@/ui/primitive/Button";
+import { Badge } from "@/ui/primitive/Badge";
 
 export function SubjectContent({ subject_id }: { subject_id: number }) {
   const [showFullInfo, setShowFullInfo] = useState(false);
@@ -99,11 +99,9 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
                   <div className="flex space-x-2 p-2">
                     {/*SubjectContent.Rating*/}
                     <div className="flex flex-col items-center space-y-2 p-2">
-                      <TagBadge
-                        label={"评分"}
-                        color={"accent"}
-                        className="mr-0 w-full text-base"
-                      />
+                      <Badge colorType={"accent"} className="w-full text-base">
+                        评分
+                      </Badge>
                       <span className="text-4xl font-bold text-accent-11">
                         {subjectData.rating.score.toFixed(1)}
                       </span>
@@ -115,8 +113,15 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
                     <div className="h-full w-px bg-neutral-6"></div>
                     {/*SubjectContent.TagGroup*/}
                     <div className="max-w-[564px] leading-loose">
-                      {subjectData.tags.map(({ count, name }, index) => (
-                        <TagBadge key={index} label={name} count={count} />
+                      {subjectData.tags.map(({ count, name }) => (
+                        <Badge
+                          colorType={"primary"}
+                          key={name}
+                          className="mr-2"
+                        >
+                          {name}
+                          <span className="ml-1 text-neutral-11">{count}</span>
+                        </Badge>
                       ))}
                     </div>
                   </div>
