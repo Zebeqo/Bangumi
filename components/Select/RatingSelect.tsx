@@ -17,13 +17,6 @@ import {
   SelectItem,
 } from "@/ui/primitive/Select";
 
-export const TextWrapper = ({ children }: { children?: React.ReactNode }) => (
-  <span className="flex items-center space-x-1">
-    <StarIcon className="h-5 w-5" />
-    <span>{children}</span>
-  </span>
-);
-
 export function RatingSelect({ subject_id }: { subject_id: number }) {
   const { data: collectionData } = useCollectionData(subject_id);
   const mutateCollection = useCollectionMutation();
