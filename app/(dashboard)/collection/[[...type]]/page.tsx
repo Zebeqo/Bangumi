@@ -2,7 +2,7 @@
 
 import { notFound } from "next/navigation";
 import { CollectionCardList } from "@/components/Card/CollectionCardList";
-import { subjectNameToTypeScheme } from "@/lib/subject";
+import { subjectNameToTypeScheme } from "@/lib/api/subject";
 import { Suspense } from "react";
 import { CardGridSkeleton } from "@/components/Skeleton/CardGridSkeleton";
 import { collectionNameToTypeScheme } from "@/lib/map/collectionTypeMap";

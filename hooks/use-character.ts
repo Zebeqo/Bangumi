@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { characterScheme, subjectCharactersScheme } from "@/lib/character";
+import { characterScheme, subjectCharactersScheme } from "@/lib/api/character";
 import { errorScheme } from "@/lib/error";
 import { useSession } from "next-auth/react";
 import { useErrorToast } from "@/hooks/use-toast";

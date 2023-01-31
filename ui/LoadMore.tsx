@@ -6,7 +6,7 @@ import { forwardRef } from "react";
 interface Props {
   hasMore?: boolean;
 }
-export const LoadMoreIndicator = forwardRef<HTMLDivElement, Props>(
+export const LoadMore = forwardRef<HTMLDivElement, Props>(
   ({ hasMore = true }, ref) => {
     return (
       <span ref={ref} className="inline-flex items-center space-x-1">
@@ -25,4 +25,4 @@ export const LoadMoreIndicator = forwardRef<HTMLDivElement, Props>(
   }
 );
 
-LoadMoreIndicator.displayName = "LoadMoreIndicator";
+LoadMore.displayName = "LoadMore";

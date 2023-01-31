@@ -1,6 +1,6 @@
 import type { VariantProps } from "class-variance-authority";
 import { cva } from "class-variance-authority";
-import type { Color } from "@/lib/colorWrapper";
+import type { Color } from "@/lib/color";
 import { cn } from "@/lib/utils";
 import { forwardRef } from "react";
 

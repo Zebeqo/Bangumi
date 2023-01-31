@@ -5,7 +5,7 @@ import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
 
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { LoadingSpinner } from "@/ui/LoadingSpinner";
+import { LoadingSpinner } from "@/ui/icon/24/LoadingSpinner";
 import { GhostButton_Icon } from "@/ui/primitive/Button";
 
 export function ThemeButton() {

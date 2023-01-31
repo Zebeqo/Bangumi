@@ -9,7 +9,7 @@ import {
   collectionScheme,
   collectionsPageScheme,
   mutateCollectionScheme,
-} from "@/lib/collection";
+} from "@/lib/api/collection";
 import { errorScheme } from "@/lib/error";
 import { useSession } from "next-auth/react";
 import { useErrorToast, useToast } from "@/hooks/use-toast";

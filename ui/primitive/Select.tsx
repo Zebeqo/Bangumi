@@ -9,7 +9,7 @@ import {
 } from "@heroicons/react/20/solid";
 import { forwardRef } from "react";
 import { cn } from "@/lib/utils";
-import type { Color } from "@/lib/colorWrapper";
+import type { Color } from "@/lib/color";
 import { OutlineButton } from "@/ui/primitive/Button";
 
 const Select = SelectPrimitive.Root;

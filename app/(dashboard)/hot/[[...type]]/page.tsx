@@ -3,7 +3,7 @@
 import { notFound } from "next/navigation";
 import { Card } from "@/components/Card/Card";
 import * as cheerio from "cheerio";
-import { GridWrapper } from "@/ui/GridWrapper";
+import { GridWrapper } from "@/components/GridWrapper";
 
 // https://github.com/nextauthjs/next-auth/issues/5647#issuecomment-1342099364
 // https://github.com/vercel/next.js/issues/44764

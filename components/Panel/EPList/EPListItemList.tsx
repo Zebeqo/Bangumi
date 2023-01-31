@@ -1,7 +1,7 @@
 "use client";
 
 import type { z } from "zod";
-import type { episodesPageScheme } from "@/lib/episode";
+import type { episodesPageScheme } from "@/lib/api/episode";
 import { cn } from "@/lib/utils";
 import {
   CalendarDaysIcon,

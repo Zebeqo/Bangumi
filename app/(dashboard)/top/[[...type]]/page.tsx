@@ -2,9 +2,9 @@
 
 import { notFound } from "next/navigation";
 import { Card } from "@/components/Card/Card";
-import { GridWrapper } from "@/ui/GridWrapper";
-import { subjectNameToTypeScheme } from "@/lib/subject";
-import { searchResultScheme } from "@/lib/search";
+import { GridWrapper } from "@/components/GridWrapper";
+import { subjectNameToTypeScheme } from "@/lib/api/subject";
+import { searchResultScheme } from "@/lib/api/search";
 
 // https://github.com/nextauthjs/next-auth/issues/5647#issuecomment-1342099364
 // https://github.com/vercel/next.js/issues/44764

@@ -1,5 +1,5 @@
 import { CardSkeleton } from "@/components/Skeleton/CardSkeleton";
-import { GridWrapper } from "@/ui/GridWrapper";
+import { GridWrapper } from "@/components/GridWrapper";
 
 export function CardGridSkeleton() {
   return (
