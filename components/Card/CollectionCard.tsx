@@ -6,7 +6,6 @@ import {
   ClockIcon,
   TableCellsIcon,
 } from "@heroicons/react/20/solid";
-import { TagBadge } from "@/ui/TagBadge";
 import { Rating } from "@/ui/Rating";
 import { cn } from "@/lib/utils";
 import type { z } from "zod";
@@ -16,6 +15,7 @@ import { personalViewModeAtom } from "@/components/Switch/personalViewSwitch";
 import { useRef, useState } from "react";
 import { useDialog } from "@/hooks/use-dialog";
 import { PrimaryButton_Icon } from "@/ui/primitive/Button";
+import { Badge } from "@/ui/primitive/Badge";
 
 export function CollectionCard({
   collection,
@@ -91,11 +91,15 @@ export function CollectionCard({
         {/*Card.TagGroup*/}
         <div className="h-[4.6rem] overflow-hidden py-1 leading-loose">
           {pvMode
-            ? collection.tags.map((tag, index) => (
-                <TagBadge key={index} color="primary" label={tag} />
+            ? collection.tags.map((tag) => (
+                <Badge colorType={"primary"} key={tag} className="mr-2">
+                  {tag}
+                </Badge>
               ))
-            : collection.subject.tags.map((tag, index) => (
-                <TagBadge key={index} color="primary" label={tag.name} />
+            : collection.subject.tags.map((tag) => (
+                <Badge colorType={"primary"} key={tag.name} className="mr-2">
+                  {tag.name}
+                </Badge>
               ))}
         </div>
         {/*Card.Footer*/}
