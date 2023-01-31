@@ -12,6 +12,7 @@ import {
 import { SubjectContentSkeleton } from "@/components/Skeleton/SubjectContentSkeleton";
 import { useState } from "react";
 import { SecondaryButton } from "@/ui/primitive/Button";
+import { action } from "@storybook/addon-actions";
 
 const meta: Meta = {
   title: "Dialog",
@@ -19,9 +20,7 @@ const meta: Meta = {
 
 export default meta;
 
-type Story = StoryObj;
-
-export const Panel: Story = {
+export const Panel: StoryObj = {
   render: () => {
     const [open, setOpen] = useState(false);
 
@@ -40,8 +39,15 @@ export const Panel: Story = {
   },
 };
 
-export const MainDialog: Story = {
-  render: () => {
+export const MainDialog: StoryObj<{
+  title: string;
+  description: string;
+}> = {
+  args: {
+    title: "评论",
+    description: "很好看啊!",
+  },
+  render: ({ title, description }) => {
     const [open, setOpen] = useState(false);
 
     return (
@@ -53,18 +59,29 @@ export const MainDialog: Story = {
         </DialogTrigger>
         <DialogContent_Main isOpen={open}>
           <DialogContentHeader_Main>
-            <DialogTitle>评论</DialogTitle>
+            <DialogTitle>{title}</DialogTitle>
             <DialogClose asChild />
           </DialogContentHeader_Main>
-          <DialogDescription>很好看啊!</DialogDescription>
+          <DialogDescription>{description}</DialogDescription>
         </DialogContent_Main>
       </Dialog>
     );
   },
 };
 
-export const MainDialog_Action: Story = {
-  render: () => {
+export const MainDialog_Action: StoryObj<{
+  title: string;
+  description: string;
+  actionLabel: string;
+  handleAction: () => void;
+}> = {
+  args: {
+    title: "评论",
+    description: "很好看啊!",
+    actionLabel: "行动",
+    handleAction: action("action"),
+  },
+  render: ({ actionLabel, title, description, handleAction }) => {
     const [open, setOpen] = useState(false);
 
     return (
@@ -76,16 +93,16 @@ export const MainDialog_Action: Story = {
         </DialogTrigger>
         <DialogContent_Main isOpen={open}>
           <DialogContentHeader_Main>
-            <DialogTitle>评论</DialogTitle>
+            <DialogTitle>{title}</DialogTitle>
             <DialogClose asChild />
           </DialogContentHeader_Main>
-          <DialogDescription>很好看啊!</DialogDescription>
+          <DialogDescription>{description}</DialogDescription>
           <SecondaryButton
             colorType={"accent"}
-            onClick={() => setOpen(false)}
+            onClick={handleAction}
             className="mt-4 mr-6"
           >
-            关闭
+            {actionLabel}
           </SecondaryButton>
         </DialogContent_Main>
       </Dialog>

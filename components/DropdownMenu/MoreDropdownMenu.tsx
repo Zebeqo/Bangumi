@@ -63,7 +63,7 @@ export const MoreDropdownMenu = ({
           <EllipsisVerticalIcon className="h-6 w-6" />
         </OutlineButton_Icon>
       </DropdownMenuTrigger>
-      <DropdownMenuContent_Simple menuItems={menuItems} />
+      <DropdownMenuContent_Simple colorType={"neutral"} menuItems={menuItems} />
     </DropdownMenu>
   );
 };

@@ -5,6 +5,10 @@ import { forwardRef } from "react";
 import { cn } from "@/lib/utils";
 import { CheckIcon } from "@heroicons/react/20/solid";
 import { GhostButton } from "@/ui/primitive/Button";
+import type { VariantProps } from "class-variance-authority";
+import { cva } from "class-variance-authority";
+
+export type DropdownMenuColor = "primary" | "accent" | "neutral";
 
 const DropdownMenu = DropdownMenuPrimitive.Root;
 
@@ -12,26 +16,57 @@ const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger;
 
 const DropdownMenuRadioGroup = DropdownMenuPrimitive.RadioGroup;
 
+const dropdownMenuSeparator = cva("my-1 h-px", {
+  variants: {
+    colorType: {
+      primary: "bg-primary-6",
+      accent: "bg-accent-6",
+      neutral: "bg-neutral-6",
+    },
+  },
+});
+interface DropdownMenuSeparatorProps
+  extends React.ComponentPropsWithoutRef<
+      typeof DropdownMenuPrimitive.Separator
+    >,
+    Required<VariantProps<typeof dropdownMenuSeparator>> {}
 const DropdownMenuSeparator = forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Separator>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Separator>
->(({ className, ...props }, ref) => (
+  DropdownMenuSeparatorProps
+>(({ className, colorType, ...props }, ref) => (
   <DropdownMenuPrimitive.Separator
     ref={ref}
-    className={cn("my-1 h-px bg-neutral-6", className)}
+    className={cn(dropdownMenuSeparator({ colorType }), className)}
     {...props}
   />
 ));
 DropdownMenuSeparator.displayName = DropdownMenuPrimitive.Separator.displayName;
 
+const dropdownMenuRadioItem = cva(
+  "flex w-full cursor-default select-none items-center rounded-md px-2 py-2 outline-none",
+  {
+    variants: {
+      colorType: {
+        primary: "text-primary-11 focus:bg-primary-4 active:bg-primary-5",
+        accent: "text-accent-11 focus:bg-accent-4 active:bg-accent-5",
+        neutral: "text-neutral-11 focus:bg-neutral-4 active:bg-neutral-5",
+      },
+    },
+  }
+);
+interface DropdownMenuRadioItemProps
+  extends React.ComponentPropsWithoutRef<
+      typeof DropdownMenuPrimitive.RadioItem
+    >,
+    Required<VariantProps<typeof dropdownMenuRadioItem>> {}
 const DropdownMenuRadioItem = forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.RadioItem>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.RadioItem>
->(({ children, ...props }, ref) => (
+  DropdownMenuRadioItemProps
+>(({ children, colorType, className, ...props }, ref) => (
   <DropdownMenuPrimitive.RadioItem
     ref={ref}
+    className={cn(dropdownMenuRadioItem({ colorType }), className)}
     {...props}
-    className="flex w-full cursor-default select-none items-center rounded-md px-2 py-2 text-neutral-11 outline-none focus:bg-neutral-4 active:bg-neutral-5"
   >
     <span className="flex-grow text-sm">{children}</span>
     <DropdownMenuPrimitive.ItemIndicator>
@@ -41,19 +76,31 @@ const DropdownMenuRadioItem = forwardRef<
 ));
 DropdownMenuRadioItem.displayName = DropdownMenuPrimitive.RadioItem.displayName;
 
+const dropdownMenuContent = cva(
+  "z-50 w-auto rounded-lg px-2 py-2 shadow-lg outline-none ring-1 radix-side-bottom:animate-slide-down radix-side-top:animate-slide-up",
+  {
+    variants: {
+      colorType: {
+        primary: "bg-primary-1 ring-primary-6 text-primary-11",
+        accent: "bg-accent-1 ring-accent-6 text-accent-11",
+        neutral: "bg-neutral-1 ring-neutral-6 text-neutral-11",
+      },
+    },
+  }
+);
+interface DropdownMenuContentProps
+  extends React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Content>,
+    Required<VariantProps<typeof dropdownMenuContent>> {}
 const DropdownMenuContent = forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Content>
->(({ className, ...props }, ref) => (
+  DropdownMenuContentProps
+>(({ className, colorType, ...props }, ref) => (
   <DropdownMenuPrimitive.Portal>
     <DropdownMenuPrimitive.Content
       ref={ref}
       align="start"
       sideOffset={8}
-      className={cn(
-        "z-50 w-auto rounded-lg bg-neutral-1 px-2 py-2 shadow-lg outline-none ring-1 ring-neutral-6 radix-side-bottom:animate-slide-down radix-side-top:animate-slide-up",
-        className
-      )}
+      className={cn(dropdownMenuContent({ colorType }), className)}
       {...props}
     />
   </DropdownMenuPrimitive.Portal>
@@ -66,22 +113,22 @@ export interface MenuItem {
   icon?: React.ReactNode;
 }
 interface DropdownMenuSimpleContentProps
-  extends React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Content> {
+  extends React.ComponentPropsWithoutRef<typeof DropdownMenuContent> {
   menuItems: MenuItem[];
 }
 
 const DropdownMenuContent_Simple = forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Content>,
   DropdownMenuSimpleContentProps
->(({ menuItems, ...props }, ref) => (
-  <DropdownMenuContent {...props} ref={ref}>
+>(({ menuItems, colorType, ...props }, ref) => (
+  <DropdownMenuContent ref={ref} colorType={colorType} {...props}>
     {menuItems.map(({ label, handleSelect }, i) => (
       <DropdownMenuPrimitive.Item
         key={`${label}-${i}`}
         onSelect={handleSelect}
         className="outline-none"
       >
-        <GhostButton colorType="neutral" className="w-full justify-start">
+        <GhostButton colorType={colorType} className="w-full justify-start">
           {menuItems[i].icon && (
             <span className="mr-2 h-5 w-5">{menuItems[i].icon}</span>
           )}

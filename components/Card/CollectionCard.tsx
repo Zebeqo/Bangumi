@@ -114,6 +114,7 @@ export function CollectionCard({
               {/*Card.RatingStar*/}
               <div>
                 <Rating
+                  colorType={"accent"}
                   point={pvMode ? collection.rate : collection.subject.score}
                 />
               </div>

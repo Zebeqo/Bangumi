@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import type { MenuItem } from "@/ui/primitive/DropdownMenu";
+import type { DropdownMenuColor, MenuItem } from "@/ui/primitive/DropdownMenu";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,77 +16,61 @@ import {
   EllipsisVerticalIcon,
   UserIcon,
 } from "@heroicons/react/20/solid";
-import { STORYBOOK_SUBJECT_ID } from "@/lib/constant";
-import { useToast } from "@/hooks/use-toast";
-import { createIssueToast } from "@/lib/toast";
-import { signOut } from "next-auth/react";
 import Image from "next/image";
 import { useState } from "react";
 import { screen, userEvent, within } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
 import { OutlineButton, OutlineButton_Icon } from "@/ui/primitive/Button";
+import { action } from "@storybook/addon-actions";
 
 const meta: Meta = {
   title: "DropdownMenu",
+  argTypes: {
+    colorType: {
+      control: {
+        type: "radio",
+      },
+      options: ["primary", "accent", "neutral"],
+    },
+  },
 };
 
 export default meta;
 
-type Story = StoryObj;
-
-export const MoreDropdownMenu: Story = {
-  render: () => {
-    const openToast = useToast();
-
-    const menuItems: MenuItem[] = [
+export const MoreDropdownMenu: StoryObj<{
+  menuItems: MenuItem[];
+  colorType: DropdownMenuColor;
+}> = {
+  args: {
+    menuItems: [
       {
         label: "取消收藏",
-        handleSelect: () => {
-          openToast({
-            type: "info",
-            title: "取消收藏条目失败",
-            description: "收藏 api 暂未开放，请先自行前往主站取消收藏。",
-            action: {
-              label: "前往主站",
-              onClick: () => {
-                window.open(
-                  `https://bgm.tv/subject/${STORYBOOK_SUBJECT_ID}`,
-                  "_blank"
-                );
-              },
-            },
-          });
-        },
+        handleSelect: action("取消收藏"),
       },
       {
         label: "复制链接",
-        handleSelect: () => {
-          void (async () => {
-            await navigator.clipboard.writeText(
-              `https://www.bgm.tv/subject/${STORYBOOK_SUBJECT_ID}`
-            );
-          })();
-        },
+        handleSelect: action("复制链接"),
       },
       {
         label: "在主站中打开",
-        handleSelect: () => {
-          window.open(
-            `https://www.bgm.tv/subject/${STORYBOOK_SUBJECT_ID}`,
-            "_blank"
-          );
-        },
+        handleSelect: action("在主站中打开"),
       },
-    ];
-
+    ],
+    colorType: "neutral",
+  },
+  render: ({ menuItems, colorType }) => {
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <OutlineButton_Icon aria-label={"more"} colorType={"neutral"}>
+          <OutlineButton_Icon aria-label={"more"} colorType={colorType}>
             <EllipsisVerticalIcon className="h-6 w-6" />
           </OutlineButton_Icon>
         </DropdownMenuTrigger>
-        <DropdownMenuContent_Simple menuItems={menuItems} align="start" />
+        <DropdownMenuContent_Simple
+          colorType={colorType}
+          menuItems={menuItems}
+          align="start"
+        />
       </DropdownMenu>
     );
   },
@@ -103,34 +87,31 @@ export const MoreDropdownMenu: Story = {
   },
 };
 
-export const AvatarDropdownMenu: Story = {
-  render: () => {
-    const openToast = useToast();
-
-    const menuItems: MenuItem[] = [
+export const AvatarDropdownMenu: StoryObj<{
+  menuItems: MenuItem[];
+  colorType: DropdownMenuColor;
+}> = {
+  args: {
+    menuItems: [
       {
         label: "个人主页",
         icon: <UserIcon />,
-        handleSelect: () => {
-          openToast(createIssueToast(38));
-        },
+        handleSelect: action("个人主页"),
       },
       {
         label: "设置",
         icon: <Cog6ToothIcon />,
-        handleSelect: () => {
-          openToast(createIssueToast(40));
-        },
+        handleSelect: action("设置"),
       },
       {
         label: "登出",
         icon: <ArrowRightOnRectangleIcon />,
-        handleSelect: () => {
-          void signOut();
-        },
+        handleSelect: action("登出"),
       },
-    ];
-
+    ],
+    colorType: "neutral",
+  },
+  render: ({ menuItems, colorType }) => {
     return (
       <DropdownMenu>
         <DropdownMenuTrigger
@@ -149,7 +130,10 @@ export const AvatarDropdownMenu: Story = {
           />
           <div className="absolute top-0 left-0 h-full w-full rounded-lg shadow-[inset_0_0_8px_rgba(0,0,0,0.15)]" />
         </DropdownMenuTrigger>
-        <DropdownMenuContent_Simple menuItems={menuItems} />
+        <DropdownMenuContent_Simple
+          colorType={colorType}
+          menuItems={menuItems}
+        />
       </DropdownMenu>
     );
   },
@@ -166,12 +150,12 @@ export const AvatarDropdownMenu: Story = {
   },
 };
 
-export const SortDropdownMenu: Story = {
-  render: () => {
-    const [sortRadioItem, setSortRadioItem] = useState("do");
-    const [orderRadioItem, setOrderRadioItem] = useState("desc");
-
-    const sortRadioItems = [
+export const SortDropdownMenu: StoryObj<{
+  sortRadioItems: { label: string; value: string }[];
+  colorType: DropdownMenuColor;
+}> = {
+  args: {
+    sortRadioItems: [
       {
         label: "在看人数",
         value: "do",
@@ -184,7 +168,12 @@ export const SortDropdownMenu: Story = {
         label: "评分",
         value: "rating",
       },
-    ];
+    ],
+    colorType: "neutral",
+  },
+  render: ({ sortRadioItems, colorType }) => {
+    const [sortRadioItem, setSortRadioItem] = useState("do");
+    const [orderRadioItem, setOrderRadioItem] = useState("desc");
 
     const orderRadioItems = [
       {
@@ -200,29 +189,42 @@ export const SortDropdownMenu: Story = {
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <OutlineButton aria-label={"sort"} colorType={"neutral"}>
+          <OutlineButton aria-label={"sort"} colorType={colorType}>
             <ArrowsUpDownIcon className="mr-2 h-5 w-5" />
             排序
           </OutlineButton>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" sideOffset={8} className="w-36">
+        <DropdownMenuContent
+          colorType={colorType}
+          align="end"
+          sideOffset={8}
+          className="w-36"
+        >
           <DropdownMenuRadioGroup
             value={sortRadioItem}
             onValueChange={setSortRadioItem}
           >
             {sortRadioItems.map(({ value, label }, index) => (
-              <DropdownMenuRadioItem value={value} key={`${value}-${index}`}>
+              <DropdownMenuRadioItem
+                colorType={colorType}
+                value={value}
+                key={`${value}-${index}`}
+              >
                 {label}
               </DropdownMenuRadioItem>
             ))}
           </DropdownMenuRadioGroup>
-          <DropdownMenuSeparator />
+          <DropdownMenuSeparator colorType={colorType} />
           <DropdownMenuRadioGroup
             value={orderRadioItem}
             onValueChange={setOrderRadioItem}
           >
             {orderRadioItems.map(({ value, label }, index) => (
-              <DropdownMenuRadioItem value={value} key={`${value}-${index}`}>
+              <DropdownMenuRadioItem
+                colorType={colorType}
+                value={value}
+                key={`${value}-${index}`}
+              >
                 {label}
               </DropdownMenuRadioItem>
             ))}

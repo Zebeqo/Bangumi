@@ -26,5 +26,11 @@ export const PersonalViewSwitch = () => {
     setChecked(checked);
   }
 
-  return <Switch checked={checked} onCheckedChange={handleChecked} />;
+  return (
+    <Switch
+      colorType={"accent"}
+      checked={checked}
+      onCheckedChange={handleChecked}
+    />
+  );
 };

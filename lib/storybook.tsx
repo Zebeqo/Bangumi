@@ -1,5 +1,6 @@
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Panel } from "@/components/Panel/Panel";
+import { colorArray } from "@/ui/color";
 
 export const reactQueryDevtoolsDecorator = (Story: React.ComponentType) => {
   return (
@@ -24,5 +25,18 @@ export const headerMarginDecorator = (Story: React.ComponentType) => {
 };
 
 export const rowDecorator = (Story: React.ComponentType) => {
-  return <div className="grid grid-cols-4 gap-4">{<Story />}</div>;
+  return (
+    <div className="flex items-center justify-center space-x-4">
+      {<Story />}
+    </div>
+  );
+};
+
+export const colorArgTypes = {
+  colorType: {
+    control: {
+      type: "radio",
+    },
+    options: colorArray,
+  },
 };

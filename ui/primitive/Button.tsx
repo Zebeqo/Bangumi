@@ -1,6 +1,6 @@
 import type { VariantProps } from "class-variance-authority";
 import { cva } from "class-variance-authority";
-import type { Color } from "@/lib/color";
+import type { Color } from "@/ui/color";
 import { cn } from "@/lib/utils";
 import { forwardRef } from "react";
 
@@ -84,12 +84,10 @@ const selectedButton = cva(baseButtonClass, {
   },
 });
 
-type ButtonVariantProps = VariantProps<typeof primaryButton>;
+export type ButtonVariantProps = VariantProps<typeof primaryButton>;
 export interface ButtonProps
   extends React.ComponentPropsWithoutRef<"button">,
-    Required<ButtonVariantProps> {
-  colorType: Color;
-}
+    Required<ButtonVariantProps> {}
 
 const PrimaryButton = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ colorType, className, ...props }, ref) => (

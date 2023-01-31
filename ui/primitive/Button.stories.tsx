@@ -11,217 +11,128 @@ import {
   SelectedButton,
   SelectedButton_Icon,
 } from "@/ui/primitive/Button";
-import { rowDecorator } from "@/lib/storybook";
+import { colorArgTypes, rowDecorator } from "@/lib/storybook";
 import { BoltIcon } from "@heroicons/react/20/solid";
+import type { Color } from "@/ui/color";
+import { action } from "@storybook/addon-actions";
 
 const meta: Meta = {
   title: "Button",
   decorators: [rowDecorator],
+  argTypes: colorArgTypes,
 };
 
 export default meta;
 
-type Story = StoryObj;
-
-export const Primary: Story = {
-  render: () => (
+export const Primary: StoryObj<{ colorType: Color; buttonText: string }> = {
+  args: {
+    colorType: "accent",
+    buttonText: "Button",
+  },
+  render: ({ colorType, buttonText }) => (
     <>
-      <PrimaryButton colorType={"primary"}>Button</PrimaryButton>
-      <PrimaryButton colorType={"accent"}>Button</PrimaryButton>
-      <PrimaryButton colorType={"neutral"}>Button</PrimaryButton>
-      <PrimaryButton colorType={"success"}>Button</PrimaryButton>
-
-      <PrimaryButton colorType={"primary"}>
-        <BoltIcon className="mr-2 h-5 w-5" />
-        Button
-      </PrimaryButton>
-      <PrimaryButton colorType={"accent"}>
-        <BoltIcon className="mr-2 h-5 w-5" />
-        Button
-      </PrimaryButton>
-      <PrimaryButton colorType={"neutral"}>
-        <BoltIcon className="mr-2 h-5 w-5" />
-        Button
-      </PrimaryButton>
-      <PrimaryButton colorType={"success"}>
-        <BoltIcon className="mr-2 h-5 w-5" />
-        Button
+      <PrimaryButton colorType={colorType} onClick={action("onClick")}>
+        {buttonText}
       </PrimaryButton>
 
-      <PrimaryButton_Icon colorType={"primary"}>
-        <BoltIcon className="h-6 w-6" />
-      </PrimaryButton_Icon>
-      <PrimaryButton_Icon colorType={"accent"}>
-        <BoltIcon className="h-6 w-6" />
-      </PrimaryButton_Icon>
-      <PrimaryButton_Icon colorType={"neutral"}>
-        <BoltIcon className="h-6 w-6" />
-      </PrimaryButton_Icon>
-      <PrimaryButton_Icon colorType={"success"}>
+      <PrimaryButton colorType={colorType} onClick={action("onClick")}>
+        <BoltIcon className="mr-2 h-5 w-5" />
+        {buttonText}
+      </PrimaryButton>
+
+      <PrimaryButton_Icon colorType={colorType} onClick={action("onClick")}>
         <BoltIcon className="h-6 w-6" />
       </PrimaryButton_Icon>
     </>
   ),
 };
 
-export const Secondary: Story = {
-  render: () => (
+export const Secondary: StoryObj<{ colorType: Color; buttonText: string }> = {
+  args: {
+    colorType: "accent",
+    buttonText: "Button",
+  },
+  render: ({ colorType, buttonText }) => (
     <>
-      <SecondaryButton colorType={"primary"}>Button</SecondaryButton>
-      <SecondaryButton colorType={"accent"}>Button</SecondaryButton>
-      <SecondaryButton colorType={"neutral"}>Button</SecondaryButton>
-      <SecondaryButton colorType={"success"}>Button</SecondaryButton>
-
-      <SecondaryButton colorType={"primary"}>
-        <BoltIcon className="mr-2 h-5 w-5" />
-        Button
-      </SecondaryButton>
-      <SecondaryButton colorType={"accent"}>
-        <BoltIcon className="mr-2 h-5 w-5" />
-        Button
-      </SecondaryButton>
-      <SecondaryButton colorType={"neutral"}>
-        <BoltIcon className="mr-2 h-5 w-5" />
-        Button
-      </SecondaryButton>
-      <SecondaryButton colorType={"success"}>
-        <BoltIcon className="mr-2 h-5 w-5" />
-        Button
+      <SecondaryButton colorType={colorType} onClick={action("onClick")}>
+        {buttonText}
       </SecondaryButton>
 
-      <SecondaryButton_Icon colorType={"primary"}>
-        <BoltIcon className="h-6 w-6" />
-      </SecondaryButton_Icon>
-      <SecondaryButton_Icon colorType={"accent"}>
-        <BoltIcon className="h-6 w-6" />
-      </SecondaryButton_Icon>
-      <SecondaryButton_Icon colorType={"neutral"}>
-        <BoltIcon className="h-6 w-6" />
-      </SecondaryButton_Icon>
-      <SecondaryButton_Icon colorType={"success"}>
+      <SecondaryButton colorType={colorType} onClick={action("onClick")}>
+        <BoltIcon className="mr-2 h-5 w-5" />
+        {buttonText}
+      </SecondaryButton>
+
+      <SecondaryButton_Icon colorType={colorType} onClick={action("onClick")}>
         <BoltIcon className="h-6 w-6" />
       </SecondaryButton_Icon>
     </>
   ),
 };
 
-export const Outline: Story = {
-  render: () => (
+export const Outline: StoryObj<{ colorType: Color; buttonText: string }> = {
+  args: {
+    colorType: "accent",
+    buttonText: "Button",
+  },
+  render: ({ colorType, buttonText }) => (
     <>
-      <OutlineButton colorType={"primary"}>Button</OutlineButton>
-      <OutlineButton colorType={"accent"}>Button</OutlineButton>
-      <OutlineButton colorType={"neutral"}>Button</OutlineButton>
-      <OutlineButton colorType={"success"}>Button</OutlineButton>
-
-      <OutlineButton colorType={"primary"}>
-        <BoltIcon className="mr-2 h-5 w-5" />
-        Button
-      </OutlineButton>
-      <OutlineButton colorType={"accent"}>
-        <BoltIcon className="mr-2 h-5 w-5" />
-        Button
-      </OutlineButton>
-      <OutlineButton colorType={"neutral"}>
-        <BoltIcon className="mr-2 h-5 w-5" />
-        Button
-      </OutlineButton>
-      <OutlineButton colorType={"success"}>
-        <BoltIcon className="mr-2 h-5 w-5" />
-        Button
+      <OutlineButton colorType={colorType} onClick={action("onClick")}>
+        {buttonText}
       </OutlineButton>
 
-      <OutlineButton_Icon colorType={"primary"}>
-        <BoltIcon className="h-6 w-6" />
-      </OutlineButton_Icon>
-      <OutlineButton_Icon colorType={"accent"}>
-        <BoltIcon className="h-6 w-6" />
-      </OutlineButton_Icon>
-      <OutlineButton_Icon colorType={"neutral"}>
-        <BoltIcon className="h-6 w-6" />
-      </OutlineButton_Icon>
-      <OutlineButton_Icon colorType={"success"}>
+      <OutlineButton colorType={colorType} onClick={action("onClick")}>
+        <BoltIcon className="mr-2 h-5 w-5" />
+        {buttonText}
+      </OutlineButton>
+
+      <OutlineButton_Icon colorType={colorType} onClick={action("onClick")}>
         <BoltIcon className="h-6 w-6" />
       </OutlineButton_Icon>
     </>
   ),
 };
 
-export const Ghost: Story = {
-  render: () => (
+export const Ghost: StoryObj<{ colorType: Color; buttonText: string }> = {
+  args: {
+    colorType: "accent",
+    buttonText: "Button",
+  },
+  render: ({ colorType, buttonText }) => (
     <>
-      <GhostButton colorType={"primary"}>Button</GhostButton>
-      <GhostButton colorType={"accent"}>Button</GhostButton>
-      <GhostButton colorType={"neutral"}>Button</GhostButton>
-      <GhostButton colorType={"success"}>Button</GhostButton>
-
-      <GhostButton colorType={"primary"}>
-        <BoltIcon className="mr-2 h-5 w-5" />
-        Button
-      </GhostButton>
-      <GhostButton colorType={"accent"}>
-        <BoltIcon className="mr-2 h-5 w-5" />
-        Button
-      </GhostButton>
-      <GhostButton colorType={"neutral"}>
-        <BoltIcon className="mr-2 h-5 w-5" />
-        Button
-      </GhostButton>
-      <GhostButton colorType={"success"}>
-        <BoltIcon className="mr-2 h-5 w-5" />
-        Button
+      <GhostButton colorType={colorType} onClick={action("onClick")}>
+        {buttonText}
       </GhostButton>
 
-      <GhostButton_Icon colorType={"primary"}>
-        <BoltIcon className="h-6 w-6" />
-      </GhostButton_Icon>
-      <GhostButton_Icon colorType={"accent"}>
-        <BoltIcon className="h-6 w-6" />
-      </GhostButton_Icon>
-      <GhostButton_Icon colorType={"neutral"}>
-        <BoltIcon className="h-6 w-6" />
-      </GhostButton_Icon>
-      <GhostButton_Icon colorType={"success"}>
+      <GhostButton colorType={colorType} onClick={action("onClick")}>
+        <BoltIcon className="mr-2 h-5 w-5" />
+        {buttonText}
+      </GhostButton>
+
+      <GhostButton_Icon colorType={colorType} onClick={action("onClick")}>
         <BoltIcon className="h-6 w-6" />
       </GhostButton_Icon>
     </>
   ),
 };
 
-export const Selected: Story = {
-  render: () => (
+export const Selected: StoryObj<{ colorType: Color; buttonText: string }> = {
+  args: {
+    colorType: "accent",
+    buttonText: "Button",
+  },
+  render: ({ colorType, buttonText }) => (
     <>
-      <SelectedButton colorType={"primary"}>Button</SelectedButton>
-      <SelectedButton colorType={"accent"}>Button</SelectedButton>
-      <SelectedButton colorType={"neutral"}>Button</SelectedButton>
-      <SelectedButton colorType={"success"}>Button</SelectedButton>
-
-      <SelectedButton colorType={"primary"}>
-        <BoltIcon className="mr-2 h-5 w-5" />
-        Button
-      </SelectedButton>
-      <SelectedButton colorType={"accent"}>
-        <BoltIcon className="mr-2 h-5 w-5" />
-        Button
-      </SelectedButton>
-      <SelectedButton colorType={"neutral"}>
-        <BoltIcon className="mr-2 h-5 w-5" />
-        Button
-      </SelectedButton>
-      <SelectedButton colorType={"success"}>
-        <BoltIcon className="mr-2 h-5 w-5" />
-        Button
+      <SelectedButton colorType={colorType} onClick={action("onClick")}>
+        {buttonText}
       </SelectedButton>
 
-      <SelectedButton_Icon colorType={"primary"}>
-        <BoltIcon className="h-6 w-6" />
-      </SelectedButton_Icon>
-      <SelectedButton_Icon colorType={"accent"}>
-        <BoltIcon className="h-6 w-6" />
-      </SelectedButton_Icon>
-      <SelectedButton_Icon colorType={"neutral"}>
-        <BoltIcon className="h-6 w-6" />
-      </SelectedButton_Icon>
-      <SelectedButton_Icon colorType={"success"}>
+      <SelectedButton colorType={colorType} onClick={action("onClick")}>
+        <BoltIcon className="mr-2 h-5 w-5" />
+        {buttonText}
+      </SelectedButton>
+
+      <SelectedButton_Icon colorType={colorType} onClick={action("onClick")}>
         <BoltIcon className="h-6 w-6" />
       </SelectedButton_Icon>
     </>

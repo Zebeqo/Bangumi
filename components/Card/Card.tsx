@@ -123,7 +123,7 @@ export async function Card({
             <div className="flex flex-col justify-center space-y-1">
               {/*Card.RatingStar*/}
               <div>
-                <Rating point={rating.score} />
+                <Rating colorType={"accent"} point={rating.score} />
               </div>
               {/*Rating.RatingDescription*/}
               <div className="text-xs text-neutral-11">
