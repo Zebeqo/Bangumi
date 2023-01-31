@@ -1,19 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Badge } from "@/ui/primitive/Badge";
 import { ChatBubbleLeftRightIcon } from "@heroicons/react/20/solid";
-import type { Color } from "@/lib/color";
-import { colorArray } from "@/lib/color";
+import type { Color } from "@/ui/color";
+import { colorArgTypes } from "@/lib/storybook";
 
 const meta: Meta = {
   title: "Badge",
-  argTypes: {
-    colorType: {
-      control: {
-        type: "radio",
-      },
-      options: colorArray,
-    },
-  },
+  argTypes: colorArgTypes,
 };
 
 export default meta;

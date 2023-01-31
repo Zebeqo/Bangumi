@@ -15,7 +15,6 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectTrigger,
 } from "@/ui/primitive/Select";
 
 export const TextWrapper = ({ children }: { children?: React.ReactNode }) => (
@@ -49,12 +48,12 @@ export function RatingSelect({ subject_id }: { subject_id: number }) {
             });
           }}
         >
-          <SelectContent>
+          <SelectContent colorType={"accent"}>
             <SelectGroup>
               {Object.values(ratingMap)
                 .map((value) => value.name_cn)
                 .map((value, index) => (
-                  <SelectItem value={value} key={index}>
+                  <SelectItem colorType={"accent"} value={value} key={index}>
                     <span className="flex items-center space-x-1">
                       <StarIcon className="h-5 w-5" /> <span>{value}</span>
                     </span>

@@ -109,7 +109,7 @@ const DialogContentHeader_Main = forwardRef<
   <div
     ref={ref}
     className={cn(
-      "flex w-full items-center justify-between px-6 py-4",
+      "sticky top-0 flex w-full items-center justify-between py-4 px-6",
       className
     )}
     {...props}

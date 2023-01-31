@@ -12,7 +12,7 @@ import { expect } from "@storybook/jest";
 import { SecondaryButton } from "@/ui/primitive/Button";
 
 const meta: Meta<typeof MainToast> = {
-  title: "Toast",
+  title: "MainToast",
   component: MainToast,
 };
 

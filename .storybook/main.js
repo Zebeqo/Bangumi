@@ -28,6 +28,7 @@ module.exports = {
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "@storybook/addon-storysource",
+    "@storybook/addon-actions",
     "storybook-dark-mode",
     "@tomfreudenberg/next-auth-mock/storybook",
   ],

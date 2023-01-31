@@ -64,24 +64,37 @@ export function SortDropdownMenu() {
           排序
         </OutlineButton>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" sideOffset={8} className="w-36">
+      <DropdownMenuContent
+        colorType={"neutral"}
+        align="end"
+        sideOffset={8}
+        className="w-36"
+      >
         <DropdownMenuRadioGroup
           value={searchParams.get("sort") ?? "do"}
           onValueChange={handleSortSelect}
         >
           {sortRadioItems.map(({ value, label }, index) => (
-            <DropdownMenuRadioItem value={value} key={`${value}-${index}`}>
+            <DropdownMenuRadioItem
+              colorType={"neutral"}
+              value={value}
+              key={`${value}-${index}`}
+            >
               {label}
             </DropdownMenuRadioItem>
           ))}
         </DropdownMenuRadioGroup>
-        <DropdownMenuSeparator />
+        <DropdownMenuSeparator colorType={"neutral"} />
         <DropdownMenuRadioGroup
           value={searchParams.get("order") ?? "desc"}
           onValueChange={handleOrderSelect}
         >
           {orderRadioItems.map(({ value, label }, index) => (
-            <DropdownMenuRadioItem value={value} key={`${value}-${index}`}>
+            <DropdownMenuRadioItem
+              colorType={"neutral"}
+              value={value}
+              key={`${value}-${index}`}
+            >
               {label}
             </DropdownMenuRadioItem>
           ))}
