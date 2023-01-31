@@ -1,13 +1,12 @@
 "use client";
 
-import { useCollectionData } from "@/hooks/use-collection";
 import { useEpisodesPageData } from "@/hooks/use-episode";
 import { ListHeader } from "@/components/Panel/ListHeader";
 import { useReducerAtom } from "jotai/react/utils";
 import { panelHistoryAtom, panelReducer } from "@/lib/panel";
 import { EPListItemList } from "@/components/Panel/EPList/EPListItemList";
 import { Fragment, useEffect } from "react";
-import { LoadMoreIndicator } from "@/ui/LoadMoreIndicator";
+import { LoadMore } from "@/ui/LoadMore";
 import { useInView } from "react-intersection-observer";
 
 export function EPListFull({ subject_id }: { subject_id: number }) {
@@ -50,7 +49,7 @@ export function EPListFull({ subject_id }: { subject_id: number }) {
           ))}
         </div>
         <div className="flex w-full items-center justify-center">
-          <LoadMoreIndicator ref={ref} hasMore={hasNextPage} />
+          <LoadMore ref={ref} hasMore={hasNextPage} />
         </div>
       </div>
     </>

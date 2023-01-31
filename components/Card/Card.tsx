@@ -7,7 +7,7 @@ import {
 import { Rating } from "@/ui/Rating";
 import { ChatBubbleLeftRightIcon } from "@heroicons/react/24/outline";
 import { InfoButton } from "@/components/Button/InfoButton";
-import { subjectScheme } from "@/lib/subject";
+import { subjectScheme } from "@/lib/api/subject";
 import { PrimaryButton_Icon } from "@/ui/primitive/Button";
 import { Badge } from "@/ui/primitive/Badge";
 

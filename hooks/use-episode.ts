@@ -8,9 +8,12 @@ import {
 } from "@tanstack/react-query";
 import { z } from "zod";
 import { errorScheme, ToastError } from "@/lib/error";
-import type { mutateEpisodesScheme } from "@/lib/episode";
-import { episodesPageScheme } from "@/lib/episode";
-import { collectionPagesDataScheme, collectionScheme } from "@/lib/collection";
+import type { mutateEpisodesScheme } from "@/lib/api/episode";
+import { episodesPageScheme } from "@/lib/api/episode";
+import {
+  collectionPagesDataScheme,
+  collectionScheme,
+} from "@/lib/api/collection";
 
 export function useEpisodesData(
   subject_id: number,

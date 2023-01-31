@@ -2,7 +2,7 @@
 
 import { ListHeader } from "@/components/Panel/ListHeader";
 import { useSubjectRelationsData } from "@/hooks/use-relation";
-import { subjectRelationEnum, subjectRelationScheme } from "@/lib/relation";
+import { subjectRelationEnum, subjectRelationScheme } from "@/lib/api/relation";
 import { RelationSubjectAvatarCard } from "@/components/Card/RelationSubjectAvatarCard";
 import { useReducerAtom } from "jotai/react/utils";
 import { panelHistoryAtom, panelReducer } from "@/lib/panel";

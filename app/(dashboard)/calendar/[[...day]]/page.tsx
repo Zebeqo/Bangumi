@@ -2,9 +2,9 @@
 
 import { notFound } from "next/navigation";
 import { Card } from "@/components/Card/Card";
-import type { SearchParams } from "@/lib/calendar";
-import { calendarScheme, sortCalendarData } from "@/lib/calendar";
-import { GridWrapper } from "@/ui/GridWrapper";
+import type { SearchParams } from "@/lib/api/calendar";
+import { calendarScheme, sortCalendarData } from "@/lib/api/calendar";
+import { GridWrapper } from "@/components/GridWrapper";
 
 // https://github.com/nextauthjs/next-auth/issues/5647#issuecomment-1342099364
 // https://github.com/vercel/next.js/issues/44764

@@ -3,7 +3,7 @@
 import { useCollectionsPageData } from "@/hooks/use-collection";
 import { useInView } from "react-intersection-observer";
 import { Fragment, useEffect } from "react";
-import { LoadMoreIndicator } from "@/ui/LoadMoreIndicator";
+import { LoadMore } from "@/ui/LoadMore";
 import { CollectionCard } from "@/components/Card/CollectionCard";
 
 export function CollectionCardList({
@@ -42,7 +42,7 @@ export function CollectionCardList({
           </Fragment>
         ))}
         <div className="absolute inset-x-0 -bottom-4 flex w-full items-center justify-center">
-          <LoadMoreIndicator ref={ref} hasMore={hasNextPage} />
+          <LoadMore ref={ref} hasMore={hasNextPage} />
         </div>
       </div>
     </>
