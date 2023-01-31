@@ -215,11 +215,11 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
                             }
                           }}
                         >
-                          <ChevronDownIcon className="mr-2 h-5 w-5" />
                           <span className="flex items-center space-x-1">
                             <StarIcon className="h-5 w-5" />
                             <span>评分</span>
                           </span>
+                          <ChevronDownIcon className="ml-2 h-5 w-5" />
                         </OutlineButton>
                         <MoreDropdownMenu subject_id={subjectData.id} />
                       </>
