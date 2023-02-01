@@ -4,12 +4,12 @@ import {
   ClockIcon,
   TableCellsIcon,
 } from "@heroicons/react/20/solid";
-import { Rating } from "@/ui/Rating";
 import { ChatBubbleLeftRightIcon } from "@heroicons/react/24/outline";
 import { InfoButton } from "@/components/Button/InfoButton";
 import { subjectScheme } from "@/lib/api/subject";
 import { PrimaryButton_Icon } from "@/ui/primitive/Button";
 import { Badge } from "@/ui/primitive/Badge";
+import { Rating } from "../Rating";
 
 async function getSubjectData(id: number) {
   return subjectScheme.safeParse(
@@ -123,7 +123,7 @@ export async function Card({
             <div className="flex flex-col justify-center space-y-1">
               {/*Card.RatingStar*/}
               <div>
-                <Rating colorType={"accent"} point={rating.score} />
+                <Rating score={rating.score} />
               </div>
               {/*Rating.RatingDescription*/}
               <div className="text-xs text-neutral-11">
