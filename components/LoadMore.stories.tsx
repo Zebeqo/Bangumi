@@ -10,4 +10,8 @@ const meta: Meta<typeof LoadMoreComponent> = {
 export default meta;
 type Story = StoryObj<typeof LoadMoreComponent>;
 
-export const LoadMore: Story = {};
+export const LoadMore: Story = {
+  args: {
+    hasMore: true,
+  },
+};
