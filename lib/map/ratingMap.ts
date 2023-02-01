@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { objectKeys } from "@/lib/utils";
 
 export const ratingMap = {
   "0": { name: "", name_cn: "未评分" },
@@ -16,11 +17,11 @@ export const ratingMap = {
 
 export const ratingKeyScheme = z.preprocess(
   (value) => String(value),
-  z.enum(Object.keys(ratingMap) as [keyof typeof ratingMap])
+  z.enum(objectKeys(ratingMap))
 );
 
 export const ratingNameCNToTypeScheme = z.preprocess((name_cn) => {
-  return Object.keys(ratingMap).find((key) => {
-    return ratingMap[key as keyof typeof ratingMap].name_cn === name_cn;
+  return objectKeys(ratingMap).find((key) => {
+    return ratingMap[key].name_cn === name_cn;
   });
 }, ratingKeyScheme);

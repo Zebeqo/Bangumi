@@ -11,3 +11,6 @@ export function panelScrollToTop() {
     .querySelector("#panel-overlay")
     ?.scrollTo({ top: 0, behavior: "smooth" });
 }
+
+export const objectKeys = <Obj extends object>(obj: Obj) =>
+  Object.keys(obj) as [keyof Obj];
