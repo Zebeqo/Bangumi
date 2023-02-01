@@ -106,7 +106,7 @@ export function CollectionCard({
               ))}
         </CardTagGroup>
         <CardFooter>
-          <div className="text-4xl font-bold text-accent-11">
+          <div className="h-10 text-4xl font-bold text-accent-11">
             {pvMode
               ? collection.rate || null
               : collection.subject.score.toFixed(1)}
