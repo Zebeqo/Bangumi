@@ -52,7 +52,7 @@
     "@storybook/jest": "0.0.11-next.0",
     "@storybook/nextjs": "7.0.0-beta.36",
     "@storybook/react": "7.0.0-beta.36",
-    "@storybook/test-runner": "0.10.0-next.5",
+    "@storybook/test-runner": "0.10.0-next.8",
     "@storybook/testing-library": "0.0.14-next.1",
     "@tailwindcss/line-clamp": "0.4.2",
     "@tanstack/eslint-plugin-query": "4.24.0",
