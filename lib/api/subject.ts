@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { objectKeys } from "@/lib/utils";
 export const subjectScheme = z.object({
   id: z.number().int(),
   date: z.string().nullable(),
@@ -40,14 +41,14 @@ export const subjectTypeMap = {
 
 export const subjectTypeKeyScheme = z.preprocess(
   (value) => String(value),
-  z.enum(Object.keys(subjectTypeMap) as [keyof typeof subjectTypeMap])
+  z.enum(objectKeys(subjectTypeMap))
 );
 
 type SubjectTypeName =
   (typeof subjectTypeMap)[keyof typeof subjectTypeMap]["name"];
 
 export const subjectNameToTypeScheme = z.preprocess((name) => {
-  return Object.keys(subjectTypeMap).find((key) => {
-    return subjectTypeMap[key as keyof typeof subjectTypeMap].name === name;
+  return objectKeys(subjectTypeMap).find((key) => {
+    return subjectTypeMap[key].name === name;
   }) as SubjectTypeName;
 }, subjectTypeKeyScheme);
