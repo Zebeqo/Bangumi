@@ -1,7 +1,7 @@
 // export const dynamicParams = false;
 
 import { notFound } from "next/navigation";
-import { Card } from "@/components/Card/Card";
+import { CardSSR } from "@/components/Card/CardSSR";
 import * as cheerio from "cheerio";
 import { GridWrapper } from "@/components/GridWrapper";
 
@@ -68,7 +68,7 @@ export default async function Page({
     <GridWrapper>
       {list.map((id) => (
         /* @ts-expect-error Server Component */
-        <Card key={id} subject_id={id} />
+        <CardSSR key={id} subject_id={id} collectionInfoItemType={"doing"} />
       ))}
     </GridWrapper>
   );
