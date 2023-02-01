@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { objectKeys } from "@/lib/utils";
 
 export const collectionTypeMap = {
   "1": { name: "wish", name_cn: "想看" },
@@ -10,22 +11,17 @@ export const collectionTypeMap = {
 
 export const collectionTypeKeyScheme = z.preprocess(
   (value) => String(value),
-  z.enum(Object.keys(collectionTypeMap) as [keyof typeof collectionTypeMap])
+  z.enum(objectKeys(collectionTypeMap))
 );
 
 export const collectionNameToTypeScheme = z.preprocess((name) => {
-  return Object.keys(collectionTypeMap).find((key) => {
-    return (
-      collectionTypeMap[key as keyof typeof collectionTypeMap].name === name
-    );
+  return objectKeys(collectionTypeMap).find((key) => {
+    return collectionTypeMap[key].name === name;
   });
 }, collectionTypeKeyScheme);
 
 export const collectionNameCNToTypeScheme = z.preprocess((name_cn) => {
-  return Object.keys(collectionTypeMap).find((key) => {
-    return (
-      collectionTypeMap[key as keyof typeof collectionTypeMap].name_cn ===
-      name_cn
-    );
+  return objectKeys(collectionTypeMap).find((key) => {
+    return collectionTypeMap[key].name_cn === name_cn;
   });
 }, collectionTypeKeyScheme);
