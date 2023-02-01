@@ -6,7 +6,7 @@ import { useReducerAtom } from "jotai/react/utils";
 import { panelHistoryAtom, panelReducer } from "@/lib/panel";
 import { EPListItemList } from "@/components/Panel/EPList/EPListItemList";
 import { Fragment, useEffect } from "react";
-import { LoadMore } from "@/ui/LoadMore";
+import { LoadMore } from "@/components/LoadMore";
 import { useInView } from "react-intersection-observer";
 
 export function EPListFull({ subject_id }: { subject_id: number }) {
