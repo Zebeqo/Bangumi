@@ -6,7 +6,6 @@ import {
   ClockIcon,
   TableCellsIcon,
 } from "@heroicons/react/20/solid";
-import { Rating } from "@/ui/Rating";
 import { cn } from "@/lib/utils";
 import type { z } from "zod";
 import type { collectionsPageScheme } from "@/lib/api/collection";
@@ -16,6 +15,7 @@ import { useRef, useState } from "react";
 import { useDialog } from "@/hooks/use-dialog";
 import { PrimaryButton_Icon } from "@/ui/primitive/Button";
 import { Badge } from "@/ui/primitive/Badge";
+import { Rating } from "@/components/Rating";
 
 export function CollectionCard({
   collection,
@@ -114,8 +114,7 @@ export function CollectionCard({
               {/*Card.RatingStar*/}
               <div>
                 <Rating
-                  colorType={"accent"}
-                  point={pvMode ? collection.rate : collection.subject.score}
+                  score={pvMode ? collection.rate : collection.subject.score}
                 />
               </div>
               {/*Rating.RatingDescription*/}
