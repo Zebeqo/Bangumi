@@ -10,10 +10,10 @@ import {
   StarIcon,
 } from "@heroicons/react/20/solid";
 import { signIn, useSession } from "next-auth/react";
-import { CharacterList } from "@/components/Panel/CharacterList/CharacterList";
+import { CharacterList } from "@/components/AvatarCard/AvatarCardList/CharacterList";
 import { EPListDynamic } from "@/components/Panel/EPList/EPListDynamic";
-import { PersonList } from "@/components/Panel/PersonList/PersonList";
-import { RelationSubjectList } from "@/components/Panel/RelationSubjectList/RelationSubjectList";
+import { PersonList } from "@/components/AvatarCard/AvatarCardList/PersonList";
+import { RelationSubjectList } from "@/components/AvatarCard/RelationSubjectList";
 import { Suspense, useRef, useState } from "react";
 import { useCollectionData } from "@/hooks/use-collection";
 import { useToast } from "@/hooks/use-toast";

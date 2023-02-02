@@ -2,7 +2,7 @@
 
 import { PanelNav } from "@/components/Panel/PanelNav";
 import { useSubjectData } from "@/hooks/use-subject";
-import { CharacterList } from "@/components/Panel/CharacterList/CharacterList";
+import { CharacterList } from "@/components/AvatarCard/AvatarCardList/CharacterList";
 
 export function CharacterListContent({ subject_id }: { subject_id: number }) {
   const { data: subjectData } = useSubjectData(subject_id);
