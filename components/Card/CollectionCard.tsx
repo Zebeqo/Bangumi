@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { InfoButton } from "@/components/Button/InfoButton";
 import { ChatBubbleLeftRightIcon } from "@heroicons/react/24/outline";

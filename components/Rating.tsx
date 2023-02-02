@@ -3,7 +3,7 @@ import {
   RatingEmptyIcon,
   RatingFillIcon,
   RatingHalfIcon,
-} from "@/ui/Rating";
+} from "@/ui/primitive/Rating";
 
 export const Rating = ({ score }: { score: number }) => {
   if (score > 10 || score < 0) {

@@ -4,7 +4,7 @@ import {
   RatingEmptyIcon,
   RatingFillIcon,
   RatingHalfIcon,
-} from "@/ui/Rating";
+} from "@/ui/primitive/Rating";
 
 const meta: Meta = {
   title: "Rating",
