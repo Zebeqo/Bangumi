@@ -33,7 +33,7 @@
     "class-variance-authority": "0.4.0",
     "jotai": "1.13.1",
     "next": "13.1.6",
-    "next-auth": "4.18.10",
+    "next-auth": "4.19.2",
     "next-themes": "0.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
