@@ -2,7 +2,7 @@
 
 import { ListHeader } from "@/components/Panel/ListHeader";
 import { useSubjectPersonsData } from "@/hooks/use-person";
-import { PersonAvatarCard } from "@/components/Card/PersonAvatarCard";
+import { PersonAvatarCard } from "@/components/AvatarCard/PersonAvatarCard";
 import { personRelationEnum, personRelationScheme } from "@/lib/api/person";
 import { useReducerAtom } from "jotai/react/utils";
 import { panelHistoryAtom, panelReducer } from "@/lib/panel";
