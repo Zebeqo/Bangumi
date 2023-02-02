@@ -6,6 +6,7 @@ import { subjectNameToTypeScheme } from "@/lib/api/subject";
 import { Suspense } from "react";
 import { CardGridSkeleton } from "@/components/Skeleton/CardGridSkeleton";
 import { collectionNameToTypeScheme } from "@/lib/map/collectionTypeMap";
+import { GridWrapper } from "@/components/GridWrapper";
 
 // https://github.com/nextauthjs/next-auth/issues/5647#issuecomment-1342099364
 // https://github.com/vercel/next.js/issues/44764
@@ -38,12 +39,14 @@ export default function Page({
 
   return (
     <Suspense fallback={<CardGridSkeleton />}>
-      <CollectionCardList
-        subject_type={Number(subjectNameToTypeScheme.parse(subject_type))}
-        collection_type={Number(
-          collectionNameToTypeScheme.parse(collection_type)
-        )}
-      />
+      <GridWrapper className="relative my-8">
+        <CollectionCardList
+          subject_type={Number(subjectNameToTypeScheme.parse(subject_type))}
+          collection_type={Number(
+            collectionNameToTypeScheme.parse(collection_type)
+          )}
+        />
+      </GridWrapper>
     </Suspense>
   );
 }

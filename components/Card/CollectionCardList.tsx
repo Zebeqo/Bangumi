@@ -30,20 +30,18 @@ export function CollectionCardList({
 
   return (
     <>
-      <div className="relative grid grid-cols-1 justify-items-center gap-12 py-8 px-12 xl:grid-cols-2 min-[1800px]:grid-cols-3 min-[2400px]:grid-cols-4">
-        {collectionsPageData?.pages.map((page) => (
-          <Fragment key={page?.offset}>
-            {page?.data.map((collection) => (
-              <CollectionCard
-                collection={collection}
-                key={collection.subject.id}
-              />
-            ))}
-          </Fragment>
-        ))}
-        <div className="absolute inset-x-0 -bottom-4 flex w-full items-center justify-center">
-          <LoadMore ref={ref} hasMore={hasNextPage} />
-        </div>
+      {collectionsPageData?.pages.map((page) => (
+        <Fragment key={page?.offset}>
+          {page?.data.map((collection) => (
+            <CollectionCard
+              collection={collection}
+              key={collection.subject.id}
+            />
+          ))}
+        </Fragment>
+      ))}
+      <div className="absolute inset-x-0 -bottom-12 flex w-full items-center justify-center">
+        <LoadMore ref={ref} hasMore={hasNextPage} />
       </div>
     </>
   );
