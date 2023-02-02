@@ -1,4 +1,11 @@
-import Image from "next/image";
+import {
+  AvatarCard,
+  AvatarCardContent,
+  AvatarCardImage,
+  AvatarCardInfo,
+  AvatarCardInfoItem,
+  AvatarCardInfoItemName,
+} from "@/ui/primitive/AvatarCard";
 
 export function RelationSubjectAvatarCard({
   name,
@@ -16,36 +23,28 @@ export function RelationSubjectAvatarCard({
   return (
     <>
       {
-        <div className="relative rounded-md bg-neutral-3 px-4 py-6 hover:bg-neutral-5">
-          <div className="flex flex-col items-center space-y-4">
-            <div className="relative h-56 w-40 overflow-hidden rounded-xl">
-              <Image
-                className="cursor-pointer object-cover"
-                src={
-                  imageURL || "https://avatars.githubusercontent.com/u/7521082"
-                }
-                alt="Avatar"
-                fill={true}
-                unoptimized={true}
-                onClick={onClick}
-              />
-            </div>
-            <div className="flex flex-col space-y-1">
-              <div className="flex space-x-1">
-                <span className="whitespace-nowrap text-xs text-neutral-11">
-                  {relation}:
-                </span>
-                <span
-                  className="overflow-hidden text-ellipsis text-xs font-medium text-neutral-12 "
+        <AvatarCard>
+          <AvatarCardContent className="mx-2 w-40 items-center">
+            <AvatarCardImage
+              src={
+                imageURL || "https://avatars.githubusercontent.com/u/7521082"
+              }
+              alt="Avatar"
+              onClick={onClick}
+              className="h-56 w-40 rounded"
+            />
+            <AvatarCardInfo>
+              <AvatarCardInfoItem relation={relation}>
+                <AvatarCardInfoItemName
                   title={name_cn}
-                  data-testid="subject-name"
+                  className="line-clamp-2"
                 >
                   {name_cn || name}
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
+                </AvatarCardInfoItemName>
+              </AvatarCardInfoItem>
+            </AvatarCardInfo>
+          </AvatarCardContent>
+        </AvatarCard>
       }
     </>
   );
