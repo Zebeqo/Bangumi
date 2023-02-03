@@ -60,7 +60,7 @@ export const MainDialog: StoryObj<{
         <DialogContent_Main isOpen={open}>
           <DialogContentHeader_Main>
             <DialogTitle>{title}</DialogTitle>
-            <DialogClose asChild />
+            <DialogClose />
           </DialogContentHeader_Main>
           <DialogDescription>{description}</DialogDescription>
         </DialogContent_Main>
@@ -94,7 +94,7 @@ export const MainDialog_Action: StoryObj<{
         <DialogContent_Main isOpen={open}>
           <DialogContentHeader_Main>
             <DialogTitle>{title}</DialogTitle>
-            <DialogClose asChild />
+            <DialogClose />
           </DialogContentHeader_Main>
           <DialogDescription>{description}</DialogDescription>
           <SecondaryButton

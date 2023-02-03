@@ -60,7 +60,7 @@ export function PanelNav({
           </PanelNavTitleGroup>
         </PanelNavLeftContent>
         <PanelNavRightContent>
-          <DialogClose asChild />
+          <DialogClose />
         </PanelNavRightContent>
       </PanelNavRoot>
     </Suspense>
