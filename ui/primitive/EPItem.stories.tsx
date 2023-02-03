@@ -7,9 +7,11 @@ import {
   EPItemLeftContent,
 } from "@/ui/primitive/EPItem";
 import { action } from "@storybook/addon-actions";
+import { containerDecorator } from "@/lib/storybook";
 
 const meta: Meta = {
   title: "EPItem",
+  decorators: [containerDecorator],
 };
 
 export default meta;
@@ -41,23 +43,21 @@ export const EPItem_: StoryObj<{
     duration,
     commentCount,
   }) => (
-    <div className="container w-screen">
-      <EPItem>
-        <EPItemLeftContent>
-          <EPItemIndex
-            value={index}
-            isSelected={isSelected}
-            onClick={action("click index")}
-          />
-          <EPItemInfo
-            name={name}
-            name_cn={name_cn}
-            airdate={airdate}
-            duration={duration}
-          />
-        </EPItemLeftContent>
-        <EPItemComment count={commentCount} onClick={action("click comment")} />
-      </EPItem>
-    </div>
+    <EPItem>
+      <EPItemLeftContent>
+        <EPItemIndex
+          value={index}
+          isSelected={isSelected}
+          onClick={action("click index")}
+        />
+        <EPItemInfo
+          name={name}
+          name_cn={name_cn}
+          airdate={airdate}
+          duration={duration}
+        />
+      </EPItemLeftContent>
+      <EPItemComment count={commentCount} onClick={action("click comment")} />
+    </EPItem>
   ),
 };
