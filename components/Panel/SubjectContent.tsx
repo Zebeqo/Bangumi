@@ -10,10 +10,10 @@ import {
   StarIcon,
 } from "@heroicons/react/20/solid";
 import { signIn, useSession } from "next-auth/react";
-import { CharacterList } from "@/components/AvatarCard/AvatarCardList/CharacterList";
-import { EPListDynamic } from "@/components/EPList/EPListDynamic";
-import { PersonList } from "@/components/AvatarCard/AvatarCardList/PersonList";
-import { RelationSubjectList } from "@/components/AvatarCard/AvatarCardList/RelationSubjectList";
+import { CharacterList } from "@/components/Panel/PanelList/CharacterList";
+import { EPListDynamic } from "@/components/Panel/PanelList/EPListDynamic";
+import { PersonList } from "@/components/Panel/PanelList/PersonList";
+import { SubjectList } from "@/components/Panel/PanelList/SubjectList";
 import { Suspense, useRef, useState } from "react";
 import { useCollectionData } from "@/hooks/use-collection";
 import { useToast } from "@/hooks/use-toast";
@@ -235,7 +235,7 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
             {/*SubjectContent.PersonList*/}
             <PersonList subject_id={subjectData.id} length={5} />
             {/*SubjectContent.SubjectList*/}
-            <RelationSubjectList subject_id={subjectData.id} length={8} />
+            <SubjectList subject_id={subjectData.id} length={8} />
           </div>
         </>
       )}

@@ -1,6 +1,6 @@
 "use client";
 
-import { ListHeader } from "@/components/Panel/ListHeader";
+import { ListHeader } from "@/components/Panel/PanelList/ListHeader";
 import { useSubjectRelationsData } from "@/hooks/use-relation";
 import { subjectRelationEnum, subjectRelationScheme } from "@/lib/api/relation";
 import { RelationSubjectAvatarCard } from "@/components/AvatarCard/RelationSubjectAvatarCard";
@@ -11,7 +11,7 @@ import { Suspense } from "react";
 import { RelationSubjectSkeleton } from "@/components/Skeleton/RelationSubjectSkeleton";
 import { ListSkeletonWrapper } from "@/components/Skeleton/ListSkeletonWrapper";
 
-export function RelationSubjectList({
+export function SubjectList({
   subject_id,
   length,
 }: {

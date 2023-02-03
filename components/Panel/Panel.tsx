@@ -8,11 +8,11 @@ import {
   panelHistoryAtom,
 } from "@/lib/panel";
 import { SubjectContent } from "@/components/Panel/SubjectContent";
-import { CharacterListContent } from "@/components/Panel/CharacterListContent";
-import { EPListContent } from "@/components/Panel/EPListContent";
-import { PersonListContent } from "@/components/Panel/PersonListContent";
+import { CharacterListPanel } from "@/components/Panel/SubPanel/CharacterListPanel";
+import { EPListPanel } from "@/components/Panel/SubPanel/EPListPanel";
+import { PersonListPanel } from "@/components/Panel/SubPanel/PersonListPanel";
 import { SubjectContentSkeleton } from "@/components/Skeleton/SubjectContentSkeleton";
-import { RelationSubjectContent } from "@/components/Panel/RelationSubjectContent";
+import { SubjectListPanel } from "@/components/Panel/SubPanel/SubjectListPanel";
 import { Dialog, DialogContent_Panel } from "@/ui/primitive/Dialog";
 
 export function Panel() {
@@ -38,13 +38,13 @@ export function Panel() {
             <SubjectContent subject_id={panel.target_id} />
           </Suspense>
         ) : panel?.type === "characterList" ? (
-          <CharacterListContent subject_id={panel.target_id} />
+          <CharacterListPanel subject_id={panel.target_id} />
         ) : panel?.type === "episodeList" ? (
-          <EPListContent subject_id={panel.target_id} />
+          <EPListPanel subject_id={panel.target_id} />
         ) : panel?.type === "personList" ? (
-          <PersonListContent subject_id={panel.target_id} />
+          <PersonListPanel subject_id={panel.target_id} />
         ) : panel?.type === "subjectList" ? (
-          <RelationSubjectContent subject_id={panel.target_id} />
+          <SubjectListPanel subject_id={panel.target_id} />
         ) : null}
       </DialogContent_Panel>
     </Dialog>
