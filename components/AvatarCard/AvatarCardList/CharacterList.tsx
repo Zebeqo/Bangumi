@@ -7,6 +7,7 @@ import { panelHistoryAtom, panelReducer } from "@/lib/panel";
 import { useReducerAtom } from "jotai/react/utils";
 import { Suspense } from "react";
 import { AvatarCardSkeleton } from "@/components/Skeleton/AvatarCardSkeleton";
+import { ListSkeletonWrapper } from "@/components/Skeleton/ListSkeletonWrapper";
 
 export function CharacterList({
   subject_id,
@@ -20,14 +21,13 @@ export function CharacterList({
   return (
     <Suspense
       fallback={
-        <div className="flex flex-col space-y-2 p-2">
-          <div className="h-[60px] w-full" />
+        <ListSkeletonWrapper>
           <div className="grid grid-cols-5 gap-4 px-8 py-2">
             {Array.from({ length: 10 }).map((_, i) => (
               <AvatarCardSkeleton key={i} />
             ))}
           </div>
-        </div>
+        </ListSkeletonWrapper>
       }
     >
       {subjectCharactersData?.length ? (
