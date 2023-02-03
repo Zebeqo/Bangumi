@@ -149,14 +149,15 @@ DialogDescription.displayName = DialogPrimitive.Description.displayName;
 
 const DialogClose = forwardRef<
   React.ElementRef<typeof DialogPrimitive.Close>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Close>
->(({ children, ...props }, ref) => (
-  <DialogPrimitive.Close ref={ref} {...props}>
-    {children ?? (
-      <GhostButton_Icon colorType={"neutral"}>
-        <XMarkIcon className="h-6 w-6" />
-      </GhostButton_Icon>
-    )}
+  Omit<
+    React.ComponentPropsWithoutRef<typeof DialogPrimitive.Close>,
+    "children" | "asChild"
+  >
+>(({ ...props }, ref) => (
+  <DialogPrimitive.Close ref={ref} asChild {...props}>
+    <GhostButton_Icon colorType={"neutral"}>
+      <XMarkIcon className="h-6 w-6" />
+    </GhostButton_Icon>
   </DialogPrimitive.Close>
 ));
 DialogClose.displayName = DialogPrimitive.Close.displayName;

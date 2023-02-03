@@ -38,7 +38,7 @@ export function MainDialog() {
           }
         >
           <DialogTitle>{dialog?.title}</DialogTitle>
-          <DialogClose asChild />
+          <DialogClose />
         </DialogContentHeader_Main>
         <DialogDescription>{dialog?.description}</DialogDescription>
         {dialog?.action && (
