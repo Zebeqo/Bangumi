@@ -31,7 +31,7 @@ export function RelationSubjectAvatarCard({
               }
               alt="Avatar"
               onClick={onClick}
-              className="h-56 w-40 rounded"
+              className="h-56 w-40 rounded-md"
             />
             <AvatarCardInfo>
               <AvatarCardInfoItem relation={relation}>
