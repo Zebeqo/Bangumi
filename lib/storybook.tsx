@@ -32,6 +32,10 @@ export const rowDecorator = (Story: React.ComponentType) => {
   );
 };
 
+export const containerDecorator = (Story: React.ComponentType) => {
+  return <div className="container w-screen">{<Story />}</div>;
+};
+
 export const colorArgTypes = {
   colorType: {
     control: {
