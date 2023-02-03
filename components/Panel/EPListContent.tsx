@@ -2,7 +2,7 @@
 
 import { PanelNav } from "@/components/Panel/PanelNav";
 import { useSubjectData } from "@/hooks/use-subject";
-import { EPListFull } from "@/components/Panel/EPList/EPListFull";
+import { EPListFull } from "@/components/EPList/EPListFull";
 import { Suspense } from "react";
 import { EPItemSkeleton } from "@/components/Skeleton/EPItemSkeleton";
 import { ListSkeletonWrapper } from "@/components/Skeleton/ListSkeletonWrapper";

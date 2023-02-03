@@ -4,7 +4,7 @@ import { useEpisodesPageData } from "@/hooks/use-episode";
 import { ListHeader } from "@/components/Panel/ListHeader";
 import { useReducerAtom } from "jotai/react/utils";
 import { panelHistoryAtom, panelReducer } from "@/lib/panel";
-import { EPListItemList } from "@/components/Panel/EPList/EPListItemList";
+import { EPListItemList } from "@/components/EPList/EPListItemList";
 import { Fragment, useEffect } from "react";
 import { LoadMore } from "@/components/LoadMore";
 import { useInView } from "react-intersection-observer";
