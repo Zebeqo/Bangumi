@@ -5,7 +5,7 @@ import { useEpisodesData } from "@/hooks/use-episode";
 import { ListHeader } from "@/components/Panel/ListHeader";
 import { useReducerAtom } from "jotai/react/utils";
 import { panelHistoryAtom, panelReducer } from "@/lib/panel";
-import { EPListItemList } from "@/components/Panel/EPList/EPListItemList";
+import { EPListItemList } from "@/components/EPList/EPListItemList";
 import { Suspense } from "react";
 import { EPItemSkeleton } from "@/components/Skeleton/EPItemSkeleton";
 import { useSubjectData } from "@/hooks/use-subject";

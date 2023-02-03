@@ -11,7 +11,7 @@ import {
 } from "@heroicons/react/20/solid";
 import { signIn, useSession } from "next-auth/react";
 import { CharacterList } from "@/components/AvatarCard/AvatarCardList/CharacterList";
-import { EPListDynamic } from "@/components/Panel/EPList/EPListDynamic";
+import { EPListDynamic } from "@/components/EPList/EPListDynamic";
 import { PersonList } from "@/components/AvatarCard/AvatarCardList/PersonList";
 import { RelationSubjectList } from "@/components/AvatarCard/AvatarCardList/RelationSubjectList";
 import { Suspense, useRef, useState } from "react";
