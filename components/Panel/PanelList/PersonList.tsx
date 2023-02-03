@@ -1,6 +1,6 @@
 "use client";
 
-import { ListHeader } from "@/components/Panel/ListHeader";
+import { ListHeader } from "@/components/Panel/PanelList/ListHeader";
 import { useSubjectPersonsData } from "@/hooks/use-person";
 import { PersonAvatarCard } from "@/components/AvatarCard/PersonAvatarCard";
 import { personRelationEnum, personRelationScheme } from "@/lib/api/person";

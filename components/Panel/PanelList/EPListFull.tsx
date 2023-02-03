@@ -1,10 +1,10 @@
 "use client";
 
 import { useEpisodesPageData } from "@/hooks/use-episode";
-import { ListHeader } from "@/components/Panel/ListHeader";
+import { ListHeader } from "@/components/Panel/PanelList/ListHeader";
 import { useReducerAtom } from "jotai/react/utils";
 import { panelHistoryAtom, panelReducer } from "@/lib/panel";
-import { EPListItemList } from "@/components/EPList/EPListItemList";
+import { EPItemList } from "@/components/EPItem/EPItemList";
 import { Fragment, useEffect } from "react";
 import { LoadMore } from "@/components/LoadMore";
 import { useInView } from "react-intersection-observer";
@@ -16,7 +16,9 @@ export function EPListFull({ subject_id }: { subject_id: number }) {
     fetchNextPage,
     hasNextPage,
   } = useEpisodesPageData(subject_id, 15);
+
   const { ref, inView } = useInView();
+
   useEffect(() => {
     if (inView) {
       void (async () => {
@@ -41,10 +43,7 @@ export function EPListFull({ subject_id }: { subject_id: number }) {
         <div className="flex flex-col space-y-2 py-2">
           {episodesPageData?.pages.map((page) => (
             <Fragment key={page?.offset}>
-              <EPListItemList
-                episodesData={page?.data}
-                subject_id={subject_id}
-              />
+              <EPItemList episodesData={page?.data} subject_id={subject_id} />
             </Fragment>
           ))}
         </div>

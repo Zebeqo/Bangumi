@@ -2,10 +2,10 @@
 
 import { useCollectionData } from "@/hooks/use-collection";
 import { useEpisodesData } from "@/hooks/use-episode";
-import { ListHeader } from "@/components/Panel/ListHeader";
+import { ListHeader } from "@/components/Panel/PanelList/ListHeader";
 import { useReducerAtom } from "jotai/react/utils";
 import { panelHistoryAtom, panelReducer } from "@/lib/panel";
-import { EPListItemList } from "@/components/EPList/EPListItemList";
+import { EPItemList } from "@/components/EPItem/EPItemList";
 import { Suspense } from "react";
 import { EPItemSkeleton } from "@/components/Skeleton/EPItemSkeleton";
 import { useSubjectData } from "@/hooks/use-subject";
@@ -69,7 +69,7 @@ export function EPListDynamic({
             }}
           />
           <div className="flex flex-col space-y-2 py-2">
-            <EPListItemList
+            <EPItemList
               subject_id={subject_id}
               episodesData={episodesData.data}
             />

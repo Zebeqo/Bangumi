@@ -2,12 +2,12 @@
 
 import { PanelNav } from "@/components/Panel/PanelNav";
 import { useSubjectData } from "@/hooks/use-subject";
-import { EPListFull } from "@/components/EPList/EPListFull";
+import { EPListFull } from "@/components/Panel/PanelList/EPListFull";
 import { Suspense } from "react";
 import { EPItemSkeleton } from "@/components/Skeleton/EPItemSkeleton";
 import { ListSkeletonWrapper } from "@/components/Skeleton/ListSkeletonWrapper";
 
-export function EPListContent({ subject_id }: { subject_id: number }) {
+export function EPListPanel({ subject_id }: { subject_id: number }) {
   const { data: subjectData } = useSubjectData(subject_id);
   return (
     <>

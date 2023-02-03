@@ -2,9 +2,9 @@
 
 import { PanelNav } from "@/components/Panel/PanelNav";
 import { useSubjectData } from "@/hooks/use-subject";
-import { CharacterList } from "@/components/AvatarCard/AvatarCardList/CharacterList";
+import { SubjectList } from "@/components/Panel/PanelList/SubjectList";
 
-export function CharacterListContent({ subject_id }: { subject_id: number }) {
+export function SubjectListPanel({ subject_id }: { subject_id: number }) {
   const { data: subjectData } = useSubjectData(subject_id);
   return (
     <>
@@ -12,7 +12,7 @@ export function CharacterListContent({ subject_id }: { subject_id: number }) {
         title={{ name: subjectData?.name, name_cn: subjectData?.name_cn }}
       />
       <div className="px-8">
-        <CharacterList subject_id={subject_id} />
+        <SubjectList subject_id={subject_id} />
       </div>
     </>
   );

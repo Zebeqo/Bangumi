@@ -13,7 +13,7 @@ import {
   EPItemLeftContent,
 } from "@/ui/primitive/EPItem";
 
-export function EPListItemList({
+export function EPItemList({
   episodesData,
   subject_id,
 }: {
