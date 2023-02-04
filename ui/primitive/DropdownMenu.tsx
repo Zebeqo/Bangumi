@@ -119,7 +119,7 @@ interface DropdownMenuSimpleContentProps
 
 const DropdownMenuContent_Simple = forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Content>,
-  DropdownMenuSimpleContentProps
+  Omit<DropdownMenuSimpleContentProps, "children">
 >(({ menuItems, colorType, ...props }, ref) => (
   <DropdownMenuContent ref={ref} colorType={colorType} {...props}>
     {menuItems.map(({ label, handleSelect }, i) => (

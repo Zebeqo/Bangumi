@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Toast, ToastAction, ToastDescription, ToastTitle } from "./Toast";
-import { within } from "@storybook/testing-library";
+import { userEvent, within } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
 import { action } from "@storybook/addon-actions";
 
@@ -14,19 +14,37 @@ export const Toast_: StoryObj<{
   title: string;
   description: string;
   actionLabel: string;
+  isOpen: boolean;
   toastType: "success" | "error" | "info";
+  onOpenChange: () => void;
+  onClickAction: () => void;
 }> = {
   args: {
     title: "更新成功！",
     description: "进度已更新至第 8 集。",
     actionLabel: "跳转至评论页",
+    isOpen: true,
     toastType: "success",
+    onOpenChange: action("trigger close"),
+    onClickAction: action("toast action"),
   },
-  render: ({ title, toastType, description, actionLabel }) => (
-    <Toast toastType={toastType} open={true}>
+  render: ({
+    title,
+    toastType,
+    description,
+    actionLabel,
+    isOpen,
+    onOpenChange,
+    onClickAction,
+  }) => (
+    <Toast toastType={toastType} open={isOpen} onOpenChange={onOpenChange}>
       <ToastTitle>{title}</ToastTitle>
       <ToastDescription>{description}</ToastDescription>
-      <ToastAction altText={actionLabel} onClick={action("toast action")}>
+      <ToastAction
+        altText={actionLabel}
+        onClick={onClickAction}
+        aria-label={actionLabel}
+      >
         {actionLabel}
       </ToastAction>
     </Toast>
@@ -39,13 +57,21 @@ export const Toast_: StoryObj<{
       options: ["success", "error", "info"],
     },
   },
-  play: async ({ canvasElement }) => {
+  play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
-    const toast = await canvas.findByRole("status");
-    await expect(within(toast).getByText("更新成功！")).toBeVisible();
-    await expect(
-      within(toast).getByText("进度已更新至第 8 集。")
-    ).toBeVisible();
-    await expect(within(toast).getByText("跳转至评论页")).toBeVisible();
+    const toast = canvas.getByRole("status");
+    await expect(toast).toBeInTheDocument();
+    await expect(toast).toHaveTextContent(args.title);
+    await expect(toast).toHaveTextContent(args.description);
+    await expect(toast).toHaveTextContent(args.actionLabel);
+
+    await new Promise((r) => setTimeout(r, 1));
+    await userEvent.click(
+      within(toast).getByRole("button", { name: args.actionLabel })
+    );
+    await expect(args.onOpenChange).toHaveBeenCalledTimes(1);
+
+    await userEvent.click(within(toast).getByRole("button", { name: "Close" }));
+    await expect(args.onClickAction).toHaveBeenCalledTimes(1);
   },
 };

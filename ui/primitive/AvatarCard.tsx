@@ -1,4 +1,5 @@
 import { forwardRef } from "react";
+import type { WithRequired } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/ui/primitive/Badge";
 import { ChatBubbleLeftRightIcon } from "@heroicons/react/20/solid";
@@ -6,7 +7,7 @@ import Image from "next/image";
 
 const AvatarCard = forwardRef<
   HTMLDivElement,
-  React.ComponentPropsWithoutRef<"div">
+  WithRequired<React.ComponentPropsWithoutRef<"div">, "children">
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
@@ -36,7 +37,7 @@ AvatarCardBadge.displayName = Badge.displayName;
 
 const AvatarCardContent = forwardRef<
   HTMLDivElement,
-  React.ComponentPropsWithoutRef<"div">
+  WithRequired<React.ComponentPropsWithoutRef<"div">, "children">
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
@@ -48,7 +49,7 @@ AvatarCardContent.displayName = "AvatarCardContent";
 
 const AvatarCardImage = forwardRef<
   React.ElementRef<typeof Image>,
-  React.ComponentPropsWithoutRef<typeof Image>
+  Omit<React.ComponentPropsWithoutRef<typeof Image>, "children">
 >(({ className, ...props }, ref) => (
   <div
     className={cn(
@@ -69,7 +70,7 @@ AvatarCardImage.displayName = "AvatarCardImage";
 
 const AvatarCardInfo = forwardRef<
   HTMLDivElement,
-  React.ComponentPropsWithoutRef<"div">
+  WithRequired<React.ComponentPropsWithoutRef<"div">, "children">
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
@@ -83,21 +84,22 @@ interface AvatarCardInfoItemProps
   extends React.ComponentPropsWithoutRef<"div"> {
   relation: string;
 }
-const AvatarCardInfoItem = forwardRef<HTMLDivElement, AvatarCardInfoItemProps>(
-  ({ children, className, relation, ...props }, ref) => (
-    <div ref={ref} className={cn("flex space-x-1", className)} {...props}>
-      <span className="whitespace-nowrap text-xs text-neutral-11">
-        {relation}:
-      </span>
-      {children}
-    </div>
-  )
-);
+const AvatarCardInfoItem = forwardRef<
+  HTMLDivElement,
+  WithRequired<AvatarCardInfoItemProps, "children">
+>(({ children, className, relation, ...props }, ref) => (
+  <div ref={ref} className={cn("flex space-x-1", className)} {...props}>
+    <span className="whitespace-nowrap text-xs text-neutral-11">
+      {relation}:
+    </span>
+    {children}
+  </div>
+));
 AvatarCardInfoItem.displayName = "AvatarCardInfoItem";
 
 const AvatarCardInfoItemName = forwardRef<
   HTMLSpanElement,
-  React.ComponentPropsWithoutRef<"span">
+  WithRequired<React.ComponentPropsWithoutRef<"span">, "children">
 >(({ className, children, ...props }, ref) => (
   <span
     ref={ref}

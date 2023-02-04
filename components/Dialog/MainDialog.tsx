@@ -5,11 +5,9 @@ import { dialogAtom, isOpenDialogAtom } from "@/lib/dialog";
 import { useInView } from "react-intersection-observer";
 import {
   Dialog,
-  DialogClose,
   DialogContent_Main,
   DialogContentHeader_Main,
   DialogDescription,
-  DialogTitle,
 } from "@/ui/primitive/Dialog";
 import { PrimaryButton } from "@/ui/primitive/Button";
 
@@ -36,11 +34,9 @@ export function MainDialog() {
           className={
             inView ? undefined : "border-b border-neutral-6 bg-neutral-1"
           }
-        >
-          <DialogTitle>{dialog?.title}</DialogTitle>
-          <DialogClose />
-        </DialogContentHeader_Main>
-        <DialogDescription>{dialog?.description}</DialogDescription>
+          titleName={dialog?.title ?? ""}
+        />
+        <DialogDescription>{dialog?.description ?? ""}</DialogDescription>
         {dialog?.action && (
           <PrimaryButton
             colorType={"accent"}

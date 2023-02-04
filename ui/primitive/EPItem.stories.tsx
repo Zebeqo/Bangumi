@@ -1,3 +1,4 @@
+import { expect } from "@storybook/jest";
 import type { Meta, StoryObj } from "@storybook/react";
 import {
   EPItem,
@@ -5,9 +6,11 @@ import {
   EPItemIndex,
   EPItemInfo,
   EPItemLeftContent,
+  EPItemRightContent,
 } from "@/ui/primitive/EPItem";
 import { action } from "@storybook/addon-actions";
 import { containerDecorator } from "@/ui/storybook";
+import { userEvent, within } from "@storybook/testing-library";
 
 const meta: Meta = {
   title: "EPItem",
@@ -24,6 +27,8 @@ export const EPItem_: StoryObj<{
   airdate: string;
   duration: string;
   commentCount: number;
+  onClickIndex: () => void;
+  onClickComment: () => void;
 }> = {
   args: {
     isSelected: false,
@@ -33,6 +38,8 @@ export const EPItem_: StoryObj<{
     airdate: "2022-10-10",
     duration: "00:24:07",
     commentCount: 125,
+    onClickIndex: action("click index"),
+    onClickComment: action("click comment"),
   },
   render: ({
     isSelected,
@@ -42,13 +49,16 @@ export const EPItem_: StoryObj<{
     airdate,
     duration,
     commentCount,
+    onClickIndex,
+    onClickComment,
   }) => (
     <EPItem>
       <EPItemLeftContent>
         <EPItemIndex
+          aria-label={`episode ${index}`}
           value={index}
           isSelected={isSelected}
-          onClick={action("click index")}
+          onClick={onClickIndex}
         />
         <EPItemInfo
           name={name}
@@ -57,7 +67,22 @@ export const EPItem_: StoryObj<{
           duration={duration}
         />
       </EPItemLeftContent>
-      <EPItemComment count={commentCount} onClick={action("click comment")} />
+      <EPItemRightContent>
+        <EPItemComment
+          aria-label="comment"
+          count={commentCount}
+          onClick={onClickComment}
+        />
+      </EPItemRightContent>
     </EPItem>
   ),
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+    const index = canvas.getByLabelText(`episode ${args.index}`);
+    await userEvent.click(index);
+    await expect(args.onClickIndex).toHaveBeenCalledTimes(1);
+    const comment = canvas.getByLabelText("comment");
+    await userEvent.click(comment);
+    await expect(args.onClickComment).toHaveBeenCalledTimes(1);
+  },
 };

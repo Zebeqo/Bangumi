@@ -32,15 +32,13 @@ export const Rating_: StoryObj<{
 
     return (
       <Rating colorType={"accent"}>
-        <>
-          {Array.from({ length: fillStarCount }).map((_, index) => (
-            <RatingFillIcon key={index} />
-          ))}
-          {halfStarCount > 0 && <RatingHalfIcon />}
-          {Array.from({ length: outlineStarCount }).map((_, index) => (
-            <RatingEmptyIcon key={index} />
-          ))}
-        </>
+        {Array.from({ length: fillStarCount }).map((_, index) => (
+          <RatingFillIcon key={index} />
+        ))}
+        {halfStarCount > 0 && <RatingHalfIcon />}
+        {Array.from({ length: outlineStarCount }).map((_, index) => (
+          <RatingEmptyIcon key={index} />
+        ))}
       </Rating>
     );
   },

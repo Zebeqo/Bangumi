@@ -2,6 +2,7 @@
 
 import * as ToastPrimitive from "@radix-ui/react-toast";
 import { forwardRef } from "react";
+import type { WithRequired } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 import { XMarkIcon } from "@heroicons/react/20/solid";
 import {
@@ -16,7 +17,7 @@ interface ToastProps
 }
 const Toast = forwardRef<
   React.ElementRef<typeof ToastPrimitive.Root>,
-  ToastProps
+  WithRequired<ToastProps, "children">
 >(({ className, toastType, children, ...props }, ref) => (
   <>
     <ToastPrimitive.Root
@@ -52,17 +53,20 @@ Toast.displayName = ToastPrimitive.Root.displayName;
 
 const ToastClose = forwardRef<
   React.ElementRef<typeof ToastPrimitive.Close>,
-  React.ComponentPropsWithoutRef<typeof ToastPrimitive.Close>
->(({ children, ...props }, ref) => (
+  Omit<React.ComponentPropsWithoutRef<typeof ToastPrimitive.Close>, "children">
+>(({ ...props }, ref) => (
   <ToastPrimitive.Close aria-label="Close" ref={ref} {...props}>
-    {children ?? <XMarkIcon className="h-5 w-5 text-neutral-11" />}
+    <XMarkIcon className="h-5 w-5 text-neutral-11" />
   </ToastPrimitive.Close>
 ));
 ToastClose.displayName = ToastPrimitive.Close.displayName;
 
 const ToastTitle = forwardRef<
   React.ElementRef<typeof ToastPrimitive.Title>,
-  React.ComponentPropsWithoutRef<typeof ToastPrimitive.Title>
+  WithRequired<
+    React.ComponentPropsWithoutRef<typeof ToastPrimitive.Title>,
+    "children"
+  >
 >(({ className, ...props }, ref) => (
   <ToastPrimitive.Title
     className={cn("text-sm font-medium text-neutral-12", className)}
@@ -74,7 +78,10 @@ ToastTitle.displayName = ToastPrimitive.Title.displayName;
 
 const ToastDescription = forwardRef<
   React.ElementRef<typeof ToastPrimitive.Description>,
-  React.ComponentPropsWithoutRef<typeof ToastPrimitive.Description>
+  WithRequired<
+    React.ComponentPropsWithoutRef<typeof ToastPrimitive.Description>,
+    "children"
+  >
 >(({ className, ...props }, ref) => (
   <ToastPrimitive.Description
     className={cn("text-sm text-neutral-11", className)}
@@ -86,7 +93,10 @@ ToastDescription.displayName = ToastPrimitive.Description.displayName;
 
 const ToastAction = forwardRef<
   React.ElementRef<typeof ToastPrimitive.Action>,
-  React.ComponentPropsWithoutRef<typeof ToastPrimitive.Action>
+  WithRequired<
+    React.ComponentPropsWithoutRef<typeof ToastPrimitive.Action>,
+    "children"
+  >
 >(({ className, ...props }, ref) => (
   <ToastPrimitive.Action
     className={cn("inline-flex w-fit text-sm text-accent-11", className)}
