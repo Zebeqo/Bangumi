@@ -11,6 +11,7 @@ import {
   EPItemIndex,
   EPItemInfo,
   EPItemLeftContent,
+  EPItemRightContent,
 } from "@/ui/primitive/EPItem";
 
 export function EPItemList({
@@ -68,12 +69,14 @@ export function EPItemList({
               duration={episodeData.duration}
             />
           </EPItemLeftContent>
-          <EPItemComment
-            count={episodeData.comment}
-            onClick={() => {
-              window.open(`https://bgm.tv/ep/${episodeData.id}`, "_blank");
-            }}
-          />
+          <EPItemRightContent>
+            <EPItemComment
+              count={episodeData.comment}
+              onClick={() => {
+                window.open(`https://bgm.tv/ep/${episodeData.id}`, "_blank");
+              }}
+            />
+          </EPItemRightContent>
         </EPItem>
       ))}
     </>
