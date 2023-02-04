@@ -21,8 +21,6 @@ import {
   CardTagGroup,
   CardTagGroupItem,
   CardTitle,
-  CardTitleMain,
-  CardTitleSub,
 } from "@/ui/primitive/Card";
 import { InfoButton } from "@/components/Button/InfoButton";
 import { cva } from "class-variance-authority";
@@ -81,10 +79,7 @@ export async function CardSSR({
       </CardImage>
       <CardContent>
         <CardHeader>
-          <CardTitle>
-            <CardTitleMain>{name_cn || name}</CardTitleMain>
-            <CardTitleSub>{name}</CardTitleSub>
-          </CardTitle>
+          <CardTitle mainTitle={name_cn || name} subTitle={name} />
           <CardButtonGroup>
             <InfoButton subject_id={subject_id} />
             <PrimaryButton_Icon colorType={"accent"}>
