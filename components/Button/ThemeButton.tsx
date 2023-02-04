@@ -1,6 +1,5 @@
 "use client";
 
-// Set the string key and the initial value
 import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
 
 import { useTheme } from "next-themes";
