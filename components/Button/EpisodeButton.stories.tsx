@@ -5,7 +5,7 @@ import {
   STORYBOOK_BROKEN_SUBJECT_ID,
   STORYBOOK_SUBJECT_ID,
 } from "@/lib/constant";
-import { reactQueryDevtoolsDecorator } from "@/lib/storybook";
+import { reactQueryDevtoolsDecorator } from "@/ui/storybook";
 import { useCollectionData } from "@/hooks/use-collection";
 import { waitFor, within } from "@storybook/testing-library";
 

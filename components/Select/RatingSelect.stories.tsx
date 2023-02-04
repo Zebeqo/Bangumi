@@ -3,7 +3,7 @@ import { RatingSelect as RatingSelectComponent } from "@/components/Select/Ratin
 import { STORYBOOK_SUBJECT_ID } from "@/lib/constant";
 import { screen, userEvent, waitFor, within } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
-import { reactQueryDevtoolsDecorator } from "@/lib/storybook";
+import { reactQueryDevtoolsDecorator } from "@/ui/storybook";
 
 const meta: Meta<typeof RatingSelectComponent> = {
   title: "Select/RatingSelect",

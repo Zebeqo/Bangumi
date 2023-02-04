@@ -1,7 +1,7 @@
 import type { Meta } from "@storybook/react";
 import { useEpisodesPageData } from "@/hooks/use-episode";
 import { STORYBOOK_SUBJECT_ID } from "@/lib/constant";
-import { reactQueryDevtoolsDecorator } from "@/lib/storybook";
+import { reactQueryDevtoolsDecorator } from "@/ui/storybook";
 import { SecondaryButton } from "@/ui/primitive/Button";
 
 const meta: Meta = {

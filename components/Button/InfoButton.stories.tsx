@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { InfoButton as InfoButtonComponent } from "./InfoButton";
 import { STORYBOOK_SUBJECT_ID } from "@/lib/constant";
-import { panelDecorator } from "@/lib/storybook";
+import { panelDecorator } from "@/ui/storybook";
 
 const meta: Meta = {
   title: "Button/InfoButton",

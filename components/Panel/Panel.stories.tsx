@@ -10,7 +10,7 @@ import {
   STORYBOOK_SUBJECT_ID,
   STORYBOOK_UPCOMING_SUBJECT_ID,
 } from "@/lib/constant";
-import { panelDecorator, reactQueryDevtoolsDecorator } from "@/lib/storybook";
+import { panelDecorator, reactQueryDevtoolsDecorator } from "@/ui/storybook";
 
 const meta: Meta<typeof Panel> = {
   title: "Dialog/Panel",
