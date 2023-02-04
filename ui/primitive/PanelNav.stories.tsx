@@ -11,7 +11,7 @@ import {
 import { action } from "@storybook/addon-actions";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { GhostButton_Icon } from "@/ui/primitive/Button";
-import { containerDecorator } from "@/lib/storybook";
+import { containerDecorator } from "@/ui/storybook";
 
 const meta: Meta = {
   title: "PanelNav",

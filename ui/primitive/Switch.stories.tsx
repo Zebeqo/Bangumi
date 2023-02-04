@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Switch } from "@/ui/primitive/Switch";
 import { useState } from "react";
 import type { Color } from "@/ui/color";
-import { colorArgTypes } from "@/lib/storybook";
+import { colorArgTypes } from "@/ui/storybook";
 
 const meta: Meta = {
   title: "Switch",

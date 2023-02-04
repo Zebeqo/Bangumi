@@ -7,7 +7,7 @@ import {
   EPItemLeftContent,
 } from "@/ui/primitive/EPItem";
 import { action } from "@storybook/addon-actions";
-import { containerDecorator } from "@/lib/storybook";
+import { containerDecorator } from "@/ui/storybook";
 
 const meta: Meta = {
   title: "EPItem",

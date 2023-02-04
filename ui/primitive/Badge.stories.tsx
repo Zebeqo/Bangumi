@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Badge } from "@/ui/primitive/Badge";
 import { ChatBubbleLeftRightIcon } from "@heroicons/react/20/solid";
 import type { Color } from "@/ui/color";
-import { colorArgTypes } from "@/lib/storybook";
+import { colorArgTypes } from "@/ui/storybook";
 
 const meta: Meta = {
   title: "Badge",

@@ -1,6 +1,6 @@
 import type { Meta } from "@storybook/react";
 import { useCollectionsPageData } from "@/hooks/use-collection";
-import { reactQueryDevtoolsDecorator } from "@/lib/storybook";
+import { reactQueryDevtoolsDecorator } from "@/ui/storybook";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
 
@@ -18,7 +18,7 @@ export const CollectionsDataHook = () => {
     hasNextPage,
     isFetchingNextPage,
     isSuccess,
-  } = useCollectionsPageData(2, 2);
+  } = useCollectionsPageData(2, 2, 2);
 
   const { ref, inView } = useInView();
   useEffect(() => {
