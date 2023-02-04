@@ -1,94 +1,74 @@
-import { expect } from "@storybook/jest";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Panel } from "@/components/Panel/Panel";
-import { InfoButton } from "@/components/Button/InfoButton";
-import { userEvent, within, waitFor, screen } from "@storybook/testing-library";
-import {
-  STORYBOOK_BROKEN_NOT_COLLECTED_SUBJECT_ID,
-  STORYBOOK_BROKEN_SUBJECT_ID,
-  STORYBOOK_NOT_COLLECTED_SUBJECT_ID,
-  STORYBOOK_SUBJECT_ID,
-  STORYBOOK_UPCOMING_SUBJECT_ID,
-} from "@/lib/constant";
-import { panelDecorator, reactQueryDevtoolsDecorator } from "@/ui/storybook";
+import { Dialog, DialogContent_Panel } from "@/ui/primitive/Dialog";
+import { SubjectContent } from "@/components/Panel/SubjectContent";
+import { action } from "@storybook/addon-actions";
+import { STORYBOOK_SUBJECT_ID } from "@/lib/constant";
+import { SubjectContentSkeleton } from "@/components/Skeleton/SubjectContentSkeleton";
+import { Suspense } from "react";
+import { CharacterListPanel } from "@/components/Panel/SubPanel/CharacterListPanel";
+import { EPListPanel } from "@/components/Panel/SubPanel/EPListPanel";
+import { PersonListPanel } from "@/components/Panel/SubPanel/PersonListPanel";
+import { SubjectListPanel } from "@/components/Panel/SubPanel/SubjectListPanel";
 
-const meta: Meta<typeof Panel> = {
-  title: "Dialog/Panel",
-  component: Panel,
-  decorators: [panelDecorator, reactQueryDevtoolsDecorator],
+const meta: Meta = {
+  title: "Panel",
+  args: {
+    subject_id: STORYBOOK_SUBJECT_ID,
+  },
 };
 
 export default meta;
-type Story = StoryObj<typeof Panel>;
 
-const play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
-  const canvas = within(canvasElement);
+type PanelStory = StoryObj<{ subject_id: number }>;
 
-  const button = await canvas.findByRole("button", { name: "open-info-panel" });
-  await userEvent.click(button);
-
-  const panel = await screen.findByRole("dialog");
-
-  await waitFor(
-    () => {
-      expect(within(panel).getByTestId("title")).toHaveTextContent(/./);
-    },
-    { timeout: 5000, interval: 1000 }
-  );
-
-  await userEvent.click(within(panel).getByRole("button", { name: "Close" }));
-  await new Promise((r) => setTimeout(r, 400));
-};
-
-export const InfoPanel: Story = {
-  render: () => <InfoButton subject_id={STORYBOOK_SUBJECT_ID} />,
-  play,
-  parameters: {
-    nextAuthMock: {
-      session: {
-        data: null,
-        status: "unauthenticated",
-      },
-    },
-  },
-};
-
-export const InfoPanel_Session: Story = {
-  render: () => <InfoButton subject_id={STORYBOOK_SUBJECT_ID} />,
-  play,
-};
-
-export const InfoPanel_Session_Not_Collected: Story = {
-  render: () => <InfoButton subject_id={STORYBOOK_NOT_COLLECTED_SUBJECT_ID} />,
-  play,
-};
-
-export const InfoPanel_Broken: Story = {
-  render: () => <InfoButton subject_id={STORYBOOK_BROKEN_SUBJECT_ID} />,
-  parameters: {
-    nextAuthMock: {
-      session: {
-        data: null,
-        status: "unauthenticated",
-      },
-    },
-  },
-  play,
-};
-
-export const InfoPanel_Broken_Session: Story = {
-  render: () => <InfoButton subject_id={STORYBOOK_BROKEN_SUBJECT_ID} />,
-  play,
-};
-
-export const InfoPanel_Broken_Session_Not_Collected: Story = {
-  render: () => (
-    <InfoButton subject_id={STORYBOOK_BROKEN_NOT_COLLECTED_SUBJECT_ID} />
+export const SubjectPanel_: PanelStory = {
+  render: ({ subject_id }) => (
+    <Dialog open={true} onOpenChange={action("trigger close")}>
+      <DialogContent_Panel isOpen={true}>
+        <Suspense fallback={<SubjectContentSkeleton />}>
+          <SubjectContent subject_id={subject_id} />
+        </Suspense>
+      </DialogContent_Panel>
+    </Dialog>
   ),
-  play,
 };
 
-export const InfoPanel_Upcoming: Story = {
-  render: () => <InfoButton subject_id={STORYBOOK_UPCOMING_SUBJECT_ID} />,
-  play,
+export const CharacterListPanel_: PanelStory = {
+  render: ({ subject_id }) => (
+    <Dialog open={true} onOpenChange={action("trigger close")}>
+      <DialogContent_Panel isOpen={true}>
+        <CharacterListPanel subject_id={subject_id} />
+      </DialogContent_Panel>
+    </Dialog>
+  ),
+};
+
+export const EPListPanel_: PanelStory = {
+  render: ({ subject_id }) => (
+    <Dialog open={true} onOpenChange={action("trigger close")}>
+      <DialogContent_Panel isOpen={true}>
+        <EPListPanel subject_id={subject_id} />
+      </DialogContent_Panel>
+    </Dialog>
+  ),
+};
+
+export const PersonListPanel_: PanelStory = {
+  render: ({ subject_id }) => (
+    <Dialog open={true} onOpenChange={action("trigger close")}>
+      <DialogContent_Panel isOpen={true}>
+        <PersonListPanel subject_id={subject_id} />
+      </DialogContent_Panel>
+    </Dialog>
+  ),
+};
+
+export const SubjectListPanel_: PanelStory = {
+  render: ({ subject_id }) => (
+    <Dialog open={true} onOpenChange={action("trigger close")}>
+      <DialogContent_Panel isOpen={true}>
+        <SubjectListPanel subject_id={subject_id} />
+      </DialogContent_Panel>
+    </Dialog>
+  ),
 };
