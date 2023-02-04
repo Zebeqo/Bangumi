@@ -9,9 +9,17 @@ import {
   AvatarCardInfoItemName,
 } from "./AvatarCard";
 import { action } from "@storybook/addon-actions";
+import { userEvent, within } from "@storybook/testing-library";
+import { expect } from "@storybook/jest";
 
 const meta: Meta = {
   title: "AvatarCard",
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+    const image = canvas.getByRole("img");
+    await userEvent.click(image);
+    await expect(args.onClickImage).toHaveBeenCalledTimes(1);
+  },
 };
 
 export default meta;
@@ -20,6 +28,7 @@ export const CharacterCard: StoryObj<{
   commentCount: number;
   imageURL: string;
   items: { relation: string; name: string }[];
+  onClickImage: () => void;
 }> = {
   args: {
     commentCount: 326,
@@ -35,16 +44,13 @@ export const CharacterCard: StoryObj<{
         name: "宮村優子",
       },
     ],
+    onClickImage: action("click image"),
   },
-  render: ({ commentCount, imageURL, items }) => (
+  render: ({ commentCount, imageURL, items, onClickImage }) => (
     <AvatarCard>
       <AvatarCardBadge colorType={"success"}>{commentCount}</AvatarCardBadge>
       <AvatarCardContent>
-        <AvatarCardImage
-          src={imageURL}
-          alt="Avatar"
-          onClick={action("click image")}
-        />
+        <AvatarCardImage src={imageURL} alt="Avatar" onClick={onClickImage} />
         <AvatarCardInfo>
           {items.map((item) => (
             <AvatarCardInfoItem
@@ -66,6 +72,7 @@ export const PersonCard: StoryObj<{
   commentCount: number;
   imageURL: string;
   items: { relation: string; name: string }[];
+  onClickImage: () => void;
 }> = {
   args: {
     commentCount: 175,
@@ -77,6 +84,7 @@ export const PersonCard: StoryObj<{
         name: "庵野秀明",
       },
     ],
+    onClickImage: action("click image"),
   },
   render: CharacterCard.render,
 };
@@ -84,6 +92,7 @@ export const PersonCard: StoryObj<{
 export const SubjectCard: StoryObj<{
   imageURL: string;
   item: { relation: string; name: string };
+  onClickImage: () => void;
 }> = {
   args: {
     imageURL: "https://lain.bgm.tv/r/400/pic/cover/l/fe/45/6049_tbM7S.jpg",
@@ -91,14 +100,15 @@ export const SubjectCard: StoryObj<{
       relation: "续集",
       name: "新世纪福音战士剧场版 Air/真心为你",
     },
+    onClickImage: action("click image"),
   },
-  render: ({ imageURL, item }) => (
+  render: ({ imageURL, item, onClickImage }) => (
     <AvatarCard>
       <AvatarCardContent className="mx-2 w-40 items-center">
         <AvatarCardImage
           src={imageURL}
           alt="Avatar"
-          onClick={action("click image")}
+          onClick={onClickImage}
           className="h-56 w-40 rounded"
         />
         <AvatarCardInfo>

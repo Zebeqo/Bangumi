@@ -27,9 +27,17 @@ import {
   TableCellsIcon,
 } from "@heroicons/react/20/solid";
 import { Rating } from "@/components/Rating";
+import { userEvent, within } from "@storybook/testing-library";
+import { expect } from "@storybook/jest";
 
 const meta: Meta = {
   title: "Card",
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+    const infoButton = canvas.getByLabelText("open-info-panel");
+    await userEvent.click(infoButton);
+    await expect(args.onClickInfoButton).toHaveBeenCalledTimes(1);
+  },
 };
 
 export default meta;
@@ -44,6 +52,7 @@ export const Card_: StoryObj<{
   tags: string[];
   rating: number;
   ratingCount: number;
+  onClickInfoButton: () => void;
 }> = {
   args: {
     image: "https://lain.bgm.tv/r/400/pic/cover/l/b7/58/302286_s3o3E.jpg",
@@ -86,6 +95,7 @@ export const Card_: StoryObj<{
     ],
     rating: 8.0,
     ratingCount: 1757,
+    onClickInfoButton: action("click info button"),
   },
   render: ({
     image,
@@ -97,8 +107,9 @@ export const Card_: StoryObj<{
     tags,
     rating,
     ratingCount,
+    onClickInfoButton,
   }) => (
-    <Card>
+    <Card aria-label="card">
       <CardImage className="h-[201.6px]">
         <Image
           className="object-cover"
@@ -115,10 +126,14 @@ export const Card_: StoryObj<{
             <CardTitleSub>{name}</CardTitleSub>
           </CardTitle>
           <CardButtonGroup>
-            <PrimaryButton_Icon colorType={"accent"} onClick={action("click")}>
+            <PrimaryButton_Icon
+              aria-label="open-info-panel"
+              colorType={"accent"}
+              onClick={onClickInfoButton}
+            >
               <InformationCircleIcon className="h-6 w-6" />
             </PrimaryButton_Icon>
-            <PrimaryButton_Icon colorType={"accent"} onClick={action("click")}>
+            <PrimaryButton_Icon colorType={"accent"}>
               <ChatBubbleLeftRightIcon className="h-6 w-6" />
             </PrimaryButton_Icon>
           </CardButtonGroup>
