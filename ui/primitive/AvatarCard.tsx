@@ -55,7 +55,6 @@ const AvatarCardImage = forwardRef<
       "relative h-32 w-32 self-center overflow-hidden rounded-full",
       className
     )}
-    {...props}
   >
     <Image
       ref={ref}
