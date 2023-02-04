@@ -1,5 +1,5 @@
 const path = require("path");
-module.exports = {
+export default {
   stories: [
     {
       // 👇 The directory field sets the directory your stories
@@ -28,7 +28,6 @@ module.exports = {
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "@storybook/addon-storysource",
-    "@storybook/addon-actions",
     "storybook-dark-mode",
     "@tomfreudenberg/next-auth-mock/storybook",
   ],
