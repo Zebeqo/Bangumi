@@ -152,6 +152,7 @@ export const AvatarDropdownMenu: StoryObj<{
 
 export const SortDropdownMenu: StoryObj<{
   sortRadioItems: { label: string; value: string }[];
+  orderRadioItems: { label: string; value: string }[];
   colorType: DropdownMenuColor;
 }> = {
   args: {
@@ -169,13 +170,7 @@ export const SortDropdownMenu: StoryObj<{
         value: "rating",
       },
     ],
-    colorType: "neutral",
-  },
-  render: ({ sortRadioItems, colorType }) => {
-    const [sortRadioItem, setSortRadioItem] = useState("do");
-    const [orderRadioItem, setOrderRadioItem] = useState("desc");
-
-    const orderRadioItems = [
+    orderRadioItems: [
       {
         label: "升序",
         value: "asc",
@@ -184,7 +179,12 @@ export const SortDropdownMenu: StoryObj<{
         label: "降序",
         value: "desc",
       },
-    ];
+    ],
+    colorType: "neutral",
+  },
+  render: ({ sortRadioItems, colorType, orderRadioItems }) => {
+    const [sortRadioItem, setSortRadioItem] = useState("do");
+    const [orderRadioItem, setOrderRadioItem] = useState("desc");
 
     return (
       <DropdownMenu>

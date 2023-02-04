@@ -1,6 +1,7 @@
 import type { VariantProps } from "class-variance-authority";
 import { cva } from "class-variance-authority";
 import { forwardRef } from "react";
+import type { WithRequired } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 
 const badge = cva(
@@ -24,7 +25,7 @@ interface BadgeProps
   extends React.ComponentPropsWithoutRef<"span">,
     Required<BadgeVariantsProps> {}
 
-const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
+const Badge = forwardRef<HTMLSpanElement, WithRequired<BadgeProps, "children">>(
   ({ className, colorType, ...props }, ref) => (
     <span
       className={cn(badge({ colorType }), className)}

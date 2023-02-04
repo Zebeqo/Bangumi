@@ -1,4 +1,5 @@
 import { forwardRef } from "react";
+import type { WithRequired } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 import type { ButtonProps } from "@/ui/primitive/Button";
 import { GhostButton, SelectedButton } from "@/ui/primitive/Button";
@@ -10,7 +11,7 @@ import {
 
 const EPItem = forwardRef<
   HTMLDivElement,
-  React.ComponentPropsWithoutRef<"div">
+  WithRequired<React.ComponentPropsWithoutRef<"div">, "children">
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
@@ -19,6 +20,12 @@ const EPItem = forwardRef<
   />
 ));
 EPItem.displayName = "EPItem";
+
+const EPItemRightContent = forwardRef<
+  HTMLDivElement,
+  WithRequired<React.ComponentPropsWithoutRef<"div">, "children">
+>(({ ...props }, ref) => <div ref={ref} {...props} />);
+EPItemRightContent.displayName = "EPItemRightContent";
 
 const EPItemComment = forwardRef<
   HTMLButtonElement,
@@ -33,7 +40,7 @@ EPItemComment.displayName = GhostButton.displayName;
 
 const EPItemLeftContent = forwardRef<
   HTMLDivElement,
-  React.ComponentPropsWithoutRef<"div">
+  WithRequired<React.ComponentPropsWithoutRef<"div">, "children">
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
@@ -82,47 +89,54 @@ interface EPItemInfoMainProps extends React.ComponentPropsWithoutRef<"div"> {
   name: string;
   name_cn: string;
 }
-const EPItemInfoMain = forwardRef<HTMLDivElement, EPItemInfoMainProps>(
-  ({ className, name, name_cn, ...props }, ref) => (
-    <div
-      ref={ref}
-      className={cn("flex items-center font-medium", className)}
-      {...props}
-    >
-      <span className="text-xl text-neutral-12">{name}</span>
-      <span className={cn("text-neutral-11")}>
-        {name_cn && `（${name_cn}）`}
-      </span>
-    </div>
-  )
-);
+const EPItemInfoMain = forwardRef<
+  HTMLDivElement,
+  Omit<EPItemInfoMainProps, "children">
+>(({ className, name, name_cn, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("flex items-center font-medium", className)}
+    {...props}
+  >
+    <span className="text-xl text-neutral-12">{name}</span>
+    <span className={cn("text-neutral-11")}>{name_cn && `（${name_cn}）`}</span>
+  </div>
+));
 EPItemInfoMain.displayName = "EPItemInfoMain";
 
 interface EPItemInfoSubProps extends React.ComponentPropsWithoutRef<"div"> {
   airdate: string;
   duration: string;
 }
-const EPItemInfoSub = forwardRef<HTMLDivElement, EPItemInfoSubProps>(
-  ({ className, airdate, duration, ...props }, ref) => (
-    <div
-      ref={ref}
-      className={cn(
-        "flex space-x-2 text-xs font-medium text-neutral-11",
-        className
-      )}
-      {...props}
-    >
-      <div className="flex justify-center space-x-1">
-        <CalendarDaysIcon className="h-4 w-4" />
-        <span>{airdate}</span>
-      </div>
-      <div className="flex justify-center space-x-1">
-        <ClockIcon className="h-4 w-4" />
-        <span>{duration}</span>
-      </div>
+const EPItemInfoSub = forwardRef<
+  HTMLDivElement,
+  Omit<EPItemInfoSubProps, "children">
+>(({ className, airdate, duration, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn(
+      "flex space-x-2 text-xs font-medium text-neutral-11",
+      className
+    )}
+    {...props}
+  >
+    <div className="flex justify-center space-x-1">
+      <CalendarDaysIcon className="h-4 w-4" />
+      <span>{airdate}</span>
     </div>
-  )
-);
+    <div className="flex justify-center space-x-1">
+      <ClockIcon className="h-4 w-4" />
+      <span>{duration}</span>
+    </div>
+  </div>
+));
 EPItemInfoSub.displayName = "EPItemInfoSub";
 
-export { EPItem, EPItemComment, EPItemLeftContent, EPItemIndex, EPItemInfo };
+export {
+  EPItem,
+  EPItemRightContent,
+  EPItemComment,
+  EPItemLeftContent,
+  EPItemIndex,
+  EPItemInfo,
+};

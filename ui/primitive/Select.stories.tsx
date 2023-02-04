@@ -28,8 +28,6 @@ const meta: Meta = {
 
 export default meta;
 
-type Story = StoryObj;
-
 const play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
   const canvas = within(canvasElement);
   const selectEl = canvas.getByRole("combobox");

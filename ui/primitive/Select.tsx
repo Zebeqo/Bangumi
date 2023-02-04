@@ -8,6 +8,7 @@ import {
   ChevronUpIcon,
 } from "@heroicons/react/20/solid";
 import { forwardRef } from "react";
+import type { WithRequired } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 import type { ButtonVariantProps } from "@/ui/primitive/Button";
 import { OutlineButton } from "@/ui/primitive/Button";
@@ -24,17 +25,15 @@ interface SelectTriggerProps
     Required<ButtonVariantProps> {}
 const SelectTrigger = forwardRef<
   React.ElementRef<typeof SelectPrimitive.Trigger>,
-  SelectTriggerProps
->(({ children, colorType, ...props }, ref) => (
+  Omit<SelectTriggerProps, "children">
+>(({ colorType, ...props }, ref) => (
   <SelectPrimitive.Trigger ref={ref} {...props} asChild>
-    {children ?? (
-      <OutlineButton ref={ref} colorType={colorType}>
-        <SelectPrimitive.Value />
-        <SelectPrimitive.Icon className="ml-2 h-5 w-5">
-          <ChevronDownIcon />
-        </SelectPrimitive.Icon>
-      </OutlineButton>
-    )}
+    <OutlineButton ref={ref} colorType={colorType}>
+      <SelectPrimitive.Value />
+      <SelectPrimitive.Icon className="ml-2 h-5 w-5">
+        <ChevronDownIcon />
+      </SelectPrimitive.Icon>
+    </OutlineButton>
   </SelectPrimitive.Trigger>
 ));
 SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
@@ -53,7 +52,7 @@ interface SelectContentProps
     Required<VariantProps<typeof selectContent>> {}
 const SelectContent = forwardRef<
   React.ElementRef<typeof SelectPrimitive.Content>,
-  SelectContentProps
+  WithRequired<SelectContentProps, "children">
 >(({ colorType, className, children, ...props }, ref) => (
   <>
     <SelectTrigger colorType={colorType} />
@@ -94,7 +93,7 @@ interface SelectOptionsContentProps
 }
 const SelectOptionsContent = forwardRef<
   React.ElementRef<typeof SelectPrimitive.Content>,
-  SelectOptionsContentProps
+  Omit<SelectOptionsContentProps, "children">
 >(({ className, options, ...props }, ref) => (
   <SelectContent ref={ref} className={cn("...", className)} {...props}>
     <SelectGroup>
@@ -129,7 +128,7 @@ interface SelectItemProps
     Required<VariantProps<typeof selectItem>> {}
 const SelectItem = forwardRef<
   React.ElementRef<typeof SelectPrimitive.Item>,
-  SelectItemProps
+  WithRequired<SelectItemProps, "children">
 >(({ className, colorType, children, ...props }, ref) => (
   <SelectPrimitive.Item
     ref={ref}

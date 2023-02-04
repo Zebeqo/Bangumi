@@ -3,6 +3,7 @@
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { forwardRef, Fragment } from "react";
 import { Transition } from "@headlessui/react";
+import type { WithRequired } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { GhostButton_Icon } from "@/ui/primitive/Button";
@@ -15,7 +16,7 @@ interface DialogContentProps
 }
 const DialogContent = forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,
-  DialogContentProps
+  WithRequired<DialogContentProps, "children">
 >(({ children, isOpen, ...props }, ref) => (
   <DialogPrimitive.Portal forceMount>
     <Transition.Root show={isOpen}>
@@ -76,7 +77,7 @@ DialogContent.displayName = DialogPrimitive.Content.displayName;
 
 const DialogContent_Panel = forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,
-  DialogContentProps
+  React.ComponentPropsWithoutRef<typeof DialogContent>
 >(({ children, ...props }, ref) => (
   <DialogContent
     ref={ref}
@@ -90,7 +91,7 @@ DialogContent_Panel.displayName = DialogPrimitive.Content.displayName;
 
 const DialogContent_Main = forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,
-  DialogContentProps
+  React.ComponentPropsWithoutRef<typeof DialogContent>
 >(({ children, ...props }, ref) => (
   <DialogContent
     ref={ref}
@@ -102,10 +103,14 @@ const DialogContent_Main = forwardRef<
 ));
 DialogContent_Main.displayName = DialogPrimitive.Content.displayName;
 
+interface DialogContentHeader_MainProps
+  extends React.HTMLAttributes<HTMLDivElement> {
+  titleName: string;
+}
 const DialogContentHeader_Main = forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ children, className, ...props }, ref) => (
+  Omit<DialogContentHeader_MainProps, "children">
+>(({ titleName, className, ...props }, ref) => (
   <div
     ref={ref}
     className={cn(
@@ -114,14 +119,18 @@ const DialogContentHeader_Main = forwardRef<
     )}
     {...props}
   >
-    {children}
+    <DialogTitle>{titleName}</DialogTitle>
+    <DialogClose />
   </div>
 ));
 DialogContentHeader_Main.displayName = "DialogContentHeader_Main";
 
 const DialogTitle = forwardRef<
   React.ElementRef<typeof DialogPrimitive.Title>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>
+  WithRequired<
+    React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>,
+    "children"
+  >
 >(({ children, className, ...props }, ref) => (
   <DialogPrimitive.Title
     ref={ref}
@@ -135,15 +144,16 @@ DialogTitle.displayName = DialogPrimitive.Title.displayName;
 
 const DialogDescription = forwardRef<
   React.ElementRef<typeof DialogPrimitive.Description>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>
->(({ children, className, ...props }, ref) => (
+  WithRequired<
+    React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>,
+    "children"
+  >
+>(({ className, ...props }, ref) => (
   <DialogPrimitive.Description
     ref={ref}
     className={cn("w-full whitespace-pre-wrap px-6 text-neutral-12", className)}
     {...props}
-  >
-    {children}
-  </DialogPrimitive.Description>
+  />
 ));
 DialogDescription.displayName = DialogPrimitive.Description.displayName;
 

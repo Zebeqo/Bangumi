@@ -24,7 +24,7 @@ interface SwitchProps
     Required<VariantProps<typeof switchVariant>> {}
 const Switch = forwardRef<
   React.ElementRef<typeof SwitchPrimitive.Root>,
-  SwitchProps
+  Omit<SwitchProps, "children">
 >(({ className, colorType, ...props }, ref) => (
   <SwitchPrimitive.Root
     ref={ref}

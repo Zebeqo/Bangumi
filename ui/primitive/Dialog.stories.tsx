@@ -1,12 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import {
   Dialog,
-  DialogClose,
   DialogContent_Panel,
   DialogContent_Main,
   DialogContentHeader_Main,
   DialogDescription,
-  DialogTitle,
   DialogTrigger,
 } from "@/ui/primitive/Dialog";
 import { SubjectContentSkeleton } from "@/components/Skeleton/SubjectContentSkeleton";
@@ -58,10 +56,7 @@ export const MainDialog: StoryObj<{
           </SecondaryButton>
         </DialogTrigger>
         <DialogContent_Main isOpen={open}>
-          <DialogContentHeader_Main>
-            <DialogTitle>{title}</DialogTitle>
-            <DialogClose />
-          </DialogContentHeader_Main>
+          <DialogContentHeader_Main titleName={title} />
           <DialogDescription>{description}</DialogDescription>
         </DialogContent_Main>
       </Dialog>
@@ -92,10 +87,7 @@ export const MainDialog_Action: StoryObj<{
           </SecondaryButton>
         </DialogTrigger>
         <DialogContent_Main isOpen={open}>
-          <DialogContentHeader_Main>
-            <DialogTitle>{title}</DialogTitle>
-            <DialogClose />
-          </DialogContentHeader_Main>
+          <DialogContentHeader_Main titleName={title} />
           <DialogDescription>{description}</DialogDescription>
           <SecondaryButton
             colorType={"accent"}

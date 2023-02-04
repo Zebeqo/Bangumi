@@ -1,6 +1,6 @@
 import type { VariantProps } from "class-variance-authority";
 import { cva } from "class-variance-authority";
-import type { Color } from "@/ui/color";
+import type { WithRequired } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 import { forwardRef } from "react";
 
@@ -89,94 +89,104 @@ export interface ButtonProps
   extends React.ComponentPropsWithoutRef<"button">,
     Required<ButtonVariantProps> {}
 
-const PrimaryButton = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ colorType, className, ...props }, ref) => (
-    <button
-      ref={ref}
-      className={cn(primaryButton({ colorType }), className)}
-      {...props}
-    />
-  )
-);
+const PrimaryButton = forwardRef<
+  HTMLButtonElement,
+  WithRequired<ButtonProps, "children">
+>(({ colorType, className, ...props }, ref) => (
+  <button
+    ref={ref}
+    className={cn(primaryButton({ colorType }), className)}
+    {...props}
+  />
+));
 PrimaryButton.displayName = "PrimaryButton";
 
-const PrimaryButton_Icon = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, ...props }, ref) => (
-    <PrimaryButton ref={ref} className={cn("px-2", className)} {...props} />
-  )
-);
+const PrimaryButton_Icon = forwardRef<
+  HTMLButtonElement,
+  WithRequired<ButtonProps, "children">
+>(({ className, ...props }, ref) => (
+  <PrimaryButton ref={ref} className={cn("px-2", className)} {...props} />
+));
 PrimaryButton_Icon.displayName = PrimaryButton.displayName;
 
-const SecondaryButton = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ colorType, className, ...props }, ref) => (
-    <button
-      ref={ref}
-      className={cn(secondaryButton({ colorType }), className)}
-      {...props}
-    />
-  )
-);
+const SecondaryButton = forwardRef<
+  HTMLButtonElement,
+  WithRequired<ButtonProps, "children">
+>(({ colorType, className, ...props }, ref) => (
+  <button
+    ref={ref}
+    className={cn(secondaryButton({ colorType }), className)}
+    {...props}
+  />
+));
 SecondaryButton.displayName = "SecondaryButton";
 
-const SecondaryButton_Icon = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, ...props }, ref) => (
-    <SecondaryButton ref={ref} className={cn("px-2", className)} {...props} />
-  )
-);
+const SecondaryButton_Icon = forwardRef<
+  HTMLButtonElement,
+  WithRequired<ButtonProps, "children">
+>(({ className, ...props }, ref) => (
+  <SecondaryButton ref={ref} className={cn("px-2", className)} {...props} />
+));
 SecondaryButton_Icon.displayName = SecondaryButton.displayName;
 
-const OutlineButton = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ colorType, className, ...props }, ref) => (
-    <button
-      ref={ref}
-      className={cn(outlineButton({ colorType }), className)}
-      {...props}
-    />
-  )
-);
+const OutlineButton = forwardRef<
+  HTMLButtonElement,
+  WithRequired<ButtonProps, "children">
+>(({ colorType, className, ...props }, ref) => (
+  <button
+    ref={ref}
+    className={cn(outlineButton({ colorType }), className)}
+    {...props}
+  />
+));
 OutlineButton.displayName = "OutlineButton";
 
-const OutlineButton_Icon = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, ...props }, ref) => (
-    <OutlineButton ref={ref} className={cn("px-2", className)} {...props} />
-  )
-);
+const OutlineButton_Icon = forwardRef<
+  HTMLButtonElement,
+  WithRequired<ButtonProps, "children">
+>(({ className, ...props }, ref) => (
+  <OutlineButton ref={ref} className={cn("px-2", className)} {...props} />
+));
 OutlineButton_Icon.displayName = OutlineButton.displayName;
 
-const GhostButton = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ colorType, className, ...props }, ref) => (
-    <button
-      ref={ref}
-      className={cn(ghostButton({ colorType }), className)}
-      {...props}
-    />
-  )
-);
+const GhostButton = forwardRef<
+  HTMLButtonElement,
+  WithRequired<ButtonProps, "children">
+>(({ colorType, className, ...props }, ref) => (
+  <button
+    ref={ref}
+    className={cn(ghostButton({ colorType }), className)}
+    {...props}
+  />
+));
 GhostButton.displayName = "GhostButton";
 
-const GhostButton_Icon = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, ...props }, ref) => (
-    <GhostButton ref={ref} className={cn("px-2", className)} {...props} />
-  )
-);
+const GhostButton_Icon = forwardRef<
+  HTMLButtonElement,
+  WithRequired<ButtonProps, "children">
+>(({ className, ...props }, ref) => (
+  <GhostButton ref={ref} className={cn("px-2", className)} {...props} />
+));
 GhostButton_Icon.displayName = GhostButton.displayName;
 
-const SelectedButton = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ colorType, className, ...props }, ref) => (
-    <button
-      ref={ref}
-      className={cn(selectedButton({ colorType }), className)}
-      {...props}
-    />
-  )
-);
+const SelectedButton = forwardRef<
+  HTMLButtonElement,
+  WithRequired<ButtonProps, "children">
+>(({ colorType, className, ...props }, ref) => (
+  <button
+    ref={ref}
+    className={cn(selectedButton({ colorType }), className)}
+    {...props}
+  />
+));
 SelectedButton.displayName = "SelectedButton";
 
-const SelectedButton_Icon = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, ...props }, ref) => (
-    <SelectedButton ref={ref} className={cn("px-2", className)} {...props} />
-  )
-);
+const SelectedButton_Icon = forwardRef<
+  HTMLButtonElement,
+  WithRequired<ButtonProps, "children">
+>(({ className, ...props }, ref) => (
+  <SelectedButton ref={ref} className={cn("px-2", className)} {...props} />
+));
 SelectedButton_Icon.displayName = SelectedButton.displayName;
 
 export {
