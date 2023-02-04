@@ -1,24 +1,26 @@
 import { forwardRef } from "react";
+import type { WithRequired } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/ui/primitive/Badge";
 
-const Card = forwardRef<HTMLDivElement, React.ComponentPropsWithoutRef<"div">>(
-  ({ className, ...props }, ref) => (
-    <div
-      ref={ref}
-      className={cn(
-        "group flex w-[30rem] select-none overflow-hidden rounded-2xl bg-neutral-2 ring-1 ring-neutral-6",
-        className
-      )}
-      {...props}
-    />
-  )
-);
+const Card = forwardRef<
+  HTMLDivElement,
+  WithRequired<React.ComponentPropsWithoutRef<"div">, "children">
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn(
+      "group flex w-[30rem] select-none overflow-hidden rounded-2xl bg-neutral-2 ring-1 ring-neutral-6",
+      className
+    )}
+    {...props}
+  />
+));
 Card.displayName = "Card";
 
 const CardImage = forwardRef<
   HTMLDivElement,
-  React.ComponentPropsWithoutRef<"div">
+  WithRequired<React.ComponentPropsWithoutRef<"div">, "children">
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
@@ -30,7 +32,7 @@ CardImage.displayName = "CardImage";
 
 const CardContent = forwardRef<
   HTMLDivElement,
-  React.ComponentPropsWithoutRef<"div">
+  WithRequired<React.ComponentPropsWithoutRef<"div">, "children">
 >(({ className, ...props }, ref) => (
   <div ref={ref} className={cn("w-full px-4 py-2", className)} {...props} />
 ));
@@ -38,7 +40,7 @@ CardContent.displayName = "CardContent";
 
 const CardHeader = forwardRef<
   HTMLDivElement,
-  React.ComponentPropsWithoutRef<"div">
+  WithRequired<React.ComponentPropsWithoutRef<"div">, "children">
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
@@ -48,17 +50,23 @@ const CardHeader = forwardRef<
 ));
 CardHeader.displayName = "CardHeader";
 
-const CardTitle = forwardRef<
-  HTMLDivElement,
-  React.ComponentPropsWithoutRef<"div">
->(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("w-52", className)} {...props} />
-));
+interface CardTitleProps extends React.ComponentPropsWithoutRef<"div"> {
+  mainTitle: string;
+  subTitle: string;
+}
+const CardTitle = forwardRef<HTMLDivElement, Omit<CardTitleProps, "children">>(
+  ({ className, mainTitle, subTitle, ...props }, ref) => (
+    <div ref={ref} className={cn("w-52", className)} {...props}>
+      <CardTitleMain>{mainTitle}</CardTitleMain>
+      <CardTitleSub>{subTitle}</CardTitleSub>
+    </div>
+  )
+);
 CardTitle.displayName = "CardTitle";
 
 const CardTitleMain = forwardRef<
   HTMLDivElement,
-  React.ComponentPropsWithoutRef<"div">
+  WithRequired<React.ComponentPropsWithoutRef<"div">, "children">
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
@@ -70,7 +78,7 @@ CardTitleMain.displayName = "CardTitleMain";
 
 const CardTitleSub = forwardRef<
   HTMLDivElement,
-  React.ComponentPropsWithoutRef<"div">
+  WithRequired<React.ComponentPropsWithoutRef<"div">, "children">
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
@@ -82,7 +90,7 @@ CardTitleSub.displayName = "CardTitleSub";
 
 const CardButtonGroup = forwardRef<
   HTMLDivElement,
-  React.ComponentPropsWithoutRef<"div">
+  WithRequired<React.ComponentPropsWithoutRef<"div">, "children">
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
@@ -94,7 +102,7 @@ CardButtonGroup.displayName = "CardButtonGroup";
 
 const CardInfo = forwardRef<
   HTMLDivElement,
-  React.ComponentPropsWithoutRef<"div">
+  WithRequired<React.ComponentPropsWithoutRef<"div">, "children">
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
@@ -106,7 +114,7 @@ CardInfo.displayName = "CardInfo";
 
 const CardInfoItem = forwardRef<
   HTMLDivElement,
-  React.ComponentPropsWithoutRef<"div">
+  WithRequired<React.ComponentPropsWithoutRef<"div">, "children">
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
@@ -121,7 +129,7 @@ CardInfoItem.displayName = "CardInfoItem";
 
 const CardTagGroup = forwardRef<
   HTMLDivElement,
-  React.ComponentPropsWithoutRef<"div">
+  WithRequired<React.ComponentPropsWithoutRef<"div">, "children">
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
@@ -141,7 +149,7 @@ CardTagGroupItem.displayName = "CardTagGroupItem";
 
 const CardFooter = forwardRef<
   HTMLDivElement,
-  React.ComponentPropsWithoutRef<"div">
+  WithRequired<React.ComponentPropsWithoutRef<"div">, "children">
 >(({ className, ...props }, ref) => (
   <div ref={ref} className={cn("flex space-x-3", className)} {...props} />
 ));
@@ -153,8 +161,6 @@ export {
   CardContent,
   CardHeader,
   CardTitle,
-  CardTitleMain,
-  CardTitleSub,
   CardButtonGroup,
   CardInfo,
   CardInfoItem,

@@ -11,8 +11,6 @@ import {
   CardTagGroup,
   CardTagGroupItem,
   CardTitle,
-  CardTitleMain,
-  CardTitleSub,
 } from "@/ui/primitive/Card";
 import Image from "next/image";
 import { PrimaryButton_Icon } from "@/ui/primitive/Button";
@@ -121,10 +119,7 @@ export const Card_: StoryObj<{
       </CardImage>
       <CardContent>
         <CardHeader>
-          <CardTitle>
-            <CardTitleMain>{name_cn}</CardTitleMain>
-            <CardTitleSub>{name}</CardTitleSub>
-          </CardTitle>
+          <CardTitle mainTitle={name_cn} subTitle={name} />
           <CardButtonGroup>
             <PrimaryButton_Icon
               aria-label="open-info-panel"

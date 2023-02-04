@@ -29,8 +29,6 @@ import {
   CardTagGroup,
   CardTagGroupItem,
   CardTitle,
-  CardTitleMain,
-  CardTitleSub,
 } from "@/ui/primitive/Card";
 
 export function CollectionCard({
@@ -56,12 +54,10 @@ export function CollectionCard({
       </CardImage>
       <CardContent>
         <CardHeader>
-          <CardTitle>
-            <CardTitleMain>
-              {collection.subject.name_cn || collection.subject.name}
-            </CardTitleMain>
-            <CardTitleSub>{collection.subject.name}</CardTitleSub>
-          </CardTitle>
+          <CardTitle
+            mainTitle={collection.subject.name_cn || collection.subject.name}
+            subTitle={collection.subject.name}
+          />
           <CardButtonGroup>
             <InfoButton subject_id={collection.subject.id} />
             <PrimaryButton_Icon colorType={"accent"}>
