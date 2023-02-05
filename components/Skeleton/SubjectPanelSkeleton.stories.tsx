@@ -10,4 +10,4 @@ const meta: Meta<typeof SubjectContentSkeletonComponent> = {
 export default meta;
 type Story = StoryObj<typeof SubjectContentSkeletonComponent>;
 
-export const SubjectContentSkeleton: Story = {};
+export const SubjectPanelSkeleton: Story = {};
