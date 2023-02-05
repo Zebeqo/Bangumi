@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { SubjectContentSkeleton as SubjectContentSkeletonComponent } from "@/components/Skeleton/SubjectContentSkeleton";
+import { SubjectPanelSkeleton as SubjectContentSkeletonComponent } from "@/components/Skeleton/SubjectPanelSkeleton";
 
 const meta: Meta<typeof SubjectContentSkeletonComponent> = {
-  title: "Skeleton/SubjectContentSkeleton",
+  title: "Skeleton/SubjectPanelSkeleton",
   component: SubjectContentSkeletonComponent,
 };
 
