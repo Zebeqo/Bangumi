@@ -25,6 +25,7 @@ import {
 } from "@/ui/primitive/Select.stories";
 import { MoreDropdownMenu } from "@/ui/primitive/DropdownMenu.stories";
 import { userEvent, within } from "@storybook/testing-library";
+import { EpisodeButton } from "@/ui/primitive/Button.stories";
 
 const meta: Meta = {
   title: "SubjectContent",
@@ -269,6 +270,9 @@ export const SubjectContent_Auth: StoryObj<{
           {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
           {/*@ts-expect-error*/}
           {RatingSelect.render(RatingSelect.args)}
+          {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+          {/*@ts-expect-error*/}
+          {EpisodeButton.render(EpisodeButton.args)}
           {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
           {/*@ts-expect-error*/}
           {MoreDropdownMenu.render(MoreDropdownMenu.args)}
