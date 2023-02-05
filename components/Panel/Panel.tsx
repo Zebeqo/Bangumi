@@ -7,13 +7,13 @@ import {
   isOpenPanelAtom,
   panelHistoryAtom,
 } from "@/lib/panel";
-import { SubjectContent } from "@/components/Panel/SubjectContent";
 import { CharacterListPanel } from "@/components/Panel/SubPanel/CharacterListPanel";
 import { EPListPanel } from "@/components/Panel/SubPanel/EPListPanel";
 import { PersonListPanel } from "@/components/Panel/SubPanel/PersonListPanel";
 import { SubjectPanelSkeleton } from "@/components/Skeleton/SubjectPanelSkeleton";
 import { SubjectListPanel } from "@/components/Panel/SubPanel/SubjectListPanel";
 import { Dialog, DialogContent_Panel } from "@/ui/primitive/Dialog";
+import { SubjectPanel } from "@/components/Panel/SubPanel/SubjectPanel";
 
 export function Panel() {
   const panel = useAtomValue(currentPanelAtom);
@@ -35,7 +35,7 @@ export function Panel() {
       <DialogContent_Panel isOpen={isOpenPanel}>
         {panel?.type === "subject" ? (
           <Suspense fallback={<SubjectPanelSkeleton />}>
-            <SubjectContent subject_id={panel.target_id} />
+            <SubjectPanel subject_id={panel.target_id} />
           </Suspense>
         ) : panel?.type === "characterList" ? (
           <CharacterListPanel subject_id={panel.target_id} />
