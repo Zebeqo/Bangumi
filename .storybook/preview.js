@@ -1,8 +1,8 @@
 import "@/styles/globals.css";
-import ToastProvider from "../components/provider/ToastProvider";
-import { StateProvider } from "../components/provider/StateProvider";
-import { Toast } from "../components/Toast/Toast";
-import { Dialog } from "../components/Dialog/Dialog";
+import ToastProvider from "../components/Provider/ToastProvider";
+import { StateProvider } from "../components/Provider/StateProvider";
+import { MainToast } from "../components/MainToast/MainToast";
+import { MainDialog } from "../components/Dialog/MainDialog";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -21,10 +21,16 @@ export const parameters = {
     stylePreview: true,
   },
   nextAuthMock: {
-    session: {
-      data: JSON.parse(process.env.STORYBOOK_MOCK_SESSION),
-      status: "authenticated",
-    },
+    session:
+      process.env.STORYBOOK_MOCK_SESSION === ""
+        ? {
+            data: null,
+            status: "unauthenticated",
+          }
+        : {
+            data: JSON.parse(process.env.STORYBOOK_MOCK_SESSION),
+            status: "authenticated",
+          },
   },
   layout: "centered",
 };
@@ -35,8 +41,8 @@ const Provider = (Story) => {
       <StateProvider noDevtools>
         <ToastProvider swipeDirection="right" duration={3000}>
           <Story />
-          <Toast />
-          <Dialog />
+          <MainToast />
+          <MainDialog />
         </ToastProvider>
       </StateProvider>
     </div>

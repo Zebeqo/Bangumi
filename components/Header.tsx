@@ -1,8 +1,8 @@
 import { BangumiLogo } from "@/ui/icon/BangumiLogo";
-import { ThemeButton } from "@/components/ThemeButton";
-import { GithubButton } from "@/components/GithubButton";
-import { AvatarDropdownMenu } from "@/components/AvatarDropdownMenu";
-import { LoginButton } from "@/components/LoginButton";
+import { ThemeButton } from "@/components/Button/ThemeButton";
+import { GithubButton } from "@/components/Button/GithubButton";
+import { AvatarDropdownMenu } from "@/components/DropdownMenu/AvatarDropdownMenu";
+import { LoginButton } from "@/components/Button/LoginButton";
 import { unstable_getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
 

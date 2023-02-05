@@ -1,10 +1,10 @@
 import "@/styles/globals.css";
-import SessionProvider from "@/components/provider/SessionProvider";
+import SessionProvider from "@/components/Provider/SessionProvider";
 import { unstable_getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
 import { Noto_Sans_SC } from "@next/font/google";
-import { Providers } from "@/components/provider/ThemeProvider";
-import { StateProvider } from "@/components/provider/StateProvider";
+import { ThemeProvider } from "@/components/Provider/ThemeProvider";
+import { StateProvider } from "@/components/Provider/StateProvider";
 import { AnalyticsWrapper } from "@/components/analytics";
 
 const notoSansSC = Noto_Sans_SC({
@@ -31,11 +31,11 @@ export default async function RootLayout({
       <head />
 
       <body className="bg-neutral-1">
-        <Providers>
+        <ThemeProvider>
           <StateProvider>
             <SessionProvider session={session}>{children}</SessionProvider>
           </StateProvider>
-        </Providers>
+        </ThemeProvider>
         <AnalyticsWrapper />
       </body>
     </html>

@@ -9,7 +9,7 @@ import {
   collectionScheme,
   collectionsPageScheme,
   mutateCollectionScheme,
-} from "@/lib/collection";
+} from "@/lib/api/collection";
 import { errorScheme } from "@/lib/error";
 import { useSession } from "next-auth/react";
 import { useErrorToast, useToast } from "@/hooks/use-toast";
@@ -220,28 +220,37 @@ export function useCollectionMutation() {
           });
 
           if (targetPage) {
-            targetPage.data = targetPage.data.filter((collection) => {
-              return collection.subject_id !== subject_id;
-            });
+            if (mutateCollection.type) {
+              targetPage.data = targetPage.data.filter((collection) => {
+                return collection.subject_id !== subject_id;
+              });
+            } else {
+              targetPage.data = targetPage.data.map((collection) => {
+                if (collection.subject_id === subject_id) {
+                  collection = {
+                    ...collection,
+                    ...mutateCollection,
+                  };
+                }
+                return collection;
+              });
+            }
           }
           return oldDataParsed;
         }
       );
+      await queryClient.invalidateQueries([
+        "collections",
+        subject_type,
+        mutateCollection.type,
+        session?.user.name,
+      ]);
 
       openToast({
         type: "success",
         title: "修改收藏状态成功",
         description: `已将条目的收藏状态修改为 ${description}`,
       });
-
-      if (mutateCollection.type) {
-        await queryClient.invalidateQueries([
-          "collections",
-          subject_type,
-          mutateCollection.type,
-          session?.user.name,
-        ]);
-      }
     },
     onError: (error, { subject_id }, context) => {
       if (error instanceof Error) {

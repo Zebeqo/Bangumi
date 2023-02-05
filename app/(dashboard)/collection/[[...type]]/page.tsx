@@ -1,11 +1,12 @@
 // export const dynamicParams = false;
 
 import { notFound } from "next/navigation";
-import { CollectionCardList } from "@/components/CollectionCardList";
-import { collectionTypeEnum, collectionTypeEnumScheme } from "@/lib/collection";
-import { subjectTypeEnum, subjectTypeEnumScheme } from "@/lib/subject";
+import { CollectionCardList } from "@/components/Card/CollectionCardList";
+import { subjectNameToTypeScheme } from "@/lib/api/subject";
 import { Suspense } from "react";
-import { CardGridSkeleton } from "@/ui/CardGridSkeleton";
+import { CardGridSkeleton } from "@/components/Skeleton/CardGridSkeleton";
+import { collectionNameToTypeScheme } from "@/lib/map/collectionTypeMap";
+import { GridWrapper } from "@/components/GridWrapper";
 
 // https://github.com/nextauthjs/next-auth/issues/5647#issuecomment-1342099364
 // https://github.com/vercel/next.js/issues/44764
@@ -38,14 +39,14 @@ export default function Page({
 
   return (
     <Suspense fallback={<CardGridSkeleton />}>
-      <CollectionCardList
-        subject_type={
-          subjectTypeEnum[subjectTypeEnumScheme.parse(subject_type)].id
-        }
-        collection_type={
-          collectionTypeEnum[collectionTypeEnumScheme.parse(collection_type)].id
-        }
-      />
+      <GridWrapper className="relative my-8">
+        <CollectionCardList
+          subject_type={Number(subjectNameToTypeScheme.parse(subject_type))}
+          collection_type={Number(
+            collectionNameToTypeScheme.parse(collection_type)
+          )}
+        />
+      </GridWrapper>
     </Suspense>
   );
 }

@@ -2,7 +2,7 @@ import { useErrorToast } from "@/hooks/use-toast";
 import { useSession } from "next-auth/react";
 import { useQuery } from "@tanstack/react-query";
 import { errorScheme } from "@/lib/error";
-import { subjectRelationsScheme } from "@/lib/relation";
+import { subjectRelationsScheme } from "@/lib/api/relation";
 
 export function useSubjectRelationsData(subject_id: number) {
   const openErrorToast = useErrorToast();

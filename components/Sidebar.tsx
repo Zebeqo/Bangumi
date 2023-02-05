@@ -9,25 +9,25 @@ import {
   InboxIcon,
   InboxStackIcon,
 } from "@heroicons/react/20/solid";
-import { Button } from "@/ui/Button";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { GhostButton, SelectedButton } from "@/ui/primitive/Button";
 
 const headerItems = [
   {
     name: "每日放送",
     href: "/calendar",
-    icon: <CalendarDaysIcon />,
+    icon: <CalendarDaysIcon className="mr-2 h-5 w-5" />,
   },
   {
     name: "当前最热",
     href: "/hot",
-    icon: <FireIcon />,
+    icon: <FireIcon className="mr-2 h-5 w-5" />,
   },
   {
     name: "排行榜",
     href: "/top",
-    icon: <ChartBarIcon />,
+    icon: <ChartBarIcon className="mr-2 h-5 w-5" />,
   },
 ];
 
@@ -38,27 +38,27 @@ const groups = [
       {
         name: "在看",
         href: "/collection/do",
-        icon: <InboxIcon />,
+        icon: <InboxIcon className="mr-2 h-5 w-5" />,
       },
       {
         name: "想看",
         href: "/collection/wish",
-        icon: <InboxArrowDownIcon />,
+        icon: <InboxArrowDownIcon className="mr-2 h-5 w-5" />,
       },
       {
         name: "看过",
         href: "/collection/collect",
-        icon: <InboxStackIcon />,
+        icon: <InboxStackIcon className="mr-2 h-5 w-5" />,
       },
       {
         name: "搁置",
         href: "/collection/on_hold",
-        icon: <ArchiveBoxIcon />,
+        icon: <ArchiveBoxIcon className="mr-2 h-5 w-5" />,
       },
       {
         name: "抛弃",
         href: "/collection/dropped",
-        icon: <ArchiveBoxXMarkIcon />,
+        icon: <ArchiveBoxXMarkIcon className="mr-2 h-5 w-5" />,
       },
     ],
   },
@@ -75,29 +75,41 @@ export function Sidebar() {
             return (
               // Sidebar.Item
               <Link href={item.href} key={item.name}>
-                <Button
-                  colorType={
-                    path === "/"
-                      ? item.href === "/hot"
-                        ? "primary"
-                        : "neutral"
-                      : path?.startsWith(item.href)
-                      ? "primary"
-                      : "neutral"
-                  }
-                  label={item.name}
-                  type={
-                    path === "/"
-                      ? item.href === "/hot"
-                        ? "selected"
-                        : "ghost"
-                      : path?.startsWith(item.href)
-                      ? "selected"
-                      : "ghost"
-                  }
-                  icon={item.icon}
-                  className="w-full justify-start"
-                />
+                {path === "/" ? (
+                  item.href === "/top" ? (
+                    <SelectedButton
+                      colorType={"primary"}
+                      className="w-full justify-start"
+                    >
+                      {item.icon}
+                      {item.name}
+                    </SelectedButton>
+                  ) : (
+                    <GhostButton
+                      colorType={"neutral"}
+                      className="w-full justify-start"
+                    >
+                      {item.icon}
+                      {item.name}
+                    </GhostButton>
+                  )
+                ) : path?.startsWith(item.href) ? (
+                  <SelectedButton
+                    colorType={"primary"}
+                    className="w-full justify-start"
+                  >
+                    {item.icon}
+                    {item.name}
+                  </SelectedButton>
+                ) : (
+                  <GhostButton
+                    colorType={"neutral"}
+                    className="w-full justify-start"
+                  >
+                    {item.icon}
+                    {item.name}
+                  </GhostButton>
+                )}
               </Link>
             );
           })}
@@ -113,29 +125,41 @@ export function Sidebar() {
                   return (
                     // Sidebar.Item
                     <Link href={item.href} key={item.name}>
-                      <Button
-                        colorType={
-                          path === "/collection"
-                            ? item.href === "/collection/do"
-                              ? "primary"
-                              : "neutral"
-                            : path?.startsWith(item.href)
-                            ? "primary"
-                            : "neutral"
-                        }
-                        label={item.name}
-                        type={
-                          path === "/collection"
-                            ? item.href === "/collection/do"
-                              ? "selected"
-                              : "ghost"
-                            : path?.startsWith(item.href)
-                            ? "selected"
-                            : "ghost"
-                        }
-                        icon={item.icon}
-                        className="w-full justify-start"
-                      />
+                      {path === "/collection" ? (
+                        item.href === "/collection/do" ? (
+                          <SelectedButton
+                            colorType={"primary"}
+                            className="w-full justify-start"
+                          >
+                            {item.icon}
+                            {item.name}
+                          </SelectedButton>
+                        ) : (
+                          <GhostButton
+                            colorType={"neutral"}
+                            className="w-full justify-start"
+                          >
+                            {item.icon}
+                            {item.name}
+                          </GhostButton>
+                        )
+                      ) : path?.startsWith(item.href) ? (
+                        <SelectedButton
+                          colorType={"primary"}
+                          className="w-full justify-start"
+                        >
+                          {item.icon}
+                          {item.name}
+                        </SelectedButton>
+                      ) : (
+                        <GhostButton
+                          colorType={"neutral"}
+                          className="w-full justify-start"
+                        >
+                          {item.icon}
+                          {item.name}
+                        </GhostButton>
+                      )}
                     </Link>
                   );
                 })}
