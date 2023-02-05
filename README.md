@@ -45,7 +45,23 @@ Check out my [Github Project](https://github.com/users/Zebeqo/projects/1)
 
 ## ⚙️ Running locally
 
-I'll write it after refactoring the code, so stay tuned!
+本项目由 [Bangumi Api](https://bangumi.github.io/api/) 提供 API。
+
+运行本项目
+
+```shell
+# 安装依赖
+pnpm install
+
+# 创建本地环境变量(根据 example 提示修改)
+cp .env.example .env
+
+# 运行
+pnpm dev
+
+# 运行（storybook）
+pnpm storybook
+```
 
 ## 🖼️ ScreenShot
 
