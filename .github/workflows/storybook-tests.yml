@@ -4,7 +4,9 @@ jobs:
   check:
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    if: github.event.deployment_status.state == 'success'
+    if: |
+      github.event.deployment_status.state == 'success' &&
+        github.event.deployment_status.environment == 'storybook'
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2.2.4
