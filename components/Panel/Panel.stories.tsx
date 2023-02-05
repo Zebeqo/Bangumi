@@ -48,9 +48,9 @@ export const SubjectPanel_: PanelStory = {
 };
 
 export const CharacterListPanel_: PanelStory = {
-  render: ({ subject_id }) => (
-    <Dialog open={true} onOpenChange={action("trigger close")}>
-      <DialogContent_Panel isOpen={true}>
+  render: ({ subject_id, open }) => (
+    <Dialog open={open} onOpenChange={action("trigger close")}>
+      <DialogContent_Panel isOpen={open}>
         <CharacterListPanel subject_id={subject_id} />
       </DialogContent_Panel>
     </Dialog>
@@ -67,9 +67,9 @@ export const CharacterListPanel_: PanelStory = {
 };
 
 export const EPListPanel_: PanelStory = {
-  render: ({ subject_id }) => (
-    <Dialog open={true} onOpenChange={action("trigger close")}>
-      <DialogContent_Panel isOpen={true}>
+  render: ({ subject_id, open }) => (
+    <Dialog open={open} onOpenChange={action("trigger close")}>
+      <DialogContent_Panel isOpen={open}>
         <EPListPanel subject_id={subject_id} />
       </DialogContent_Panel>
     </Dialog>
@@ -86,9 +86,9 @@ export const EPListPanel_: PanelStory = {
 };
 
 export const PersonListPanel_: PanelStory = {
-  render: ({ subject_id }) => (
-    <Dialog open={true} onOpenChange={action("trigger close")}>
-      <DialogContent_Panel isOpen={true}>
+  render: ({ subject_id, open }) => (
+    <Dialog open={open} onOpenChange={action("trigger close")}>
+      <DialogContent_Panel isOpen={open}>
         <PersonListPanel subject_id={subject_id} />
       </DialogContent_Panel>
     </Dialog>
@@ -105,9 +105,9 @@ export const PersonListPanel_: PanelStory = {
 };
 
 export const SubjectListPanel_: PanelStory = {
-  render: ({ subject_id }) => (
-    <Dialog open={true} onOpenChange={action("trigger close")}>
-      <DialogContent_Panel isOpen={true}>
+  render: ({ subject_id, open }) => (
+    <Dialog open={open} onOpenChange={action("trigger close")}>
+      <DialogContent_Panel isOpen={open}>
         <SubjectListPanel subject_id={subject_id} />
       </DialogContent_Panel>
     </Dialog>

@@ -9,6 +9,8 @@ import {
 import { SubjectPanelSkeleton } from "@/components/Skeleton/SubjectPanelSkeleton";
 import { SecondaryButton } from "@/ui/primitive/Button";
 import { action } from "@storybook/addon-actions";
+import { screen, userEvent } from "@storybook/testing-library";
+import { expect } from "@storybook/jest";
 
 const meta: Meta = {
   title: "Dialog",
@@ -83,5 +85,12 @@ export const MainDialog_Action: StoryObj<{
         </DialogContent_Main>
       </Dialog>
     );
+  },
+  play: async ({ args }) => {
+    const actionButton = await screen.findByRole("button", {
+      name: args.actionLabel,
+    });
+    await userEvent.click(actionButton);
+    await expect(args.handleAction).toHaveBeenCalledTimes(1);
   },
 };

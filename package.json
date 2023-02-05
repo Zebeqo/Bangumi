@@ -10,7 +10,8 @@
     "prepare": "husky install",
     "storybook": "storybook dev -p 6007",
     "build-storybook": "storybook build",
-    "test-storybook": "test-storybook --url http://localhost:6007"
+    "test-storybook": "test-storybook --url http://localhost:6007",
+    "serve-storybook": "pnpm dlx serve storybook-static"
   },
   "lint-staged": {
     "*": "prettier --write --ignore-unknown",
@@ -23,7 +24,7 @@
     "@radix-ui/react-dialog": "1.0.2",
     "@radix-ui/react-dropdown-menu": "2.0.2",
     "@radix-ui/react-select": "1.2.0",
-    "@radix-ui/react-slot": "^1.0.1",
+    "@radix-ui/react-slot": "1.0.1",
     "@radix-ui/react-switch": "1.0.1",
     "@radix-ui/react-toast": "1.1.2",
     "@tanstack/query-core": "4.24.4",
@@ -51,6 +52,7 @@
     "@storybook/addon-storysource": "7.0.0-beta.41",
     "@storybook/blocks": "7.0.0-beta.41",
     "@storybook/jest": "0.0.11-next.0",
+    "@storybook/manager-api": "7.0.0-beta.41",
     "@storybook/nextjs": "7.0.0-beta.41",
     "@storybook/react": "7.0.0-beta.41",
     "@storybook/test-runner": "0.10.0-next.8",
