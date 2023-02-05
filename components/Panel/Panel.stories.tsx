@@ -11,22 +11,25 @@ import { PersonListPanel } from "@/components/Panel/SubPanel/PersonListPanel";
 import { SubjectListPanel } from "@/components/Panel/SubPanel/SubjectListPanel";
 import { SubjectPanel } from "@/components/Panel/SubPanel/SubjectPanel";
 import { waitFor, within, screen } from "@storybook/testing-library";
+import { reactQueryDevtoolsDecorator } from "@/ui/storybook";
 
 const meta: Meta = {
   title: "Panel",
   args: {
     subject_id: STORYBOOK_SUBJECT_ID,
+    open: true,
   },
+  decorators: [reactQueryDevtoolsDecorator],
 };
 
 export default meta;
 
-type PanelStory = StoryObj<{ subject_id: number }>;
+type PanelStory = StoryObj<{ subject_id: number; open: boolean }>;
 
 export const SubjectPanel_: PanelStory = {
-  render: ({ subject_id }) => (
-    <Dialog open={true} onOpenChange={action("trigger close")}>
-      <DialogContent_Panel isOpen={true}>
+  render: ({ subject_id, open }) => (
+    <Dialog open={open} onOpenChange={action("trigger close")}>
+      <DialogContent_Panel isOpen={open}>
         <Suspense fallback={<SubjectPanelSkeleton />}>
           <SubjectPanel subject_id={subject_id} />
         </Suspense>
