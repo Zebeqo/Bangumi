@@ -3,7 +3,7 @@ import { Dialog, DialogContent_Panel } from "@/ui/primitive/Dialog";
 import { SubjectContent } from "@/components/Panel/SubjectContent";
 import { action } from "@storybook/addon-actions";
 import { STORYBOOK_SUBJECT_ID } from "@/lib/constant";
-import { SubjectContentSkeleton } from "@/components/Skeleton/SubjectContentSkeleton";
+import { SubjectPanelSkeleton } from "@/components/Skeleton/SubjectPanelSkeleton";
 import { Suspense } from "react";
 import { CharacterListPanel } from "@/components/Panel/SubPanel/CharacterListPanel";
 import { EPListPanel } from "@/components/Panel/SubPanel/EPListPanel";
@@ -25,7 +25,7 @@ export const SubjectPanel_: PanelStory = {
   render: ({ subject_id }) => (
     <Dialog open={true} onOpenChange={action("trigger close")}>
       <DialogContent_Panel isOpen={true}>
-        <Suspense fallback={<SubjectContentSkeleton />}>
+        <Suspense fallback={<SubjectPanelSkeleton />}>
           <SubjectContent subject_id={subject_id} />
         </Suspense>
       </DialogContent_Panel>

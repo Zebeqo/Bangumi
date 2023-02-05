@@ -3,7 +3,7 @@ import { EPItemSkeleton } from "@/components/Skeleton/EPItemSkeleton";
 import { RelationSubjectSkeleton } from "@/components/Skeleton/RelationSubjectSkeleton";
 import { ListSkeletonWrapper } from "@/components/Skeleton/ListSkeletonWrapper";
 
-export function SubjectContentSkeleton() {
+export function SubjectPanelSkeleton() {
   return (
     <div className="w-[1040.62px]">
       {/*PanelNav.Skeleton*/}

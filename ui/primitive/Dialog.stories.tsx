@@ -7,7 +7,7 @@ import {
   DialogDescription,
   DialogTrigger,
 } from "@/ui/primitive/Dialog";
-import { SubjectContentSkeleton } from "@/components/Skeleton/SubjectContentSkeleton";
+import { SubjectPanelSkeleton } from "@/components/Skeleton/SubjectPanelSkeleton";
 import { useState } from "react";
 import { SecondaryButton } from "@/ui/primitive/Button";
 import { action } from "@storybook/addon-actions";
@@ -30,7 +30,7 @@ export const Panel: StoryObj = {
           </SecondaryButton>
         </DialogTrigger>
         <DialogContent_Panel isOpen={open}>
-          <SubjectContentSkeleton />
+          <SubjectPanelSkeleton />
         </DialogContent_Panel>
       </Dialog>
     );
