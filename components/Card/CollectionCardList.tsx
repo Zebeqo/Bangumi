@@ -3,7 +3,7 @@
 import { useCollectionsPageData } from "@/hooks/use-collection";
 import { useInView } from "react-intersection-observer";
 import { Fragment, useEffect } from "react";
-import { LoadMore } from "@/components/LoadMore";
+import { LoadMore } from "@/ui/LoadMore";
 import { CollectionCard } from "@/components/Card/CollectionCard";
 
 export function CollectionCardList({
