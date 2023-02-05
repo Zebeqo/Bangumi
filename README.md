@@ -53,7 +53,9 @@ Check out my [Github Project](https://github.com/users/Zebeqo/projects/1)
 # 安装依赖
 pnpm install
 
-# 创建本地环境变量(根据 example 提示修改)
+# 创建本地环境变量，如果不需要登录也可不创建
+# 根据 example 提示修改相关变量
+# 请尽量运行在 storybook 或者登陆后的收藏页，因为 ssr 的几个页面 api 请求过多，但是 next.js appDir 在 development 模式下 fetch 没有缓存
 cp .env.example .env
 
 # 运行
