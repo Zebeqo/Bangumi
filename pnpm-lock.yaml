@@ -59,7 +59,7 @@ specifiers:
   storybook: 7.0.0-beta.41
   storybook-dark-mode: 2.0.5
   style-loader: 3.3.1
-  tailwind-merge: 1.9.0
+  tailwind-merge: 1.9.1
   tailwindcss: 3.2.4
   tailwindcss-radix: 2.7.0
   typescript: 4.9.5
@@ -129,7 +129,7 @@ devDependencies:
   storybook: 7.0.0-beta.41
   storybook-dark-mode: 2.0.5_biqbaboplfbrettd7655fr4n2y
   style-loader: 3.3.1
-  tailwind-merge: 1.9.0
+  tailwind-merge: 1.9.1
   tailwindcss: 3.2.4_postcss@8.4.21
   typescript: 4.9.5
   windy-radix-palette: 0.5.0_mvcr4ym64jspnkumvjqznijcra
@@ -12542,8 +12542,8 @@ packages:
       tslib: 2.4.1
     dev: true
 
-  /tailwind-merge/1.9.0:
-    resolution: {integrity: sha512-coziXxViLHbVtFvD1+jwSu+UmDJSFX4dhj9ZuqHCuhTzu9Wk5wMedAz5AVY3uUYw95TaO7NwgUS/dLGcWvtgqw==}
+  /tailwind-merge/1.9.1:
+    resolution: {integrity: sha512-ED9MkiUHlmfh58EC1xHRqXcH1IQyRtmDP0AmXlugYkP2tvfu7ejtjFEHJLJt93mQ7ZJkcqSIgm9M394bq5vOJg==}
     dev: true
 
   /tailwindcss-radix/2.7.0:
