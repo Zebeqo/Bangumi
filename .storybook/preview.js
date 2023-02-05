@@ -21,10 +21,16 @@ export const parameters = {
     stylePreview: true,
   },
   nextAuthMock: {
-    session: {
-      data: JSON.parse(process.env.STORYBOOK_MOCK_SESSION),
-      status: "authenticated",
-    },
+    session:
+      process.env.STORYBOOK_MOCK_SESSION === ""
+        ? {
+            data: null,
+            status: "unauthenticated",
+          }
+        : {
+            data: JSON.parse(process.env.STORYBOOK_MOCK_SESSION),
+            status: "authenticated",
+          },
   },
   layout: "centered",
 };
