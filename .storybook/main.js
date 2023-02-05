@@ -1,5 +1,5 @@
 const path = require("path");
-module.exports = {
+export default {
   stories: [
     {
       // 👇 The directory field sets the directory your stories

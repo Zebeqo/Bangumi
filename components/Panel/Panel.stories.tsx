@@ -1,94 +1,124 @@
 import { expect } from "@storybook/jest";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Panel } from "@/components/Panel/Panel";
-import { InfoButton } from "@/components/InfoButton";
-import { userEvent, within, waitFor, screen } from "@storybook/testing-library";
-import {
-  STORYBOOK_BROKEN_NOT_COLLECTED_SUBJECT_ID,
-  STORYBOOK_BROKEN_SUBJECT_ID,
-  STORYBOOK_NOT_COLLECTED_SUBJECT_ID,
-  STORYBOOK_SUBJECT_ID,
-  STORYBOOK_UPCOMING_SUBJECT_ID,
-} from "@/lib/constant";
-import { panelDecorator, reactQueryDevtoolsDecorator } from "@/lib/storybook";
+import { Dialog, DialogContent_Panel } from "@/ui/primitive/Dialog";
+import { action } from "@storybook/addon-actions";
+import { STORYBOOK_SUBJECT_ID } from "@/lib/constant";
+import { SubjectPanelSkeleton } from "@/components/Skeleton/SubjectPanelSkeleton";
+import { Suspense } from "react";
+import { CharacterListPanel } from "@/components/Panel/SubPanel/CharacterListPanel";
+import { EPListPanel } from "@/components/Panel/SubPanel/EPListPanel";
+import { PersonListPanel } from "@/components/Panel/SubPanel/PersonListPanel";
+import { SubjectListPanel } from "@/components/Panel/SubPanel/SubjectListPanel";
+import { SubjectPanel } from "@/components/Panel/SubPanel/SubjectPanel";
+import { waitFor, within, screen } from "@storybook/testing-library";
+import { reactQueryDevtoolsDecorator } from "@/ui/storybook";
 
-const meta: Meta<typeof Panel> = {
+const meta: Meta = {
   title: "Panel",
-  component: Panel,
-  decorators: [panelDecorator, reactQueryDevtoolsDecorator],
+  args: {
+    subject_id: STORYBOOK_SUBJECT_ID,
+    open: true,
+  },
+  decorators: [reactQueryDevtoolsDecorator],
 };
 
 export default meta;
-type Story = StoryObj<typeof Panel>;
 
-const play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
-  const canvas = within(canvasElement);
+type PanelStory = StoryObj<{ subject_id: number; open: boolean }>;
 
-  const button = await canvas.findByRole("button", { name: "open-info-panel" });
-  await userEvent.click(button);
-
-  const panel = await screen.findByRole("dialog");
-
-  await waitFor(
-    () => {
-      expect(within(panel).getByTestId("title")).toHaveTextContent(/./);
-    },
-    { timeout: 5000, interval: 1000 }
-  );
-
-  await userEvent.click(within(panel).getByRole("button", { name: "Close" }));
-  await new Promise((r) => setTimeout(r, 400));
-};
-
-export const InfoPanel: Story = {
-  render: () => <InfoButton subject_id={STORYBOOK_SUBJECT_ID} />,
-  play,
-  parameters: {
-    nextAuthMock: {
-      session: {
-        data: null,
-        status: "unauthenticated",
-      },
-    },
-  },
-};
-
-export const InfoPanel_Session: Story = {
-  render: () => <InfoButton subject_id={STORYBOOK_SUBJECT_ID} />,
-  play,
-};
-
-export const InfoPanel_Session_Not_Collected: Story = {
-  render: () => <InfoButton subject_id={STORYBOOK_NOT_COLLECTED_SUBJECT_ID} />,
-  play,
-};
-
-export const InfoPanel_Broken: Story = {
-  render: () => <InfoButton subject_id={STORYBOOK_BROKEN_SUBJECT_ID} />,
-  parameters: {
-    nextAuthMock: {
-      session: {
-        data: null,
-        status: "unauthenticated",
-      },
-    },
-  },
-  play,
-};
-
-export const InfoPanel_Broken_Session: Story = {
-  render: () => <InfoButton subject_id={STORYBOOK_BROKEN_SUBJECT_ID} />,
-  play,
-};
-
-export const InfoPanel_Broken_Session_Not_Collected: Story = {
-  render: () => (
-    <InfoButton subject_id={STORYBOOK_BROKEN_NOT_COLLECTED_SUBJECT_ID} />
+export const SubjectPanel_: PanelStory = {
+  render: ({ subject_id, open }) => (
+    <Dialog open={open} onOpenChange={action("trigger close")}>
+      <DialogContent_Panel isOpen={open}>
+        <Suspense fallback={<SubjectPanelSkeleton />}>
+          <SubjectPanel subject_id={subject_id} />
+        </Suspense>
+      </DialogContent_Panel>
+    </Dialog>
   ),
-  play,
+  play: async () => {
+    const panel = await screen.findByRole("dialog");
+    await waitFor(
+      () => {
+        expect(within(panel).getByText(/或是偶然，或是必然/));
+      },
+      { timeout: 5000, interval: 1000 }
+    );
+  },
 };
 
-export const InfoPanel_Upcoming: Story = {
-  render: () => <InfoButton subject_id={STORYBOOK_UPCOMING_SUBJECT_ID} />,
-  play,
+export const CharacterListPanel_: PanelStory = {
+  render: ({ subject_id, open }) => (
+    <Dialog open={open} onOpenChange={action("trigger close")}>
+      <DialogContent_Panel isOpen={open}>
+        <CharacterListPanel subject_id={subject_id} />
+      </DialogContent_Panel>
+    </Dialog>
+  ),
+  play: async () => {
+    const panel = await screen.findByRole("dialog");
+    await waitFor(
+      () => {
+        expect(within(panel).getByText(/黑崎一护/));
+      },
+      { timeout: 5000, interval: 1000 }
+    );
+  },
+};
+
+export const EPListPanel_: PanelStory = {
+  render: ({ subject_id, open }) => (
+    <Dialog open={open} onOpenChange={action("trigger close")}>
+      <DialogContent_Panel isOpen={open}>
+        <EPListPanel subject_id={subject_id} />
+      </DialogContent_Panel>
+    </Dialog>
+  ),
+  play: async () => {
+    const panel = await screen.findByRole("dialog");
+    await waitFor(
+      () => {
+        expect(within(panel).getByText(/万物无雨 六月的真相/));
+      },
+      { timeout: 5000, interval: 1000 }
+    );
+  },
+};
+
+export const PersonListPanel_: PanelStory = {
+  render: ({ subject_id, open }) => (
+    <Dialog open={open} onOpenChange={action("trigger close")}>
+      <DialogContent_Panel isOpen={open}>
+        <PersonListPanel subject_id={subject_id} />
+      </DialogContent_Panel>
+    </Dialog>
+  ),
+  play: async () => {
+    const panel = await screen.findByRole("dialog");
+    await waitFor(
+      () => {
+        expect(within(panel).getAllByText(/久保带人/));
+      },
+      { timeout: 5000, interval: 1000 }
+    );
+  },
+};
+
+export const SubjectListPanel_: PanelStory = {
+  render: ({ subject_id, open }) => (
+    <Dialog open={open} onOpenChange={action("trigger close")}>
+      <DialogContent_Panel isOpen={open}>
+        <SubjectListPanel subject_id={subject_id} />
+      </DialogContent_Panel>
+    </Dialog>
+  ),
+  play: async () => {
+    const panel = await screen.findByRole("dialog");
+    await waitFor(
+      () => {
+        expect(within(panel).getByText(/诀别谭/));
+      },
+      { timeout: 5000, interval: 1000 }
+    );
+  },
 };

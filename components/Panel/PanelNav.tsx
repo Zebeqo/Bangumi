@@ -1,17 +1,21 @@
 "use client";
 
-import { cn, panelScrollToTop } from "@/lib/utils";
-import { Button } from "@/ui/Button";
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
-import * as DialogPrimitive from "@radix-ui/react-dialog";
+import { panelScrollToTop } from "@/lib/utils";
 import { useInView } from "react-intersection-observer";
 import { useReducerAtom } from "jotai/react/utils";
 import { panelHistoryAtom, panelReducer } from "@/lib/panel";
 import { Suspense } from "react";
+import { PanelNavSkeleton } from "@/components/Skeleton/PanelNavSkeleton";
+import {
+  PanelNav as PanelNavRoot,
+  PanelNavButtonGroup,
+  PanelNavLeftContent,
+  PanelNavRightContent,
+  PanelNavSubTitle,
+  PanelNavTitle,
+  PanelNavTitleGroup,
+} from "@/ui/primitive/PanelNav";
+import { DialogClose, DialogTitle } from "@/ui/primitive/Dialog";
 
 export function PanelNav({
   title,
@@ -27,83 +31,38 @@ export function PanelNav({
     rootMargin: "-1px",
   });
   return (
-    <Suspense
-      fallback={
-        <div className="flex h-[76px] animate-pulse items-center px-8 py-4">
-          <div className="h-8 w-[360px] rounded-full bg-neutral-6" />
-        </div>
-      }
-    >
+    <Suspense fallback={<PanelNavSkeleton />}>
       {/*SubjectContent.Nav*/}
-      <div
-        className={cn(
-          "sticky top-0 z-50 flex justify-between py-4 px-8",
-          !inView && "border-b border-neutral-6 bg-neutral-1"
-        )}
+      <PanelNavRoot
         ref={ref}
+        className={inView ? "" : "border-b border-neutral-6 bg-neutral-1"}
       >
-        {/*SubjectContent.NavLeft*/}
-        <div className="flex items-center space-x-8">
-          {/*SubjectContent.NavButtonGroup*/}
-          <div className="flex space-x-2">
-            <Button
-              colorType="neutral"
-              type="outline"
-              icon={<ChevronLeftIcon />}
-              onClick={() => {
-                if (panelHistory.index) {
-                  dispatch({ type: "back" });
-                  panelScrollToTop();
-                }
-              }}
-            />
-            <Button
-              colorType="neutral"
-              type="outline"
-              icon={<ChevronRightIcon />}
-              onClick={() => {
-                if (panelHistory.index < panelHistory.history.length - 1) {
-                  dispatch({ type: "forward" });
-                  panelScrollToTop();
-                }
-              }}
-            />
-          </div>
-          {/*SubjectContent.TitleGroup*/}
-          <div className="flex flex-col">
-            <DialogPrimitive.Title
-              data-testid="title"
-              className="text-lg font-bold text-neutral-12"
-            >
-              {title.name_cn}
-            </DialogPrimitive.Title>
-            <span className="text-xs font-medium text-neutral-11">
-              {title.name}
-            </span>
-          </div>
-        </div>
-        {/*SubjectContent.NavRight*/}
-        <div>
-          <DialogPrimitive.Close>
-            <Button
-              colorType="neutral"
-              type={"ghost"}
-              icon={<XMarkIcon />}
-              aria-label="Close"
-            />
-          </DialogPrimitive.Close>
-        </div>
-      </div>
+        <PanelNavLeftContent>
+          <PanelNavButtonGroup
+            onClickBack={() => {
+              if (panelHistory.index) {
+                dispatch({ type: "back" });
+                panelScrollToTop();
+              }
+            }}
+            onClickForward={() => {
+              if (panelHistory.index < panelHistory.history.length - 1) {
+                dispatch({ type: "forward" });
+                panelScrollToTop();
+              }
+            }}
+          />
+          <PanelNavTitleGroup>
+            <PanelNavTitle asChild>
+              <DialogTitle>{(title.name_cn || title.name) ?? ""}</DialogTitle>
+            </PanelNavTitle>
+            <PanelNavSubTitle>{title.name ?? ""}</PanelNavSubTitle>
+          </PanelNavTitleGroup>
+        </PanelNavLeftContent>
+        <PanelNavRightContent>
+          <DialogClose />
+        </PanelNavRightContent>
+      </PanelNavRoot>
     </Suspense>
   );
 }
-
-const Skeleton = () => {
-  return (
-    <div className="flex h-[76px] items-center px-8 py-4">
-      <div className="h-8 w-[360px] rounded-full bg-neutral-6" />
-    </div>
-  );
-};
-
-PanelNav.Skeleton = Skeleton;
