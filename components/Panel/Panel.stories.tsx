@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Dialog, DialogContent_Panel } from "@/ui/primitive/Dialog";
-import { SubjectContent } from "@/components/Panel/SubjectContent";
 import { action } from "@storybook/addon-actions";
 import { STORYBOOK_SUBJECT_ID } from "@/lib/constant";
 import { SubjectPanelSkeleton } from "@/components/Skeleton/SubjectPanelSkeleton";
@@ -9,6 +8,7 @@ import { CharacterListPanel } from "@/components/Panel/SubPanel/CharacterListPan
 import { EPListPanel } from "@/components/Panel/SubPanel/EPListPanel";
 import { PersonListPanel } from "@/components/Panel/SubPanel/PersonListPanel";
 import { SubjectListPanel } from "@/components/Panel/SubPanel/SubjectListPanel";
+import { SubjectPanel } from "@/components/Panel/SubPanel/SubjectPanel";
 
 const meta: Meta = {
   title: "Panel",
@@ -26,7 +26,7 @@ export const SubjectPanel_: PanelStory = {
     <Dialog open={true} onOpenChange={action("trigger close")}>
       <DialogContent_Panel isOpen={true}>
         <Suspense fallback={<SubjectPanelSkeleton />}>
-          <SubjectContent subject_id={subject_id} />
+          <SubjectPanel subject_id={subject_id} />
         </Suspense>
       </DialogContent_Panel>
     </Dialog>
