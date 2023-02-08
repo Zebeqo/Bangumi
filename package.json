@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@headlessui/react": "1.7.9",
-    "@heroicons/react": "2.0.14",
+    "@heroicons/react": "2.0.15",
     "@next/font": "13.1.6",
     "@radix-ui/react-dialog": "1.0.2",
     "@radix-ui/react-dropdown-menu": "2.0.2",
