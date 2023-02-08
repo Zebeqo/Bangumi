@@ -39,7 +39,7 @@
     "next-themes": "0.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-intersection-observer": "9.4.1",
+    "react-intersection-observer": "9.4.2",
     "tailwindcss-radix": "2.7.0",
     "zod": "3.20.2"
   },
