@@ -41,7 +41,7 @@
     "react-dom": "18.2.0",
     "react-intersection-observer": "9.4.1",
     "tailwindcss-radix": "2.7.0",
-    "zod": "3.20.2"
+    "zod": "3.20.6"
   },
   "devDependencies": {
     "@radix-ui/colors": "0.1.8",
