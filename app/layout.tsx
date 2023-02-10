@@ -1,6 +1,6 @@
 import "@/styles/globals.css";
 import SessionProvider from "@/components/Provider/SessionProvider";
-import { unstable_getServerSession } from "next-auth/next";
+import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
 import { Noto_Sans_SC } from "@next/font/google";
 import { ThemeProvider } from "@/components/Provider/ThemeProvider";
@@ -19,7 +19,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await unstable_getServerSession(authOptions);
+  const session = await getServerSession(authOptions);
 
   return (
     // https://github.com/pacocoursey/next-themes/issues/152#issuecomment-1364280564

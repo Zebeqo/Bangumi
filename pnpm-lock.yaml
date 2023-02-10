@@ -47,7 +47,7 @@ specifiers:
   jotai: 1.13.1
   lint-staged: 13.1.1
   next: 13.1.6
-  next-auth: 4.18.10
+  next-auth: 4.19.2
   next-themes: 0.2.1
   postcss: 8.4.21
   postcss-loader: 7.0.2
@@ -84,7 +84,7 @@ dependencies:
   class-variance-authority: 0.4.0_typescript@4.9.5
   jotai: 1.13.1_react@18.2.0
   next: 13.1.6_biqbaboplfbrettd7655fr4n2y
-  next-auth: 4.18.10_3vryta7zmbcsw4rrqf4axjqggm
+  next-auth: 4.19.2_3vryta7zmbcsw4rrqf4axjqggm
   next-themes: 0.2.1_3vryta7zmbcsw4rrqf4axjqggm
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -108,7 +108,7 @@ devDependencies:
   '@storybook/testing-library': 0.0.14-next.1
   '@tailwindcss/line-clamp': 0.4.2_tailwindcss@3.2.6
   '@tanstack/eslint-plugin-query': 4.24.5
-  '@tomfreudenberg/next-auth-mock': 0.5.6_ramrxj72odtpbxgorowdiuhnxm
+  '@tomfreudenberg/next-auth-mock': 0.5.6_iya6ychgcpz6xbgo662oxnbbcm
   '@types/node': 18.13.0
   '@types/react': 18.0.27
   '@types/react-dom': 18.0.10
@@ -1534,6 +1534,12 @@ packages:
       core-js-pure: 3.26.1
       regenerator-runtime: 0.13.11
     dev: true
+
+  /@babel/runtime/7.20.13:
+    resolution: {integrity: sha512-gt3PKXs0DBoL9xCvOIIZ2NEqAGZqHjAnmVbfQtB620V0uReIQutpel14KcneZuer7UioY8ALKZ7iocavvzTNFA==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      regenerator-runtime: 0.13.11
 
   /@babel/runtime/7.20.7:
     resolution: {integrity: sha512-UF0tvkUtxwAgZ5W/KrkHf0Rn0fdnLDU9ScxBrEVNUprE/MzirjK4MJUX1/BVDv00Sv8cljtukVK1aky++X1SjQ==}
@@ -4683,7 +4689,7 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       '@babel/code-frame': 7.18.6
-      '@babel/runtime': 7.20.7
+      '@babel/runtime': 7.20.13
       '@types/aria-query': 5.0.1
       aria-query: 5.1.3
       chalk: 4.1.2
@@ -4697,7 +4703,7 @@ packages:
     engines: {node: '>=8', npm: '>=6', yarn: '>=1'}
     dependencies:
       '@adobe/css-tools': 4.0.1
-      '@babel/runtime': 7.20.7
+      '@babel/runtime': 7.20.13
       '@types/testing-library__jest-dom': 5.14.5
       aria-query: 5.1.3
       chalk: 3.0.0
@@ -4713,17 +4719,17 @@ packages:
     peerDependencies:
       '@testing-library/dom': '>=7.21.4'
     dependencies:
-      '@babel/runtime': 7.20.7
+      '@babel/runtime': 7.20.13
       '@testing-library/dom': 8.19.1
     dev: true
 
-  /@tomfreudenberg/next-auth-mock/0.5.6_ramrxj72odtpbxgorowdiuhnxm:
+  /@tomfreudenberg/next-auth-mock/0.5.6_iya6ychgcpz6xbgo662oxnbbcm:
     resolution: {integrity: sha512-fSZJY5rUyj8GIcJI450ZV7FV/CMzpjUUGhPiaRyQo9l7l5mLvrnNe1MymzOnLpgXIkFja+CF/UHFGW807QcwmA==}
     peerDependencies:
       next-auth: ^4.12.3
       react: ^18
     dependencies:
-      next-auth: 4.18.10_3vryta7zmbcsw4rrqf4axjqggm
+      next-auth: 4.19.2_3vryta7zmbcsw4rrqf4axjqggm
       react: 18.2.0
     dev: true
 
@@ -9996,8 +10002,8 @@ packages:
       '@sideway/pinpoint': 2.0.0
     dev: true
 
-  /jose/4.11.1:
-    resolution: {integrity: sha512-YRv4Tk/Wlug8qicwqFNFVEZSdbROCHRAC6qu/i0dyNKr5JQdoa2pIGoS04lLO/jXQX7Z9omoNewYIVIxqZBd9Q==}
+  /jose/4.11.4:
+    resolution: {integrity: sha512-94FdcR8felat4vaTJyL/WVdtlWLlsnLMZP8v+A0Vru18K3bQ22vn7TtpVh3JlgBFNIlYOUlGqwp/MjRPOnIyCQ==}
 
   /jotai/1.13.1_react@18.2.0:
     resolution: {integrity: sha512-RUmH1S4vLsG3V6fbGlKzGJnLrDcC/HNb5gH2AeA9DzuJknoVxSGvvg8OBB7lke+gDc4oXmdVsaKn/xDUhWZ0vw==}
@@ -10670,8 +10676,8 @@ packages:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
     dev: true
 
-  /next-auth/4.18.10_3vryta7zmbcsw4rrqf4axjqggm:
-    resolution: {integrity: sha512-j2JVyH7byZ2eqXlOqNLpOO7gOlAkTzblxLZNeZihKCeIabYFHNdAJgUvVahhnHs3pZ4xaa3ZqGQHgi1uE97L9Q==}
+  /next-auth/4.19.2_3vryta7zmbcsw4rrqf4axjqggm:
+    resolution: {integrity: sha512-6V2YG3IJQVhgCAH7mvT3yopTW92gMdUrcwGX7NQ0dCreT/+axGua/JmVdarjec0C/oJukKpIYRgjMlV+L5ZQOQ==}
     peerDependencies:
       next: ^12.2.5 || ^13
       nodemailer: ^6.6.5
@@ -10681,15 +10687,15 @@ packages:
       nodemailer:
         optional: true
     dependencies:
-      '@babel/runtime': 7.20.7
+      '@babel/runtime': 7.20.13
       '@panva/hkdf': 1.0.2
       cookie: 0.5.0
-      jose: 4.11.1
+      jose: 4.11.4
       next: 13.1.6_biqbaboplfbrettd7655fr4n2y
       oauth: 0.9.15
-      openid-client: 5.3.1
-      preact: 10.11.3
-      preact-render-to-string: 5.2.6_preact@10.11.3
+      openid-client: 5.4.0
+      preact: 10.12.1
+      preact-render-to-string: 5.2.6_preact@10.12.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       uuid: 8.3.2
@@ -11043,10 +11049,10 @@ packages:
       is-wsl: 2.2.0
     dev: true
 
-  /openid-client/5.3.1:
-    resolution: {integrity: sha512-RLfehQiHch9N6tRWNx68cicf3b1WR0x74bJWHRc25uYIbSRwjxYcTFaRnzbbpls5jroLAaB/bFIodTgA5LJMvw==}
+  /openid-client/5.4.0:
+    resolution: {integrity: sha512-hgJa2aQKcM2hn3eyVtN12tEA45ECjTJPXCgUh5YzTzy9qwapCvmDTVPWOcWVL0d34zeQoQ/hbG9lJhl3AYxJlQ==}
     dependencies:
-      jose: 4.11.1
+      jose: 4.11.4
       lru-cache: 6.0.0
       object-hash: 2.2.0
       oidc-token-hash: 5.0.1
@@ -11495,16 +11501,16 @@ packages:
       source-map-js: 1.0.2
     dev: true
 
-  /preact-render-to-string/5.2.6_preact@10.11.3:
+  /preact-render-to-string/5.2.6_preact@10.12.1:
     resolution: {integrity: sha512-JyhErpYOvBV1hEPwIxc/fHWXPfnEGdRKxc8gFdAZ7XV4tlzyzG847XAyEZqoDnynP88akM4eaHcSOzNcLWFguw==}
     peerDependencies:
       preact: '>=10'
     dependencies:
-      preact: 10.11.3
+      preact: 10.12.1
       pretty-format: 3.8.0
 
-  /preact/10.11.3:
-    resolution: {integrity: sha512-eY93IVpod/zG3uMF22Unl8h9KkrcKIRs2EGar8hwLZZDU1lkjph303V9HZBwufh2s736U6VXuhD109LYqPoffg==}
+  /preact/10.12.1:
+    resolution: {integrity: sha512-l8386ixSsBdbreOAkqtrwqHwdvR35ID8c3rKPa8lCWuO86dBi32QWHV4vfsZK1utLLFMvw+Z5Ad4XLkZzchscg==}
 
   /prelude-ls/1.1.2:
     resolution: {integrity: sha512-ESF23V4SKG6lVSGZgYNpbsiaAkdab6ZgOxe52p7+Kid3W3u3bxR4Vfd/o21dmN7jSt0IwgZ4v5MUd26FEtXE9w==}
@@ -12044,7 +12050,7 @@ packages:
   /regenerator-transform/0.15.1:
     resolution: {integrity: sha512-knzmNAcuyxV+gQCufkYcvOqX/qIIfHLv0u5x79kRxuGojfYVky1f15TzZEu2Avte8QGepvUNTnLskf8E6X6Vyg==}
     dependencies:
-      '@babel/runtime': 7.20.7
+      '@babel/runtime': 7.20.13
     dev: true
 
   /regex-not/1.0.2:

@@ -3,11 +3,11 @@ import { ThemeButton } from "@/components/Button/ThemeButton";
 import { GithubButton } from "@/components/Button/GithubButton";
 import { AvatarDropdownMenu } from "@/components/DropdownMenu/AvatarDropdownMenu";
 import { LoginButton } from "@/components/Button/LoginButton";
-import { unstable_getServerSession } from "next-auth/next";
+import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
 
 export async function Header() {
-  const session = await unstable_getServerSession(authOptions);
+  const session = await getServerSession(authOptions);
   return (
     <div className="sticky top-0 z-10 flex h-16 w-full items-center justify-between border-b border-primary-6 bg-neutral-1 px-6">
       <BangumiLogo />
