@@ -1,4 +1,4 @@
-import { atom } from "jotai/vanilla";
+import { atom } from "jotai";
 import { z } from "zod";
 
 interface Panel {

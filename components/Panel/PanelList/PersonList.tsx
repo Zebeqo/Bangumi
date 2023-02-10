@@ -4,7 +4,7 @@ import { ListHeader } from "@/components/Panel/PanelList/ListHeader";
 import { useSubjectPersonsData } from "@/hooks/use-person";
 import { PersonAvatarCard } from "@/components/AvatarCard/PersonAvatarCard";
 import { personRelationEnum, personRelationScheme } from "@/lib/api/person";
-import { useReducerAtom } from "jotai/react/utils";
+import { useReducerAtom } from "jotai/utils";
 import { panelHistoryAtom, panelReducer } from "@/lib/panel";
 import { Suspense } from "react";
 import { AvatarCardSkeleton } from "@/components/Skeleton/AvatarCardSkeleton";

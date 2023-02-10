@@ -1,4 +1,4 @@
-import { useAtom, useSetAtom } from "jotai/react";
+import { useAtom, useSetAtom } from "jotai";
 import type { Toast } from "@/lib/toast";
 import { isOpenToastAtom, toastAtom } from "@/lib/toast";
 import { flushSync } from "react-dom";

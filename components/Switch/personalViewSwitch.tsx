@@ -1,8 +1,8 @@
 "use client";
 
-import { atomWithStorage } from "jotai/vanilla/utils";
+import { atomWithStorage } from "jotai/utils";
 import { Switch } from "@/ui/primitive/Switch";
-import { useAtom } from "jotai/react";
+import { useAtom } from "jotai";
 import { useEffect } from "react";
 
 export const personalViewModeAtom = atomWithStorage("personalViewMode", false);

@@ -1,10 +1,10 @@
 "use client";
 
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
-import { useSetAtom } from "jotai/react";
+import { useSetAtom } from "jotai";
 import { isOpenPanelAtom, panelHistoryAtom, panelReducer } from "@/lib/panel";
 import { forwardRef } from "react";
-import { useReducerAtom } from "jotai/react/utils";
+import { useReducerAtom } from "jotai/utils";
 import { PrimaryButton_Icon } from "@/ui/primitive/Button";
 
 interface InfoButtonProps {

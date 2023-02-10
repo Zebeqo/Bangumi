@@ -1,7 +1,7 @@
 "use client";
 
 import { Suspense } from "react";
-import { useAtom, useAtomValue, useSetAtom } from "jotai/react";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import {
   currentPanelAtom,
   isOpenPanelAtom,

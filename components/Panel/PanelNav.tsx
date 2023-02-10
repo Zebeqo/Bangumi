@@ -2,7 +2,7 @@
 
 import { panelScrollToTop } from "@/lib/utils";
 import { useInView } from "react-intersection-observer";
-import { useReducerAtom } from "jotai/react/utils";
+import { useReducerAtom } from "jotai/utils";
 import { panelHistoryAtom, panelReducer } from "@/lib/panel";
 import { Suspense } from "react";
 import { PanelNavSkeleton } from "@/components/Skeleton/PanelNavSkeleton";

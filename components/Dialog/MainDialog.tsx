@@ -1,6 +1,6 @@
 "use client";
 
-import { useAtom, useAtomValue } from "jotai/react";
+import { useAtom, useAtomValue } from "jotai";
 import { dialogAtom, isOpenDialogAtom } from "@/lib/dialog";
 import { useInView } from "react-intersection-observer";
 import {

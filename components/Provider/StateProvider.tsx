@@ -2,8 +2,8 @@
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { Provider } from "jotai/react";
-import { createStore } from "jotai/vanilla";
+import { Provider } from "jotai";
+import { createStore } from "jotai";
 
 const queryClient = new QueryClient({
   defaultOptions: {
