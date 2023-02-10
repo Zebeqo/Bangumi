@@ -1,4 +1,4 @@
-import { useSetAtom } from "jotai/react";
+import { useSetAtom } from "jotai";
 import type { Dialog } from "@/lib/dialog";
 import { dialogAtom, isOpenDialogAtom } from "@/lib/dialog";
 

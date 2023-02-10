@@ -2,7 +2,7 @@
 
 import { useEpisodesPageData } from "@/hooks/use-episode";
 import { ListHeader } from "@/components/Panel/PanelList/ListHeader";
-import { useReducerAtom } from "jotai/react/utils";
+import { useReducerAtom } from "jotai/utils";
 import { panelHistoryAtom, panelReducer } from "@/lib/panel";
 import { EPItemList } from "@/components/EPItem/EPItemList";
 import { Fragment, useEffect } from "react";

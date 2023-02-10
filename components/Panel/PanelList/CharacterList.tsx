@@ -4,7 +4,7 @@ import { CharacterAvatarCard } from "@/components/AvatarCard/CharacterAvatarCard
 import { useSubjectCharactersData } from "@/hooks/use-character";
 import { ListHeader } from "@/components/Panel/PanelList/ListHeader";
 import { panelHistoryAtom, panelReducer } from "@/lib/panel";
-import { useReducerAtom } from "jotai/react/utils";
+import { useReducerAtom } from "jotai/utils";
 import { Suspense } from "react";
 import { AvatarCardSkeleton } from "@/components/Skeleton/AvatarCardSkeleton";
 import { ListSkeletonWrapper } from "@/components/Skeleton/ListSkeletonWrapper";

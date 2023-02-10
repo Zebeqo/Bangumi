@@ -1,6 +1,6 @@
 "use client";
 
-import { useAtom, useAtomValue } from "jotai/react";
+import { useAtom, useAtomValue } from "jotai";
 import { isOpenToastAtom, toastAtom } from "@/lib/toast";
 import {
   Toast,

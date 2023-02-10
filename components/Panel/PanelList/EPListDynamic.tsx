@@ -3,7 +3,7 @@
 import { useCollectionData } from "@/hooks/use-collection";
 import { useEpisodesData } from "@/hooks/use-episode";
 import { ListHeader } from "@/components/Panel/PanelList/ListHeader";
-import { useReducerAtom } from "jotai/react/utils";
+import { useReducerAtom } from "jotai/utils";
 import { panelHistoryAtom, panelReducer } from "@/lib/panel";
 import { EPItemList } from "@/components/EPItem/EPItemList";
 import { Suspense } from "react";

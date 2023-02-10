@@ -11,7 +11,7 @@ import {
 import { cn } from "@/lib/utils";
 import type { z } from "zod";
 import type { collectionsPageScheme } from "@/lib/api/collection";
-import { useAtomValue } from "jotai/react";
+import { useAtomValue } from "jotai";
 import { personalViewModeAtom } from "@/components/Switch/personalViewSwitch";
 import { useRef, useState } from "react";
 import { useDialog } from "@/hooks/use-dialog";
