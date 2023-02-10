@@ -18,8 +18,8 @@
     "*.{ts,tsx,js,jsx}": "eslint --fix"
   },
   "dependencies": {
-    "@headlessui/react": "1.7.9",
-    "@heroicons/react": "2.0.14",
+    "@headlessui/react": "1.7.10",
+    "@heroicons/react": "2.0.15",
     "@next/font": "13.1.6",
     "@radix-ui/react-dialog": "1.0.2",
     "@radix-ui/react-dropdown-menu": "2.0.2",
@@ -39,9 +39,9 @@
     "next-themes": "0.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-intersection-observer": "9.4.1",
+    "react-intersection-observer": "9.4.2",
     "tailwindcss-radix": "2.7.0",
-    "zod": "3.20.2"
+    "zod": "3.20.6"
   },
   "devDependencies": {
     "@radix-ui/colors": "0.1.8",
@@ -60,11 +60,11 @@
     "@tailwindcss/line-clamp": "0.4.2",
     "@tanstack/eslint-plugin-query": "4.24.5",
     "@tomfreudenberg/next-auth-mock": "0.5.6",
-    "@types/node": "18.11.19",
+    "@types/node": "18.13.0",
     "@types/react": "18.0.27",
     "@types/react-dom": "18.0.10",
-    "@typescript-eslint/eslint-plugin": "5.50.0",
-    "@typescript-eslint/parser": "5.50.0",
+    "@typescript-eslint/eslint-plugin": "5.51.0",
+    "@typescript-eslint/parser": "5.51.0",
     "autoprefixer": "10.4.13",
     "clsx": "1.2.1",
     "css-loader": "6.7.3",
@@ -72,16 +72,16 @@
     "eslint-config-next": "13.1.6",
     "eslint-plugin-storybook": "0.6.10",
     "husky": "8.0.3",
-    "lint-staged": "13.1.0",
+    "lint-staged": "13.1.1",
     "postcss": "8.4.21",
     "postcss-loader": "7.0.2",
-    "prettier": "2.8.3",
+    "prettier": "2.8.4",
     "prettier-plugin-tailwindcss": "0.2.2",
     "storybook": "7.0.0-beta.41",
     "storybook-dark-mode": "2.0.5",
     "style-loader": "3.3.1",
     "tailwind-merge": "1.9.1",
-    "tailwindcss": "3.2.4",
+    "tailwindcss": "3.2.6",
     "typescript": "4.9.5",
     "windy-radix-palette": "0.5.0"
   }
