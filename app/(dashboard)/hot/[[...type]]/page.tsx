@@ -20,6 +20,9 @@ import { GridWrapper } from "@/components/GridWrapper";
 
 async function scrapeHotHtml(type: string) {
   return await fetch(`https://bgm.tv/${type}`, {
+    headers: {
+      "User-Agent": "Zebeqo/bangumi-app (https://github.com/Zebeqo/Bangumi)",
+    },
     next: {
       revalidate: 3600,
     },

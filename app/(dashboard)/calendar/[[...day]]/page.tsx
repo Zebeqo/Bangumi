@@ -35,6 +35,9 @@ const dayMap = {
 async function getCalendarData() {
   return calendarScheme.parse(
     await fetch("https://api.bgm.tv/calendar", {
+      headers: {
+        "User-Agent": "Zebeqo/bangumi-app (https://github.com/Zebeqo/Bangumi)",
+      },
       next: {
         revalidate: 3600,
       },

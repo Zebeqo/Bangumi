@@ -28,6 +28,9 @@ import { cva } from "class-variance-authority";
 async function getSubjectData(id: number) {
   return subjectScheme.safeParse(
     await fetch(`https://api.bgm.tv/v0/subjects/${id}`, {
+      headers: {
+        "User-Agent": "Zebeqo/bangumi-app (https://github.com/Zebeqo/Bangumi)",
+      },
       next: {
         revalidate: 3600,
       },

@@ -23,6 +23,9 @@ async function getRankData(type: string) {
   return searchResultScheme.parse(
     await fetch(`https://api.bgm.tv/v0/search/subjects?limit=50&offset=0`, {
       method: "POST",
+      headers: {
+        "User-Agent": "Zebeqo/bangumi-app (https://github.com/Zebeqo/Bangumi)",
+      },
       body: JSON.stringify({
         keyword: "",
         sort: "rank",
