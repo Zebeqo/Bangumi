@@ -1,12 +1,13 @@
 import { z } from "zod";
 import { objectKeys } from "@/lib/utils";
+import { FALLBACK_IMAGE } from "@/lib/constant";
 export const subjectScheme = z.object({
   id: z.number().int(),
   date: z.string().nullable(),
   images: z.object({
-    medium: z.string().url(),
-    large: z.string().url(),
-    common: z.string().url(),
+    medium: z.string().url().catch(FALLBACK_IMAGE),
+    large: z.string().url().catch(FALLBACK_IMAGE),
+    common: z.string().url().catch(FALLBACK_IMAGE),
   }),
   name: z.string(),
   name_cn: z.string(),

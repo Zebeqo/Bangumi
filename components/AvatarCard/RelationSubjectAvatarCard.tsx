@@ -26,9 +26,7 @@ export function RelationSubjectAvatarCard({
         <AvatarCard>
           <AvatarCardContent className="mx-2 w-40 items-center">
             <AvatarCardImage
-              src={
-                imageURL || "https://avatars.githubusercontent.com/u/7521082"
-              }
+              src={imageURL}
               alt="Avatar"
               onClick={onClick}
               className="h-56 w-40 rounded-md"
