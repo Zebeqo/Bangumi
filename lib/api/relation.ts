@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { FALLBACK_IMAGE } from "@/lib/constant";
 
 export const subjectRelationsScheme = z.array(
   z.object({
@@ -7,7 +8,7 @@ export const subjectRelationsScheme = z.array(
     name_cn: z.string(),
     relation: z.string(),
     images: z.object({
-      common: z.string().url().or(z.literal("")),
+      common: z.string().url().catch(FALLBACK_IMAGE),
     }),
   })
 );

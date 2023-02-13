@@ -29,10 +29,7 @@ export function PersonAvatarCard({
           </AvatarCardBadge>
           <AvatarCardContent>
             <AvatarCardImage
-              src={
-                personData.images?.medium ||
-                "https://avatars.githubusercontent.com/u/7521082"
-              }
+              src={personData.images.medium}
               alt="Avatar"
               onClick={() => {
                 window.open(`https://bgm.tv/person/${id}`, "_blank");

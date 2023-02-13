@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { FALLBACK_IMAGE } from "@/lib/constant";
 
 export const calendarScheme = z.array(
   z.object({
@@ -19,7 +20,7 @@ export const calendarScheme = z.array(
           .optional(),
         images: z
           .object({
-            large: z.string().url(),
+            large: z.string().url().catch(FALLBACK_IMAGE),
           })
           .nullable(),
         collection: z

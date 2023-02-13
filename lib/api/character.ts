@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { FALLBACK_IMAGE } from "@/lib/constant";
 export const subjectCharactersScheme = z.array(
   z.object({
     id: z.number().int(),
@@ -6,7 +7,7 @@ export const subjectCharactersScheme = z.array(
     name: z.string(),
     images: z
       .object({
-        medium: z.string().url().or(z.literal("")),
+        medium: z.string().url().catch(FALLBACK_IMAGE),
       })
       .optional(),
     actors: z.array(z.object({ id: z.number().int(), name: z.string() })),
@@ -31,9 +32,9 @@ export const characterScheme = z.object({
   ),
   images: z
     .object({
-      medium: z.string().url().or(z.literal("")),
+      medium: z.string().url().catch(FALLBACK_IMAGE),
     })
-    .optional(),
+    .catch({ medium: FALLBACK_IMAGE }),
   stat: z.object({
     comments: z.number().int(),
     collects: z.number().int(),

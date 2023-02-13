@@ -33,10 +33,7 @@ export function CharacterAvatarCard({
           </AvatarCardBadge>
           <AvatarCardContent>
             <AvatarCardImage
-              src={
-                characterData.images?.medium ||
-                "https://avatars.githubusercontent.com/u/7521082"
-              }
+              src={characterData.images.medium}
               alt="Avatar"
               onClick={onClick}
             />
