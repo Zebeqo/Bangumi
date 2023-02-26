@@ -45,7 +45,10 @@ export const AvatarDropdownMenu = ({ imageURL }: { imageURL: string }) => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="relative outline-none" aria-label="more">
+      <DropdownMenuTrigger
+        className="relative rounded-lg outline-none ring-neutral-7 focus:outline-none focus:ring-2"
+        aria-label="more"
+      >
         <Image
           src={imageURL}
           alt={"Avatar"}
