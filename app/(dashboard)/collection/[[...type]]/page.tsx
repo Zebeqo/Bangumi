@@ -20,11 +20,7 @@ import { GridWrapper } from "@/components/GridWrapper";
 //     { type: ["dropped"] },
 //   ];
 // }
-export default function Page({
-  params,
-}: {
-  params: { type?: undefined } | { type: string[] };
-}) {
+export default function Page({ params }: { params: { type?: string[] } }) {
   // compromise
   if (
     ![undefined, "do", "wish", "collect", "on_hold", "dropped"].includes(

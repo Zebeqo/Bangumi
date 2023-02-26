@@ -43,14 +43,14 @@ export function SortDropdownMenu() {
   const router = useRouter();
 
   const handleSortSelect = (value: string) => {
-    const newSearchParams = new URLSearchParams(searchParams.toString());
+    const newSearchParams = new URLSearchParams(searchParams?.toString());
     newSearchParams.set("sort", value);
 
     router.push(`${path ?? "/"}?${newSearchParams.toString()}`);
   };
 
   const handleOrderSelect = (value: string) => {
-    const newSearchParams = new URLSearchParams(searchParams.toString());
+    const newSearchParams = new URLSearchParams(searchParams?.toString());
     newSearchParams.set("order", value);
 
     router.push(`${path ?? "/"}?${newSearchParams.toString()}`);
@@ -71,7 +71,7 @@ export function SortDropdownMenu() {
         className="w-36"
       >
         <DropdownMenuRadioGroup
-          value={searchParams.get("sort") ?? "do"}
+          value={searchParams?.get("sort") ?? "do"}
           onValueChange={handleSortSelect}
         >
           {sortRadioItems.map(({ value, label }, index) => (
@@ -86,7 +86,7 @@ export function SortDropdownMenu() {
         </DropdownMenuRadioGroup>
         <DropdownMenuSeparator colorType={"neutral"} />
         <DropdownMenuRadioGroup
-          value={searchParams.get("order") ?? "desc"}
+          value={searchParams?.get("order") ?? "desc"}
           onValueChange={handleOrderSelect}
         >
           {orderRadioItems.map(({ value, label }, index) => (

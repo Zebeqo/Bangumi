@@ -48,7 +48,7 @@ export default async function Page({
   params,
   searchParams,
 }: {
-  params: { day?: undefined } | { day: string[] };
+  params: { day?: string[] };
   searchParams?: SearchParams;
 }) {
   // compromise
@@ -71,7 +71,7 @@ export default async function Page({
   const dayData = params.day
     ? calendarData.find(
         (data) =>
-          data.weekday.id === dayMap[params.day[0] as keyof typeof dayMap]
+          data.weekday.id === dayMap[params.day?.at(0) as keyof typeof dayMap]
       )
     : calendarData.find((data) => data.weekday.id === dayMap.today);
 
