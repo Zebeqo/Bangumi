@@ -115,7 +115,7 @@ export const AvatarDropdownMenu: StoryObj<{
     return (
       <DropdownMenu>
         <DropdownMenuTrigger
-          className="relative outline-none"
+          className="relative rounded-lg outline-none ring-neutral-7 focus:outline-none focus:ring-2"
           aria-label="more"
         >
           <Image
