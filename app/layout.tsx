@@ -30,7 +30,7 @@ export default async function RootLayout({
       */}
       <head />
 
-      <body className="bg-neutral-1">
+      <body className="bg-white dark:bg-neutral-1">
         <ThemeProvider>
           <StateProvider>
             <SessionProvider session={session}>{children}</SessionProvider>
