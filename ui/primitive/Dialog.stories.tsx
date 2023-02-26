@@ -76,7 +76,7 @@ export const MainDialog_Action: StoryObj<{
           <DialogContentHeader_Main titleName={title} />
           <DialogDescription>{description}</DialogDescription>
           <SecondaryButton
-            colorType={"accent"}
+            colorVariant={"accent"}
             onClick={handleAction}
             className="mt-4 mr-6"
           >

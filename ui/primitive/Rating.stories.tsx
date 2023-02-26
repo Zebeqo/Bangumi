@@ -31,7 +31,7 @@ export const Rating_: StoryObj<{
     const outlineStarCount = totalIconCount - fillStarCount - halfStarCount;
 
     return (
-      <Rating colorType={"accent"}>
+      <Rating colorVariant={"accent"}>
         {Array.from({ length: fillStarCount }).map((_, index) => (
           <RatingFillIcon key={index} />
         ))}

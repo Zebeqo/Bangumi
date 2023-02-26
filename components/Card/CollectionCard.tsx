@@ -60,7 +60,7 @@ export function CollectionCard({
           />
           <CardButtonGroup>
             <InfoButton subject_id={collection.subject.id} />
-            <PrimaryButton_Icon colorType={"accent"}>
+            <PrimaryButton_Icon colorVariant={"accent"}>
               <ChatBubbleLeftRightIcon className="h-6 w-6" />
             </PrimaryButton_Icon>
           </CardButtonGroup>
@@ -93,12 +93,12 @@ export function CollectionCard({
         <CardTagGroup>
           {pvMode
             ? collection.tags.map((tag) => (
-                <CardTagGroupItem colorType={"primary"} key={tag}>
+                <CardTagGroupItem colorVariant={"primary"} key={tag}>
                   {tag}
                 </CardTagGroupItem>
               ))
             : collection.subject.tags.map((tag) => (
-                <CardTagGroupItem colorType={"primary"} key={tag.name}>
+                <CardTagGroupItem colorVariant={"primary"} key={tag.name}>
                   {tag.name}
                 </CardTagGroupItem>
               ))}

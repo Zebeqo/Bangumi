@@ -59,11 +59,14 @@ export const MoreDropdownMenu = ({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <OutlineButton_Icon colorType={"neutral"} aria-label={"more"}>
+        <OutlineButton_Icon colorVariant={"neutral"} aria-label={"more"}>
           <EllipsisVerticalIcon className="h-6 w-6" />
         </OutlineButton_Icon>
       </DropdownMenuTrigger>
-      <DropdownMenuContent_Simple colorType={"neutral"} menuItems={menuItems} />
+      <DropdownMenuContent_Simple
+        colorVariant={"neutral"}
+        menuItems={menuItems}
+      />
     </DropdownMenu>
   );
 };

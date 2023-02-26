@@ -26,7 +26,7 @@ import { action } from "@storybook/addon-actions";
 const meta: Meta = {
   title: "DropdownMenu",
   argTypes: {
-    colorType: {
+    colorVariant: {
       control: {
         type: "radio",
       },
@@ -39,7 +39,7 @@ export default meta;
 
 export const MoreDropdownMenu: StoryObj<{
   menuItems: MenuItem[];
-  colorType: DropdownMenuColor;
+  colorVariant: DropdownMenuColor;
 }> = {
   args: {
     menuItems: [
@@ -56,18 +56,18 @@ export const MoreDropdownMenu: StoryObj<{
         handleSelect: action("在主站中打开"),
       },
     ],
-    colorType: "neutral",
+    colorVariant: "neutral",
   },
-  render: ({ menuItems, colorType }) => {
+  render: ({ menuItems, colorVariant }) => {
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <OutlineButton_Icon aria-label={"more"} colorType={colorType}>
+          <OutlineButton_Icon aria-label={"more"} colorVariant={colorVariant}>
             <EllipsisVerticalIcon className="h-6 w-6" />
           </OutlineButton_Icon>
         </DropdownMenuTrigger>
         <DropdownMenuContent_Simple
-          colorType={colorType}
+          colorVariant={colorVariant}
           menuItems={menuItems}
           align="start"
         />
@@ -89,7 +89,7 @@ export const MoreDropdownMenu: StoryObj<{
 
 export const AvatarDropdownMenu: StoryObj<{
   menuItems: MenuItem[];
-  colorType: DropdownMenuColor;
+  colorVariant: DropdownMenuColor;
 }> = {
   args: {
     menuItems: [
@@ -109,9 +109,9 @@ export const AvatarDropdownMenu: StoryObj<{
         handleSelect: action("登出"),
       },
     ],
-    colorType: "neutral",
+    colorVariant: "neutral",
   },
-  render: ({ menuItems, colorType }) => {
+  render: ({ menuItems, colorVariant }) => {
     return (
       <DropdownMenu>
         <DropdownMenuTrigger
@@ -131,7 +131,7 @@ export const AvatarDropdownMenu: StoryObj<{
           <div className="absolute top-0 left-0 h-full w-full rounded-lg shadow-[inset_0_0_8px_rgba(0,0,0,0.15)]" />
         </DropdownMenuTrigger>
         <DropdownMenuContent_Simple
-          colorType={colorType}
+          colorVariant={colorVariant}
           menuItems={menuItems}
         />
       </DropdownMenu>
@@ -153,7 +153,7 @@ export const AvatarDropdownMenu: StoryObj<{
 export const SortDropdownMenu: StoryObj<{
   sortRadioItems: { label: string; value: string }[];
   orderRadioItems: { label: string; value: string }[];
-  colorType: DropdownMenuColor;
+  colorVariant: DropdownMenuColor;
 }> = {
   args: {
     sortRadioItems: [
@@ -180,22 +180,22 @@ export const SortDropdownMenu: StoryObj<{
         value: "desc",
       },
     ],
-    colorType: "neutral",
+    colorVariant: "neutral",
   },
-  render: ({ sortRadioItems, colorType, orderRadioItems }) => {
+  render: ({ sortRadioItems, colorVariant, orderRadioItems }) => {
     const [sortRadioItem, setSortRadioItem] = useState("do");
     const [orderRadioItem, setOrderRadioItem] = useState("desc");
 
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <OutlineButton aria-label={"sort"} colorType={colorType}>
+          <OutlineButton aria-label={"sort"} colorVariant={colorVariant}>
             <ArrowsUpDownIcon className="mr-2 h-5 w-5" />
             排序
           </OutlineButton>
         </DropdownMenuTrigger>
         <DropdownMenuContent
-          colorType={colorType}
+          colorVariant={colorVariant}
           align="end"
           sideOffset={8}
           className="w-36"
@@ -206,7 +206,7 @@ export const SortDropdownMenu: StoryObj<{
           >
             {sortRadioItems.map(({ value, label }, index) => (
               <DropdownMenuRadioItem
-                colorType={colorType}
+                colorVariant={colorVariant}
                 value={value}
                 key={`${value}-${index}`}
               >
@@ -214,14 +214,14 @@ export const SortDropdownMenu: StoryObj<{
               </DropdownMenuRadioItem>
             ))}
           </DropdownMenuRadioGroup>
-          <DropdownMenuSeparator colorType={colorType} />
+          <DropdownMenuSeparator colorVariant={colorVariant} />
           <DropdownMenuRadioGroup
             value={orderRadioItem}
             onValueChange={setOrderRadioItem}
           >
             {orderRadioItems.map(({ value, label }, index) => (
               <DropdownMenuRadioItem
-                colorType={colorType}
+                colorVariant={colorVariant}
                 value={value}
                 key={`${value}-${index}`}
               >

@@ -8,7 +8,7 @@ import { cva } from "class-variance-authority";
 
 const switchVariant = cva("", {
   variants: {
-    colorType: {
+    colorVariant: {
       primary: "radix-state-checked:bg-primary-10",
       accent: "radix-state-checked:bg-accent-10",
       neutral: "radix-state-checked:bg-neutral-10",
@@ -25,12 +25,12 @@ interface SwitchProps
 const Switch = forwardRef<
   React.ElementRef<typeof SwitchPrimitive.Root>,
   Omit<SwitchProps, "children">
->(({ className, colorType, ...props }, ref) => (
+>(({ className, colorVariant, ...props }, ref) => (
   <SwitchPrimitive.Root
     ref={ref}
     className={cn(
       "group",
-      switchVariant({ colorType }),
+      switchVariant({ colorVariant: colorVariant }),
       "radix-state-unchecked:bg-neutral-4 dark:radix-state-unchecked:bg-gray-800",
       "relative inline-flex h-[24px] w-[44px] flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out",
       "focus:outline-none",

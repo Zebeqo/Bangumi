@@ -37,7 +37,7 @@ export const containerDecorator = (Story: React.ComponentType) => {
 };
 
 export const colorArgTypes = {
-  colorType: {
+  colorVariant: {
     control: {
       type: "radio",
     },

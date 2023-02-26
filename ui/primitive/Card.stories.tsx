@@ -123,12 +123,12 @@ export const Card_: StoryObj<{
           <CardButtonGroup>
             <PrimaryButton_Icon
               aria-label="open-info-panel"
-              colorType={"accent"}
+              colorVariant={"accent"}
               onClick={onClickInfoButton}
             >
               <InformationCircleIcon className="h-6 w-6" />
             </PrimaryButton_Icon>
-            <PrimaryButton_Icon colorType={"accent"}>
+            <PrimaryButton_Icon colorVariant={"accent"}>
               <ChatBubbleLeftRightIcon className="h-6 w-6" />
             </PrimaryButton_Icon>
           </CardButtonGroup>
@@ -155,7 +155,7 @@ export const Card_: StoryObj<{
         </CardInfo>
         <CardTagGroup>
           {tags.map((tag) => (
-            <CardTagGroupItem colorType={"primary"} key={tag}>
+            <CardTagGroupItem colorVariant={"primary"} key={tag}>
               {tag}
             </CardTagGroupItem>
           ))}

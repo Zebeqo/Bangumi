@@ -7,7 +7,7 @@ export function GithubButton() {
   return (
     <GhostButton_Icon
       aria-label={"Github"}
-      colorType="neutral"
+      colorVariant="neutral"
       onClick={() => window.open("https://github.com/Zebeqo/Bangumi", "_blank")}
     >
       <GithubIcon className="h-6 w-6" />

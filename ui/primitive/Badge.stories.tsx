@@ -11,13 +11,13 @@ const meta: Meta = {
 
 export default meta;
 
-export const CommentBadge: StoryObj<{ colorType: Color; count: number }> = {
+export const CommentBadge: StoryObj<{ colorVariant: Color; count: number }> = {
   args: {
-    colorType: "success",
+    colorVariant: "success",
     count: 123,
   },
-  render: ({ colorType, count }) => (
-    <Badge colorType={colorType} className="rounded-full py-2">
+  render: ({ colorVariant, count }) => (
+    <Badge colorVariant={colorVariant} className="rounded-full py-2">
       <ChatBubbleLeftRightIcon className="mr-1 h-4 w-4" />
       {count}
     </Badge>
@@ -25,29 +25,29 @@ export const CommentBadge: StoryObj<{ colorType: Color; count: number }> = {
 };
 
 export const TagBadge: StoryObj<{
-  colorType: Color;
+  colorVariant: Color;
   count: number;
   label: string;
 }> = {
   args: {
-    colorType: "primary",
+    colorVariant: "primary",
     count: 123,
     label: "神作",
   },
-  render: ({ label, colorType, count }) => (
-    <Badge colorType={colorType}>
+  render: ({ label, colorVariant, count }) => (
+    <Badge colorVariant={colorVariant}>
       {label}
       <span className="ml-1 text-neutral-11">{count}</span>
     </Badge>
   ),
 };
 
-export const DefaultBadge: StoryObj<{ colorType: Color; label: string }> = {
+export const DefaultBadge: StoryObj<{ colorVariant: Color; label: string }> = {
   args: {
-    colorType: "primary",
+    colorVariant: "primary",
     label: "神作",
   },
-  render: ({ label, colorType }) => (
-    <Badge colorType={colorType}>{label}</Badge>
+  render: ({ label, colorVariant }) => (
+    <Badge colorVariant={colorVariant}>{label}</Badge>
   ),
 };

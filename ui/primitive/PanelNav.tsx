@@ -42,10 +42,10 @@ const PanelNavButtonGroup = forwardRef<
   Omit<PanelNavButtonGroupProps, "children">
 >(({ className, onClickBack, onClickForward, ...props }, ref) => (
   <div ref={ref} className={cn("flex space-x-2", className)} {...props}>
-    <OutlineButton_Icon colorType="neutral" onClick={onClickBack}>
+    <OutlineButton_Icon colorVariant="neutral" onClick={onClickBack}>
       <ChevronLeftIcon className="h-6 w-6" />
     </OutlineButton_Icon>
-    <OutlineButton_Icon colorType="neutral" onClick={onClickForward}>
+    <OutlineButton_Icon colorVariant="neutral" onClick={onClickForward}>
       <ChevronRightIcon className="h-6 w-6" />
     </OutlineButton_Icon>
   </div>

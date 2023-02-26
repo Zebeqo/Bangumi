@@ -38,7 +38,7 @@ export function CollectionTypeSelect({ subject_id }: { subject_id: number }) {
           }}
         >
           <SelectOptionsContent
-            colorType="accent"
+            colorVariant="accent"
             options={Object.values(collectionTypeMap).map(
               (value) => value.name_cn
             )}

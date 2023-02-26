@@ -39,7 +39,7 @@ export function EpisodeButton({
     <>
       {collectionData && (
         <OutlineButton
-          colorType={"neutral"}
+          colorVariant={"neutral"}
           className="bg-neutral-1 hover:bg-neutral-1 active:bg-neutral-1"
           onClick={() => {
             if (inputRef.current) {
