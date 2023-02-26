@@ -11,7 +11,8 @@ import {
 } from "@heroicons/react/20/solid";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { GhostButton, SelectedButton } from "@/ui/primitive/Button";
+import { ghostButton, selectedButton } from "@/ui/primitive/Button";
+import { cn } from "@/lib/utils";
 
 const headerItems = [
   {
@@ -66,6 +67,16 @@ const groups = [
 
 export function Sidebar() {
   const path = usePathname();
+
+  const selectedClass = cn(
+    selectedButton({ colorVariant: "primary" }),
+    "w-full justify-start"
+  );
+  const ghostClass = cn(
+    ghostButton({ colorVariant: "neutral" }),
+    "w-full justify-start"
+  );
+
   return (
     <div className="fixed h-full w-52 border-r border-r-neutral-6 px-4 py-4">
       <div>
@@ -74,42 +85,21 @@ export function Sidebar() {
           {headerItems.map((item) => {
             return (
               // Sidebar.Item
-              <Link href={item.href} key={item.name}>
-                {path === "/" ? (
-                  item.href === "/top" ? (
-                    <SelectedButton
-                      colorVariant={"primary"}
-                      className="w-full justify-start"
-                    >
-                      {item.icon}
-                      {item.name}
-                    </SelectedButton>
-                  ) : (
-                    <GhostButton
-                      colorVariant={"neutral"}
-                      className="w-full justify-start"
-                    >
-                      {item.icon}
-                      {item.name}
-                    </GhostButton>
-                  )
-                ) : path?.startsWith(item.href) ? (
-                  <SelectedButton
-                    colorVariant={"primary"}
-                    className="w-full justify-start"
-                  >
-                    {item.icon}
-                    {item.name}
-                  </SelectedButton>
-                ) : (
-                  <GhostButton
-                    colorVariant={"neutral"}
-                    className="w-full justify-start"
-                  >
-                    {item.icon}
-                    {item.name}
-                  </GhostButton>
-                )}
+              <Link
+                href={item.href}
+                key={item.name}
+                className={
+                  path === "/"
+                    ? item.href === "/top"
+                      ? selectedClass
+                      : ghostClass
+                    : path?.startsWith(item.href)
+                    ? selectedClass
+                    : ghostClass
+                }
+              >
+                {item.icon}
+                {item.name}
               </Link>
             );
           })}
@@ -118,48 +108,27 @@ export function Sidebar() {
         <div className="flex flex-col">
           {groups.map((group) => {
             return (
-              <div key={group.label} className="flex flex-col">
-                <div className="mt-1 mb-6 h-px w-full bg-neutral-6"></div>
+              <div key={group.label} className="flex flex-col space-y-1">
+                <div className="mt-2 mb-4 h-px w-full bg-neutral-6"></div>
                 <div className="mb-1 px-4 text-neutral-9">{group.label}</div>
                 {group.items.map((item) => {
                   return (
                     // Sidebar.Item
-                    <Link href={item.href} key={item.name}>
-                      {path === "/collection" ? (
-                        item.href === "/collection/do" ? (
-                          <SelectedButton
-                            colorVariant={"primary"}
-                            className="w-full justify-start"
-                          >
-                            {item.icon}
-                            {item.name}
-                          </SelectedButton>
-                        ) : (
-                          <GhostButton
-                            colorVariant={"neutral"}
-                            className="w-full justify-start"
-                          >
-                            {item.icon}
-                            {item.name}
-                          </GhostButton>
-                        )
-                      ) : path?.startsWith(item.href) ? (
-                        <SelectedButton
-                          colorVariant={"primary"}
-                          className="w-full justify-start"
-                        >
-                          {item.icon}
-                          {item.name}
-                        </SelectedButton>
-                      ) : (
-                        <GhostButton
-                          colorVariant={"neutral"}
-                          className="w-full justify-start"
-                        >
-                          {item.icon}
-                          {item.name}
-                        </GhostButton>
-                      )}
+                    <Link
+                      href={item.href}
+                      key={item.name}
+                      className={
+                        path === "/collection"
+                          ? item.href === "/collection/do"
+                            ? selectedClass
+                            : ghostClass
+                          : path?.startsWith(item.href)
+                          ? selectedClass
+                          : ghostClass
+                      }
+                    >
+                      {item.icon}
+                      {item.name}
                     </Link>
                   );
                 })}
