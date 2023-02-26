@@ -8,7 +8,7 @@ import { cva } from "class-variance-authority";
 
 const ratingVariant = cva("flex space-x-1", {
   variants: {
-    colorType: {
+    colorVariant: {
       primary: "text-primary-11",
       accent: "text-accent-11",
       neutral: "text-neutral-11",
@@ -24,11 +24,11 @@ interface RatingProps
 const Rating = forwardRef<
   HTMLDivElement,
   WithRequired<RatingProps, "children">
->(({ className, colorType, children, ...props }, ref) => {
+>(({ className, colorVariant, children, ...props }, ref) => {
   return (
     <div
       ref={ref}
-      className={cn(ratingVariant({ colorType }), className)}
+      className={cn(ratingVariant({ colorVariant: colorVariant }), className)}
       {...props}
     >
       {children}

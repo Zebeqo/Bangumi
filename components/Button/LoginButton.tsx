@@ -7,7 +7,7 @@ import { PrimaryButton } from "@/ui/primitive/Button";
 export function LoginButton() {
   return (
     <PrimaryButton
-      colorType={"primary"}
+      colorVariant={"primary"}
       onClick={() => signIn("bangumi", { redirect: false })}
     >
       <BangumiRawIcon className="mr-2 h-5 w-5" />

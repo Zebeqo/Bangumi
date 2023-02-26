@@ -57,7 +57,7 @@ export const AvatarDropdownMenu = ({ imageURL }: { imageURL: string }) => {
         <div className="absolute top-0 left-0 h-full w-full rounded-lg shadow-[inset_0_0_8px_rgba(0,0,0,0.15)]" />
       </DropdownMenuTrigger>
       <DropdownMenuContent_Simple
-        colorType="neutral"
+        colorVariant="neutral"
         menuItems={menuItems}
         align="end"
         sideOffset={4}

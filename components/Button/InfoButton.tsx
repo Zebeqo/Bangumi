@@ -16,7 +16,7 @@ export const InfoButton = forwardRef<HTMLButtonElement, InfoButtonProps>(
     const [, dispatch] = useReducerAtom(panelHistoryAtom, panelReducer);
     return (
       <PrimaryButton_Icon
-        colorType={"accent"}
+        colorVariant={"accent"}
         ref={ref}
         onClick={() => {
           setIsOpenPanel(true);

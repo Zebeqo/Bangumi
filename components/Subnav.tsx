@@ -34,11 +34,11 @@ export function Subnav({
               key={item.name}
             >
               {selectedItemName === item.name ? (
-                <SelectedButton colorType={"neutral"}>
+                <SelectedButton colorVariant={"neutral"}>
                   {item.value}
                 </SelectedButton>
               ) : (
-                <GhostButton colorType={"neutral"}>{item.value}</GhostButton>
+                <GhostButton colorVariant={"neutral"}>{item.value}</GhostButton>
               )}
             </Link>
           );

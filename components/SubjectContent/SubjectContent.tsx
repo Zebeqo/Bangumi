@@ -55,7 +55,7 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
                 <SubjectContentInfoHeaderDivider />
                 <SubjectContentTagGroup>
                   {subjectData.tags.map(({ count, name }) => (
-                    <Badge colorType={"primary"} key={name} className="mr-2">
+                    <Badge colorVariant={"primary"} key={name} className="mr-2">
                       {name}
                       <span className="ml-1 text-neutral-11">{count}</span>
                     </Badge>
@@ -106,7 +106,7 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
                 ) : (
                   <>
                     <PrimaryButton
-                      colorType={"neutral"}
+                      colorVariant={"neutral"}
                       onClick={() => {
                         if (session) {
                           openToast({
@@ -135,7 +135,7 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
                       收藏
                     </PrimaryButton>
                     <OutlineButton
-                      colorType={"neutral"}
+                      colorVariant={"neutral"}
                       onClick={() => {
                         if (session) {
                           openToast({

@@ -15,7 +15,7 @@ export const Rating = ({ score }: { score: number }) => {
   const outlineStarCount = 5 - fillStarCount - halfStarCount;
 
   return (
-    <RatingRoot colorType={"accent"}>
+    <RatingRoot colorVariant={"accent"}>
       <>
         {Array.from({ length: fillStarCount }).map((_, index) => (
           <RatingFillIcon key={index} />

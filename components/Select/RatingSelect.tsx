@@ -41,12 +41,12 @@ export function RatingSelect({ subject_id }: { subject_id: number }) {
             });
           }}
         >
-          <SelectContent colorType={"accent"}>
+          <SelectContent colorVariant={"accent"}>
             <SelectGroup>
               {Object.values(ratingMap)
                 .map((value) => value.name_cn)
                 .map((value, index) => (
-                  <SelectItem colorType={"accent"} value={value} key={index}>
+                  <SelectItem colorVariant={"accent"} value={value} key={index}>
                     <span className="flex items-center space-x-1">
                       <StarIcon className="h-5 w-5" /> <span>{value}</span>
                     </span>

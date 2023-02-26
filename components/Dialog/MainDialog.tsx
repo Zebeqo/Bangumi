@@ -39,7 +39,7 @@ export function MainDialog() {
         <DialogDescription>{dialog?.description ?? ""}</DialogDescription>
         {dialog?.action && (
           <PrimaryButton
-            colorType={"accent"}
+            colorVariant={"accent"}
             className="mt-4 mr-6"
             onClick={dialog.action.onClick}
           >

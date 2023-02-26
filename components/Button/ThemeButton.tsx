@@ -18,7 +18,7 @@ export function ThemeButton() {
   if (!mounted) {
     return (
       <GhostButton_Icon
-        colorType={"neutral"}
+        colorVariant={"neutral"}
         aria-label="Loading Theme"
         className="hover:bg-transparent active:bg-transparent"
       >
@@ -30,7 +30,7 @@ export function ThemeButton() {
   return (
     <GhostButton_Icon
       aria-label="Toggle Dark Mode"
-      colorType={"neutral"}
+      colorVariant={"neutral"}
       onClick={() => {
         setTheme(theme === "dark" ? "light" : "dark");
       }}

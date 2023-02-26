@@ -165,7 +165,7 @@ const DialogClose = forwardRef<
   >
 >(({ ...props }, ref) => (
   <DialogPrimitive.Close ref={ref} asChild {...props}>
-    <GhostButton_Icon colorType={"neutral"}>
+    <GhostButton_Icon colorVariant={"neutral"}>
       <XMarkIcon className="h-6 w-6" />
     </GhostButton_Icon>
   </DialogPrimitive.Close>

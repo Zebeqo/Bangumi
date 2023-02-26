@@ -85,7 +85,7 @@ export async function CardSSR({
           <CardTitle mainTitle={name_cn || name} subTitle={name} />
           <CardButtonGroup>
             <InfoButton subject_id={subject_id} />
-            <PrimaryButton_Icon colorType={"accent"}>
+            <PrimaryButton_Icon colorVariant={"accent"}>
               <ChatBubbleLeftRightIcon className="h-6 w-6" />
             </PrimaryButton_Icon>
           </CardButtonGroup>
@@ -116,7 +116,7 @@ export async function CardSSR({
         </CardInfo>
         <CardTagGroup>
           {tags.slice(0, 10).map((tag) => (
-            <CardTagGroupItem colorType={"primary"} key={tag.name}>
+            <CardTagGroupItem colorVariant={"primary"} key={tag.name}>
               {tag.name}
             </CardTagGroupItem>
           ))}

@@ -26,9 +26,9 @@ interface SelectTriggerProps
 const SelectTrigger = forwardRef<
   React.ElementRef<typeof SelectPrimitive.Trigger>,
   Omit<SelectTriggerProps, "children">
->(({ colorType, ...props }, ref) => (
+>(({ colorVariant, ...props }, ref) => (
   <SelectPrimitive.Trigger ref={ref} {...props} asChild>
-    <OutlineButton ref={ref} colorType={colorType}>
+    <OutlineButton ref={ref} colorVariant={colorVariant}>
       <SelectPrimitive.Value />
       <SelectPrimitive.Icon className="ml-2 h-5 w-5">
         <ChevronDownIcon />
@@ -40,7 +40,7 @@ SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
 
 const selectContent = cva("", {
   variants: {
-    colorType: {
+    colorVariant: {
       primary: "text-primary-11",
       accent: "text-accent-11",
       neutral: "text-neutral-11",
@@ -53,9 +53,9 @@ interface SelectContentProps
 const SelectContent = forwardRef<
   React.ElementRef<typeof SelectPrimitive.Content>,
   WithRequired<SelectContentProps, "children">
->(({ colorType, className, children, ...props }, ref) => (
+>(({ colorVariant, className, children, ...props }, ref) => (
   <>
-    <SelectTrigger colorType={colorType} />
+    <SelectTrigger colorVariant={colorVariant} />
     <SelectPrimitive.Portal>
       <SelectPrimitive.Content
         ref={ref}
@@ -65,7 +65,7 @@ const SelectContent = forwardRef<
         <SelectPrimitive.ScrollUpButton
           className={cn(
             "flex items-center justify-center",
-            selectContent({ colorType })
+            selectContent({ colorVariant: colorVariant })
           )}
         >
           <ChevronUpIcon className="h-5 w-5" />
@@ -76,7 +76,7 @@ const SelectContent = forwardRef<
         <SelectPrimitive.ScrollDownButton
           className={cn(
             "flex items-center justify-center",
-            selectContent({ colorType })
+            selectContent({ colorVariant: colorVariant })
           )}
         >
           <ChevronDownIcon className="h-5 w-5" />
@@ -99,7 +99,7 @@ const SelectOptionsContent = forwardRef<
     <SelectGroup>
       {options.map((value, index) => (
         <SelectItem
-          colorType={props.colorType}
+          colorVariant={props.colorVariant}
           key={`${value}-${index}`}
           value={value}
         >
@@ -115,7 +115,7 @@ const selectItem = cva(
   "relative flex select-none items-center rounded-md px-8 py-2 font-medium outline-none",
   {
     variants: {
-      colorType: {
+      colorVariant: {
         primary: "text-primary-11 focus:bg-primary-4",
         accent: "text-accent-11 focus:bg-accent-4",
         neutral: "text-neutral-11 focus:bg-neutral-4",
@@ -129,10 +129,10 @@ interface SelectItemProps
 const SelectItem = forwardRef<
   React.ElementRef<typeof SelectPrimitive.Item>,
   WithRequired<SelectItemProps, "children">
->(({ className, colorType, children, ...props }, ref) => (
+>(({ className, colorVariant, children, ...props }, ref) => (
   <SelectPrimitive.Item
     ref={ref}
-    className={cn(selectItem({ colorType }), className)}
+    className={cn(selectItem({ colorVariant: colorVariant }), className)}
     {...props}
   >
     <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>

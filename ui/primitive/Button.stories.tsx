@@ -37,29 +37,29 @@ const meta: Meta = {
 export default meta;
 
 type ButtonStory = StoryObj<{
-  colorType: Color;
+  colorVariant: Color;
   buttonText: string;
   onClick: () => void;
 }>;
 
 export const Primary: ButtonStory = {
   args: {
-    colorType: "accent",
+    colorVariant: "accent",
     buttonText: "Button",
     onClick: action("button clicked"),
   },
-  render: ({ colorType, buttonText, onClick }) => (
+  render: ({ colorVariant, buttonText, onClick }) => (
     <>
-      <PrimaryButton colorType={colorType} onClick={onClick}>
+      <PrimaryButton colorVariant={colorVariant} onClick={onClick}>
         {buttonText}
       </PrimaryButton>
 
-      <PrimaryButton colorType={colorType} onClick={onClick}>
+      <PrimaryButton colorVariant={colorVariant} onClick={onClick}>
         <BoltIcon className="mr-2 h-5 w-5" />
         {buttonText}
       </PrimaryButton>
 
-      <PrimaryButton_Icon colorType={colorType} onClick={onClick}>
+      <PrimaryButton_Icon colorVariant={colorVariant} onClick={onClick}>
         <BoltIcon className="h-6 w-6" />
       </PrimaryButton_Icon>
     </>
@@ -68,22 +68,22 @@ export const Primary: ButtonStory = {
 
 export const Secondary: ButtonStory = {
   args: {
-    colorType: "accent",
+    colorVariant: "accent",
     buttonText: "Button",
     onClick: action("button clicked"),
   },
-  render: ({ colorType, buttonText, onClick }) => (
+  render: ({ colorVariant, buttonText, onClick }) => (
     <>
-      <SecondaryButton colorType={colorType} onClick={onClick}>
+      <SecondaryButton colorVariant={colorVariant} onClick={onClick}>
         {buttonText}
       </SecondaryButton>
 
-      <SecondaryButton colorType={colorType} onClick={onClick}>
+      <SecondaryButton colorVariant={colorVariant} onClick={onClick}>
         <BoltIcon className="mr-2 h-5 w-5" />
         {buttonText}
       </SecondaryButton>
 
-      <SecondaryButton_Icon colorType={colorType} onClick={onClick}>
+      <SecondaryButton_Icon colorVariant={colorVariant} onClick={onClick}>
         <BoltIcon className="h-6 w-6" />
       </SecondaryButton_Icon>
     </>
@@ -92,22 +92,22 @@ export const Secondary: ButtonStory = {
 
 export const Outline: ButtonStory = {
   args: {
-    colorType: "accent",
+    colorVariant: "accent",
     buttonText: "Button",
     onClick: action("button clicked"),
   },
-  render: ({ colorType, buttonText, onClick }) => (
+  render: ({ colorVariant, buttonText, onClick }) => (
     <>
-      <OutlineButton colorType={colorType} onClick={onClick}>
+      <OutlineButton colorVariant={colorVariant} onClick={onClick}>
         {buttonText}
       </OutlineButton>
 
-      <OutlineButton colorType={colorType} onClick={onClick}>
+      <OutlineButton colorVariant={colorVariant} onClick={onClick}>
         <BoltIcon className="mr-2 h-5 w-5" />
         {buttonText}
       </OutlineButton>
 
-      <OutlineButton_Icon colorType={colorType} onClick={onClick}>
+      <OutlineButton_Icon colorVariant={colorVariant} onClick={onClick}>
         <BoltIcon className="h-6 w-6" />
       </OutlineButton_Icon>
     </>
@@ -116,22 +116,22 @@ export const Outline: ButtonStory = {
 
 export const Ghost: ButtonStory = {
   args: {
-    colorType: "accent",
+    colorVariant: "accent",
     buttonText: "Button",
     onClick: action("button clicked"),
   },
-  render: ({ colorType, buttonText, onClick }) => (
+  render: ({ colorVariant, buttonText, onClick }) => (
     <>
-      <GhostButton colorType={colorType} onClick={onClick}>
+      <GhostButton colorVariant={colorVariant} onClick={onClick}>
         {buttonText}
       </GhostButton>
 
-      <GhostButton colorType={colorType} onClick={onClick}>
+      <GhostButton colorVariant={colorVariant} onClick={onClick}>
         <BoltIcon className="mr-2 h-5 w-5" />
         {buttonText}
       </GhostButton>
 
-      <GhostButton_Icon colorType={colorType} onClick={onClick}>
+      <GhostButton_Icon colorVariant={colorVariant} onClick={onClick}>
         <BoltIcon className="h-6 w-6" />
       </GhostButton_Icon>
     </>
@@ -140,22 +140,22 @@ export const Ghost: ButtonStory = {
 
 export const Selected: ButtonStory = {
   args: {
-    colorType: "accent",
+    colorVariant: "accent",
     buttonText: "Button",
     onClick: action("button clicked"),
   },
-  render: ({ colorType, buttonText, onClick }) => (
+  render: ({ colorVariant, buttonText, onClick }) => (
     <>
-      <SelectedButton colorType={colorType} onClick={onClick}>
+      <SelectedButton colorVariant={colorVariant} onClick={onClick}>
         {buttonText}
       </SelectedButton>
 
-      <SelectedButton colorType={colorType} onClick={onClick}>
+      <SelectedButton colorVariant={colorVariant} onClick={onClick}>
         <BoltIcon className="mr-2 h-5 w-5" />
         {buttonText}
       </SelectedButton>
 
-      <SelectedButton_Icon colorType={colorType} onClick={onClick}>
+      <SelectedButton_Icon colorVariant={colorVariant} onClick={onClick}>
         <BoltIcon className="h-6 w-6" />
       </SelectedButton_Icon>
     </>
@@ -185,7 +185,7 @@ export const EpisodeButton: StoryObj<{
 
     return (
       <OutlineButton
-        colorType="neutral"
+        colorVariant="neutral"
         className="bg-neutral-1 hover:bg-neutral-1 active:bg-neutral-1"
         onClick={() => {
           if (inputRef.current) {
@@ -249,6 +249,6 @@ export const EpisodeButton: StoryObj<{
     await expect(buttons.value).toBe((args.defaultValue + 1).toString());
   },
   parameters: {
-    controls: { exclude: ["colorType"] },
+    controls: { exclude: ["colorVariant"] },
   },
 };

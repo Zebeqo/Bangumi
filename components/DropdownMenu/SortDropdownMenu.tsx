@@ -59,13 +59,13 @@ export function SortDropdownMenu() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <OutlineButton colorType={"neutral"} aria-label={"sort"}>
+        <OutlineButton colorVariant={"neutral"} aria-label={"sort"}>
           <ArrowsUpDownIcon className="mr-2 h-5 w-5" />
           排序
         </OutlineButton>
       </DropdownMenuTrigger>
       <DropdownMenuContent
-        colorType={"neutral"}
+        colorVariant={"neutral"}
         align="end"
         sideOffset={8}
         className="w-36"
@@ -76,7 +76,7 @@ export function SortDropdownMenu() {
         >
           {sortRadioItems.map(({ value, label }, index) => (
             <DropdownMenuRadioItem
-              colorType={"neutral"}
+              colorVariant={"neutral"}
               value={value}
               key={`${value}-${index}`}
             >
@@ -84,14 +84,14 @@ export function SortDropdownMenu() {
             </DropdownMenuRadioItem>
           ))}
         </DropdownMenuRadioGroup>
-        <DropdownMenuSeparator colorType={"neutral"} />
+        <DropdownMenuSeparator colorVariant={"neutral"} />
         <DropdownMenuRadioGroup
           value={searchParams?.get("order") ?? "desc"}
           onValueChange={handleOrderSelect}
         >
           {orderRadioItems.map(({ value, label }, index) => (
             <DropdownMenuRadioItem
-              colorType={"neutral"}
+              colorVariant={"neutral"}
               value={value}
               key={`${value}-${index}`}
             >

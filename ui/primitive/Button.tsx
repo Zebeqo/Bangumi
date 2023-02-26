@@ -9,7 +9,7 @@ const baseButtonClass =
 
 const primaryButton = cva(baseButtonClass, {
   variants: {
-    colorType: {
+    colorVariant: {
       primary: "bg-primary-9 text-white hover:bg-primary-10",
       accent: "bg-accent-9 text-white hover:bg-accent-10",
       neutral: "bg-neutral-9 text-white hover:bg-neutral-10",
@@ -22,7 +22,7 @@ const primaryButton = cva(baseButtonClass, {
 
 const secondaryButton = cva(baseButtonClass, {
   variants: {
-    colorType: {
+    colorVariant: {
       primary:
         "bg-primary-4 text-primary-11 hover:bg-primary-5 active:bg-primary-6",
       accent: "bg-accent-4 text-accent-11 hover:bg-accent-5 active:bg-accent-6",
@@ -38,7 +38,7 @@ const secondaryButton = cva(baseButtonClass, {
 
 const outlineButton = cva(baseButtonClass, {
   variants: {
-    colorType: {
+    colorVariant: {
       primary:
         "border border-primary-7 bg-primary-1 text-primary-11 hover:bg-primary-4 active:bg-primary-5",
       accent:
@@ -56,7 +56,7 @@ const outlineButton = cva(baseButtonClass, {
 
 const ghostButton = cva(baseButtonClass, {
   variants: {
-    colorType: {
+    colorVariant: {
       primary:
         "bg-transparent text-primary-11 hover:bg-primary-4 active:bg-primary-5",
       accent:
@@ -73,7 +73,7 @@ const ghostButton = cva(baseButtonClass, {
 
 const selectedButton = cva(baseButtonClass, {
   variants: {
-    colorType: {
+    colorVariant: {
       primary: "bg-primary-5 text-primary-11",
       accent: "bg-accent-5 text-accent-11",
       neutral: "bg-neutral-5 text-neutral-11",
@@ -92,10 +92,10 @@ export interface ButtonProps
 const PrimaryButton = forwardRef<
   HTMLButtonElement,
   WithRequired<ButtonProps, "children">
->(({ colorType, className, ...props }, ref) => (
+>(({ colorVariant, className, ...props }, ref) => (
   <button
     ref={ref}
-    className={cn(primaryButton({ colorType }), className)}
+    className={cn(primaryButton({ colorVariant: colorVariant }), className)}
     {...props}
   />
 ));
@@ -112,10 +112,10 @@ PrimaryButton_Icon.displayName = PrimaryButton.displayName;
 const SecondaryButton = forwardRef<
   HTMLButtonElement,
   WithRequired<ButtonProps, "children">
->(({ colorType, className, ...props }, ref) => (
+>(({ colorVariant, className, ...props }, ref) => (
   <button
     ref={ref}
-    className={cn(secondaryButton({ colorType }), className)}
+    className={cn(secondaryButton({ colorVariant: colorVariant }), className)}
     {...props}
   />
 ));
@@ -132,10 +132,10 @@ SecondaryButton_Icon.displayName = SecondaryButton.displayName;
 const OutlineButton = forwardRef<
   HTMLButtonElement,
   WithRequired<ButtonProps, "children">
->(({ colorType, className, ...props }, ref) => (
+>(({ colorVariant, className, ...props }, ref) => (
   <button
     ref={ref}
-    className={cn(outlineButton({ colorType }), className)}
+    className={cn(outlineButton({ colorVariant: colorVariant }), className)}
     {...props}
   />
 ));
@@ -152,10 +152,10 @@ OutlineButton_Icon.displayName = OutlineButton.displayName;
 const GhostButton = forwardRef<
   HTMLButtonElement,
   WithRequired<ButtonProps, "children">
->(({ colorType, className, ...props }, ref) => (
+>(({ colorVariant, className, ...props }, ref) => (
   <button
     ref={ref}
-    className={cn(ghostButton({ colorType }), className)}
+    className={cn(ghostButton({ colorVariant: colorVariant }), className)}
     {...props}
   />
 ));
@@ -172,10 +172,10 @@ GhostButton_Icon.displayName = GhostButton.displayName;
 const SelectedButton = forwardRef<
   HTMLButtonElement,
   WithRequired<ButtonProps, "children">
->(({ colorType, className, ...props }, ref) => (
+>(({ colorVariant, className, ...props }, ref) => (
   <button
     ref={ref}
-    className={cn(selectedButton({ colorType }), className)}
+    className={cn(selectedButton({ colorVariant: colorVariant }), className)}
     {...props}
   />
 ));

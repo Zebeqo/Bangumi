@@ -17,7 +17,7 @@ import { action } from "@storybook/addon-actions";
 const meta: Meta = {
   title: "Select",
   argTypes: {
-    colorType: {
+    colorVariant: {
       control: {
         type: "radio",
       },
@@ -41,21 +41,21 @@ const play = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
 };
 
 export const RatingSelect: StoryObj<{
-  colorType: SelectColor;
+  colorVariant: SelectColor;
   defaultValue: string;
 }> = {
   args: {
-    colorType: "accent",
+    colorVariant: "accent",
     defaultValue: "(6) 还行",
   },
-  render: ({ colorType, defaultValue }) => (
+  render: ({ colorVariant, defaultValue }) => (
     <Select defaultValue={defaultValue} onValueChange={action("value change")}>
-      <SelectContent colorType={colorType}>
+      <SelectContent colorVariant={colorVariant}>
         <SelectGroup>
           {Object.values(ratingMap)
             .map((value) => value.name_cn)
             .map((value, index) => (
-              <SelectItem colorType={colorType} value={value} key={index}>
+              <SelectItem colorVariant={colorVariant} value={value} key={index}>
                 <span className="flex items-center space-x-1">
                   <StarIcon className="h-5 w-5" /> <span>{value}</span>
                 </span>
@@ -77,17 +77,17 @@ export const RatingSelect: StoryObj<{
 };
 
 export const CollectionTypeSelect: StoryObj<{
-  colorType: SelectColor;
+  colorVariant: SelectColor;
   defaultValue: string;
 }> = {
   args: {
-    colorType: "accent",
+    colorVariant: "accent",
     defaultValue: "想看",
   },
-  render: ({ colorType, defaultValue }) => (
+  render: ({ colorVariant, defaultValue }) => (
     <Select defaultValue={defaultValue} onValueChange={action("value change")}>
       <SelectOptionsContent
-        colorType={colorType}
+        colorVariant={colorVariant}
         options={Object.values(collectionTypeMap).map((value) => value.name_cn)}
       />
     </Select>

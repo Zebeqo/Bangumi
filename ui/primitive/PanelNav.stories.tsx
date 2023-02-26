@@ -39,7 +39,7 @@ export const PanelNav_: StoryObj<{ title: string; subTitle: string }> = {
       </PanelNavLeftContent>
       <PanelNavRightContent>
         <GhostButton_Icon
-          colorType="neutral"
+          colorVariant="neutral"
           aria-label="Close"
           onClick={action("click close")}
         >

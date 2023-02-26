@@ -78,7 +78,7 @@ export function Sidebar() {
                 {path === "/" ? (
                   item.href === "/top" ? (
                     <SelectedButton
-                      colorType={"primary"}
+                      colorVariant={"primary"}
                       className="w-full justify-start"
                     >
                       {item.icon}
@@ -86,7 +86,7 @@ export function Sidebar() {
                     </SelectedButton>
                   ) : (
                     <GhostButton
-                      colorType={"neutral"}
+                      colorVariant={"neutral"}
                       className="w-full justify-start"
                     >
                       {item.icon}
@@ -95,7 +95,7 @@ export function Sidebar() {
                   )
                 ) : path?.startsWith(item.href) ? (
                   <SelectedButton
-                    colorType={"primary"}
+                    colorVariant={"primary"}
                     className="w-full justify-start"
                   >
                     {item.icon}
@@ -103,7 +103,7 @@ export function Sidebar() {
                   </SelectedButton>
                 ) : (
                   <GhostButton
-                    colorType={"neutral"}
+                    colorVariant={"neutral"}
                     className="w-full justify-start"
                   >
                     {item.icon}
@@ -128,7 +128,7 @@ export function Sidebar() {
                       {path === "/collection" ? (
                         item.href === "/collection/do" ? (
                           <SelectedButton
-                            colorType={"primary"}
+                            colorVariant={"primary"}
                             className="w-full justify-start"
                           >
                             {item.icon}
@@ -136,7 +136,7 @@ export function Sidebar() {
                           </SelectedButton>
                         ) : (
                           <GhostButton
-                            colorType={"neutral"}
+                            colorVariant={"neutral"}
                             className="w-full justify-start"
                           >
                             {item.icon}
@@ -145,7 +145,7 @@ export function Sidebar() {
                         )
                       ) : path?.startsWith(item.href) ? (
                         <SelectedButton
-                          colorType={"primary"}
+                          colorVariant={"primary"}
                           className="w-full justify-start"
                         >
                           {item.icon}
@@ -153,7 +153,7 @@ export function Sidebar() {
                         </SelectedButton>
                       ) : (
                         <GhostButton
-                          colorType={"neutral"}
+                          colorVariant={"neutral"}
                           className="w-full justify-start"
                         >
                           {item.icon}

@@ -14,19 +14,19 @@ const meta: Meta = {
 export default meta;
 
 export const Switch_: StoryObj<{
-  colorType: Color;
+  colorVariant: Color;
   checked: boolean;
   onCheckedChange: () => void;
 }> = {
   args: {
-    colorType: "accent",
+    colorVariant: "accent",
     checked: true,
     onCheckedChange: action("checked change"),
   },
-  render: ({ colorType, checked, onCheckedChange }) => {
+  render: ({ colorVariant, checked, onCheckedChange }) => {
     return (
       <Switch
-        colorType={colorType}
+        colorVariant={colorVariant}
         checked={checked}
         onCheckedChange={onCheckedChange}
       />

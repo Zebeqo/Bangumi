@@ -190,7 +190,7 @@ export const SubjectContent_: StoryObj<{
           <SubjectContentInfoHeaderDivider />
           <SubjectContentTagGroup>
             {tags.map(({ count, name }) => (
-              <Badge colorType={"primary"} key={name} className="mr-2">
+              <Badge colorVariant={"primary"} key={name} className="mr-2">
                 {name}
                 <span className="ml-1 text-neutral-11">{count}</span>
               </Badge>
@@ -203,11 +203,11 @@ export const SubjectContent_: StoryObj<{
           </p>
         </SubjectContentInfoBody>
         <SubjectContentInfoFooter>
-          <PrimaryButton colorType={"neutral"} onClick={onClickCollection}>
+          <PrimaryButton colorVariant={"neutral"} onClick={onClickCollection}>
             <InboxArrowDownIcon className="mr-2 h-5 w-5" />
             收藏
           </PrimaryButton>
-          <OutlineButton colorType={"neutral"} onClick={onClickRating}>
+          <OutlineButton colorVariant={"neutral"} onClick={onClickRating}>
             <span className="flex items-center space-x-1">
               <StarIcon className="h-5 w-5" />
               <span>评分</span>
@@ -253,7 +253,7 @@ export const SubjectContent_Auth: StoryObj<{
           <SubjectContentInfoHeaderDivider />
           <SubjectContentTagGroup>
             {tags.map(({ count, name }) => (
-              <Badge colorType={"primary"} key={name} className="mr-2">
+              <Badge colorVariant={"primary"} key={name} className="mr-2">
                 {name}
                 <span className="ml-1 text-neutral-11">{count}</span>
               </Badge>
