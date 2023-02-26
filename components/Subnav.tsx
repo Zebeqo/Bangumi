@@ -27,7 +27,7 @@ export function Subnav({
             // Sidebar.Item
             <Link
               href={
-                searchParams.toString()
+                searchParams?.toString()
                   ? `${item.href}?${searchParams.toString()}`
                   : `${item.href}`
               }

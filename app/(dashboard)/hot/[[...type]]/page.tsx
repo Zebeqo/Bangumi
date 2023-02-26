@@ -31,7 +31,7 @@ async function scrapeHotHtml(type: string) {
 export default async function Page({
   params,
 }: {
-  params: { type?: undefined } | { type: string[] };
+  params: { type?: string[] };
 }) {
   // compromise
   if (
