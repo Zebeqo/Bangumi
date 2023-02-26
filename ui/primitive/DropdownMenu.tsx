@@ -4,7 +4,7 @@ import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 import { forwardRef } from "react";
 import { cn } from "@/lib/utils";
 import { CheckIcon } from "@heroicons/react/20/solid";
-import { GhostButton } from "@/ui/primitive/Button";
+import { ghostButton } from "@/ui/primitive/Button";
 import type { VariantProps } from "class-variance-authority";
 import { cva } from "class-variance-authority";
 
@@ -83,7 +83,7 @@ const DropdownMenuRadioItem = forwardRef<
 DropdownMenuRadioItem.displayName = DropdownMenuPrimitive.RadioItem.displayName;
 
 const dropdownMenuContent = cva(
-  "z-50 w-auto rounded-lg px-2 py-2 shadow-lg outline-none ring-1 radix-side-bottom:animate-slide-down radix-side-top:animate-slide-up",
+  "flex flex-col z-50 w-auto rounded-lg px-2 py-2 shadow-lg outline-none ring-1 radix-side-bottom:animate-slide-down radix-side-top:animate-slide-up",
   {
     variants: {
       colorVariant: {
@@ -135,17 +135,15 @@ const DropdownMenuContent_Simple = forwardRef<
       <DropdownMenuPrimitive.Item
         key={`${label}-${i}`}
         onSelect={handleSelect}
-        className="outline-none"
+        className={cn(
+          ghostButton({ colorVariant: colorVariant }),
+          "w-full focus:bg-neutral-4 focus:ring-0"
+        )}
       >
-        <GhostButton
-          colorVariant={colorVariant}
-          className="w-full justify-start"
-        >
-          {menuItems[i].icon && (
-            <span className="mr-2 h-5 w-5">{menuItems[i].icon}</span>
-          )}
-          {label}
-        </GhostButton>
+        {menuItems[i].icon && (
+          <span className="mr-2 h-5 w-5">{menuItems[i].icon}</span>
+        )}
+        {label}
       </DropdownMenuPrimitive.Item>
     ))}
   </DropdownMenuContent>

@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { GhostButton, SelectedButton } from "@/ui/primitive/Button";
+import { ghostButton, selectedButton } from "@/ui/primitive/Button";
 
 export interface NavItem {
   name: string;
@@ -32,14 +32,13 @@ export function Subnav({
                   : `${item.href}`
               }
               key={item.name}
+              className={
+                selectedItemName === item.name
+                  ? selectedButton({ colorVariant: "neutral" })
+                  : ghostButton({ colorVariant: "neutral" })
+              }
             >
-              {selectedItemName === item.name ? (
-                <SelectedButton colorVariant={"neutral"}>
-                  {item.value}
-                </SelectedButton>
-              ) : (
-                <GhostButton colorVariant={"neutral"}>{item.value}</GhostButton>
-              )}
+              {item.value}
             </Link>
           );
         })}
