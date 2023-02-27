@@ -29,7 +29,7 @@ type PanelStory = StoryObj<{ subject_id: number; open: boolean }>;
 export const SubjectPanel_: PanelStory = {
   render: ({ subject_id, open }) => (
     <Dialog open={open} onOpenChange={action("trigger close")}>
-      <DialogContent_Panel isOpen={open}>
+      <DialogContent_Panel>
         <Suspense fallback={<SubjectPanelSkeleton />}>
           <SubjectPanel subject_id={subject_id} />
         </Suspense>
@@ -50,7 +50,7 @@ export const SubjectPanel_: PanelStory = {
 export const CharacterListPanel_: PanelStory = {
   render: ({ subject_id, open }) => (
     <Dialog open={open} onOpenChange={action("trigger close")}>
-      <DialogContent_Panel isOpen={open}>
+      <DialogContent_Panel>
         <CharacterListPanel subject_id={subject_id} />
       </DialogContent_Panel>
     </Dialog>
@@ -69,7 +69,7 @@ export const CharacterListPanel_: PanelStory = {
 export const EPListPanel_: PanelStory = {
   render: ({ subject_id, open }) => (
     <Dialog open={open} onOpenChange={action("trigger close")}>
-      <DialogContent_Panel isOpen={open}>
+      <DialogContent_Panel>
         <EPListPanel subject_id={subject_id} />
       </DialogContent_Panel>
     </Dialog>
@@ -88,7 +88,7 @@ export const EPListPanel_: PanelStory = {
 export const PersonListPanel_: PanelStory = {
   render: ({ subject_id, open }) => (
     <Dialog open={open} onOpenChange={action("trigger close")}>
-      <DialogContent_Panel isOpen={open}>
+      <DialogContent_Panel>
         <PersonListPanel subject_id={subject_id} />
       </DialogContent_Panel>
     </Dialog>
@@ -107,7 +107,7 @@ export const PersonListPanel_: PanelStory = {
 export const SubjectListPanel_: PanelStory = {
   render: ({ subject_id, open }) => (
     <Dialog open={open} onOpenChange={action("trigger close")}>
-      <DialogContent_Panel isOpen={open}>
+      <DialogContent_Panel>
         <SubjectListPanel subject_id={subject_id} />
       </DialogContent_Panel>
     </Dialog>

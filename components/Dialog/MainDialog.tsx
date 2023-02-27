@@ -28,7 +28,7 @@ export function MainDialog() {
         }
       }}
     >
-      <DialogContent_Main isOpen={isOpenDialog}>
+      <DialogContent_Main>
         <DialogContentHeader_Main
           ref={ref}
           className={

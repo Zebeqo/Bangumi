@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { forwardRef } from "react";
 
 export const baseButtonClass =
-  "inline-flex items-center whitespace-nowrap rounded-md px-4 py-2 font-medium outline-none w-fit focus:outline-none focus:ring-2 select-none";
+  "inline-flex items-center whitespace-nowrap rounded-md px-4 py-2 font-medium outline-none w-fit focus:outline-none focus:ring-2 select-none cursor-pointer";
 
 export const primaryButton = cva(baseButtonClass, {
   variants: {

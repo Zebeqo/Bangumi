@@ -1,8 +1,7 @@
 "use client";
 
 import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { forwardRef, Fragment } from "react";
-import { Transition } from "@headlessui/react";
+import { forwardRef } from "react";
 import type { WithRequired } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 import { XMarkIcon } from "@heroicons/react/24/outline";
@@ -10,67 +9,44 @@ import { GhostButton_Icon } from "@/ui/primitive/Button";
 
 const Dialog = DialogPrimitive.Root;
 
-interface DialogContentProps
-  extends React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> {
-  isOpen: boolean;
-}
+export type DialogContentProps = React.ComponentPropsWithoutRef<
+  typeof DialogPrimitive.Content
+>;
 const DialogContent = forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,
   WithRequired<DialogContentProps, "children">
->(({ children, isOpen, ...props }, ref) => (
-  <DialogPrimitive.Portal forceMount>
-    <Transition.Root show={isOpen}>
-      <Transition.Child
-        as={Fragment}
-        enter="ease-out duration-300"
-        enterFrom="opacity-0"
-        enterTo="opacity-100"
-        leave="ease-in duration-200"
-        leaveFrom="opacity-100"
-        leaveTo="opacity-0"
+>(({ className, children, ...props }, ref) => (
+  <DialogPrimitive.Portal>
+    <DialogPrimitive.Overlay
+      id="panel-overlay"
+      className="fixed inset-0 z-40 grid place-items-center overflow-y-auto bg-blackA9 pb-16 backdrop-blur-sm animate-in data-[state=open]:fade-in"
+    >
+      <DialogPrimitive.Content
+        ref={ref}
+        onPointerDownOutside={(e) => {
+          if (
+            e.detail.originalEvent.which === 2 ||
+            e.detail.originalEvent.button === 4
+          ) {
+            e.preventDefault();
+          }
+
+          // https://github.com/radix-ui/primitives/issues/1280#issuecomment-1198248523
+          const currentTarget = e.currentTarget as HTMLElement;
+
+          if (e.detail.originalEvent.offsetX > currentTarget.clientWidth) {
+            e.preventDefault();
+          }
+        }}
+        className={cn(
+          "animate-in zoom-in-90 duration-300 ease-out data-[state=open]:slide-in-from-bottom-0",
+          className
+        )}
+        {...props}
       >
-        <DialogPrimitive.Overlay
-          forceMount
-          id="panel-overlay"
-          className="fixed inset-0 z-40 grid place-items-center overflow-y-auto bg-blackA-9 pb-16 dark:bg-whiteA-9"
-        >
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0 scale-95"
-            enterTo="opacity-100 scale-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100 scale-100"
-            leaveTo="opacity-0 scale-95"
-          >
-            <DialogPrimitive.Content
-              ref={ref}
-              forceMount
-              onPointerDownOutside={(e) => {
-                if (
-                  e.detail.originalEvent.which === 2 ||
-                  e.detail.originalEvent.button === 4
-                ) {
-                  e.preventDefault();
-                }
-
-                // https://github.com/radix-ui/primitives/issues/1280#issuecomment-1198248523
-                const currentTarget = e.currentTarget as HTMLElement;
-
-                if (
-                  e.detail.originalEvent.offsetX > currentTarget.clientWidth
-                ) {
-                  e.preventDefault();
-                }
-              }}
-              {...props}
-            >
-              {children}
-            </DialogPrimitive.Content>
-          </Transition.Child>
-        </DialogPrimitive.Overlay>
-      </Transition.Child>
-    </Transition.Root>
+        {children}
+      </DialogPrimitive.Content>
+    </DialogPrimitive.Overlay>
   </DialogPrimitive.Portal>
 ));
 DialogContent.displayName = DialogPrimitive.Content.displayName;
