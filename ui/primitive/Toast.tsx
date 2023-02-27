@@ -29,7 +29,7 @@ const Toast = forwardRef<
         "radix-state-closed:animate-toast-hide",
         "radix-swipe-direction-right:radix-swipe-end:animate-toast-swipe-out-x",
         "radix-swipe-direction-right:translate-x-radix-toast-swipe-move-x",
-        "radix-swipe-cancel:translate-x-0 radix-swipe-cancel:duration-200 radix-swipe-cancel:ease-[ease]",
+        "radix-swipe-cancel:ease-[ease] radix-swipe-cancel:translate-x-0 radix-swipe-cancel:duration-200",
         className
       )}
       {...props}
@@ -39,9 +39,9 @@ const Toast = forwardRef<
           <CheckCircleIcon className="h-6 w-6 text-success-9" />
         ) : toastType === "error" ? (
           <ExclamationCircleIcon className="h-6 w-6 text-error-9" />
-        ) : toastType === "info" ? (
+        ) : (
           <InformationCircleIcon className="h-6 w-6 text-blue-9" />
-        ) : null}
+        )}
         <div className="flex flex-col space-y-2 px-2 py-0.5">{children}</div>
       </div>
       <ToastClose />

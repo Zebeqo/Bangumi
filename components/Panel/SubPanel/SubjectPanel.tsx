@@ -1,6 +1,12 @@
 "use client";
 
-import { PanelNav } from "@/components/Panel/PanelNav";
+import {
+  PanelContent,
+  PanelNav,
+  PanelNavSubTitle,
+  PanelNavTitle,
+  PanelNavTitleGroup,
+} from "@/ui/primitive/Panel";
 import { useSubjectData } from "@/hooks/use-subject";
 import { SubjectList } from "@/components/Panel/PanelList/SubjectList";
 import { useCollectionData } from "@/hooks/use-collection";
@@ -17,10 +23,15 @@ export function SubjectPanel({ subject_id }: { subject_id: number }) {
     <>
       {subjectData && isSubjectDataSuccess && isCollectionDataSuccess && (
         <>
-          <PanelNav
-            title={{ name: subjectData.name, name_cn: subjectData.name_cn }}
-          />
-          <div className="flex flex-col space-y-2 px-8">
+          <PanelNav>
+            <PanelNavTitleGroup>
+              <PanelNavTitle>
+                {subjectData.name_cn || subjectData.name}
+              </PanelNavTitle>
+              <PanelNavSubTitle>{subjectData.name}</PanelNavSubTitle>
+            </PanelNavTitleGroup>
+          </PanelNav>
+          <PanelContent>
             <SubjectContent subject_id={subjectData.id} />
             {/*SubjectContent.CharacterList*/}
             <CharacterList subject_id={subjectData.id} length={10} />
@@ -30,7 +41,7 @@ export function SubjectPanel({ subject_id }: { subject_id: number }) {
             <PersonList subject_id={subjectData.id} length={5} />
             {/*SubjectContent.SubjectList*/}
             <SubjectList subject_id={subjectData.id} length={8} />
-          </div>
+          </PanelContent>
         </>
       )}
     </>

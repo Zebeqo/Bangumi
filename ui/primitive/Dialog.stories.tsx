@@ -25,7 +25,7 @@ export const Panel: StoryObj<{ open: boolean }> = {
   render: ({ open }) => {
     return (
       <Dialog open={open} onOpenChange={action("trigger close")}>
-        <DialogContent_Panel isOpen={open}>
+        <DialogContent_Panel>
           <SubjectPanelSkeleton />
         </DialogContent_Panel>
       </Dialog>
@@ -43,10 +43,10 @@ export const MainDialog: StoryObj<{
     description: "很好看啊!",
     open: true,
   },
-  render: ({ title, description, open }) => {
+  render: ({ title, description }) => {
     return (
       <Dialog open={true} onOpenChange={action("trigger close")}>
-        <DialogContent_Main isOpen={open}>
+        <DialogContent_Main>
           <DialogContentHeader_Main titleName={title} />
           <DialogDescription>{description}</DialogDescription>
         </DialogContent_Main>
@@ -72,7 +72,7 @@ export const MainDialog_Action: StoryObj<{
   render: ({ actionLabel, title, description, handleAction, open }) => {
     return (
       <Dialog open={open} onOpenChange={action("trigger close")}>
-        <DialogContent_Main isOpen={open}>
+        <DialogContent_Main>
           <DialogContentHeader_Main titleName={title} />
           <DialogDescription>{description}</DialogDescription>
           <SecondaryButton

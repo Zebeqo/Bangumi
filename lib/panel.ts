@@ -75,4 +75,4 @@ export const currentPanelAtom = atom((get) =>
   get(panelHistoryAtom).history.at(get(panelHistoryAtom).index)
 );
 
-export const isOpenPanelAtom = atom(false);
+export const isOpenPanelAtom = atom((get) => get(panelHistoryAtom).index >= 0);

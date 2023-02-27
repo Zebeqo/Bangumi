@@ -10,6 +10,7 @@ export function useSubjectData(subject_id: number) {
   const { data, isSuccess } = useQuery({
     queryKey: ["subject", subject_id, session?.user.name],
     queryFn: async () => {
+      if (subject_id === -1) return null;
       try {
         const response = await fetch(
           `https://api.bgm.tv/v0/subjects/${subject_id}`,
