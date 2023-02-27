@@ -29,7 +29,7 @@ const Toast = forwardRef<
         "radix-state-closed:animate-toast-hide",
         "radix-swipe-direction-right:radix-swipe-end:animate-toast-swipe-out-x",
         "radix-swipe-direction-right:translate-x-radix-toast-swipe-move-x",
-        "radix-swipe-cancel:ease-[ease] radix-swipe-cancel:translate-x-0 radix-swipe-cancel:duration-200",
+        "radix-swipe-cancel:translate-x-0 radix-swipe-cancel:duration-200 radix-swipe-cancel:ease-out",
         className
       )}
       {...props}
