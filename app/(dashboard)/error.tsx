@@ -4,11 +4,11 @@ import { useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 
 export default function Error({ error }: { error: Error; reset: () => void }) {
-  const openToast = useToast();
+  const toast = useToast();
   useEffect(() => {
     // Log the error to an error reporting service
     console.error(error);
-    openToast({
+    toast({
       type: "error",
       title: "出现了意外错误！",
       description: "请尝试刷新或更换其他页面",

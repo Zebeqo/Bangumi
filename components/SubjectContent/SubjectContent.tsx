@@ -36,7 +36,7 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
   const descriptionRef = useRef<HTMLParagraphElement>(null);
   const { data: collectionData, isSuccess: isCollectionDataSuccess } =
     useCollectionData(subject_id);
-  const openToast = useToast();
+  const toast = useToast();
   const { data: session } = useSession();
   const { data: subjectData, isSuccess: isSubjectDataSuccess } =
     useSubjectData(subject_id);
@@ -109,7 +109,7 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
                       colorVariant={"neutral"}
                       onClick={() => {
                         if (session) {
-                          openToast({
+                          toast({
                             type: "info",
                             title: "收藏条目失败",
                             description:
@@ -138,7 +138,7 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
                       colorVariant={"neutral"}
                       onClick={() => {
                         if (session) {
-                          openToast({
+                          toast({
                             type: "info",
                             title: "请先收藏该条目",
                           });

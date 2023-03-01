@@ -5,7 +5,7 @@ import { errorScheme } from "@/lib/error";
 import { subjectRelationsScheme } from "@/lib/api/relation";
 
 export function useSubjectRelationsData(subject_id: number) {
-  const openErrorToast = useErrorToast();
+  const errorToast = useErrorToast();
   const { data: session } = useSession();
 
   const { data, isSuccess } = useQuery({
@@ -41,7 +41,7 @@ export function useSubjectRelationsData(subject_id: number) {
       } catch (e) {
         if (e instanceof Error) {
           const message = e.message;
-          openErrorToast("获取相关条目信息失败", message);
+          errorToast("获取相关条目信息失败", message);
         }
       }
     },

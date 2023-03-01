@@ -6,7 +6,7 @@ import { errorScheme } from "@/lib/error";
 
 export function useSubjectData(subject_id: number) {
   const { data: session } = useSession();
-  const openErrorToast = useErrorToast();
+  const errorToast = useErrorToast();
   const { data, isSuccess } = useQuery({
     queryKey: ["subject", subject_id, session?.user.name],
     queryFn: async () => {
@@ -41,7 +41,7 @@ export function useSubjectData(subject_id: number) {
       } catch (e) {
         if (e instanceof Error) {
           const message = e.message;
-          openErrorToast("获取条目信息失败", message);
+          errorToast("获取条目信息失败", message);
         }
       }
     },
