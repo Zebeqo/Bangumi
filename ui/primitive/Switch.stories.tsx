@@ -1,14 +1,21 @@
 import { expect } from "@storybook/jest";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Switch } from "@/ui/primitive/Switch";
-import type { Color } from "@/ui/color";
-import { colorArgTypes } from "@/ui/storybook";
+import type { Color } from "@/lib/color";
 import { action } from "@storybook/addon-actions";
 import { userEvent, within } from "@storybook/testing-library";
+import { colorArray } from "@/lib/color";
 
 const meta: Meta = {
   title: "Switch",
-  argTypes: colorArgTypes,
+  argTypes: {
+    colorVariant: {
+      control: {
+        type: "radio",
+      },
+      options: colorArray,
+    },
+  },
 };
 
 export default meta;

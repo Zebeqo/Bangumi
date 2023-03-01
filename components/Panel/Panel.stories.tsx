@@ -11,7 +11,7 @@ import { PersonListPanel } from "@/components/Panel/SubPanel/PersonListPanel";
 import { SubjectListPanel } from "@/components/Panel/SubPanel/SubjectListPanel";
 import { SubjectPanel } from "@/components/Panel/SubPanel/SubjectPanel";
 import { waitFor, within, screen } from "@storybook/testing-library";
-import { reactQueryDevtoolsDecorator } from "@/ui/storybook";
+import { ReactQueryDevtoolsDecorator } from "@/ui/Storybook";
 
 const meta: Meta = {
   title: "Panel",
@@ -19,7 +19,7 @@ const meta: Meta = {
     subject_id: STORYBOOK_SUBJECT_ID,
     open: true,
   },
-  decorators: [reactQueryDevtoolsDecorator],
+  decorators: [ReactQueryDevtoolsDecorator],
 };
 
 export default meta;

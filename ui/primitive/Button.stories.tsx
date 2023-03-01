@@ -12,18 +12,26 @@ import {
   SelectedButton,
   SelectedButton_Icon,
 } from "@/ui/primitive/Button";
-import { colorArgTypes, rowDecorator } from "@/ui/storybook";
+import { RowDecorator } from "@/ui/Storybook";
 import { BoltIcon, PlusCircleIcon } from "@heroicons/react/20/solid";
-import type { Color } from "@/ui/color";
+import type { Color } from "@/lib/color";
 import { action } from "@storybook/addon-actions";
 import { userEvent, within } from "@storybook/testing-library";
 import { useEffect, useRef, useState } from "react";
 import { z } from "zod";
+import { colorArray } from "@/lib/color";
 
 const meta: Meta = {
   title: "Button",
-  decorators: [rowDecorator],
-  argTypes: colorArgTypes,
+  decorators: [RowDecorator],
+  argTypes: {
+    colorVariant: {
+      control: {
+        type: "radio",
+      },
+      options: colorArray,
+    },
+  },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
     const buttons = canvas.getAllByRole("button");
