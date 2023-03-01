@@ -8,7 +8,6 @@ import {
 import Image from "next/image";
 import { signOut } from "next-auth/react";
 import { useToast } from "@/hooks/use-toast";
-import { createIssueToast } from "@/lib/toast";
 import type { MenuItem } from "@/ui/primitive/DropdownMenu";
 import {
   DropdownMenu,
@@ -17,21 +16,27 @@ import {
 } from "@/ui/primitive/DropdownMenu";
 
 export const AvatarDropdownMenu = ({ imageURL }: { imageURL: string }) => {
-  const openToast = useToast();
+  const toast = useToast();
 
   const menuItems: MenuItem[] = [
     {
       label: "个人主页",
       icon: <UserIcon />,
       handleSelect: () => {
-        openToast(createIssueToast(38));
+        toast({
+          type: "info",
+          title: "功能尚未实现！",
+        });
       },
     },
     {
       label: "设置",
       icon: <Cog6ToothIcon />,
       handleSelect: () => {
-        openToast(createIssueToast(40));
+        toast({
+          type: "info",
+          title: "功能尚未实现！",
+        });
       },
     },
     {

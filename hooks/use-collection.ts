@@ -17,7 +17,7 @@ import { z } from "zod";
 
 export function useCollectionData(subject_id: number) {
   const { data: session } = useSession();
-  const openErrorToast = useErrorToast();
+  const errorToast = useErrorToast();
 
   const { data, isSuccess } = useQuery({
     queryKey: ["collection", subject_id, session?.user.name],
@@ -56,7 +56,7 @@ export function useCollectionData(subject_id: number) {
       } catch (e) {
         if (e instanceof Error) {
           const message = e.message;
-          openErrorToast("获取收藏信息失败", message);
+          errorToast("获取收藏信息失败", message);
         }
       }
     },
@@ -72,7 +72,7 @@ export function useCollectionsPageData(
   limit = 30
 ) {
   const { data: session } = useSession();
-  const openErrorToast = useErrorToast();
+  const errorToast = useErrorToast();
 
   const { data, isSuccess, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useInfiniteQuery({
@@ -114,7 +114,7 @@ export function useCollectionsPageData(
         } catch (e) {
           if (e instanceof Error) {
             const message = e.message;
-            openErrorToast("获取收藏信息失败", message);
+            errorToast("获取收藏信息失败", message);
           }
         }
       },
@@ -135,8 +135,8 @@ export function useCollectionsPageData(
 export function useCollectionMutation() {
   const queryClient = useQueryClient();
   const { data: session } = useSession();
-  const openToast = useToast();
-  const openErrorToast = useErrorToast();
+  const toast = useToast();
+  const errorToast = useErrorToast();
 
   return useMutation({
     mutationFn: z
@@ -246,7 +246,7 @@ export function useCollectionMutation() {
         session?.user.name,
       ]);
 
-      openToast({
+      toast({
         type: "success",
         title: "修改收藏状态成功",
         description: `已将条目的收藏状态修改为 ${description}`,
@@ -254,7 +254,7 @@ export function useCollectionMutation() {
     },
     onError: (error, { subject_id }, context) => {
       if (error instanceof Error) {
-        openErrorToast("修改收藏状态失败", error.message);
+        errorToast("修改收藏状态失败", error.message);
       }
 
       context &&

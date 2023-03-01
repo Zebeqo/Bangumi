@@ -1,29 +1,23 @@
 "use client";
 
-import { useAtom, useAtomValue } from "jotai";
-import { isOpenToastAtom, toastAtom } from "@/lib/toast";
+import { useAtomValue } from "jotai";
+import { toastAtom } from "@/lib/toast";
 import {
-  Toast,
+  Toast as ToastRoot,
   ToastAction,
   ToastDescription,
   ToastTitle,
 } from "@/ui/primitive/Toast";
+import { memo, useRef } from "react";
 
-export function MainToast() {
+export const Toast = memo(function Toast() {
   const toast = useAtomValue(toastAtom);
-  const [isOpenToast, setIsOpenToast] = useAtom(isOpenToastAtom);
+  const ref = useRef(0);
+  ref.current = ref.current + 1;
 
   return (
     toast && (
-      <Toast
-        toastType={toast.type}
-        open={isOpenToast}
-        onOpenChange={(open) => {
-          if (!open) {
-            setIsOpenToast(false);
-          }
-        }}
-      >
+      <ToastRoot key={ref.current} toastType={toast.type}>
         <ToastTitle>{toast.title}</ToastTitle>
         {toast.description && (
           <ToastDescription>{toast.description}</ToastDescription>
@@ -36,7 +30,7 @@ export function MainToast() {
             {toast.action.label}
           </ToastAction>
         )}
-      </Toast>
+      </ToastRoot>
     )
   );
-}
+});

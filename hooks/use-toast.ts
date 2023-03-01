@@ -1,34 +1,16 @@
-import { useAtom, useSetAtom } from "jotai";
-import type { Toast } from "@/lib/toast";
-import { isOpenToastAtom, toastAtom } from "@/lib/toast";
-import { flushSync } from "react-dom";
+import { useSetAtom } from "jotai";
+import { toastAtom } from "@/lib/toast";
 import { useDialog } from "@/hooks/use-dialog";
 
 export function useToast() {
-  const setToast = useSetAtom(toastAtom);
-  const [isOpenToast, setIsOpenToast] = useAtom(isOpenToastAtom);
-
-  const openToast = (toast: Toast) => {
-    if (isOpenToast) {
-      flushSync(() => {
-        setIsOpenToast(false);
-      });
-      setIsOpenToast(true);
-    } else {
-      setIsOpenToast(true);
-    }
-
-    setToast(toast);
-  };
-
-  return openToast;
+  return useSetAtom(toastAtom);
 }
 
 export function useErrorToast() {
-  const openToast = useToast();
+  const toast = useToast();
   const openDialog = useDialog();
 
-  const openErrorToast = (
+  return (
     title: string,
     description: string,
     action = {
@@ -38,7 +20,7 @@ export function useErrorToast() {
       },
     }
   ) => {
-    openToast({
+    toast({
       type: "error",
       title: title,
       action: {
@@ -56,6 +38,4 @@ export function useErrorToast() {
       },
     });
   };
-
-  return openErrorToast;
 }

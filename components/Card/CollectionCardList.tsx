@@ -30,9 +30,9 @@ export function CollectionCardList({
 
   return (
     <>
-      {collectionsPageData?.pages.map((page) => (
-        <Fragment key={page?.offset}>
-          {page?.data.map((collection) => (
+      {collectionsPageData?.pages.map((group, i) => (
+        <Fragment key={i}>
+          {group?.data.map((collection) => (
             <CollectionCard
               collection={collection}
               key={collection.subject.id}

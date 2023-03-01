@@ -1,5 +1,5 @@
 "use client";
 
-import * as ToastPrimitive from "@radix-ui/react-toast";
+import { ToastProvider } from "@/ui/primitive/Toast";
 
-export default ToastPrimitive.ToastProvider;
+export default ToastProvider;

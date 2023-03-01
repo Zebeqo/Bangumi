@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import { useErrorToast } from "@/hooks/use-toast";
 
 export function useCharacterData(character_id: number) {
-  const openErrorToast = useErrorToast();
+  const errorToast = useErrorToast();
 
   const { data, isSuccess } = useQuery({
     queryKey: ["character", character_id],
@@ -32,7 +32,7 @@ export function useCharacterData(character_id: number) {
       } catch (e) {
         if (e instanceof Error) {
           const message = e.message;
-          openErrorToast("获取角色信息失败", message);
+          errorToast("获取角色信息失败", message);
         }
       }
     },
@@ -43,7 +43,7 @@ export function useCharacterData(character_id: number) {
 }
 
 export function useSubjectCharactersData(subject_id: number) {
-  const openErrorToast = useErrorToast();
+  const errorToast = useErrorToast();
   const { data: session } = useSession();
 
   const { data, isSuccess } = useQuery({
@@ -79,7 +79,7 @@ export function useSubjectCharactersData(subject_id: number) {
       } catch (e) {
         if (e instanceof Error) {
           const message = e.message;
-          openErrorToast("获取条目角色信息失败", message);
+          errorToast("获取条目角色信息失败", message);
         }
       }
     },

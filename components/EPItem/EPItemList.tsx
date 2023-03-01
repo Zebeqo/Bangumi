@@ -23,7 +23,7 @@ export function EPItemList({
 }) {
   const { data: collectionData } = useCollectionData(subject_id);
   const mutateEpisode = useEpisodeMutation();
-  const openToast = useToast();
+  const toast = useToast();
 
   return (
     <>
@@ -55,7 +55,7 @@ export function EPItemList({
                         collection_type: collectionData.type,
                       });
                 } else {
-                  openToast({
+                  toast({
                     type: "info",
                     title: "请先收藏该条目",
                   });

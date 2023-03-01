@@ -17,12 +17,12 @@ export const MoreDropdownMenu = ({
   subject_id: number;
   hasCollectionData?: boolean;
 }) => {
-  const openToast = useToast();
+  const toast = useToast();
   const menuItems: MenuItem[] = [
     {
       label: "取消收藏",
       handleSelect: () => {
-        openToast({
+        toast({
           type: "info",
           title: "取消收藏条目失败",
           description: "收藏 api 暂未开放，请先自行前往主站取消收藏。",

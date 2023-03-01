@@ -5,7 +5,7 @@ import { errorScheme } from "@/lib/error";
 import { personScheme, subjectPersonScheme } from "@/lib/api/person";
 
 export function usePersonData(person_id: number) {
-  const openErrorToast = useErrorToast();
+  const errorToast = useErrorToast();
 
   const { data, isSuccess } = useQuery({
     queryKey: ["person", person_id],
@@ -32,7 +32,7 @@ export function usePersonData(person_id: number) {
       } catch (e) {
         if (e instanceof Error) {
           const message = e.message;
-          openErrorToast("获取制作人员信息失败", message);
+          errorToast("获取制作人员信息失败", message);
         }
       }
     },
@@ -43,7 +43,7 @@ export function usePersonData(person_id: number) {
 }
 
 export function useSubjectPersonsData(subject_id: number) {
-  const openErrorToast = useErrorToast();
+  const errorToast = useErrorToast();
   const { data: session } = useSession();
 
   const { data, isSuccess } = useQuery({
@@ -79,7 +79,7 @@ export function useSubjectPersonsData(subject_id: number) {
       } catch (e) {
         if (e instanceof Error) {
           const message = e.message;
-          openErrorToast("获取条目制作人员信息失败", message);
+          errorToast("获取条目制作人员信息失败", message);
         }
       }
     },

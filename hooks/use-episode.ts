@@ -22,7 +22,7 @@ export function useEpisodesData(
   type = 0
 ) {
   const { data: session } = useSession();
-  const openErrorToast = useErrorToast();
+  const errorToast = useErrorToast();
 
   const { data, isSuccess } = useQuery({
     queryKey: ["episodes", subject_id, offset, limit, type, session?.user.name],
@@ -63,7 +63,7 @@ export function useEpisodesData(
       } catch (e) {
         if (e instanceof Error) {
           const message = e.message;
-          openErrorToast("获取剧集信息失败", message);
+          errorToast("获取剧集信息失败", message);
         }
       }
     },
@@ -75,7 +75,7 @@ export function useEpisodesData(
 
 export function useEpisodesPageData(subject_id: number, limit = 100, type = 0) {
   const { data: session } = useSession();
-  const openErrorToast = useErrorToast();
+  const errorToast = useErrorToast();
 
   const { data, isSuccess, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useInfiniteQuery({
@@ -112,7 +112,7 @@ export function useEpisodesPageData(subject_id: number, limit = 100, type = 0) {
         } catch (e) {
           if (e instanceof Error) {
             const message = e.message;
-            openErrorToast("获取剧集信息失败", message);
+            errorToast("获取剧集信息失败", message);
           }
         }
       },
@@ -133,8 +133,8 @@ export function useEpisodesPageData(subject_id: number, limit = 100, type = 0) {
 export function useEpisodeMutation() {
   const queryClient = useQueryClient();
   const { data: session } = useSession();
-  const openToast = useToast();
-  const openErrorToast = useErrorToast();
+  const toast = useToast();
+  const errorToast = useErrorToast();
 
   return useMutation({
     mutationFn: z
@@ -281,7 +281,7 @@ export function useEpisodeMutation() {
         }
       );
 
-      openToast({
+      toast({
         type: "success",
         title: "修改收藏进度成功",
         description: `已将条目的收藏进度修改为观看至第 ${targetEp} 集`,
@@ -290,14 +290,14 @@ export function useEpisodeMutation() {
     onError: (error, { subject_id }, context) => {
       if (error instanceof Error) {
         if (error instanceof ToastError) {
-          openToast({
+          toast({
             type: "error",
             title: "修改收藏进度失败",
             description: error.description,
             action: error.action,
           });
         } else {
-          openErrorToast("修改收藏进度失败", error.message);
+          errorToast("修改收藏进度失败", error.message);
         }
       }
 
