@@ -30,7 +30,7 @@ export const collectionsPageScheme = z.object({
       private: z.boolean(),
       subject: z.object({
         id: z.number().int(),
-        date: z.string().nullable(),
+        date: z.string().min(1).catch("未知"),
         images: z.object({
           medium: z.string().url().catch(FALLBACK_IMAGE),
           large: z.string().url().catch(FALLBACK_IMAGE),

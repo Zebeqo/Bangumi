@@ -70,7 +70,7 @@ export function CollectionCard({
             <span className="h-4 w-4">
               <CalendarDaysIcon />
             </span>
-            <span>{collection.subject.date || "未知"}</span>
+            <span>{collection.subject.date}</span>
           </CardInfoItem>
           <CardInfoItem>
             <span className="h-4 w-4">

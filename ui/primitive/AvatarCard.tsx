@@ -50,7 +50,7 @@ AvatarCardContent.displayName = "AvatarCardContent";
 const AvatarCardImage = forwardRef<
   React.ElementRef<typeof Image>,
   Omit<React.ComponentPropsWithoutRef<typeof Image>, "children">
->(({ className, ...props }, ref) => (
+>(({ className, alt, ...props }, ref) => (
   <div
     className={cn(
       "relative h-32 w-32 self-center overflow-hidden rounded-full",
@@ -62,6 +62,7 @@ const AvatarCardImage = forwardRef<
       className="cursor-pointer object-cover object-top"
       fill={true}
       unoptimized={true}
+      alt={alt}
       {...props}
     />
   </div>

@@ -41,9 +41,9 @@ const Toast = forwardRef<
           <CheckCircleIcon className="h-6 w-6 text-success-9" />
         ) : toastType === "error" ? (
           <ExclamationCircleIcon className="h-6 w-6 text-error-9" />
-        ) : toastType === "info" ? (
+        ) : (
           <InformationCircleIcon className="h-6 w-6 text-blue-9" />
-        ) : null}
+        )}
         <div className="flex flex-col space-y-2 px-2 py-0.5">{children}</div>
       </div>
       <ToastClose />

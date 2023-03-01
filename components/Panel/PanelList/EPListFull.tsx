@@ -25,7 +25,7 @@ export function EPListFull({ subject_id }: { subject_id: number }) {
         await fetchNextPage();
       })();
     }
-  }, [inView]);
+  }, [fetchNextPage, inView]);
 
   return (
     <>
