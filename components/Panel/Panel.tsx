@@ -10,24 +10,28 @@ import { SubjectPanelSkeleton } from "@/components/Skeleton/SubjectPanelSkeleton
 import { SubjectListPanel } from "@/components/Panel/SubPanel/SubjectListPanel";
 import { Panel as PanelRoot } from "@/ui/primitive/Panel";
 import { SubjectPanel } from "@/components/Panel/SubPanel/SubjectPanel";
+import { usePrevious } from "ahooks";
 
 export function Panel() {
   const panel = useAtomValue(currentPanelAtom);
+  const previousPanel = usePrevious(panel);
+
+  const activePanel = panel ?? previousPanel;
 
   return (
     <PanelRoot>
-      {panel?.type === "subject" ? (
+      {activePanel?.type === "subject" ? (
         <Suspense fallback={<SubjectPanelSkeleton />}>
-          <SubjectPanel subject_id={panel.target_id} />
+          <SubjectPanel subject_id={activePanel.target_id} />
         </Suspense>
-      ) : panel?.type === "characterList" ? (
-        <CharacterListPanel subject_id={panel.target_id} />
-      ) : panel?.type === "episodeList" ? (
-        <EPListPanel subject_id={panel.target_id} />
-      ) : panel?.type === "personList" ? (
-        <PersonListPanel subject_id={panel.target_id} />
-      ) : panel?.type === "subjectList" ? (
-        <SubjectListPanel subject_id={panel.target_id} />
+      ) : activePanel?.type === "characterList" ? (
+        <CharacterListPanel subject_id={activePanel.target_id} />
+      ) : activePanel?.type === "episodeList" ? (
+        <EPListPanel subject_id={activePanel.target_id} />
+      ) : activePanel?.type === "personList" ? (
+        <PersonListPanel subject_id={activePanel.target_id} />
+      ) : activePanel?.type === "subjectList" ? (
+        <SubjectListPanel subject_id={activePanel.target_id} />
       ) : null}
     </PanelRoot>
   );
