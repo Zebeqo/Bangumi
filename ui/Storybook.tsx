@@ -1,8 +1,7 @@
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Panel } from "@/components/Panel/Panel";
-import { colorArray } from "@/ui/color";
 
-export const reactQueryDevtoolsDecorator = (Story: React.ComponentType) => {
+export const ReactQueryDevtoolsDecorator = (Story: React.ComponentType) => {
   return (
     <>
       <ReactQueryDevtools initialIsOpen={false} panelPosition={"left"} />
@@ -11,7 +10,7 @@ export const reactQueryDevtoolsDecorator = (Story: React.ComponentType) => {
   );
 };
 
-export const panelDecorator = (Story: React.ComponentType) => {
+export const PanelDecorator = (Story: React.ComponentType) => {
   return (
     <>
       <Panel />
@@ -20,11 +19,11 @@ export const panelDecorator = (Story: React.ComponentType) => {
   );
 };
 
-export const headerMarginDecorator = (Story: React.ComponentType) => {
+export const HeaderMarginDecorator = (Story: React.ComponentType) => {
   return <div className="mt-16">{<Story />}</div>;
 };
 
-export const rowDecorator = (Story: React.ComponentType) => {
+export const RowDecorator = (Story: React.ComponentType) => {
   return (
     <div className="flex items-center justify-center space-x-4">
       {<Story />}
@@ -32,15 +31,6 @@ export const rowDecorator = (Story: React.ComponentType) => {
   );
 };
 
-export const containerDecorator = (Story: React.ComponentType) => {
+export const ContainerDecorator = (Story: React.ComponentType) => {
   return <div className="container w-screen">{<Story />}</div>;
-};
-
-export const colorArgTypes = {
-  colorVariant: {
-    control: {
-      type: "radio",
-    },
-    options: colorArray,
-  },
 };

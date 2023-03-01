@@ -9,12 +9,12 @@ import {
   EPItemRightContent,
 } from "@/ui/primitive/EPItem";
 import { action } from "@storybook/addon-actions";
-import { containerDecorator } from "@/ui/storybook";
+import { ContainerDecorator } from "@/ui/Storybook";
 import { userEvent, within } from "@storybook/testing-library";
 
 const meta: Meta = {
   title: "EPItem",
-  decorators: [containerDecorator],
+  decorators: [ContainerDecorator],
 };
 
 export default meta;

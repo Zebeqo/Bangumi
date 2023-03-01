@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Subnav } from "@/components/Subnav";
 import { SortDropdownMenu } from "@/components/DropdownMenu/SortDropdownMenu";
-import { headerMarginDecorator } from "@/ui/storybook";
+import { HeaderMarginDecorator } from "@/ui/Storybook";
 import { PersonalViewSwitch } from "@/components/Switch/personalViewSwitch";
 
 const meta: Meta<typeof Subnav> = {
@@ -10,7 +10,7 @@ const meta: Meta<typeof Subnav> = {
   parameters: {
     layout: "fullscreen",
   },
-  decorators: [headerMarginDecorator],
+  decorators: [HeaderMarginDecorator],
 };
 
 export default meta;
