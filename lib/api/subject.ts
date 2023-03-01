@@ -3,7 +3,7 @@ import { objectKeys } from "@/lib/utils";
 import { FALLBACK_IMAGE } from "@/lib/constant";
 export const subjectScheme = z.object({
   id: z.number().int(),
-  date: z.string().nullable(),
+  date: z.string().min(1).catch("未知"),
   images: z.object({
     medium: z.string().url().catch(FALLBACK_IMAGE),
     large: z.string().url().catch(FALLBACK_IMAGE),

@@ -26,7 +26,7 @@ export function CollectionCardList({
         await fetchNextPage();
       })();
     }
-  }, [inView]);
+  }, [fetchNextPage, inView]);
 
   return (
     <>

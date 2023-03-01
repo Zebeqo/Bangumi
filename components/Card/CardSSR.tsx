@@ -95,7 +95,7 @@ export async function CardSSR({
             <span className="h-4 w-4">
               <CalendarDaysIcon />
             </span>
-            <span>{date || "未知"}</span>
+            <span>{date}</span>
           </CardInfoItem>
           <CardInfoItem>
             <span className="h-4 w-4">
@@ -107,9 +107,9 @@ export async function CardSSR({
             <span className="h-4 w-4">
               {collectionInfoItemType === "all" ? (
                 <BookmarkIcon />
-              ) : collectionInfoItemType === "doing" ? (
+              ) : (
                 <ClockIcon />
-              ) : null}
+              )}
             </span>
             <span>{cardSSR({ collectionInfoItemType })}</span>
           </CardInfoItem>

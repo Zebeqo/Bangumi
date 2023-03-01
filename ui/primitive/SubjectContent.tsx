@@ -19,7 +19,7 @@ SubjectContent.displayName = "SubjectContent";
 const SubjectContentImage = forwardRef<
   React.ElementRef<typeof Image>,
   Omit<React.ComponentPropsWithoutRef<typeof Image>, "children">
->(({ className, ...props }, ref) => (
+>(({ className, alt, ...props }, ref) => (
   <Image
     ref={ref}
     className={cn(
@@ -29,6 +29,7 @@ const SubjectContentImage = forwardRef<
     width={288}
     height={1}
     unoptimized={true}
+    alt={alt}
     {...props}
   />
 ));

@@ -19,7 +19,7 @@ export default function Error({ error }: { error: Error; reset: () => void }) {
         },
       },
     });
-  }, [error]);
+  }, [error, toast]);
 
   return null;
 }
