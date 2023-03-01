@@ -239,12 +239,15 @@ export function useCollectionMutation() {
           return oldDataParsed;
         }
       );
-      await queryClient.invalidateQueries([
-        "collections",
-        subject_type,
-        mutateCollection.type,
-        session?.user.name,
-      ]);
+      await queryClient.invalidateQueries(
+        [
+          "collections",
+          subject_type,
+          mutateCollection.type,
+          session?.user.name,
+        ],
+        { refetchType: "all" }
+      );
 
       toast({
         type: "success",
