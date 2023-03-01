@@ -19,7 +19,7 @@ const DialogContent = forwardRef<
   <DialogPrimitive.Portal>
     <DialogPrimitive.Overlay
       id="panel-overlay"
-      className="fixed inset-0 z-40 grid place-items-center overflow-y-auto bg-blackA9 pb-16 backdrop-blur-sm animate-in data-[state=open]:fade-in"
+      className="fixed inset-0 z-40 grid place-items-center overflow-y-auto bg-blackA9 pb-16 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:fade-in data-[state=closed]:fade-out data-[state=open]:duration-200 data-[state=closed]:duration-200 data-[state=open]:ease-out"
     >
       <DialogPrimitive.Content
         ref={ref}
@@ -39,7 +39,7 @@ const DialogContent = forwardRef<
           }
         }}
         className={cn(
-          "animate-in zoom-in-90 duration-300 ease-out data-[state=open]:slide-in-from-bottom-0",
+          "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:zoom-in-90 data-[state=closed]:zoom-out-90 data-[state=open]:slide-in-from-bottom-0 data-[state=closed]:slide-out-to-bottom-0 data-[state=open]:duration-200 data-[state=closed]:duration-200 data-[state=open]:ease-out",
           className
         )}
         {...props}

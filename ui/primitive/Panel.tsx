@@ -13,7 +13,7 @@ import { useSetAtom } from "jotai";
 import { useInView } from "react-intersection-observer";
 import { useReducerAtom } from "jotai/utils";
 import { isOpenPanelAtom, panelHistoryAtom, panelReducer } from "@/lib/panel";
-import { useAtomValue } from "jotai/index";
+import { useAtomValue } from "jotai";
 
 interface PanelProps
   extends React.ComponentPropsWithoutRef<typeof Dialog>,
@@ -45,10 +45,7 @@ const Panel = forwardRef<
 });
 Panel.displayName = "Panel";
 
-const PanelNav = forwardRef<
-  HTMLDivElement,
-  WithRequired<React.ComponentPropsWithoutRef<"div">, "children">
->(({ children }: { children: ReactNode }) => {
+const PanelNav = ({ children }: { children: ReactNode }) => {
   const { ref, inView } = useInView({
     threshold: 1,
     rootMargin: "-1px",
@@ -71,7 +68,7 @@ const PanelNav = forwardRef<
       <DialogClose />
     </div>
   );
-});
+};
 PanelNav.displayName = "PanelNav";
 
 const PanelNavButtonGroup = forwardRef<
