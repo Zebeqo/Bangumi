@@ -33,7 +33,7 @@
     "ahooks": "^3.7.4",
     "cheerio": "1.0.0-rc.12",
     "class-variance-authority": "0.4.0",
-    "jotai": "2.0.2",
+    "jotai": "2.0.3",
     "next": "13.2.3",
     "next-auth": "4.19.2",
     "next-themes": "0.2.1",
