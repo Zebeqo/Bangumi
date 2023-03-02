@@ -5,9 +5,7 @@ import {
   ClockIcon,
   TableCellsIcon,
 } from "@heroicons/react/20/solid";
-import { ChatBubbleLeftRightIcon } from "@heroicons/react/24/outline";
 import { subjectScheme } from "@/lib/api/subject";
-import { PrimaryButton_Icon } from "@/ui/primitive/Button";
 import { Rating } from "../Rating";
 import {
   Card,
@@ -24,6 +22,7 @@ import {
 } from "@/ui/primitive/Card";
 import { InfoButton } from "@/components/Button/InfoButton";
 import { cva } from "class-variance-authority";
+import { ChatButton } from "@/components/Button/ChatButton";
 
 async function getSubjectData(id: number) {
   return subjectScheme.safeParse(
@@ -85,12 +84,10 @@ export async function CardSSR({
           <CardTitle mainTitle={name_cn || name} subTitle={name} />
           <CardButtonGroup>
             <InfoButton subject_id={subject_id} />
-            <PrimaryButton_Icon colorVariant={"accent"}>
-              <ChatBubbleLeftRightIcon className="h-6 w-6" />
-            </PrimaryButton_Icon>
+            <ChatButton subject_id={subject_id} />
           </CardButtonGroup>
         </CardHeader>
-        <CardInfo className="mt-1">
+        <CardInfo>
           <CardInfoItem>
             <span className="h-4 w-4">
               <CalendarDaysIcon />

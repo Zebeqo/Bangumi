@@ -106,7 +106,7 @@ const CardInfo = forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("flex justify-between py-1", className)}
+    className={cn("mt-1 flex justify-between py-1", className)}
     {...props}
   />
 ));
