@@ -12,6 +12,7 @@ const notoSansSC = Noto_Sans_SC({
   weight: ["400", "500", "700"],
   subsets: ["latin"],
   display: "auto",
+  preload: false,
 });
 
 export default async function RootLayout({
