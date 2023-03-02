@@ -5,7 +5,7 @@ import { authOptions } from "@/lib/auth";
 import { Noto_Sans_SC } from "next/font/google";
 import { ThemeProvider } from "@/components/Provider/ThemeProvider";
 import { StateProvider } from "@/components/Provider/StateProvider";
-import { AnalyticsWrapper } from "@/components/analytics";
+import Analytics from "@/components/analytics";
 
 const notoSansSC = Noto_Sans_SC({
   variable: "--font-noto-sans-sc",
@@ -37,7 +37,7 @@ export default async function RootLayout({
             <SessionProvider session={session}>{children}</SessionProvider>
           </StateProvider>
         </ThemeProvider>
-        <AnalyticsWrapper />
+        <Analytics />
       </body>
     </html>
   );
