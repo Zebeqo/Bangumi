@@ -3,7 +3,7 @@ import { Sidebar } from "@/components/Sidebar";
 import { Panel } from "@/components/Panel/Panel";
 import ToastProvider from "@/components/Provider/ToastProvider";
 import { Toast } from "@/components/Toast/Toast";
-import { MainDialog } from "@/components/Dialog/MainDialog";
+import { Dialog } from "@/components/Dialog/Dialog";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -17,7 +17,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </div>
         <Panel />
         <Toast />
-        <MainDialog />
+        <Dialog />
       </div>
     </ToastProvider>
   );
