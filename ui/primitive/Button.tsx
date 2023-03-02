@@ -18,6 +18,9 @@ export const primaryButton = cva(baseButtonClass, {
       info: "bg-info-9 text-white hover:bg-info-10 ring-info-7",
     },
   },
+  defaultVariants: {
+    colorVariant: "neutral",
+  },
 });
 
 export const secondaryButton = cva(baseButtonClass, {
@@ -35,6 +38,9 @@ export const secondaryButton = cva(baseButtonClass, {
         "bg-error-4 text-error-11 hover:bg-error-5 active:bg-error-6 ring-error-7",
       info: "bg-info-4 text-info-11 hover:bg-info-5 active:bg-info-6 ring-info-7",
     },
+  },
+  defaultVariants: {
+    colorVariant: "neutral",
   },
 });
 
@@ -54,6 +60,9 @@ export const outlineButton = cva(cn(baseButtonClass, "focus:ring-1"), {
       info: "border border-info-7 bg-info-1 text-info-11 hover:bg-info-3 ring-info-7",
     },
   },
+  defaultVariants: {
+    colorVariant: "neutral",
+  },
 });
 
 export const ghostButton = cva(baseButtonClass, {
@@ -72,6 +81,9 @@ export const ghostButton = cva(baseButtonClass, {
       info: "bg-transparent text-info-11 hover:bg-info-4 active:bg-info-5 ring-info-7",
     },
   },
+  defaultVariants: {
+    colorVariant: "neutral",
+  },
 });
 
 export const selectedButton = cva(baseButtonClass, {
@@ -85,12 +97,15 @@ export const selectedButton = cva(baseButtonClass, {
       info: "bg-info-5 text-info-11 ring-info-7",
     },
   },
+  defaultVariants: {
+    colorVariant: "neutral",
+  },
 });
 
 export type ButtonVariantProps = VariantProps<typeof primaryButton>;
 export interface ButtonProps
   extends React.ComponentPropsWithoutRef<"button">,
-    Required<ButtonVariantProps> {}
+    ButtonVariantProps {}
 
 const PrimaryButton = forwardRef<
   HTMLButtonElement,

@@ -1,5 +1,6 @@
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Panel } from "@/components/Panel/Panel";
+import { Dialog } from "@/components/Dialog/Dialog";
 
 export const ReactQueryDevtoolsDecorator = (Story: React.ComponentType) => {
   return (
@@ -20,17 +21,34 @@ export const PanelDecorator = (Story: React.ComponentType) => {
 };
 
 export const HeaderMarginDecorator = (Story: React.ComponentType) => {
-  return <div className="mt-16">{<Story />}</div>;
+  return (
+    <div className="mt-16">
+      <Story />
+    </div>
+  );
 };
 
 export const RowDecorator = (Story: React.ComponentType) => {
   return (
     <div className="flex items-center justify-center space-x-4">
-      {<Story />}
+      <Story />
     </div>
   );
 };
 
 export const ContainerDecorator = (Story: React.ComponentType) => {
-  return <div className="container w-screen">{<Story />}</div>;
+  return (
+    <div className="container w-screen">
+      <Story />
+    </div>
+  );
+};
+
+export const DialogDecorator = (Story: React.ComponentType) => {
+  return (
+    <>
+      <Dialog />
+      <Story />
+    </>
+  );
 };

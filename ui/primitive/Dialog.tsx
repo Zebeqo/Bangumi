@@ -1,13 +1,16 @@
 "use client";
 
 import * as DialogPrimitive from "@radix-ui/react-dialog";
+import type { ReactNode } from "react";
 import { forwardRef } from "react";
 import type { WithRequired } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { GhostButton_Icon } from "@/ui/primitive/Button";
+import { useInView } from "react-intersection-observer";
 
 const Dialog = DialogPrimitive.Root;
+const DialogTrigger = DialogPrimitive.Trigger;
 
 export type DialogContentProps = React.ComponentPropsWithoutRef<
   typeof DialogPrimitive.Content
@@ -40,6 +43,7 @@ const DialogContent = forwardRef<
         }}
         className={cn(
           "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:zoom-in-90 data-[state=closed]:zoom-out-90 data-[state=open]:slide-in-from-bottom-0 data-[state=closed]:slide-out-to-bottom-0 data-[state=open]:duration-200 data-[state=closed]:duration-200 data-[state=open]:ease-out",
+          "z-40 mt-16 flex w-full max-w-lg flex-col items-center items-stretch rounded-lg bg-neutral-1 pb-6 shadow-lg outline-none",
           className
         )}
         {...props}
@@ -51,55 +55,33 @@ const DialogContent = forwardRef<
 ));
 DialogContent.displayName = DialogPrimitive.Content.displayName;
 
-const DialogContent_Panel = forwardRef<
-  React.ElementRef<typeof DialogPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof DialogContent>
->(({ children, ...props }, ref) => (
-  <DialogContent
-    ref={ref}
-    className="z-40 mt-16 flex w-[1040.62px] flex-col rounded-lg bg-neutral-1 pt-4 pb-6 shadow-lg outline-none"
-    {...props}
-  >
-    {children}
-  </DialogContent>
-));
-DialogContent_Panel.displayName = DialogPrimitive.Content.displayName;
+const DialogContentHeader = ({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) => {
+  const { ref, inView } = useInView({
+    threshold: 1,
+    rootMargin: "-1px",
+  });
 
-const DialogContent_Main = forwardRef<
-  React.ElementRef<typeof DialogPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof DialogContent>
->(({ children, ...props }, ref) => (
-  <DialogContent
-    ref={ref}
-    className="mt-16 flex w-full max-w-lg flex-col items-end rounded-lg bg-neutral-1 pb-6 shadow-lg outline-none"
-    {...props}
-  >
-    {children}
-  </DialogContent>
-));
-DialogContent_Main.displayName = DialogPrimitive.Content.displayName;
-
-interface DialogContentHeader_MainProps
-  extends React.HTMLAttributes<HTMLDivElement> {
-  titleName: string;
-}
-const DialogContentHeader_Main = forwardRef<
-  HTMLDivElement,
-  Omit<DialogContentHeader_MainProps, "children">
->(({ titleName, className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn(
-      "sticky top-0 flex w-full items-center justify-between py-4 px-6",
-      className
-    )}
-    {...props}
-  >
-    <DialogTitle>{titleName}</DialogTitle>
-    <DialogClose />
-  </div>
-));
-DialogContentHeader_Main.displayName = "DialogContentHeader_Main";
+  return (
+    <div
+      ref={ref}
+      className={cn(
+        "sticky top-0 z-50 flex w-full items-center justify-between py-4 px-6",
+        className,
+        inView ? "" : "border-b border-neutral-6 bg-neutral-1"
+      )}
+    >
+      {children}
+      <DialogClose />
+    </div>
+  );
+};
+DialogContentHeader.displayName = "DialogContentHeader";
 
 const DialogTitle = forwardRef<
   React.ElementRef<typeof DialogPrimitive.Title>,
@@ -127,7 +109,10 @@ const DialogDescription = forwardRef<
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Description
     ref={ref}
-    className={cn("w-full whitespace-pre-wrap px-6 text-neutral-12", className)}
+    className={cn(
+      "w-full whitespace-pre-wrap break-words px-6 text-neutral-11",
+      className
+    )}
     {...props}
   />
 ));
@@ -148,16 +133,12 @@ const DialogClose = forwardRef<
 ));
 DialogClose.displayName = DialogPrimitive.Close.displayName;
 
-const DialogTrigger = DialogPrimitive.Trigger;
-
 export {
   Dialog,
   DialogTrigger,
   DialogContent,
-  DialogContent_Panel,
-  DialogContent_Main,
   DialogTitle,
   DialogDescription,
   DialogClose,
-  DialogContentHeader_Main,
+  DialogContentHeader,
 };

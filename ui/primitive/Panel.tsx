@@ -3,15 +3,17 @@
 import type { ReactNode } from "react";
 import { forwardRef } from "react";
 import type { DialogContentProps } from "@/ui/primitive/Dialog";
-import { DialogClose, DialogContent, DialogTitle } from "@/ui/primitive/Dialog";
-import { Dialog } from "@/ui/primitive/Dialog";
+import {
+  DialogContent,
+  DialogContentHeader,
+  DialogTitle,
+} from "@/ui/primitive/Dialog";
+import { Dialog } from "@radix-ui/react-dialog";
 import type { WithRequired } from "@/lib/utils";
 import { cn, panelScrollToTop } from "@/lib/utils";
 import { OutlineButton_Icon } from "@/ui/primitive/Button";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
-import { useSetAtom } from "jotai";
-import { useInView } from "react-intersection-observer";
-import { useReducerAtom } from "jotai/utils";
+import { useReducerAtom, useResetAtom } from "jotai/utils";
 import { isOpenPanelAtom, panelHistoryAtom, panelReducer } from "@/lib/panel";
 import { useAtomValue } from "jotai";
 
@@ -22,21 +24,13 @@ const Panel = forwardRef<
   React.ElementRef<typeof DialogContent>,
   WithRequired<PanelProps, "children">
 >(({ children, ...props }, ref) => {
-  const setPanelHistory = useSetAtom(panelHistoryAtom);
+  const resetPanelHistory = useResetAtom(panelHistoryAtom);
   const isOpenPanel = useAtomValue(isOpenPanelAtom);
   return (
-    <Dialog
-      open={isOpenPanel}
-      onOpenChange={(open) => {
-        if (!open) {
-          setPanelHistory({ history: [], index: -1 });
-        }
-      }}
-      {...props}
-    >
+    <Dialog open={isOpenPanel} onOpenChange={resetPanelHistory} {...props}>
       <DialogContent
         ref={ref}
-        className="z-40 mt-16 flex w-[1040.62px] flex-col rounded-lg bg-neutral-1 pt-4 pb-6 shadow-lg outline-none"
+        className="w-[1040.62px] max-w-none items-center items-stretch pt-4"
       >
         {children}
       </DialogContent>
@@ -46,18 +40,8 @@ const Panel = forwardRef<
 Panel.displayName = "Panel";
 
 const PanelNav = ({ children }: { children: ReactNode }) => {
-  const { ref, inView } = useInView({
-    threshold: 1,
-    rootMargin: "-1px",
-  });
   return (
-    <div
-      ref={ref}
-      className={cn(
-        "sticky top-0 z-50 flex justify-between py-4 px-8",
-        inView ? "" : "border-b border-neutral-6 bg-neutral-1"
-      )}
-    >
+    <DialogContentHeader className="px-8">
       <div className="flex items-center space-x-8">
         <PanelNavButtonGroup>
           <PanelNavBackButton />
@@ -65,8 +49,7 @@ const PanelNav = ({ children }: { children: ReactNode }) => {
         </PanelNavButtonGroup>
         {children}
       </div>
-      <DialogClose />
-    </div>
+    </DialogContentHeader>
   );
 };
 PanelNav.displayName = "PanelNav";
@@ -175,7 +158,7 @@ const PanelContent = forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("flex flex-col space-y-2 px-8", className)}
+    className={cn("flex  flex-col space-y-2 px-8", className)}
     {...props}
   />
 ));

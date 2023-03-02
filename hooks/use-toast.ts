@@ -8,7 +8,7 @@ export function useToast() {
 
 export function useErrorToast() {
   const toast = useToast();
-  const openDialog = useDialog();
+  const dialog = useDialog();
 
   return (
     title: string,
@@ -24,10 +24,10 @@ export function useErrorToast() {
       type: "error",
       title: title,
       action: {
-        label: "查看详情",
+        label: "查看报告",
         onClick: () => {
-          openDialog({
-            title: "问题详情",
+          dialog({
+            title: "问题报告",
             description: description,
             action: {
               label: action.label,

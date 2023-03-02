@@ -8,13 +8,10 @@ import {
   CalendarDaysIcon,
   TableCellsIcon,
 } from "@heroicons/react/20/solid";
-import { cn } from "@/lib/utils";
 import type { z } from "zod";
 import type { collectionsPageScheme } from "@/lib/api/collection";
 import { useAtomValue } from "jotai";
 import { personalViewModeAtom } from "@/components/Switch/personalViewSwitch";
-import { useRef, useState } from "react";
-import { useDialog } from "@/hooks/use-dialog";
 import { PrimaryButton_Icon } from "@/ui/primitive/Button";
 import { Rating } from "@/components/Rating";
 import {
@@ -30,6 +27,7 @@ import {
   CardTagGroupItem,
   CardTitle,
 } from "@/ui/primitive/Card";
+import { CardComment } from "@/components/Dialog/CardComment";
 
 export function CollectionCard({
   collection,
@@ -37,9 +35,6 @@ export function CollectionCard({
   collection: z.infer<typeof collectionsPageScheme>["data"][number];
 }) {
   const pvMode = useAtomValue(personalViewModeAtom);
-  const [isClamped, setIsClamped] = useState(false);
-  const commentRef = useRef<HTMLParagraphElement>(null);
-  const openDialog = useDialog();
 
   return (
     <Card>
@@ -116,30 +111,7 @@ export function CollectionCard({
               />
             </div>
             {collection.comment ? (
-              <div
-                ref={commentRef}
-                className={cn(
-                  "whitespace-pre-wrap text-xs font-medium italic text-accent-12 line-clamp-1",
-                  isClamped && "hover:cursor-pointer hover:not-italic"
-                )}
-                onMouseEnter={() => {
-                  if (commentRef.current) {
-                    setIsClamped(
-                      commentRef.current.scrollHeight >
-                        commentRef.current.clientHeight + 1
-                    );
-                  }
-                }}
-                onClick={() =>
-                  isClamped &&
-                  openDialog({
-                    title: "评论",
-                    description: collection.comment ?? "",
-                  })
-                }
-              >
-                “ {collection.comment} ”
-              </div>
+              <CardComment comment={collection.comment} />
             ) : (
               <span className="text-xs text-neutral-11">未发表吐槽</span>
             )}

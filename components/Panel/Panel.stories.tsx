@@ -1,6 +1,5 @@
 import { expect } from "@storybook/jest";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Dialog, DialogContent_Panel } from "@/ui/primitive/Dialog";
 import { action } from "@storybook/addon-actions";
 import { STORYBOOK_SUBJECT_ID } from "@/lib/constant";
 import { SubjectPanelSkeleton } from "@/components/Skeleton/SubjectPanelSkeleton";
@@ -12,6 +11,7 @@ import { SubjectListPanel } from "@/components/Panel/SubPanel/SubjectListPanel";
 import { SubjectPanel } from "@/components/Panel/SubPanel/SubjectPanel";
 import { waitFor, within, screen } from "@storybook/testing-library";
 import { ReactQueryDevtoolsDecorator } from "@/ui/Storybook";
+import { Panel } from "@/ui/primitive/Panel";
 
 const meta: Meta = {
   title: "Panel",
@@ -28,13 +28,11 @@ type PanelStory = StoryObj<{ subject_id: number; open: boolean }>;
 
 export const SubjectPanel_: PanelStory = {
   render: ({ subject_id, open }) => (
-    <Dialog open={open} onOpenChange={action("trigger close")}>
-      <DialogContent_Panel>
-        <Suspense fallback={<SubjectPanelSkeleton />}>
-          <SubjectPanel subject_id={subject_id} />
-        </Suspense>
-      </DialogContent_Panel>
-    </Dialog>
+    <Panel open={open} onOpenChange={action("trigger close")}>
+      <Suspense fallback={<SubjectPanelSkeleton />}>
+        <SubjectPanel subject_id={subject_id} />
+      </Suspense>
+    </Panel>
   ),
   play: async () => {
     const panel = await screen.findByRole("dialog");
@@ -49,11 +47,9 @@ export const SubjectPanel_: PanelStory = {
 
 export const CharacterListPanel_: PanelStory = {
   render: ({ subject_id, open }) => (
-    <Dialog open={open} onOpenChange={action("trigger close")}>
-      <DialogContent_Panel>
-        <CharacterListPanel subject_id={subject_id} />
-      </DialogContent_Panel>
-    </Dialog>
+    <Panel open={open} onOpenChange={action("trigger close")}>
+      <CharacterListPanel subject_id={subject_id} />
+    </Panel>
   ),
   play: async () => {
     const panel = await screen.findByRole("dialog");
@@ -68,11 +64,9 @@ export const CharacterListPanel_: PanelStory = {
 
 export const EPListPanel_: PanelStory = {
   render: ({ subject_id, open }) => (
-    <Dialog open={open} onOpenChange={action("trigger close")}>
-      <DialogContent_Panel>
-        <EPListPanel subject_id={subject_id} />
-      </DialogContent_Panel>
-    </Dialog>
+    <Panel open={open} onOpenChange={action("trigger close")}>
+      <EPListPanel subject_id={subject_id} />
+    </Panel>
   ),
   play: async () => {
     const panel = await screen.findByRole("dialog");
@@ -87,11 +81,9 @@ export const EPListPanel_: PanelStory = {
 
 export const PersonListPanel_: PanelStory = {
   render: ({ subject_id, open }) => (
-    <Dialog open={open} onOpenChange={action("trigger close")}>
-      <DialogContent_Panel>
-        <PersonListPanel subject_id={subject_id} />
-      </DialogContent_Panel>
-    </Dialog>
+    <Panel open={open} onOpenChange={action("trigger close")}>
+      <PersonListPanel subject_id={subject_id} />
+    </Panel>
   ),
   play: async () => {
     const panel = await screen.findByRole("dialog");
@@ -106,11 +98,9 @@ export const PersonListPanel_: PanelStory = {
 
 export const SubjectListPanel_: PanelStory = {
   render: ({ subject_id, open }) => (
-    <Dialog open={open} onOpenChange={action("trigger close")}>
-      <DialogContent_Panel>
-        <SubjectListPanel subject_id={subject_id} />
-      </DialogContent_Panel>
-    </Dialog>
+    <Panel open={open} onOpenChange={action("trigger close")}>
+      <SubjectListPanel subject_id={subject_id} />
+    </Panel>
   ),
   play: async () => {
     const panel = await screen.findByRole("dialog");
