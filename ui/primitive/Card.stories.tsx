@@ -107,7 +107,7 @@ export const Card_: StoryObj<{
     ratingCount,
     onClickInfoButton,
   }) => (
-    <Card aria-label="card">
+    <Card>
       <CardImage className="h-[201.6px]">
         <Image
           className="object-cover"
@@ -133,7 +133,7 @@ export const Card_: StoryObj<{
             </PrimaryButton_Icon>
           </CardButtonGroup>
         </CardHeader>
-        <CardInfo className="mt-1">
+        <CardInfo>
           <CardInfoItem>
             <span className="h-4 w-4">
               <CalendarDaysIcon />

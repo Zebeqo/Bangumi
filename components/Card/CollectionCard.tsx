@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { InfoButton } from "@/components/Button/InfoButton";
-import { ChatBubbleLeftRightIcon } from "@heroicons/react/24/outline";
 import {
   BookmarkIcon,
   CalendarDaysIcon,
@@ -12,7 +11,6 @@ import type { z } from "zod";
 import type { collectionsPageScheme } from "@/lib/api/collection";
 import { useAtomValue } from "jotai";
 import { personalViewModeAtom } from "@/components/Switch/personalViewSwitch";
-import { PrimaryButton_Icon } from "@/ui/primitive/Button";
 import { Rating } from "@/components/Rating";
 import {
   Card,
@@ -28,6 +26,7 @@ import {
   CardTitle,
 } from "@/ui/primitive/Card";
 import { CardComment } from "@/components/Dialog/CardComment";
+import { ChatButton } from "@/components/Button/ChatButton";
 
 export function CollectionCard({
   collection,
@@ -55,12 +54,10 @@ export function CollectionCard({
           />
           <CardButtonGroup>
             <InfoButton subject_id={collection.subject.id} />
-            <PrimaryButton_Icon colorVariant={"accent"}>
-              <ChatBubbleLeftRightIcon className="h-6 w-6" />
-            </PrimaryButton_Icon>
+            <ChatButton subject_id={collection.subject.id} />
           </CardButtonGroup>
         </CardHeader>
-        <CardInfo className="mt-1">
+        <CardInfo>
           <CardInfoItem>
             <span className="h-4 w-4">
               <CalendarDaysIcon />
@@ -72,7 +69,6 @@ export function CollectionCard({
               <TableCellsIcon />
             </span>
             <span>
-              {" "}
               {collection.subject.eps
                 ? `${collection.ep_status} / ${collection.subject.eps} 集`
                 : "未知"}
