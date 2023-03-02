@@ -1,5 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Toast, ToastAction, ToastDescription, ToastTitle } from "./Toast";
+import {
+  Toast,
+  ToastAction,
+  ToastDescription,
+  ToastProvider,
+  ToastTitle,
+} from "./Toast";
 import { userEvent, within } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
 import { action } from "@storybook/addon-actions";
@@ -37,17 +43,19 @@ export const Toast_: StoryObj<{
     onOpenChange,
     onClickAction,
   }) => (
-    <Toast toastType={toastType} open={isOpen} onOpenChange={onOpenChange}>
-      <ToastTitle>{title}</ToastTitle>
-      <ToastDescription>{description}</ToastDescription>
-      <ToastAction
-        altText={actionLabel}
-        onClick={onClickAction}
-        aria-label={actionLabel}
-      >
-        {actionLabel}
-      </ToastAction>
-    </Toast>
+    <ToastProvider>
+      <Toast toastType={toastType} open={isOpen} onOpenChange={onOpenChange}>
+        <ToastTitle>{title}</ToastTitle>
+        <ToastDescription>{description}</ToastDescription>
+        <ToastAction
+          altText={actionLabel}
+          onClick={onClickAction}
+          aria-label={actionLabel}
+        >
+          {actionLabel}
+        </ToastAction>
+      </Toast>
+    </ToastProvider>
   ),
   argTypes: {
     toastType: {

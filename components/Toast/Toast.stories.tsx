@@ -62,7 +62,7 @@ export const Toast: StoryObj<{
     const canvas = within(canvasElement);
     await userEvent.click(canvas.getByTestId("toast"));
 
-    const toast = canvas.getByRole("status");
+    const toast = await canvas.findByRole("status");
     await expect(toast).toBeInTheDocument();
     await expect(toast).toHaveTextContent(args.title);
     await expect(toast).toHaveTextContent(args.description);
