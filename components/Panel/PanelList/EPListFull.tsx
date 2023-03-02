@@ -41,9 +41,9 @@ export function EPListFull({ subject_id }: { subject_id: number }) {
           }}
         />
         <div className="flex flex-col space-y-2 py-2">
-          {episodesPageData?.pages.map((page) => (
-            <Fragment key={page?.offset}>
-              <EPItemList episodesData={page?.data} subject_id={subject_id} />
+          {episodesPageData?.pages.map((group, i) => (
+            <Fragment key={i}>
+              <EPItemList episodesData={group?.data} subject_id={subject_id} />
             </Fragment>
           ))}
         </div>
