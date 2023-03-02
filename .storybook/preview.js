@@ -38,10 +38,7 @@ const Provider = (Story) => {
   return (
     <div className="font-['Noto_Sans_SC']">
       <StateProvider noDevtools>
-        <ToastProvider swipeDirection="right" duration={3000}>
-          <Story />
-          <Toast />
-        </ToastProvider>
+        <Story />
       </StateProvider>
     </div>
   );
