@@ -11,7 +11,15 @@ import {
   InformationCircleIcon,
 } from "@heroicons/react/24/outline";
 
-const ToastProvider = ToastPrimitive.ToastProvider;
+const ToastProvider = (
+  props: React.ComponentProps<typeof ToastPrimitive.ToastProvider>
+) => (
+  <ToastPrimitive.ToastProvider
+    swipeDirection="right"
+    duration={3000}
+    {...props}
+  />
+);
 
 interface ToastProps
   extends React.ComponentPropsWithoutRef<typeof ToastPrimitive.Root> {

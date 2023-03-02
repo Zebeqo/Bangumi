@@ -1,6 +1,7 @@
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Panel } from "@/components/Panel/Panel";
 import { Dialog } from "@/components/Dialog/Dialog";
+import { Toast } from "@/components/Toast/Toast";
 
 export const ReactQueryDevtoolsDecorator = (Story: React.ComponentType) => {
   return (
@@ -48,6 +49,15 @@ export const DialogDecorator = (Story: React.ComponentType) => {
   return (
     <>
       <Dialog />
+      <Story />
+    </>
+  );
+};
+
+export const ToastDecorator = (Story: React.ComponentType) => {
+  return (
+    <>
+      <Toast />
       <Story />
     </>
   );
