@@ -2,17 +2,17 @@ import type { z } from "zod";
 import { errorScheme } from "@/lib/error";
 import { signOut } from "next-auth/react";
 
-export async function handleResponse<T>(
+export async function handleResponse<T extends z.ZodTypeAny>(
   response: Response,
-  scheme: z.ZodSchema<T>
-) {
+  schema: T
+): Promise<z.infer<T>> {
   if (response.status === 401) {
     void signOut();
   }
 
   const data: unknown = await response.json();
 
-  const result = scheme.safeParse(data);
+  const result = schema.safeParse(data);
   if (!result.success) {
     const errorResult = errorScheme.safeParse(data);
     if (errorResult.success) {
@@ -22,9 +22,9 @@ export async function handleResponse<T>(
         `FROM ERROR:\n${errorResult.error.message}\n\nFROM RESULT:\n${result.error.message}`
       );
     }
-  } else {
-    return result.data;
   }
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+  return result.data;
 }
 
 export async function handleMutationResponse(response: Response) {
