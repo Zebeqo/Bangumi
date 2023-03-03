@@ -35,6 +35,10 @@ export function useCollectionData(subject_id: number) {
             },
           }
         );
+        if (response.status === 404) {
+          return null;
+        }
+
         return await handleResponse(response, collectionScheme);
       } catch (e) {
         if (e instanceof Error) {
