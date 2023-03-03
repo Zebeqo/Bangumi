@@ -1,8 +1,8 @@
 import { useErrorToast } from "@/hooks/use-toast";
 import { useSession } from "next-auth/react";
 import { useQuery } from "@tanstack/react-query";
-import { errorScheme } from "@/lib/error";
 import { subjectRelationsScheme } from "@/lib/api/relation";
+import { handleResponse } from "@/lib/api/utils";
 
 export function useSubjectRelationsData(subject_id: number) {
   const errorToast = useErrorToast();
@@ -23,21 +23,7 @@ export function useSubjectRelationsData(subject_id: number) {
                   },
           }
         );
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        const data = await response.json();
-        const subjectRelationsResult = subjectRelationsScheme.safeParse(data);
-        if (!subjectRelationsResult.success) {
-          const errorResult = errorScheme.safeParse(data);
-          if (errorResult.success) {
-            throw new Error(JSON.stringify(errorResult.data, null, 2));
-          } else {
-            throw new Error(
-              `FROM ERROR:\n${errorResult.error.message}\n\nFROM SUBJECT_RELATIONS:\n${subjectRelationsResult.error.message}`
-            );
-          }
-        } else {
-          return subjectRelationsResult.data;
-        }
+        return await handleResponse(response, subjectRelationsScheme);
       } catch (e) {
         if (e instanceof Error) {
           const message = e.message;

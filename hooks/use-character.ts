@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { characterScheme, subjectCharactersScheme } from "@/lib/api/character";
-import { errorScheme } from "@/lib/error";
 import { useSession } from "next-auth/react";
 import { useErrorToast } from "@/hooks/use-toast";
+import { handleResponse } from "@/lib/api/utils";
 
 export function useCharacterData(character_id: number) {
   const errorToast = useErrorToast();
@@ -14,21 +14,7 @@ export function useCharacterData(character_id: number) {
         const response = await fetch(
           `https://api.bgm.tv/v0/characters/${character_id}`
         );
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        const data = await response.json();
-        const characterResult = characterScheme.safeParse(data);
-        if (!characterResult.success) {
-          const errorResult = errorScheme.safeParse(data);
-          if (errorResult.success) {
-            throw new Error(JSON.stringify(errorResult.data, null, 2));
-          } else {
-            throw new Error(
-              `FROM ERROR:\n${errorResult.error.message}\n\nFROM CHARACTER:\n${characterResult.error.message}`
-            );
-          }
-        } else {
-          return characterResult.data;
-        }
+        return await handleResponse(response, characterScheme);
       } catch (e) {
         if (e instanceof Error) {
           const message = e.message;
@@ -61,21 +47,7 @@ export function useSubjectCharactersData(subject_id: number) {
                   },
           }
         );
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        const data = await response.json();
-        const subjectCharactersResult = subjectCharactersScheme.safeParse(data);
-        if (!subjectCharactersResult.success) {
-          const errorResult = errorScheme.safeParse(data);
-          if (errorResult.success) {
-            throw new Error(JSON.stringify(errorResult.data, null, 2));
-          } else {
-            throw new Error(
-              `FROM ERROR:\n${errorResult.error.message}\n\nFROM SUBJECT_CHARACTERS:\n${subjectCharactersResult.error.message}`
-            );
-          }
-        } else {
-          return subjectCharactersResult.data;
-        }
+        return await handleResponse(response, subjectCharactersScheme);
       } catch (e) {
         if (e instanceof Error) {
           const message = e.message;

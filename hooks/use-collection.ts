@@ -10,10 +10,10 @@ import {
   collectionsPageScheme,
   mutateCollectionScheme,
 } from "@/lib/api/collection";
-import { errorScheme } from "@/lib/error";
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { useErrorToast, useToast } from "@/hooks/use-toast";
 import { z } from "zod";
+import { handleMutationResponse, handleResponse } from "@/lib/api/utils";
 
 export function useCollectionData(subject_id: number) {
   const { data: session } = useSession();
@@ -35,24 +35,7 @@ export function useCollectionData(subject_id: number) {
             },
           }
         );
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        const data = await response.json();
-        const collectionResult = collectionScheme.safeParse(data);
-        if (!collectionResult.success) {
-          const errorResult = errorScheme.safeParse(data);
-          if (errorResult.success) {
-            if (response.status === 404) {
-              return null;
-            }
-            throw new Error(JSON.stringify(errorResult.data, null, 2));
-          } else {
-            throw new Error(
-              `FROM ERROR:\n${errorResult.error.message}\n\nFROM COLLECTION:\n${collectionResult.error.message}`
-            );
-          }
-        } else {
-          return collectionResult.data;
-        }
+        return await handleResponse(response, collectionScheme);
       } catch (e) {
         if (e instanceof Error) {
           const message = e.message;
@@ -96,24 +79,7 @@ export function useCollectionsPageData(
               },
             }
           );
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-          const data = await response.json();
-          const collectionsPageResult = collectionsPageScheme.safeParse(data);
-          if (!collectionsPageResult.success) {
-            const errorResult = errorScheme.safeParse(data);
-            if (errorResult.success) {
-              if (errorResult.data.title === "Unauthorized") {
-                void signOut();
-              }
-              throw new Error(JSON.stringify(errorResult.data, null, 2));
-            } else {
-              throw new Error(
-                `FROM ERROR:\n${errorResult.error.message}\n\nFROM COLLECTIONS_PAGE:\n${collectionsPageResult.error.message}`
-              );
-            }
-          } else {
-            return collectionsPageResult.data;
-          }
+          return await handleResponse(response, collectionsPageScheme);
         } catch (e) {
           if (e instanceof Error) {
             const message = e.message;
@@ -199,14 +165,7 @@ export function useCollectionMutation() {
       }
     ) => {
       if (data) {
-        if (data.status !== 204) {
-          const errorResult = errorScheme.safeParse(await data.json());
-          if (errorResult.success) {
-            throw new Error(JSON.stringify(errorResult.data, null, 2));
-          } else {
-            throw new Error(errorResult.error.message);
-          }
-        }
+        await handleMutationResponse(data);
       }
 
       queryClient.setQueryData(
