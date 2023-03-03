@@ -1,7 +1,7 @@
 // export const dynamicParams = false;
 
 import { notFound } from "next/navigation";
-import { CardSSR } from "@/components/Card/CardSSR";
+import { CardServer } from "@/components/Card/CardServer";
 import { GridWrapper } from "@/components/GridWrapper";
 import { subjectNameToTypeScheme } from "@/lib/api/subject";
 import { searchResultScheme } from "@/lib/api/search";
@@ -62,7 +62,7 @@ export default async function Page({
     <GridWrapper>
       {rankData.data.map(({ id }) => (
         /* @ts-expect-error Server Component */
-        <CardSSR key={id} subject_id={id} showCollectionNumber />
+        <CardServer key={id} subject_id={id} showCollectionNumber />
       ))}
     </GridWrapper>
   );

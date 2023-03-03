@@ -39,13 +39,10 @@ async function getSubjectData(id: number) {
 
 interface CardProps {
   subject_id: number;
-  collectionInfoItemType?: "all" | "doing";
+  countType?: "all" | "doing";
 }
 
-export async function CardSSR({
-  subject_id,
-  collectionInfoItemType = "all",
-}: CardProps) {
+export async function CardServer({ subject_id, countType = "all" }: CardProps) {
   const result = await getSubjectData(subject_id);
   if (!result.success) {
     return null;
@@ -53,9 +50,9 @@ export async function CardSSR({
   const { date, images, name, name_cn, tags, rating, collection, eps } =
     result.data;
 
-  const cardSSR = cva(null, {
+  const cardServer = cva(null, {
     variants: {
-      collectionInfoItemType: {
+      countType: {
         all: `${
           collection.doing +
           collection.collect +
@@ -102,13 +99,9 @@ export async function CardSSR({
           </CardInfoItem>
           <CardInfoItem>
             <span className="h-4 w-4">
-              {collectionInfoItemType === "all" ? (
-                <BookmarkIcon />
-              ) : (
-                <ClockIcon />
-              )}
+              {countType === "all" ? <BookmarkIcon /> : <ClockIcon />}
             </span>
-            <span>{cardSSR({ collectionInfoItemType })}</span>
+            <span>{cardServer({ countType })}</span>
           </CardInfoItem>
         </CardInfo>
         <CardTagGroup>

@@ -1,7 +1,7 @@
 // export const dynamicParams = false;
 
 import { notFound } from "next/navigation";
-import { CardSSR } from "@/components/Card/CardSSR";
+import { CardServer } from "@/components/Card/CardServer";
 import type { SearchParams } from "@/lib/api/calendar";
 import { calendarScheme, sortCalendarData } from "@/lib/api/calendar";
 import { GridWrapper } from "@/components/GridWrapper";
@@ -84,11 +84,7 @@ export default async function Page({
     <GridWrapper>
       {sortedData.map((item) => (
         /* @ts-expect-error Server Component */
-        <CardSSR
-          collectionInfoItemType={"doing"}
-          key={item.id}
-          subject_id={item.id}
-        />
+        <CardServer countType={"doing"} key={item.id} subject_id={item.id} />
       ))}
     </GridWrapper>
   );
