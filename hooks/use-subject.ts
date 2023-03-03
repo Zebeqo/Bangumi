@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { subjectScheme } from "@/lib/api/subject";
 import { useErrorToast } from "@/hooks/use-toast";
 import { useSession } from "next-auth/react";
-import { errorScheme } from "@/lib/error";
+import { handleResponse } from "@/lib/api/utils";
 
 export function useSubjectData(subject_id: number) {
   const { data: session } = useSession();
@@ -23,21 +23,8 @@ export function useSubjectData(subject_id: number) {
                   },
           }
         );
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        const data = await response.json();
-        const subjectResult = subjectScheme.safeParse(data);
-        if (!subjectResult.success) {
-          const errorResult = errorScheme.safeParse(data);
-          if (errorResult.success) {
-            throw new Error(JSON.stringify(errorResult.data, null, 2));
-          } else {
-            throw new Error(
-              `FROM ERROR:\n${errorResult.error.message}\n\nFROM SUBJECT:\n${subjectResult.error.message}`
-            );
-          }
-        } else {
-          return subjectResult.data;
-        }
+
+        return await handleResponse(response, subjectScheme);
       } catch (e) {
         if (e instanceof Error) {
           const message = e.message;

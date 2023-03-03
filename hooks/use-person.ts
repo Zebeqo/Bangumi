@@ -1,8 +1,8 @@
 import { useErrorToast } from "@/hooks/use-toast";
 import { useSession } from "next-auth/react";
 import { useQuery } from "@tanstack/react-query";
-import { errorScheme } from "@/lib/error";
 import { personScheme, subjectPersonScheme } from "@/lib/api/person";
+import { handleResponse } from "@/lib/api/utils";
 
 export function usePersonData(person_id: number) {
   const errorToast = useErrorToast();
@@ -14,21 +14,8 @@ export function usePersonData(person_id: number) {
         const response = await fetch(
           `https://api.bgm.tv/v0/persons/${person_id}`
         );
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        const data = await response.json();
-        const personResult = personScheme.safeParse(data);
-        if (!personResult.success) {
-          const errorResult = errorScheme.safeParse(data);
-          if (errorResult.success) {
-            throw new Error(JSON.stringify(errorResult.data, null, 2));
-          } else {
-            throw new Error(
-              `FROM ERROR:\n${errorResult.error.message}\n\nFROM PERSON:\n${personResult.error.message}`
-            );
-          }
-        } else {
-          return personResult.data;
-        }
+
+        return await handleResponse(response, personScheme);
       } catch (e) {
         if (e instanceof Error) {
           const message = e.message;
@@ -61,21 +48,7 @@ export function useSubjectPersonsData(subject_id: number) {
                   },
           }
         );
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        const data = await response.json();
-        const subjectPersonResult = subjectPersonScheme.safeParse(data);
-        if (!subjectPersonResult.success) {
-          const errorResult = errorScheme.safeParse(data);
-          if (errorResult.success) {
-            throw new Error(JSON.stringify(errorResult.data, null, 2));
-          } else {
-            throw new Error(
-              `FROM ERROR:\n${errorResult.error.message}\n\nFROM SUBJECT_PERSONS:\n${subjectPersonResult.error.message}`
-            );
-          }
-        } else {
-          return subjectPersonResult.data;
-        }
+        return await handleResponse(response, subjectPersonScheme);
       } catch (e) {
         if (e instanceof Error) {
           const message = e.message;
