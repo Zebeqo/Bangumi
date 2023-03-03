@@ -8,6 +8,7 @@ export async function handleResponse<T extends z.ZodTypeAny>(
 ): Promise<z.infer<T>> {
   if (response.status === 401) {
     void signOut();
+    throw new Error("认证失败，请重新登录");
   }
 
   const data: unknown = await response.json();
