@@ -11,7 +11,7 @@ import {
   mutateCollectionScheme,
 } from "@/lib/api/collection";
 import { errorScheme } from "@/lib/error";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useErrorToast, useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 
@@ -102,6 +102,9 @@ export function useCollectionsPageData(
           if (!collectionsPageResult.success) {
             const errorResult = errorScheme.safeParse(data);
             if (errorResult.success) {
+              if (errorResult.data.title === "Unauthorized") {
+                void signOut();
+              }
               throw new Error(JSON.stringify(errorResult.data, null, 2));
             } else {
               throw new Error(
