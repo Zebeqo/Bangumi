@@ -24,7 +24,8 @@ const CardImage = forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("relative aspect-[75/106] h-full", className)}
+    // h-full not working when using next/image in an environment other than next.js
+    className={cn("relative aspect-[75/106] h-[201.59px]", className)}
     {...props}
   />
 ));

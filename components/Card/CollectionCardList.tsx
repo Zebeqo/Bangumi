@@ -5,6 +5,8 @@ import { useInView } from "react-intersection-observer";
 import { Fragment, useEffect } from "react";
 import { LoadMore } from "@/ui/LoadMore";
 import { CollectionCard } from "@/components/Card/CollectionCard";
+import { personalViewModeAtom } from "@/components/Switch/personalViewSwitch";
+import { useAtomValue } from "jotai";
 
 export function CollectionCardList({
   subject_type,
@@ -18,6 +20,7 @@ export function CollectionCardList({
     fetchNextPage,
     hasNextPage,
   } = useCollectionsPageData(subject_type, collection_type);
+  const pvMode = useAtomValue(personalViewModeAtom);
 
   const { ref, inView } = useInView();
   useEffect(() => {
@@ -35,6 +38,7 @@ export function CollectionCardList({
           {group?.data.map((collection) => (
             <CollectionCard
               collection={collection}
+              pvMode={pvMode}
               key={collection.subject.id}
             />
           ))}
