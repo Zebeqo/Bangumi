@@ -1,6 +1,5 @@
 import { StarIcon as FillStarIcon } from "@heroicons/react/24/solid";
 import { StarIcon as OutlineStarIcon } from "@heroicons/react/24/outline";
-import type { WithRequired } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 import { forwardRef } from "react";
 import type { VariantProps } from "class-variance-authority";
@@ -17,31 +16,62 @@ const ratingVariant = cva("flex space-x-1", {
       info: "text-info-11",
     },
   },
+  defaultVariants: {
+    colorVariant: "neutral",
+  },
 });
 interface RatingProps
   extends React.ComponentPropsWithoutRef<"div">,
-    Required<VariantProps<typeof ratingVariant>> {}
-const Rating = forwardRef<
-  HTMLDivElement,
-  WithRequired<RatingProps, "children">
->(({ className, colorVariant, children, ...props }, ref) => {
-  return (
-    <div
-      ref={ref}
-      className={cn(ratingVariant({ colorVariant: colorVariant }), className)}
-      {...props}
-    >
-      {children}
-    </div>
-  );
-});
+    VariantProps<typeof ratingVariant> {
+  score: number;
+  maxScore: number;
+  totalIconCount: number;
+}
+const Rating = forwardRef<HTMLDivElement, RatingProps>(
+  (
+    { className, colorVariant, score, maxScore, totalIconCount, ...props },
+    ref
+  ) => {
+    if (score > maxScore || score < 0) {
+      return null;
+    }
+    const rating = Math.round(score);
+    const fillStarCount = Math.floor(rating / (maxScore / totalIconCount));
+    const halfStarCount =
+      rating % (maxScore / totalIconCount) < maxScore / totalIconCount / 2
+        ? 0
+        : 1;
+    const outlineStarCount = totalIconCount - fillStarCount - halfStarCount;
+
+    return (
+      <div
+        ref={ref}
+        className={cn(ratingVariant({ colorVariant: colorVariant }), className)}
+        {...props}
+      >
+        {Array.from({ length: fillStarCount }).map((_, index) => (
+          <RatingFillIcon key={index} />
+        ))}
+        {halfStarCount > 0 && <RatingHalfIcon />}
+        {Array.from({ length: outlineStarCount }).map((_, index) => (
+          <RatingEmptyIcon key={index} />
+        ))}
+      </div>
+    );
+  }
+);
 Rating.displayName = "Rating";
 
 const RatingFillIcon = forwardRef<
   SVGSVGElement,
   Omit<React.ComponentPropsWithoutRef<"svg">, "children">
 >(({ className, ...props }, ref) => (
-  <FillStarIcon ref={ref} className={cn("h-4 w-4", className)} {...props} />
+  <FillStarIcon
+    data-testid="fill-rating-icon"
+    ref={ref}
+    className={cn("h-4 w-4", className)}
+    {...props}
+  />
 ));
 RatingFillIcon.displayName = "RatingIcon";
 
@@ -49,7 +79,12 @@ const RatingEmptyIcon = forwardRef<
   SVGSVGElement,
   Omit<React.ComponentPropsWithoutRef<"svg">, "children">
 >(({ className, ...props }, ref) => (
-  <OutlineStarIcon ref={ref} className={cn("h-4 w-4", className)} {...props} />
+  <OutlineStarIcon
+    data-testid="empty-rating-icon"
+    ref={ref}
+    className={cn("h-4 w-4", className)}
+    {...props}
+  />
 ));
 RatingEmptyIcon.displayName = "RatingIcon";
 
@@ -68,4 +103,4 @@ const RatingHalfIcon = forwardRef<
 ));
 RatingHalfIcon.displayName = "RatingIcon";
 
-export { Rating, RatingFillIcon, RatingEmptyIcon, RatingHalfIcon };
+export { Rating };

@@ -24,7 +24,7 @@ import {
   ClockIcon,
   TableCellsIcon,
 } from "@heroicons/react/20/solid";
-import { Rating } from "@/components/Rating";
+import { Rating } from "@/components/Rating/Rating";
 import { userEvent, within } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
 
