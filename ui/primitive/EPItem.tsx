@@ -29,9 +29,9 @@ EPItemRightContent.displayName = "EPItemRightContent";
 
 const EPItemComment = forwardRef<
   HTMLButtonElement,
-  Omit<ButtonProps, "colorVariant" | "children"> & { count: number }
+  Omit<ButtonProps, "children"> & { count: number }
 >(({ count, ...props }, ref) => (
-  <GhostButton ref={ref} colorVariant="neutral" {...props}>
+  <GhostButton ref={ref} {...props}>
     <ChatBubbleLeftRightIcon className="mr-2 h-5 w-5" />
     {count}
   </GhostButton>
@@ -50,7 +50,7 @@ const EPItemLeftContent = forwardRef<
 ));
 EPItemLeftContent.displayName = "EPItemLeftContent";
 
-interface EPItemIndexProps extends Omit<ButtonProps, "colorVariant"> {
+interface EPItemIndexProps extends ButtonProps {
   isSelected: boolean;
   value: number;
 }
@@ -59,11 +59,11 @@ const EPItemIndex = forwardRef<
   Omit<EPItemIndexProps, "children">
 >(({ value, isSelected, ...props }, ref) =>
   isSelected ? (
-    <SelectedButton ref={ref} colorVariant="neutral" {...props}>
+    <SelectedButton ref={ref} {...props}>
       {value}
     </SelectedButton>
   ) : (
-    <GhostButton ref={ref} colorVariant="neutral" {...props}>
+    <GhostButton ref={ref} {...props}>
       {value}
     </GhostButton>
   )
