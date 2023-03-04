@@ -87,30 +87,6 @@ const SelectContent = forwardRef<
 ));
 SelectContent.displayName = SelectPrimitive.Content.displayName;
 
-interface SelectOptionsContentProps
-  extends React.ComponentPropsWithoutRef<typeof SelectContent> {
-  options: string[];
-}
-const SelectOptionsContent = forwardRef<
-  React.ElementRef<typeof SelectPrimitive.Content>,
-  Omit<SelectOptionsContentProps, "children">
->(({ className, options, ...props }, ref) => (
-  <SelectContent ref={ref} className={cn("...", className)} {...props}>
-    <SelectGroup>
-      {options.map((value, index) => (
-        <SelectItem
-          colorVariant={props.colorVariant}
-          key={`${value}-${index}`}
-          value={value}
-        >
-          {value}
-        </SelectItem>
-      ))}
-    </SelectGroup>
-  </SelectContent>
-));
-SelectOptionsContent.displayName = SelectPrimitive.Content.displayName;
-
 const selectItem = cva(
   "relative flex select-none items-center rounded-md px-8 py-2 font-medium outline-none",
   {
@@ -143,11 +119,4 @@ const SelectItem = forwardRef<
 ));
 SelectItem.displayName = SelectPrimitive.Item.displayName;
 
-export {
-  Select,
-  SelectGroup,
-  SelectTrigger,
-  SelectContent,
-  SelectOptionsContent,
-  SelectItem,
-};
+export { Select, SelectGroup, SelectTrigger, SelectContent, SelectItem };
