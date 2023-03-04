@@ -15,6 +15,7 @@ export const ListHeader = ({
       <span className="text-3xl font-medium text-neutral-12">{title}</span>
       {showAction && (
         <GhostButton
+          aria-label={`显示全部${title}`}
           colorVariant="neutral"
           className="hover:bg-transparent active:bg-transparent"
           onClick={() => {
