@@ -1,7 +1,7 @@
 import { BangumiLogo } from "@/ui/icon/BangumiLogo";
 import { ThemeButton } from "@/components/Button/ThemeButton";
 import { GithubButton } from "@/components/Button/GithubButton";
-import { AvatarDropdownMenu } from "@/components/DropdownMenu/AvatarDropdownMenu";
+import { AvatarMenu } from "@/components/DropdownMenu/AvatarMenu";
 import { LoginButton } from "@/components/Button/LoginButton";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
@@ -20,7 +20,7 @@ export async function Header() {
         </div>
         <div className="h-8 w-[1px] bg-neutral-6"></div>
         {session ? (
-          <AvatarDropdownMenu imageURL={session.user.image} />
+          <AvatarMenu imageURL={session.user.image} />
         ) : (
           <LoginButton />
         )}

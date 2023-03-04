@@ -1,7 +1,7 @@
 // export const dynamicParams = false;
 
 import { Subnav } from "@/components/Subnav";
-import { SortDropdownMenu } from "@/components/DropdownMenu/SortDropdownMenu";
+import { SortMenu } from "@/components/DropdownMenu/SortMenu";
 
 const navItems = [
   {
@@ -55,7 +55,7 @@ export default function Layout({
   return (
     <>
       <Subnav navItems={navItems} selectedItemName={selectedItem}>
-        <SortDropdownMenu />
+        <SortMenu />
       </Subnav>
       {children}
     </>

@@ -22,7 +22,7 @@ import { cn } from "@/lib/utils";
 import { CollectionTypeSelect } from "@/components/Select/CollectionTypeSelect";
 import { RatingSelect } from "@/components/Select/RatingSelect";
 import { EpisodeButton as EpisodeButtonComponent } from "@/components/Button/EpisodeButton";
-import { MoreDropdownMenu } from "@/components/DropdownMenu/MoreDropdownMenu";
+import { MoreMenu } from "@/components/DropdownMenu/MoreMenu";
 import { OutlineButton, PrimaryButton } from "@/ui/primitive/Button";
 import {
   ChevronDownIcon,
@@ -98,7 +98,7 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
                       eps={collectionData.subject.eps}
                       ep_status={collectionData.ep_status}
                     />
-                    <MoreDropdownMenu
+                    <MoreMenu
                       subject_id={collectionData.subject_id}
                       hasCollectionData={true}
                     />
@@ -155,7 +155,7 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
                       </span>
                       <ChevronDownIcon className="ml-2 h-5 w-5" />
                     </OutlineButton>
-                    <MoreDropdownMenu subject_id={subjectData.id} />
+                    <MoreMenu subject_id={subjectData.id} />
                   </>
                 )}
               </SubjectContentInfoFooter>

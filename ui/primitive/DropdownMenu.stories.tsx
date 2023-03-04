@@ -1,45 +1,36 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import type { DropdownMenuColor, MenuItem } from "@/ui/primitive/DropdownMenu";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuContent_Simple,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
   DropdownMenuSeparator,
+  DropdownMenuItem,
 } from "@/ui/primitive/DropdownMenu";
 import {
   ArrowRightOnRectangleIcon,
-  ArrowsUpDownIcon,
   Cog6ToothIcon,
   EllipsisVerticalIcon,
   UserIcon,
 } from "@heroicons/react/20/solid";
-import Image from "next/image";
 import { useState } from "react";
 import { screen, userEvent, within } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
-import { OutlineButton, OutlineButton_Icon } from "@/ui/primitive/Button";
+import { OutlineButton_Icon } from "@/ui/primitive/Button";
 import { action } from "@storybook/addon-actions";
 
 const meta: Meta = {
   title: "DropdownMenu",
-  argTypes: {
-    colorVariant: {
-      control: {
-        type: "radio",
-      },
-      options: ["primary", "accent", "neutral"],
-    },
-  },
 };
 
 export default meta;
 
-export const MoreDropdownMenu: StoryObj<{
-  menuItems: MenuItem[];
-  colorVariant: DropdownMenuColor;
+export const DropdownMenu_: StoryObj<{
+  menuItems: {
+    label: string;
+    handleSelect: () => void;
+  }[];
 }> = {
   args: {
     menuItems: [
@@ -56,27 +47,28 @@ export const MoreDropdownMenu: StoryObj<{
         handleSelect: action("在主站中打开"),
       },
     ],
-    colorVariant: "neutral",
   },
-  render: ({ menuItems, colorVariant }) => {
+  render: ({ menuItems }) => {
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <OutlineButton_Icon aria-label={"more"} colorVariant={colorVariant}>
+          <OutlineButton_Icon data-testid="Dropdown Menu">
             <EllipsisVerticalIcon className="h-6 w-6" />
           </OutlineButton_Icon>
         </DropdownMenuTrigger>
-        <DropdownMenuContent_Simple
-          colorVariant={colorVariant}
-          menuItems={menuItems}
-          align="start"
-        />
+        <DropdownMenuContent align="start">
+          {menuItems.map(({ label, handleSelect }, i) => (
+            <DropdownMenuItem key={`${label}-${i}`} onSelect={handleSelect}>
+              {label}
+            </DropdownMenuItem>
+          ))}
+        </DropdownMenuContent>
       </DropdownMenu>
     );
   },
   play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
     const canvas = within(canvasElement);
-    const button = await canvas.findByRole("button", { name: "more" });
+    const button = await canvas.findByTestId("Dropdown Menu");
     await userEvent.click(button);
     const menu = await screen.findByRole("menu");
     const items = within(menu).getAllByRole("menuitem");
@@ -87,9 +79,12 @@ export const MoreDropdownMenu: StoryObj<{
   },
 };
 
-export const AvatarDropdownMenu: StoryObj<{
-  menuItems: MenuItem[];
-  colorVariant: DropdownMenuColor;
+export const DropdownMenu_Icon: StoryObj<{
+  menuItems: {
+    label: string;
+    icon: JSX.Element;
+    handleSelect: () => void;
+  }[];
 }> = {
   args: {
     menuItems: [
@@ -109,37 +104,29 @@ export const AvatarDropdownMenu: StoryObj<{
         handleSelect: action("登出"),
       },
     ],
-    colorVariant: "neutral",
   },
-  render: ({ menuItems, colorVariant }) => {
+  render: ({ menuItems }) => {
     return (
       <DropdownMenu>
-        <DropdownMenuTrigger
-          className="relative rounded-lg outline-none ring-neutral-7 focus:outline-none focus:ring-2"
-          aria-label="more"
-        >
-          <Image
-            src={
-              "https://lain.bgm.tv/pic/user/l/000/76/09/760931.jpg?r=1674400223&hd=1"
-            }
-            alt={"Avatar"}
-            width={48}
-            height={48}
-            className="rounded-lg"
-            unoptimized={true}
-          />
-          <div className="absolute top-0 left-0 h-full w-full rounded-lg shadow-[inset_0_0_8px_rgba(0,0,0,0.15)]" />
+        <DropdownMenuTrigger asChild>
+          <OutlineButton_Icon data-testid="Dropdown Menu">
+            <EllipsisVerticalIcon className="h-6 w-6" />
+          </OutlineButton_Icon>
         </DropdownMenuTrigger>
-        <DropdownMenuContent_Simple
-          colorVariant={colorVariant}
-          menuItems={menuItems}
-        />
+        <DropdownMenuContent>
+          {menuItems.map(({ label, icon, handleSelect }, i) => (
+            <DropdownMenuItem key={`${label}-${i}`} onSelect={handleSelect}>
+              <span className="mr-2 h-5 w-5">{icon}</span>
+              {label}
+            </DropdownMenuItem>
+          ))}
+        </DropdownMenuContent>
       </DropdownMenu>
     );
   },
   play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
     const canvas = within(canvasElement);
-    const button = await canvas.findByRole("button", { name: "more" });
+    const button = await canvas.findByTestId("Dropdown Menu");
     await userEvent.click(button);
     const menu = await screen.findByRole("menu");
     const items = within(menu).getAllByRole("menuitem");
@@ -150,10 +137,9 @@ export const AvatarDropdownMenu: StoryObj<{
   },
 };
 
-export const SortDropdownMenu: StoryObj<{
+export const DropdownMenu_Radio: StoryObj<{
   sortRadioItems: { label: string; value: string }[];
   orderRadioItems: { label: string; value: string }[];
-  colorVariant: DropdownMenuColor;
 }> = {
   args: {
     sortRadioItems: [
@@ -180,51 +166,36 @@ export const SortDropdownMenu: StoryObj<{
         value: "desc",
       },
     ],
-    colorVariant: "neutral",
   },
-  render: ({ sortRadioItems, colorVariant, orderRadioItems }) => {
+  render: ({ sortRadioItems, orderRadioItems }) => {
     const [sortRadioItem, setSortRadioItem] = useState("do");
     const [orderRadioItem, setOrderRadioItem] = useState("desc");
 
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <OutlineButton aria-label={"sort"} colorVariant={colorVariant}>
-            <ArrowsUpDownIcon className="mr-2 h-5 w-5" />
-            排序
-          </OutlineButton>
+          <OutlineButton_Icon data-testid="Dropdown Menu">
+            <EllipsisVerticalIcon className="h-6 w-6" />
+          </OutlineButton_Icon>
         </DropdownMenuTrigger>
-        <DropdownMenuContent
-          colorVariant={colorVariant}
-          align="end"
-          sideOffset={8}
-          className="w-36"
-        >
+        <DropdownMenuContent align="start" sideOffset={8} className="w-36">
           <DropdownMenuRadioGroup
             value={sortRadioItem}
             onValueChange={setSortRadioItem}
           >
             {sortRadioItems.map(({ value, label }, index) => (
-              <DropdownMenuRadioItem
-                colorVariant={colorVariant}
-                value={value}
-                key={`${value}-${index}`}
-              >
+              <DropdownMenuRadioItem value={value} key={`${value}-${index}`}>
                 {label}
               </DropdownMenuRadioItem>
             ))}
           </DropdownMenuRadioGroup>
-          <DropdownMenuSeparator colorVariant={colorVariant} />
+          <DropdownMenuSeparator />
           <DropdownMenuRadioGroup
             value={orderRadioItem}
             onValueChange={setOrderRadioItem}
           >
             {orderRadioItems.map(({ value, label }, index) => (
-              <DropdownMenuRadioItem
-                colorVariant={colorVariant}
-                value={value}
-                key={`${value}-${index}`}
-              >
+              <DropdownMenuRadioItem value={value} key={`${value}-${index}`}>
                 {label}
               </DropdownMenuRadioItem>
             ))}
@@ -235,7 +206,7 @@ export const SortDropdownMenu: StoryObj<{
   },
   play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
     const canvas = within(canvasElement);
-    const button = await canvas.findByRole("button", { name: "sort" });
+    const button = await canvas.findByTestId("Dropdown Menu");
     await userEvent.click(button);
     const menu = await screen.findByRole("menu");
     const items = within(menu).getAllByRole("menuitemradio");

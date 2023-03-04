@@ -2,15 +2,15 @@
 
 import { EllipsisVerticalIcon } from "@heroicons/react/20/solid";
 import { useToast } from "@/hooks/use-toast";
-import type { MenuItem } from "@/ui/primitive/DropdownMenu";
 import {
   DropdownMenu,
-  DropdownMenuContent_Simple,
+  DropdownMenuContent,
+  DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/ui/primitive/DropdownMenu";
 import { OutlineButton_Icon } from "@/ui/primitive/Button";
 
-export const MoreDropdownMenu = ({
+export const MoreMenu = ({
   subject_id,
   hasCollectionData = false,
 }: {
@@ -18,7 +18,7 @@ export const MoreDropdownMenu = ({
   hasCollectionData?: boolean;
 }) => {
   const toast = useToast();
-  const menuItems: MenuItem[] = [
+  const menuItems = [
     {
       label: "取消收藏",
       handleSelect: () => {
@@ -63,10 +63,13 @@ export const MoreDropdownMenu = ({
           <EllipsisVerticalIcon className="h-6 w-6" />
         </OutlineButton_Icon>
       </DropdownMenuTrigger>
-      <DropdownMenuContent_Simple
-        colorVariant={"neutral"}
-        menuItems={menuItems}
-      />
+      <DropdownMenuContent>
+        {menuItems.map(({ label, handleSelect }, i) => (
+          <DropdownMenuItem key={`${label}-${i}`} onSelect={handleSelect}>
+            {label}
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
     </DropdownMenu>
   );
 };
