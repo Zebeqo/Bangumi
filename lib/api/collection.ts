@@ -16,41 +16,41 @@ export const collectionScheme = z.object({
   ep_status: z.number().int().nonnegative(),
 });
 
-export const collectionsPageScheme = z.object({
-  data: z.array(
-    z.object({
-      subject_id: z.number().int(),
-      subject_type: z.number().int(),
-      comment: z.string().nullable(),
-      tags: z.array(z.string()),
-      type: z.number().int().positive().lte(5),
-      rate: z.number().int().nonnegative().lte(10),
-      ep_status: z.number().int().nonnegative(),
-      vol_status: z.number().int().nonnegative(),
-      private: z.boolean(),
-      subject: z.object({
-        id: z.number().int(),
-        date: z.string().min(1).catch("未知"),
-        images: z.object({
-          medium: z.string().url().catch(FALLBACK_IMAGE),
-          large: z.string().url().catch(FALLBACK_IMAGE),
-          common: z.string().url().catch(FALLBACK_IMAGE),
-        }),
+export const collectionsDataScheme = z.object({
+  subject_id: z.number().int(),
+  subject_type: z.number().int(),
+  comment: z.string().nullable(),
+  tags: z.array(z.string()),
+  type: z.number().int().positive().lte(5),
+  rate: z.number().int().nonnegative().lte(10),
+  ep_status: z.number().int().nonnegative(),
+  vol_status: z.number().int().nonnegative(),
+  private: z.boolean(),
+  subject: z.object({
+    id: z.number().int(),
+    date: z.string().min(1).catch("未知"),
+    images: z.object({
+      medium: z.string().url().catch(FALLBACK_IMAGE),
+      large: z.string().url().catch(FALLBACK_IMAGE),
+      common: z.string().url().catch(FALLBACK_IMAGE),
+    }),
+    name: z.string(),
+    name_cn: z.string(),
+    tags: z.array(
+      z.object({
         name: z.string(),
-        name_cn: z.string(),
-        tags: z.array(
-          z.object({
-            name: z.string(),
-            count: z.number(),
-          })
-        ),
-        score: z.number(),
-        type: z.number().int(),
-        eps: z.number(),
-        collection_total: z.number(),
-      }),
-    })
-  ),
+        count: z.number(),
+      })
+    ),
+    score: z.number(),
+    type: z.number().int(),
+    eps: z.number(),
+    collection_total: z.number(),
+  }),
+});
+
+export const collectionsPageScheme = z.object({
+  data: z.array(collectionsDataScheme),
   total: z.number().int(),
   limit: z.number().int(),
   offset: z.number().int(),

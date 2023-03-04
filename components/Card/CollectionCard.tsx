@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import { InfoButton } from "@/components/Button/InfoButton";
 import {
@@ -9,8 +7,6 @@ import {
 } from "@heroicons/react/20/solid";
 import type { z } from "zod";
 import type { collectionsPageScheme } from "@/lib/api/collection";
-import { useAtomValue } from "jotai";
-import { personalViewModeAtom } from "@/components/Switch/personalViewSwitch";
 import { Rating } from "@/components/Rating";
 import {
   Card,
@@ -30,11 +26,11 @@ import { ChatButton } from "@/components/Button/ChatButton";
 
 export function CollectionCard({
   collection,
+  pvMode = false,
 }: {
   collection: z.infer<typeof collectionsPageScheme>["data"][number];
+  pvMode?: boolean;
 }) {
-  const pvMode = useAtomValue(personalViewModeAtom);
-
   return (
     <Card>
       <CardImage>
