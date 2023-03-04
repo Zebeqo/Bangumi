@@ -23,9 +23,11 @@ import {
   CollectionTypeSelect,
   RatingSelect,
 } from "@/ui/primitive/Select.stories";
-import { MoreDropdownMenu } from "@/ui/primitive/DropdownMenu.stories";
+
 import { userEvent, within } from "@storybook/testing-library";
 import { EpisodeButton } from "@/ui/primitive/Button.stories";
+import { MoreMenu } from "@/components/DropdownMenu/MoreMenu";
+// import { MoreMenu_ as MoreMenu} from "@/components/DropdownMenu/MoreMenu.stories";
 
 const meta: Meta = {
   title: "SubjectContent",
@@ -214,9 +216,9 @@ export const SubjectContent_: StoryObj<{
             </span>
             <ChevronDownIcon className="ml-2 h-5 w-5" />
           </OutlineButton>
-          {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-          {/*@ts-expect-error*/}
-          {MoreDropdownMenu.render(MoreDropdownMenu.args)}
+          {/*FIXME: Import via story not working as 7.0 document*/}
+          {/*<MoreMenu {...MoreMenu.args} />*/}
+          <MoreMenu subject_id={302286} hasCollectionData />
         </SubjectContentInfoFooter>
       </SubjectContentInfo>
     </SubjectContent>
@@ -273,9 +275,9 @@ export const SubjectContent_Auth: StoryObj<{
           {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
           {/*@ts-expect-error*/}
           {EpisodeButton.render(EpisodeButton.args)}
-          {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-          {/*@ts-expect-error*/}
-          {MoreDropdownMenu.render(MoreDropdownMenu.args)}
+          {/*FIXME: Import via story not working as 7.0 document*/}
+          {/*<MoreMenu {...MoreMenu.args} />*/}
+          <MoreMenu subject_id={302286} hasCollectionData />
         </SubjectContentInfoFooter>
       </SubjectContentInfo>
     </SubjectContent>

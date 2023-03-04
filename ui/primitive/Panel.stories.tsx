@@ -11,8 +11,10 @@ import {
   SubjectContent_,
   SubjectContent_Auth,
 } from "@/ui/primitive/SubjectContent.stories";
-import { createStore, Provider } from "jotai";
-import { panelHistoryAtom } from "@/lib/panel";
+import { SecondaryButton } from "@/ui/primitive/Button";
+import { panelHistoryAtom, panelReducer } from "@/lib/panel";
+import { useReducerAtom } from "jotai/utils";
+import { userEvent, within } from "@storybook/testing-library";
 
 const meta: Meta = {
   title: "Panel",
@@ -20,28 +22,42 @@ const meta: Meta = {
 
 export default meta;
 
-const defaultStore = createStore();
-defaultStore.set(panelHistoryAtom, {
-  history: [{ type: "subjectList", target_id: 1 }],
-  index: 0,
-});
-
 export const Panel_: StoryObj = {
-  render: () => (
-    <Provider store={defaultStore}>
-      <Panel>
-        <PanelNav>
-          <PanelNavTitleGroup>
-            <PanelNavTitle>死神 千年血战篇</PanelNavTitle>
-            <PanelNavSubTitle>BLEACH 千年血戦篇</PanelNavSubTitle>
-          </PanelNavTitleGroup>
-        </PanelNav>
-        <PanelContent>
-          {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-          {/*@ts-expect-error*/}
-          {SubjectContent_Auth.render(SubjectContent_.args)}
-        </PanelContent>
-      </Panel>
-    </Provider>
-  ),
+  render: () => {
+    const [, dispatch] = useReducerAtom(panelHistoryAtom, panelReducer);
+
+    return (
+      <>
+        <Panel>
+          <PanelNav>
+            <PanelNavTitleGroup>
+              <PanelNavTitle>死神 千年血战篇</PanelNavTitle>
+              <PanelNavSubTitle>BLEACH 千年血戦篇</PanelNavSubTitle>
+            </PanelNavTitleGroup>
+          </PanelNav>
+          <PanelContent>
+            {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+            {/*@ts-expect-error*/}
+            {SubjectContent_Auth.render(SubjectContent_.args)}
+            TODO: extract other content
+          </PanelContent>
+        </Panel>
+        <SecondaryButton
+          data-testid="open-panel"
+          onClick={() => {
+            dispatch({
+              type: "push",
+              value: { type: "subject", target_id: 302286 },
+            });
+          }}
+        >
+          Open panel
+        </SecondaryButton>
+      </>
+    );
+  },
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getByTestId("open-panel"));
+  },
 };
