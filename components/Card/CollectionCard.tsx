@@ -7,7 +7,7 @@ import {
 } from "@heroicons/react/20/solid";
 import type { z } from "zod";
 import type { collectionsPageScheme } from "@/lib/api/collection";
-import { Rating } from "@/components/Rating";
+import { Rating } from "@/components/Rating/Rating";
 import {
   Card,
   CardButtonGroup,

@@ -6,7 +6,6 @@ import {
   TableCellsIcon,
 } from "@heroicons/react/20/solid";
 import { subjectScheme } from "@/lib/api/subject";
-import { Rating } from "../Rating";
 import {
   Card,
   CardButtonGroup,
@@ -23,6 +22,7 @@ import {
 import { InfoButton } from "@/components/Button/InfoButton";
 import { cva } from "class-variance-authority";
 import { ChatButton } from "@/components/Button/ChatButton";
+import { Rating } from "@/components/Rating/Rating";
 
 async function getSubjectData(id: number) {
   return subjectScheme.safeParse(

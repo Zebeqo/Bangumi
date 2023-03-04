@@ -1,45 +1,37 @@
+import { expect } from "@storybook/jest";
 import type { Meta, StoryObj } from "@storybook/react";
-import {
-  Rating,
-  RatingEmptyIcon,
-  RatingFillIcon,
-  RatingHalfIcon,
-} from "@/ui/primitive/Rating";
+import { Rating } from "@/ui/primitive/Rating";
+import { colorArray } from "@/lib/color";
+import { within } from "@storybook/testing-library";
 
-const meta: Meta = {
+const meta = {
   title: "Rating",
-};
+  component: Rating,
+  argTypes: {
+    colorVariant: {
+      control: {
+        type: "radio",
+      },
+      options: colorArray,
+    },
+  },
+} satisfies Meta<typeof Rating>;
 
 export default meta;
+type Story = StoryObj<typeof Rating>;
 
-export const Rating_: StoryObj<{
-  score: number;
-  maxScore: number;
-  totalIconCount: number;
-}> = {
-  args: { score: 6.6, maxScore: 10, totalIconCount: 5 },
-  render: ({ score, maxScore, totalIconCount }) => {
-    if (score > maxScore || score < 0) {
-      return <></>;
-    }
-    const rating = Math.round(score);
-    const fillStarCount = Math.floor(rating / (maxScore / totalIconCount));
-    const halfStarCount =
-      rating % (maxScore / totalIconCount) < maxScore / totalIconCount / 2
-        ? 0
-        : 1;
-    const outlineStarCount = totalIconCount - fillStarCount - halfStarCount;
+export const Rating_: Story = {
+  args: {
+    score: 6.6,
+    maxScore: 10,
+    totalIconCount: 5,
+    colorVariant: "accent",
+  },
+  play: ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    const canvas = within(canvasElement);
 
-    return (
-      <Rating colorVariant={"accent"}>
-        {Array.from({ length: fillStarCount }).map((_, index) => (
-          <RatingFillIcon key={index} />
-        ))}
-        {halfStarCount > 0 && <RatingHalfIcon />}
-        {Array.from({ length: outlineStarCount }).map((_, index) => (
-          <RatingEmptyIcon key={index} />
-        ))}
-      </Rating>
-    );
+    // half-rating-icon is overlapped by fill-rating-icon and empty-rating-icon
+    expect(canvas.getAllByTestId("fill-rating-icon")).toHaveLength(4);
+    expect(canvas.getAllByTestId("empty-rating-icon")).toHaveLength(2);
   },
 };
