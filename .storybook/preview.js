@@ -1,7 +1,6 @@
 import "@/styles/globals.css";
-import ToastProvider from "../components/Provider/ToastProvider";
-import { StateProvider } from "../components/Provider/StateProvider";
-import { Toast } from "../components/Toast/Toast";
+import JotaiProvider from "../components/Provider/JotaiProvider";
+import QueryProvider from "../components/Provider/QueryProvider";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -37,9 +36,11 @@ export const parameters = {
 const Provider = (Story) => {
   return (
     <div className="font-['Noto_Sans_SC']">
-      <StateProvider noDevtools>
-        <Story />
-      </StateProvider>
+      <QueryProvider>
+        <JotaiProvider>
+          <Story />
+        </JotaiProvider>
+      </QueryProvider>
     </div>
   );
 };

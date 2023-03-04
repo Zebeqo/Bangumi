@@ -3,8 +3,11 @@ import SessionProvider from "@/components/Provider/SessionProvider";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
 import { Noto_Sans_SC } from "next/font/google";
-import { ThemeProvider } from "@/components/Provider/ThemeProvider";
-import { StateProvider } from "@/components/Provider/StateProvider";
+import ThemeProvider from "@/components/Provider/ThemeProvider";
+import QueryProvider, {
+  ReactQueryDevtools,
+} from "@/components/Provider/QueryProvider";
+import JotaiProvider from "@/components/Provider/JotaiProvider";
 import Analytics from "@/components/analytics";
 
 const notoSansSC = Noto_Sans_SC({
@@ -32,10 +35,13 @@ export default async function RootLayout({
       <head />
 
       <body className="bg-white dark:bg-neutral-1">
-        <ThemeProvider>
-          <StateProvider>
-            <SessionProvider session={session}>{children}</SessionProvider>
-          </StateProvider>
+        <ThemeProvider attribute="class" enableSystem={false}>
+          <QueryProvider>
+            <JotaiProvider>
+              <SessionProvider session={session}>{children}</SessionProvider>
+            </JotaiProvider>
+            <ReactQueryDevtools initialIsOpen={false} />
+          </QueryProvider>
         </ThemeProvider>
         <Analytics />
       </body>
