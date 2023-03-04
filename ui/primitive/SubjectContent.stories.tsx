@@ -19,15 +19,11 @@ import {
   InboxArrowDownIcon,
   StarIcon,
 } from "@heroicons/react/20/solid";
-import {
-  CollectionTypeSelect,
-  RatingSelect,
-} from "@/ui/primitive/Select.stories";
 
 import { userEvent, within } from "@storybook/testing-library";
-import { EpisodeButton } from "@/ui/primitive/Button.stories";
 import { MoreMenu } from "@/components/DropdownMenu/MoreMenu";
-// import { MoreMenu_ as MoreMenu} from "@/components/DropdownMenu/MoreMenu.stories";
+import { RatingSelect } from "@/components/Select/RatingSelect";
+import { CollectionTypeSelect } from "@/components/Select/CollectionTypeSelect";
 
 const meta: Meta = {
   title: "SubjectContent",
@@ -216,8 +212,6 @@ export const SubjectContent_: StoryObj<{
             </span>
             <ChevronDownIcon className="ml-2 h-5 w-5" />
           </OutlineButton>
-          {/*FIXME: Import via story not working as 7.0 document*/}
-          {/*<MoreMenu {...MoreMenu.args} />*/}
           <MoreMenu subject_id={302286} hasCollectionData />
         </SubjectContentInfoFooter>
       </SubjectContentInfo>
@@ -266,17 +260,8 @@ export const SubjectContent_Auth: StoryObj<{
           <p className="max-w-[632px] line-clamp-8">{summary}</p>
         </SubjectContentInfoBody>
         <SubjectContentInfoFooter>
-          {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-          {/*@ts-expect-error*/}
-          {CollectionTypeSelect.render(CollectionTypeSelect.args)}
-          {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-          {/*@ts-expect-error*/}
-          {RatingSelect.render(RatingSelect.args)}
-          {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-          {/*@ts-expect-error*/}
-          {EpisodeButton.render(EpisodeButton.args)}
-          {/*FIXME: Import via story not working as 7.0 document*/}
-          {/*<MoreMenu {...MoreMenu.args} />*/}
+          <CollectionTypeSelect defaultValue="在看" />
+          <RatingSelect defaultValue="(8) 力荐" />
           <MoreMenu subject_id={302286} hasCollectionData />
         </SubjectContentInfoFooter>
       </SubjectContentInfo>

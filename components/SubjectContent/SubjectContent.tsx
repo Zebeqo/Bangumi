@@ -2,7 +2,10 @@
 
 import { useSubjectData } from "@/hooks/use-subject";
 import { Suspense, useRef, useState } from "react";
-import { useCollectionData } from "@/hooks/use-collection";
+import {
+  useCollectionData,
+  useCollectionMutation,
+} from "@/hooks/use-collection";
 import { useToast } from "@/hooks/use-toast";
 import { signIn, useSession } from "next-auth/react";
 import { SubjectContentSkeleton } from "@/components/Skeleton/SubjectContentSkeleton";
@@ -29,6 +32,16 @@ import {
   InboxArrowDownIcon,
   StarIcon,
 } from "@heroicons/react/20/solid";
+import {
+  collectionNameCNToTypeScheme,
+  collectionTypeKeyScheme,
+  collectionTypeMap,
+} from "@/lib/map/collectionTypeMap";
+import {
+  ratingKeyScheme,
+  ratingMap,
+  ratingNameCNToTypeScheme,
+} from "@/lib/map/ratingMap";
 
 export function SubjectContent({ subject_id }: { subject_id: number }) {
   const [showFullInfo, setShowFullInfo] = useState(false);
@@ -40,6 +53,8 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
   const { data: session } = useSession();
   const { data: subjectData, isSuccess: isSubjectDataSuccess } =
     useSubjectData(subject_id);
+  const mutateCollection = useCollectionMutation();
+
   return (
     <>
       {subjectData && isSubjectDataSuccess && isCollectionDataSuccess && (
@@ -90,9 +105,43 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
                 {collectionData ? (
                   <>
                     <CollectionTypeSelect
-                      subject_id={collectionData.subject_id}
+                      defaultValue={
+                        collectionTypeMap[
+                          collectionTypeKeyScheme.parse(collectionData.type)
+                        ].name_cn
+                      }
+                      onValueChange={(value: string) => {
+                        const collection_type =
+                          collectionNameCNToTypeScheme.parse(value);
+                        mutateCollection.mutate({
+                          mutateCollection: {
+                            type: Number(collection_type),
+                          },
+                          subject_id: subject_id,
+                          description: value,
+                          subject_type: collectionData.subject.type,
+                          collection_type: collectionData.type,
+                        });
+                      }}
                     />
-                    <RatingSelect subject_id={collectionData.subject_id} />
+                    <RatingSelect
+                      defaultValue={
+                        ratingMap[ratingKeyScheme.parse(collectionData.rate)]
+                          .name_cn
+                      }
+                      onValueChange={(value: string) => {
+                        const rating = ratingNameCNToTypeScheme.parse(value);
+                        mutateCollection.mutate({
+                          mutateCollection: {
+                            rate: Number(rating),
+                          },
+                          subject_id: subject_id,
+                          description: value,
+                          subject_type: collectionData.subject.type,
+                          collection_type: collectionData.type,
+                        });
+                      }}
+                    />
                     <EpisodeButtonComponent
                       subject_id={collectionData.subject_id}
                       eps={collectionData.subject.eps}
