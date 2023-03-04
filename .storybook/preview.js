@@ -35,7 +35,7 @@ export const parameters = {
 
 const Provider = (Story) => {
   return (
-    <div className="font-['Noto_Sans_SC']">
+    <div style={{ fontFamily: "Noto Sans SC" }}>
       <QueryProvider>
         <JotaiProvider>
           <Story />
