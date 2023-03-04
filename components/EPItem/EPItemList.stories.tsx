@@ -1,8 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { EPItemList } from "@/components/EPItem/EPItemList";
+import { ReactQueryDevtoolsDecorator } from "@/ui/Storybook";
 
 const meta: Meta = {
   component: EPItemList,
+  decorators: [ReactQueryDevtoolsDecorator],
 };
 
 export default meta;
