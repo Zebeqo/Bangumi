@@ -8,17 +8,17 @@ import {
 import Image from "next/image";
 import { signOut } from "next-auth/react";
 import { useToast } from "@/hooks/use-toast";
-import type { MenuItem } from "@/ui/primitive/DropdownMenu";
 import {
   DropdownMenu,
-  DropdownMenuContent_Simple,
+  DropdownMenuContent,
+  DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/ui/primitive/DropdownMenu";
 
-export const AvatarDropdownMenu = ({ imageURL }: { imageURL: string }) => {
+export const AvatarMenu = ({ imageURL }: { imageURL: string }) => {
   const toast = useToast();
 
-  const menuItems: MenuItem[] = [
+  const menuItems = [
     {
       label: "个人主页",
       icon: <UserIcon />,
@@ -52,7 +52,7 @@ export const AvatarDropdownMenu = ({ imageURL }: { imageURL: string }) => {
     <DropdownMenu>
       <DropdownMenuTrigger
         className="relative rounded-lg outline-none ring-neutral-7 focus:outline-none focus:ring-2"
-        aria-label="more"
+        aria-label="avatar-menu"
       >
         <Image
           src={imageURL}
@@ -64,12 +64,14 @@ export const AvatarDropdownMenu = ({ imageURL }: { imageURL: string }) => {
         />
         <div className="absolute top-0 left-0 h-full w-full rounded-lg shadow-[inset_0_0_8px_rgba(0,0,0,0.15)]" />
       </DropdownMenuTrigger>
-      <DropdownMenuContent_Simple
-        colorVariant="neutral"
-        menuItems={menuItems}
-        align="end"
-        sideOffset={4}
-      />
+      <DropdownMenuContent align="end" sideOffset={4}>
+        {menuItems.map(({ label, icon, handleSelect }, i) => (
+          <DropdownMenuItem key={`${label}-${i}`} onSelect={handleSelect}>
+            <span className="mr-2 h-5 w-5">{icon}</span>
+            {label}
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
     </DropdownMenu>
   );
 };

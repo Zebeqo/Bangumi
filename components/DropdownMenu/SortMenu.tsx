@@ -37,7 +37,7 @@ const orderRadioItems = [
     value: "desc",
   },
 ];
-export function SortDropdownMenu() {
+export function SortMenu() {
   const path = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -59,42 +59,29 @@ export function SortDropdownMenu() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <OutlineButton colorVariant={"neutral"} aria-label={"sort"}>
+        <OutlineButton colorVariant={"neutral"} aria-label={"sort-menu"}>
           <ArrowsUpDownIcon className="mr-2 h-5 w-5" />
           排序
         </OutlineButton>
       </DropdownMenuTrigger>
-      <DropdownMenuContent
-        colorVariant={"neutral"}
-        align="end"
-        sideOffset={8}
-        className="w-36"
-      >
+      <DropdownMenuContent align="end" sideOffset={8} className="w-36">
         <DropdownMenuRadioGroup
           value={searchParams?.get("sort") ?? "do"}
           onValueChange={handleSortSelect}
         >
           {sortRadioItems.map(({ value, label }, index) => (
-            <DropdownMenuRadioItem
-              colorVariant={"neutral"}
-              value={value}
-              key={`${value}-${index}`}
-            >
+            <DropdownMenuRadioItem value={value} key={`${value}-${index}`}>
               {label}
             </DropdownMenuRadioItem>
           ))}
         </DropdownMenuRadioGroup>
-        <DropdownMenuSeparator colorVariant={"neutral"} />
+        <DropdownMenuSeparator />
         <DropdownMenuRadioGroup
           value={searchParams?.get("order") ?? "desc"}
           onValueChange={handleOrderSelect}
         >
           {orderRadioItems.map(({ value, label }, index) => (
-            <DropdownMenuRadioItem
-              colorVariant={"neutral"}
-              value={value}
-              key={`${value}-${index}`}
-            >
+            <DropdownMenuRadioItem value={value} key={`${value}-${index}`}>
               {label}
             </DropdownMenuRadioItem>
           ))}

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Subnav } from "@/components/Subnav";
-import { SortDropdownMenu } from "@/components/DropdownMenu/SortDropdownMenu";
+import { SortMenu } from "@/components/DropdownMenu/SortMenu";
 import { HeaderMarginDecorator } from "@/ui/Storybook";
 import { PersonalViewSwitch } from "@/components/Switch/personalViewSwitch";
 
@@ -56,7 +56,7 @@ export const CalendarSubnav: Story = {
       },
     ],
     selectedItemName: "monday",
-    children: <SortDropdownMenu />,
+    children: <SortMenu />,
   },
 };
 
