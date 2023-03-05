@@ -112,14 +112,17 @@ const SubjectContentInfoText = ({ text }: { text: string }) => {
   const ref = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
-    if (ref.current) {
-      setIsClamped(ref.current.scrollHeight > ref.current.clientHeight + 1);
-    }
+    setShowFullInfo(false);
   }, [text]);
 
   return (
     <p
       ref={ref}
+      onMouseEnter={() => {
+        if (ref.current) {
+          setIsClamped(ref.current.scrollHeight > ref.current.clientHeight);
+        }
+      }}
       onClick={() => {
         isClamped && setShowFullInfo(true);
       }}
