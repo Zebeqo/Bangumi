@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
 import type { WithRequired } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
@@ -41,7 +41,7 @@ const SubjectContentInfo = forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("flex flex-col space-y-2", className)}
+    className={cn("flex max-w-[672px] flex-col space-y-2", className)}
     {...props}
   />
 ));
@@ -98,28 +98,38 @@ const SubjectContentTagGroup = forwardRef<
   HTMLDivElement,
   WithRequired<React.ComponentPropsWithoutRef<"div">, "children">
 >(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn("max-w-[564px] leading-loose", className)}
-    {...props}
-  />
+  <div ref={ref} className={cn("flex flex-wrap gap-2", className)} {...props} />
 ));
 SubjectContentTagGroup.displayName = "SubjectContentTagGroup";
 
-const SubjectContentInfoBody = forwardRef<
-  HTMLDivElement,
-  WithRequired<React.ComponentPropsWithoutRef<"div">, "children">
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn(
-      "flex-grow whitespace-pre-wrap px-4 text-sm text-neutral-12",
-      className
-    )}
-    {...props}
-  />
-));
-SubjectContentInfoBody.displayName = "SubjectContentInfoBody";
+const SubjectContentInfoText = ({ children }: { children: string }) => {
+  const [showFullInfo, setShowFullInfo] = useState(false);
+  const [isClamped, setIsClamped] = useState(false);
+  const ref = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    if (ref.current) {
+      setIsClamped(ref.current.scrollHeight > ref.current.clientHeight + 1);
+    }
+  }, []);
+
+  return (
+    <p
+      ref={ref}
+      onClick={() => {
+        isClamped && setShowFullInfo(true);
+      }}
+      className={cn(
+        "flex-grow whitespace-pre-wrap break-words pl-4 pr-2 text-sm text-neutral-12 line-clamp-9",
+        showFullInfo
+          ? "line-clamp-none"
+          : isClamped && "hover:cursor-pointer hover:font-medium"
+      )}
+    >
+      {children}
+    </p>
+  );
+};
 
 const SubjectContentInfoFooter = forwardRef<
   HTMLDivElement,
@@ -137,6 +147,6 @@ export {
   SubjectContentRating,
   SubjectContentInfoHeaderDivider,
   SubjectContentTagGroup,
-  SubjectContentInfoBody,
+  SubjectContentInfoText,
   SubjectContentInfoFooter,
 };

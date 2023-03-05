@@ -1,7 +1,7 @@
 "use client";
 
 import { useSubjectData } from "@/hooks/use-subject";
-import { Suspense, useRef, useState } from "react";
+import { Suspense } from "react";
 import {
   useCollectionData,
   useCollectionMutation,
@@ -13,18 +13,17 @@ import {
   SubjectContent as SubjectContentRoot,
   SubjectContentImage,
   SubjectContentInfo,
-  SubjectContentInfoBody,
   SubjectContentInfoFooter,
   SubjectContentInfoHeader,
   SubjectContentInfoHeaderDivider,
+  SubjectContentInfoText,
   SubjectContentRating,
   SubjectContentTagGroup,
 } from "@/ui/primitive/SubjectContent";
 import { Badge } from "@/ui/primitive/Badge";
-import { cn } from "@/lib/utils";
 import { CollectionTypeSelect } from "@/components/Select/CollectionTypeSelect";
 import { RatingSelect } from "@/components/Select/RatingSelect";
-import { EpisodeButton as EpisodeButtonComponent } from "@/components/Button/EpisodeButton";
+import { EpisodeButton } from "@/components/Button/EpisodeButton";
 import { MoreMenu } from "@/components/DropdownMenu/MoreMenu";
 import { OutlineButton, PrimaryButton } from "@/ui/primitive/Button";
 import {
@@ -44,20 +43,17 @@ import {
 } from "@/lib/map/ratingMap";
 
 export function SubjectContent({ subject_id }: { subject_id: number }) {
-  const [showFullInfo, setShowFullInfo] = useState(false);
-  const [isClamped, setIsClamped] = useState(false);
-  const descriptionRef = useRef<HTMLParagraphElement>(null);
-  const { data: collectionData, isSuccess: isCollectionDataSuccess } =
-    useCollectionData(subject_id);
   const toast = useToast();
+
+  const { data: collectionData } = useCollectionData(subject_id);
   const { data: session } = useSession();
-  const { data: subjectData, isSuccess: isSubjectDataSuccess } =
-    useSubjectData(subject_id);
+  const { data: subjectData } = useSubjectData(subject_id);
+
   const mutateCollection = useCollectionMutation();
 
   return (
     <>
-      {subjectData && isSubjectDataSuccess && isCollectionDataSuccess && (
+      {subjectData && (
         <Suspense fallback={<SubjectContentSkeleton />}>
           <SubjectContentRoot>
             <SubjectContentImage src={subjectData.images.medium} alt="cover" />
@@ -70,37 +66,16 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
                 <SubjectContentInfoHeaderDivider />
                 <SubjectContentTagGroup>
                   {subjectData.tags.map(({ count, name }) => (
-                    <Badge colorVariant={"primary"} key={name} className="mr-2">
+                    <Badge colorVariant={"primary"} key={name}>
                       {name}
                       <span className="ml-1 text-neutral-11">{count}</span>
                     </Badge>
                   ))}
                 </SubjectContentTagGroup>
               </SubjectContentInfoHeader>
-              <SubjectContentInfoBody>
-                <p
-                  ref={descriptionRef}
-                  onMouseEnter={() => {
-                    if (descriptionRef.current) {
-                      setIsClamped(
-                        descriptionRef.current.scrollHeight >
-                          descriptionRef.current.clientHeight
-                      );
-                    }
-                  }}
-                  onClick={() => {
-                    isClamped && setShowFullInfo(true);
-                  }}
-                  className={cn(
-                    "line-clamp-8",
-                    showFullInfo
-                      ? "line-clamp-none"
-                      : isClamped && "hover:cursor-pointer hover:font-medium"
-                  )}
-                >
-                  {subjectData.summary}
-                </p>
-              </SubjectContentInfoBody>
+              <SubjectContentInfoText>
+                {subjectData.summary}
+              </SubjectContentInfoText>
               <SubjectContentInfoFooter>
                 {collectionData ? (
                   <>
@@ -142,7 +117,7 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
                         });
                       }}
                     />
-                    <EpisodeButtonComponent
+                    <EpisodeButton
                       subject_id={collectionData.subject_id}
                       eps={collectionData.subject.eps}
                       ep_status={collectionData.ep_status}
