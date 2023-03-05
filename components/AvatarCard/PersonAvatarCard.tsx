@@ -11,6 +11,7 @@ import {
   AvatarCardInfoItemName,
 } from "@/ui/primitive/AvatarCard";
 
+// FIXME: 分页 API 无法获取全部所需数据
 export function PersonAvatarCard({
   id,
   relation,
