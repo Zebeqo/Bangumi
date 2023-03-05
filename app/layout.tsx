@@ -8,7 +8,7 @@ import QueryProvider, {
   ReactQueryDevtools,
 } from "@/components/Provider/QueryProvider";
 import JotaiProvider from "@/components/Provider/JotaiProvider";
-import Analytics from "@/components/analytics";
+import Analytics from "@/components/Analytics";
 
 const notoSansSC = Noto_Sans_SC({
   variable: "--font-noto-sans-sc",
