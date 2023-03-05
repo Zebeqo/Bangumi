@@ -22,21 +22,15 @@ export default meta;
 
 export const Switch_: StoryObj<{
   colorVariant: Color;
-  checked: boolean;
   onCheckedChange: () => void;
 }> = {
   args: {
     colorVariant: "accent",
-    checked: true,
     onCheckedChange: action("checked change"),
   },
-  render: ({ colorVariant, checked, onCheckedChange }) => {
+  render: ({ colorVariant, onCheckedChange }) => {
     return (
-      <Switch
-        colorVariant={colorVariant}
-        checked={checked}
-        onCheckedChange={onCheckedChange}
-      />
+      <Switch colorVariant={colorVariant} onCheckedChange={onCheckedChange} />
     );
   },
   play: async ({ canvasElement, args }) => {

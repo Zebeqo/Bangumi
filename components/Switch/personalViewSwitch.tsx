@@ -22,15 +22,12 @@ export const PersonalViewSwitch = () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, [checked, setChecked]);
-  function handleChecked(checked: boolean) {
-    setChecked(checked);
-  }
 
   return (
     <Switch
       colorVariant={"accent"}
       checked={checked}
-      onCheckedChange={handleChecked}
+      onCheckedChange={setChecked}
     />
   );
 };
