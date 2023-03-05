@@ -16,13 +16,13 @@ import {
   CardInfo,
   CardInfoItem,
   CardTagGroup,
-  CardTagGroupItem,
   CardTitle,
 } from "@/ui/primitive/Card";
 import { InfoButton } from "@/components/Button/InfoButton";
 import { cva } from "class-variance-authority";
 import { ChatButton } from "@/components/Button/ChatButton";
 import { Rating } from "@/components/Rating/Rating";
+import { Badge } from "@/ui/primitive/Badge";
 
 async function getSubjectData(id: number) {
   return subjectScheme.safeParse(
@@ -106,9 +106,9 @@ export async function CardServer({ subject_id, countType = "all" }: CardProps) {
         </CardInfo>
         <CardTagGroup>
           {tags.slice(0, 10).map((tag) => (
-            <CardTagGroupItem colorVariant={"primary"} key={tag.name}>
+            <Badge colorVariant={"primary"} key={tag.name}>
               {tag.name}
-            </CardTagGroupItem>
+            </Badge>
           ))}
         </CardTagGroup>
         <CardFooter>

@@ -1,7 +1,6 @@
 import { forwardRef } from "react";
 import type { WithRequired } from "@/lib/utils";
 import { cn } from "@/lib/utils";
-import { Badge } from "@/ui/primitive/Badge";
 
 const Card = forwardRef<
   HTMLDivElement,
@@ -132,27 +131,21 @@ const CardTagGroup = forwardRef<
   HTMLDivElement,
   WithRequired<React.ComponentPropsWithoutRef<"div">, "children">
 >(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn("h-[4.6rem] overflow-hidden py-1 leading-loose", className)}
-    {...props}
-  />
+  <div className="mt-2 h-[4rem] overflow-hidden">
+    <div
+      ref={ref}
+      className={cn("inline-flex h-fit flex-wrap items-start gap-2", className)}
+      {...props}
+    />
+  </div>
 ));
 CardTagGroup.displayName = "CardTagGroup";
-
-const CardTagGroupItem = forwardRef<
-  HTMLSpanElement,
-  React.ComponentPropsWithoutRef<typeof Badge>
->(({ className, ...props }, ref) => (
-  <Badge ref={ref} className={cn("mr-2", className)} {...props} />
-));
-CardTagGroupItem.displayName = "CardTagGroupItem";
 
 const CardFooter = forwardRef<
   HTMLDivElement,
   WithRequired<React.ComponentPropsWithoutRef<"div">, "children">
 >(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("flex space-x-3", className)} {...props} />
+  <div ref={ref} className={cn("mt-px flex space-x-3", className)} {...props} />
 ));
 CardFooter.displayName = "CardFooter";
 
@@ -166,6 +159,5 @@ export {
   CardInfo,
   CardInfoItem,
   CardTagGroup,
-  CardTagGroupItem,
   CardFooter,
 };

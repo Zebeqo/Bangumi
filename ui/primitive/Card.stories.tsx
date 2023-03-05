@@ -9,7 +9,6 @@ import {
   CardInfo,
   CardInfoItem,
   CardTagGroup,
-  CardTagGroupItem,
   CardTitle,
 } from "@/ui/primitive/Card";
 import Image from "next/image";
@@ -27,6 +26,7 @@ import {
 import { Rating } from "@/components/Rating/Rating";
 import { userEvent, within } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
+import { Badge } from "@/ui/primitive/Badge";
 
 const meta = {
   title: "Card",
@@ -155,9 +155,9 @@ export const Card_: StoryObj<{
         </CardInfo>
         <CardTagGroup>
           {tags.map((tag) => (
-            <CardTagGroupItem colorVariant={"primary"} key={tag}>
+            <Badge colorVariant={"primary"} key={tag}>
               {tag}
-            </CardTagGroupItem>
+            </Badge>
           ))}
         </CardTagGroup>
         <CardFooter>
