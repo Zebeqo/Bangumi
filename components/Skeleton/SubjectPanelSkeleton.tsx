@@ -7,7 +7,7 @@ import { PanelNavSkeleton } from "@/components/Skeleton/PanelNavSkeleton";
 
 export function SubjectPanelSkeleton() {
   return (
-    <div className="w-[1040.62px]">
+    <div className="w-[1040px]">
       {/*PanelNav.Skeleton*/}
       <PanelNavSkeleton />
       <div className="flex flex-col space-y-2 px-8">

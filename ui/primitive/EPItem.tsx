@@ -95,7 +95,7 @@ const EPItemInfoMain = forwardRef<
 >(({ className, name, name_cn, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("flex items-center font-medium", className)}
+    className={cn("flex max-w-[784px] items-center font-medium", className)}
     {...props}
   >
     <span className="text-xl text-neutral-12">{name}</span>
