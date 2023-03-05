@@ -12,10 +12,10 @@ import { action } from "@storybook/addon-actions";
 import { ContainerDecorator } from "@/ui/Storybook";
 import { userEvent, within } from "@storybook/testing-library";
 
-const meta: Meta = {
+const meta = {
   title: "EPItem",
   decorators: [ContainerDecorator],
-};
+} satisfies Meta;
 
 export default meta;
 

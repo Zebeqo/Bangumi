@@ -25,9 +25,9 @@ import { MoreMenu } from "@/components/DropdownMenu/MoreMenu";
 import { RatingSelect } from "@/components/Select/RatingSelect";
 import { CollectionTypeSelect } from "@/components/Select/CollectionTypeSelect";
 
-const meta: Meta = {
+const meta = {
   title: "SubjectContent",
-};
+} satisfies Meta;
 
 export default meta;
 

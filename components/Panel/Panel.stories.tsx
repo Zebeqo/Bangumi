@@ -6,7 +6,7 @@ import { SecondaryButton } from "@/ui/primitive/Button";
 import { panelHistoryAtom, panelReducer } from "@/lib/panel";
 import { useReducerAtom } from "jotai/utils";
 
-const meta: Meta = {
+const meta = {
   title: "Panel",
   decorators: [ReactQueryDevtoolsDecorator, PanelDecorator],
   args: {
@@ -28,7 +28,7 @@ const meta: Meta = {
       </SecondaryButton>
     );
   },
-};
+} satisfies Meta;
 
 export default meta;
 

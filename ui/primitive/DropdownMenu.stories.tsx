@@ -20,9 +20,9 @@ import { expect } from "@storybook/jest";
 import { OutlineButton_Icon } from "@/ui/primitive/Button";
 import { action } from "@storybook/addon-actions";
 
-const meta: Meta = {
+const meta = {
   title: "DropdownMenu",
-};
+} satisfies Meta;
 
 export default meta;
 

@@ -16,9 +16,9 @@ import { panelHistoryAtom, panelReducer } from "@/lib/panel";
 import { useReducerAtom } from "jotai/utils";
 import { userEvent, within } from "@storybook/testing-library";
 
-const meta: Meta = {
+const meta = {
   title: "Panel",
-};
+} satisfies Meta;
 
 export default meta;
 
@@ -39,7 +39,7 @@ export const Panel_: StoryObj = {
             {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
             {/*@ts-expect-error*/}
             {SubjectContent_Auth.render(SubjectContent_.args)}
-            TODO: extract other content
+            <p className="text-neutral-12">TODO: extract other content</p>
           </PanelContent>
         </Panel>
         <SecondaryButton

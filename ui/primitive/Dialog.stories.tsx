@@ -12,9 +12,9 @@ import { action } from "@storybook/addon-actions";
 import { screen, userEvent, within } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
 
-const meta: Meta = {
+const meta = {
   title: "Dialog",
-};
+} satisfies Meta;
 
 export default meta;
 

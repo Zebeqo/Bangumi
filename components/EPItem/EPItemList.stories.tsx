@@ -2,10 +2,10 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { EPItemList } from "@/components/EPItem/EPItemList";
 import { ReactQueryDevtoolsDecorator } from "@/ui/Storybook";
 
-const meta: Meta = {
+const meta = {
   component: EPItemList,
   decorators: [ReactQueryDevtoolsDecorator],
-};
+} satisfies Meta<typeof EPItemList>;
 
 export default meta;
 type Story = StoryObj<typeof EPItemList>;

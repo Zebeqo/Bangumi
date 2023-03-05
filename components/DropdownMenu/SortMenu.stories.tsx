@@ -2,9 +2,9 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { SortMenu } from "@/components/DropdownMenu/SortMenu";
 import { userEvent, within } from "@storybook/testing-library";
 
-const meta: Meta = {
+const meta = {
   component: SortMenu,
-};
+} satisfies Meta<typeof SortMenu>;
 
 export default meta;
 type Story = StoryObj<typeof SortMenu>;
