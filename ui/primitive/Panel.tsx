@@ -30,7 +30,7 @@ const Panel = forwardRef<
     <Dialog open={isOpenPanel} onOpenChange={resetPanelHistory} {...props}>
       <DialogContent
         ref={ref}
-        className="w-[1040.62px] max-w-none items-center items-stretch pt-4"
+        className="w-fit max-w-none items-center items-stretch pt-4"
       >
         {children}
       </DialogContent>

@@ -120,7 +120,7 @@ const SubjectContentInfoText = ({ children }: { children: string }) => {
         isClamped && setShowFullInfo(true);
       }}
       className={cn(
-        "flex-grow whitespace-pre-wrap break-words pl-4 pr-2 text-sm text-neutral-12 line-clamp-9",
+        "flex-grow whitespace-pre-wrap break-words px-4 text-sm text-neutral-12 line-clamp-9",
         showFullInfo
           ? "line-clamp-none"
           : isClamped && "hover:cursor-pointer hover:font-medium"
