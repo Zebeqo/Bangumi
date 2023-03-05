@@ -18,11 +18,11 @@ import {
   CardInfo,
   CardInfoItem,
   CardTagGroup,
-  CardTagGroupItem,
   CardTitle,
 } from "@/ui/primitive/Card";
 import { CardComment } from "@/components/Dialog/CardComment";
 import { ChatButton } from "@/components/Button/ChatButton";
+import { Badge } from "@/ui/primitive/Badge";
 
 export function CollectionCard({
   collection,
@@ -80,14 +80,14 @@ export function CollectionCard({
         <CardTagGroup>
           {pvMode
             ? collection.tags.map((tag) => (
-                <CardTagGroupItem colorVariant={"primary"} key={tag}>
+                <Badge colorVariant={"primary"} key={tag}>
                   {tag}
-                </CardTagGroupItem>
+                </Badge>
               ))
             : collection.subject.tags.map((tag) => (
-                <CardTagGroupItem colorVariant={"primary"} key={tag.name}>
+                <Badge colorVariant={"primary"} key={tag.name}>
                   {tag.name}
-                </CardTagGroupItem>
+                </Badge>
               ))}
         </CardTagGroup>
         <CardFooter>
