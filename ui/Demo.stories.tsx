@@ -1,14 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import app from "./Demo";
+import Demo from "./Demo";
 
-const meta: Meta = {
-  title: "Demo",
-};
+const meta = {
+  component: Demo,
+} satisfies Meta<typeof Demo>;
 
 export default meta;
+type Story = StoryObj<typeof Demo>;
 
-export const Demo: StoryObj = {
-  render: () => {
-    return app();
-  },
-};
+export const Demo_: Story = {};

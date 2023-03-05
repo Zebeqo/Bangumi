@@ -28,7 +28,7 @@ import { Rating } from "@/components/Rating/Rating";
 import { userEvent, within } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
 
-const meta: Meta = {
+const meta = {
   title: "Card",
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
@@ -36,7 +36,7 @@ const meta: Meta = {
     await userEvent.click(infoButton);
     await expect(args.onClickInfoButton).toHaveBeenCalledTimes(1);
   },
-};
+} satisfies Meta;
 
 export default meta;
 

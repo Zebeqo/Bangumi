@@ -4,7 +4,7 @@ import { ChatBubbleLeftRightIcon } from "@heroicons/react/20/solid";
 import type { Color } from "@/lib/color";
 import { colorArray } from "@/lib/color";
 
-const meta: Meta = {
+const meta = {
   title: "Badge",
   argTypes: {
     colorVariant: {
@@ -14,7 +14,7 @@ const meta: Meta = {
       options: colorArray,
     },
   },
-};
+} satisfies Meta;
 
 export default meta;
 

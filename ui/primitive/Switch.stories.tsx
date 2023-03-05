@@ -16,7 +16,7 @@ const meta: Meta = {
       options: colorArray,
     },
   },
-};
+} satisfies Meta;
 
 export default meta;
 

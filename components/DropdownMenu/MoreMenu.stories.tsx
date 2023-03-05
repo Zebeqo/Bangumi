@@ -2,9 +2,9 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { MoreMenu } from "@/components/DropdownMenu/MoreMenu";
 import { userEvent, within } from "@storybook/testing-library";
 
-const meta: Meta = {
+const meta = {
   component: MoreMenu,
-};
+} satisfies Meta<typeof MoreMenu>;
 
 export default meta;
 type Story = StoryObj<typeof MoreMenu>;

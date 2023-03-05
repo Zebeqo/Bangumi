@@ -4,11 +4,10 @@ import { CollectionCard } from "@/components/Card/CollectionCard";
 import { collectionsDataScheme } from "@/lib/api/collection";
 import { PanelDecorator, ToastDecorator } from "@/ui/Storybook";
 
-const meta: Meta = {
-  title: "CollectionCard",
+const meta = {
   component: CollectionCard,
   decorators: [PanelDecorator, ToastDecorator],
-};
+} satisfies Meta<typeof CollectionCard>;
 
 export default meta;
 type Story = StoryObj<typeof CollectionCard>;

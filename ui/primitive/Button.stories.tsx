@@ -21,7 +21,7 @@ import { useEffect, useRef, useState } from "react";
 import { z } from "zod";
 import { colorArray } from "@/lib/color";
 
-const meta: Meta = {
+const meta = {
   title: "Button",
   decorators: [RowDecorator],
   argTypes: {
@@ -40,7 +40,7 @@ const meta: Meta = {
     }
     await expect(args.onClick).toHaveBeenCalledTimes(3);
   },
-};
+} satisfies Meta;
 
 export default meta;
 

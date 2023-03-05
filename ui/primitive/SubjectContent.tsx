@@ -98,7 +98,11 @@ const SubjectContentTagGroup = forwardRef<
   HTMLDivElement,
   WithRequired<React.ComponentPropsWithoutRef<"div">, "children">
 >(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("flex flex-wrap gap-2", className)} {...props} />
+  <div
+    ref={ref}
+    className={cn("flex h-fit flex-wrap items-start gap-2", className)}
+    {...props}
+  />
 ));
 SubjectContentTagGroup.displayName = "SubjectContentTagGroup";
 

@@ -6,10 +6,10 @@ import { screen, userEvent, within } from "@storybook/testing-library";
 import { action } from "@storybook/addon-actions";
 import { DialogDecorator } from "@/ui/Storybook";
 
-const meta: Meta = {
+const meta = {
   title: "Dialog",
   decorators: [DialogDecorator],
-};
+} satisfies Meta;
 
 export default meta;
 
@@ -22,48 +22,21 @@ export const Dialog_: StoryObj<{
   args: {
     title: "问题报告",
     description:
-      "Warning: forwardRef requires a render function but was given object.\n" +
-      "    at forwardRef\n" +
-      "    at renderContextProvider (C:\\Users\\z7155\\WebstormProjects\\dev\\bangumi-dashboard\\node_modules\\.pnpm\\next@13.2.3_7xlrwlvvs7cv2obrs6a5y6oxxq\\node_modules\\next\\dist\\compiled\\react-dom\\cjs\\react-dom-server.browser.development.js:8245:3)\n" +
-      "    at Lazy\n" +
-      "    at div\n" +
-      "    at Provider (webpack-internal:///(sc_client)/./node_modules/.pnpm/@radix-ui+react-context@1.0.0_react@18.2.0/node_modules/@radix-ui/react-context/dist/index.js:47:28)\n" +
-      "    at Provider (webpack-internal:///(sc_client)/./node_modules/.pnpm/@radix-ui+react-context@1.0.0_react@18.2.0/node_modules/@radix-ui/react-context/dist/index.js:47:28)\n" +
-      "    at CollectionProvider (webpack-internal:///(sc_client)/./node_modules/.pnpm/@radix-ui+react-collection@1.0.1_biqbaboplfbrettd7655fr4n2y/node_modules/@radix-ui/react-collection/dist/index.js:34:24)\n" +
-      "    at $9208a85b3e79d33f$export$f5d03d415824e0e (webpack-internal:///(sc_client)/./node_modules/.pnpm/@radix-ui+react-toast@1.1.2_biqbaboplfbrettd7655fr4n2y/node_modules/@radix-ui/react-toast/dist/index.js:63:27)\n" +
-      "    at Lazy\n" +
-      "    at ScrollAndFocusHandler (webpack-internal:///(sc_client)/./node_modules/.pnpm/next@13.2.3_7xlrwlvvs7cv2obrs6a5y6oxxq/node_modules/next/dist/client/components/layout-router.js:145:1)\n" +
-      "    at InnerLayoutRouter (webpack-internal:///(sc_client)/./node_modules/.pnpm/next@13.2.3_7xlrwlvvs7cv2obrs6a5y6oxxq/node_modules/next/dist/client/components/layout-router.js:186:30)\n" +
-      "    at RedirectErrorBoundary (webpack-internal:///(sc_client)/./node_modules/.pnpm/next@13.2.3_7xlrwlvvs7cv2obrs6a5y6oxxq/node_modules/next/dist/client/components/layout-router.js:343:9)\n" +
-      "    at RedirectBoundary (webpack-internal:///(sc_client)/./node_modules/.pnpm/next@13.2.3_7xlrwlvvs7cv2obrs6a5y6oxxq/node_modules/next/dist/client/components/layout-router.js:349:29)\n" +
-      "    at NotFoundErrorBoundary (webpack-internal:///(sc_client)/./node_modules/.pnpm/next@13.2.3_7xlrwlvvs7cv2obrs6a5y6oxxq/node_modules/next/dist/client/components/layout-router.js:375:9)\n" +
-      "    at NotFoundBoundary (webpack-internal:///(sc_client)/./node_modules/.pnpm/next@13.2.3_7xlrwlvvs7cv2obrs6a5y6oxxq/node_modules/next/dist/client/components/layout-router.js:381:29)\n" +
-      "    at LoadingBoundary (webpack-internal:///(sc_client)/./node_modules/.pnpm/next@13.2.3_7xlrwlvvs7cv2obrs6a5y6oxxq/node_modules/next/dist/client/components/layout-router.js:304:32)\n" +
-      "    at ErrorBoundary (webpack-internal:///(sc_client)/./node_modules/.pnpm/next@13.2.3_7xlrwlvvs7cv2obrs6a5y6oxxq/node_modules/next/dist/client/components/error-boundary.js:69:26)\n" +
-      "    at RenderFromTemplateContext (webpack-internal:///(sc_client)/./node_modules/.pnpm/next@13.2.3_7xlrwlvvs7cv2obrs6a5y6oxxq/node_modules/next/dist/client/components/render-from-template-context.js:10:34)\n" +
-      "    at Lazy\n" +
-      "    at OuterLayoutRouter (webpack-internal:///(sc_client)/./node_modules/.pnpm/next@13.2.3_7xlrwlvvs7cv2obrs6a5y6oxxq/node_modules/next/dist/client/components/layout-router.js:21:30)\n" +
-      "    at Lazy\n" +
-      "    at SessionProvider (webpack-internal:///(sc_client)/./node_modules/.pnpm/next-auth@4.19.2_nvzgbose6yf6w7ijjprgspqefi/node_modules/next-auth/react/index.js:453:24)\n" +
-      "    at Lazy\n" +
-      "    at Provider (webpack-internal:///(sc_client)/./node_modules/.pnpm/jotai@2.0.2_react@18.2.0/node_modules/jotai/esm/react.mjs:20:3)\n" +
-      "    at QueryClientProvider (webpack-internal:///(sc_client)/./node_modules/.pnpm/@tanstack+react-query@4.24.10_biqbaboplfbrettd7655fr4n2y/node_modules/@tanstack/react-query/build/lib/QueryClientProvider.mjs:47:3)\n" +
-      "    at StateProvider (webpack-internal:///(sc_client)/./components/Provider/StateProvider.tsx:26:26)\n" +
-      "    at Lazy\n" +
-      "    at m (webpack-internal:///(sc_client)/./node_modules/.pnpm/next-themes@0.2.1_nvzgbose6yf6w7ijjprgspqefi/node_modules/next-themes/dist/index.js:1:335)\n" +
-      "    at exports.ThemeProvider (webpack-internal:///(sc_client)/./node_modules/.pnpm/next-themes@0.2.1_nvzgbose6yf6w7ijjprgspqefi/node_modules/next-themes/dist/index.js:1:3636)\n" +
-      "    at ThemeProvider (webpack-internal:///(sc_client)/./components/Provider/ThemeProvider.tsx:10:26)\n" +
-      "    at Lazy\n" +
-      "    at body\n" +
-      "    at html\n" +
-      "    at ReactDevOverlay (webpack-internal:///(sc_client)/./node_modules/.pnpm/next@13.2.3_7xlrwlvvs7cv2obrs6a5y6oxxq/node_modules/next/dist/client/components/react-dev-overlay/internal/ReactDevOverlay.js:61:9)\n" +
-      "    at HotReload (webpack-internal:///(sc_client)/./node_modules/.pnpm/next@13.2.3_7xlrwlvvs7cv2obrs6a5y6oxxq/node_modules/next/dist/client/components/react-dev-overlay/hot-reloader-client.js:19:22)\n" +
-      "    at Router (webpack-internal:///(sc_client)/./node_modules/.pnpm/next@13.2.3_7xlrwlvvs7cv2obrs6a5y6oxxq/node_modules/next/dist/client/components/app-router.js:45:23)\n" +
-      "    at ErrorBoundaryHandler (webpack-internal:///(sc_client)/./node_modules/.pnpm/next@13.2.3_7xlrwlvvs7cv2obrs6a5y6oxxq/node_modules/next/dist/client/components/error-boundary.js:57:9)\n" +
-      "    at ErrorBoundary (webpack-internal:///(sc_client)/./node_modules/.pnpm/next@13.2.3_7xlrwlvvs7cv2obrs6a5y6oxxq/node_modules/next/dist/client/components/error-boundary.js:69:26)\n" +
-      "    at AppRouter (webpack-internal:///(sc_client)/./node_modules/.pnpm/next@13.2.3_7xlrwlvvs7cv2obrs6a5y6oxxq/node_modules/next/dist/client/components/app-router.js:23:13)\n" +
-      "    at Lazy\n" +
-      "    at Lazy",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet ante eget arcu maximus eleifend. Duis mollis lorem a vehicula efficitur. Aenean ex purus, accumsan laoreet mi nec, rutrum ornare mauris. Vestibulum nulla enim, vestibulum et dictum ut, tristique ut ligula. Pellentesque elementum tristique ullamcorper. Nulla imperdiet a nisi eget luctus. Morbi tincidunt nisi ac tellus imperdiet, a rhoncus lectus iaculis. In justo tortor, posuere sit amet dolor sed, finibus bibendum justo. Morbi eleifend sem a eleifend egestas. Suspendisse eu fringilla libero, non venenatis urna. In quam dui, viverra id blandit vel, tristique sed enim. Duis aliquet quam sit amet sem dapibus semper.\n" +
+      "\n" +
+      "Nunc lectus est, facilisis sed libero vel, aliquam vestibulum lorem. Etiam molestie, leo vitae facilisis vulputate, enim leo tincidunt nisl, ac sollicitudin ex tortor a nunc. Sed in ullamcorper quam. Curabitur fringilla at lectus sit amet finibus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam dignissim tincidunt felis, vitae eleifend nulla. Phasellus venenatis finibus leo, quis maximus ligula aliquam scelerisque. Nulla faucibus euismod mauris, at tempus diam consequat ut. Nulla id lacus et lectus sollicitudin sollicitudin. Proin efficitur sed mi eget posuere. Nunc tincidunt tortor nec est accumsan, non dignissim lacus volutpat. Praesent eu lobortis nulla. Fusce dignissim dictum turpis. Sed accumsan nec urna ac gravida.\n" +
+      "\n" +
+      "Ut imperdiet enim euismod mi sollicitudin congue. Fusce maximus euismod posuere. Quisque lorem leo, tincidunt eget turpis eu, egestas pretium dui. Aenean pharetra fringilla odio ut luctus. Aliquam eleifend orci ullamcorper porta tincidunt. Duis non viverra felis. Aenean sed ultrices ex. Suspendisse at nulla sit amet sem maximus pharetra eu quis augue. Integer lobortis eget dui in posuere. Etiam tincidunt tristique dui ut maximus. In sed volutpat libero. Nulla ac lobortis tellus, non pellentesque ligula.\n" +
+      "\n" +
+      "Morbi et turpis justo. Mauris accumsan a ipsum a hendrerit. Mauris bibendum ante ornare nisi iaculis accumsan. Morbi ullamcorper nisl nec elit aliquet, vel interdum diam malesuada. Curabitur sed leo nec nunc pellentesque placerat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse quam nisl, malesuada ac egestas eget, congue placerat est. Integer scelerisque sem commodo, varius enim ut, ultrices lacus. Etiam risus felis, auctor ut neque quis, ullamcorper pharetra ligula.\n" +
+      "\n" +
+      "Nam egestas leo dolor, sit amet semper dolor vehicula quis. Pellentesque ultrices at augue ut rutrum. Nullam ornare nunc id leo vestibulum vestibulum. Vestibulum ornare malesuada ligula, a blandit arcu sodales nec. Suspendisse potenti. Vivamus porttitor ultrices mauris, nec aliquet eros hendrerit non. Quisque malesuada lorem in ligula malesuada, non tristique justo aliquam. Curabitur eu erat consectetur ipsum mollis euismod. In blandit nibh arcu, ut viverra nulla sodales sed.\n" +
+      "\n" +
+      "Maecenas tristique, nisi ut scelerisque mollis, risus lacus sagittis leo, sed sodales diam tortor vel nulla. Sed sagittis quis est quis pulvinar. Ut blandit ultricies lorem. Nullam commodo tempus venenatis. Proin justo ante, consequat nec felis id, vehicula mollis odio. Maecenas efficitur aliquam nibh, at ultricies ligula lobortis ut. Cras ut tellus feugiat, volutpat lacus vel, suscipit elit. In hac habitasse platea dictumst. Mauris in molestie nisi, at porttitor risus. Nulla placerat fringilla sagittis. Vivamus sagittis imperdiet tellus nec semper. Fusce sed egestas nisi, sed feugiat urna. Mauris sapien odio, consequat at magna sit amet, imperdiet euismod mi. Nam rhoncus tellus id hendrerit suscipit.\n" +
+      "\n" +
+      "Morbi feugiat euismod mi, et ornare ligula vulputate ac. Suspendisse pretium odio ex, vel congue tortor viverra at. Phasellus non elit in lorem hendrerit viverra. Ut in ex consectetur, cursus ligula non, dictum urna. Praesent pulvinar est non sem convallis porta nec a eros. Mauris risus libero, suscipit vel dapibus vel, porttitor sit amet nunc. Morbi dapibus nulla eu accumsan malesuada. Proin in pulvinar tortor. Pellentesque eget velit neque. Morbi at blandit nisi. Cras imperdiet consectetur velit. Praesent posuere rhoncus porttitor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.\n" +
+      "\n" +
+      "Proin sed luctus leo. Pellentesque quis dolor est. Sed urna mauris, efficitur sed tellus quis, ultrices ultrices eros. Curabitur dapibus odio eu nisi mollis, id dignissim ipsum dignissim. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula urna, consectetur sagittis finibus eget, semper ac tellus. Fusce posuere, metus non suscipit faucibus, ex metus semper magna, in venenatis libero libero vel ex. Proin commodo dolor sapien, vitae ullamcorper velit efficitur ut. Aenean aliquam nulla efficitur, hendrerit odio at, cursus nulla. Vivamus tristique est nulla. Pellentesque hendrerit commodo dolor eu tempus. Aenean dignissim, felis at ultrices porttitor, tellus odio tempor sapien, at efficitur nunc felis finibus urna. Nulla facilisi.",
     actionLabel: "提交 issue",
     handleAction: action("action"),
   },

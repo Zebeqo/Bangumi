@@ -63,12 +63,4 @@ export const Select_: StoryObj<{
 
     await userEvent.keyboard("{esc}");
   },
-  argTypes: {
-    defaultValue: {
-      control: {
-        type: "radio",
-      },
-      options: Object.values(collectionTypeMap).map((value) => value.name_cn),
-    },
-  },
 };
