@@ -102,7 +102,7 @@ const SubjectContentTagGroup = forwardRef<
 ));
 SubjectContentTagGroup.displayName = "SubjectContentTagGroup";
 
-const SubjectContentInfoText = ({ children }: { children: string }) => {
+const SubjectContentInfoText = ({ text }: { text: string }) => {
   const [showFullInfo, setShowFullInfo] = useState(false);
   const [isClamped, setIsClamped] = useState(false);
   const ref = useRef<HTMLParagraphElement>(null);
@@ -111,7 +111,7 @@ const SubjectContentInfoText = ({ children }: { children: string }) => {
     if (ref.current) {
       setIsClamped(ref.current.scrollHeight > ref.current.clientHeight + 1);
     }
-  }, []);
+  }, [text]);
 
   return (
     <p
@@ -126,7 +126,7 @@ const SubjectContentInfoText = ({ children }: { children: string }) => {
           : isClamped && "hover:cursor-pointer hover:font-medium"
       )}
     >
-      {children}
+      {text}
     </p>
   );
 };

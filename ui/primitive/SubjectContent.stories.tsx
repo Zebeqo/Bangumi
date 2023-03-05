@@ -195,7 +195,7 @@ export const SubjectContent_: StoryObj<{
             ))}
           </SubjectContentTagGroup>
         </SubjectContentInfoHeader>
-        <SubjectContentInfoText>{summary}</SubjectContentInfoText>
+        <SubjectContentInfoText text={summary} />
         <SubjectContentInfoFooter>
           <PrimaryButton colorVariant={"neutral"} onClick={onClickCollection}>
             <InboxArrowDownIcon className="mr-2 h-5 w-5" />
@@ -252,7 +252,7 @@ export const SubjectContent_Auth: StoryObj<{
             ))}
           </SubjectContentTagGroup>
         </SubjectContentInfoHeader>
-        <SubjectContentInfoText>{summary}</SubjectContentInfoText>
+        <SubjectContentInfoText text={summary} />
         <SubjectContentInfoFooter>
           <CollectionTypeSelect defaultValue="在看" />
           <RatingSelect defaultValue="(8) 力荐" />

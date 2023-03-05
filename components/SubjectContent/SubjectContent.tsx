@@ -73,9 +73,7 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
                   ))}
                 </SubjectContentTagGroup>
               </SubjectContentInfoHeader>
-              <SubjectContentInfoText>
-                {subjectData.summary}
-              </SubjectContentInfoText>
+              <SubjectContentInfoText text={subjectData.summary} />
               <SubjectContentInfoFooter>
                 {collectionData ? (
                   <>
