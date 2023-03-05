@@ -40,6 +40,7 @@ export const SubjectPanel_: Story = {
     await userEvent.click(canvas.getByTestId("open-panel"));
 
     const panel = await screen.findByRole("dialog");
+
     await waitFor(
       () => {
         expect(within(panel).getByText(/或是偶然，或是必然/));
@@ -57,9 +58,16 @@ export const CharacterListPanel_: Story = {
     await SubjectPanel_.play({ canvasElement });
 
     const panel = await screen.findByRole("dialog");
-    await userEvent.click(
-      within(panel).getByRole("button", { name: "显示全部角色" })
+
+    await waitFor(
+      () => {
+        userEvent.click(
+          within(panel).getByRole("button", { name: "显示全部角色" })
+        );
+      },
+      { timeout: 5000, interval: 1000 }
     );
+
     await waitFor(
       () => {
         expect(within(panel).getByText(/黑崎一护/));
@@ -77,9 +85,16 @@ export const EPListPanel_: Story = {
     await SubjectPanel_.play({ canvasElement });
 
     const panel = await screen.findByRole("dialog");
-    await userEvent.click(
-      within(panel).getByRole("button", { name: "显示全部剧集" })
+
+    await waitFor(
+      () => {
+        userEvent.click(
+          within(panel).getByRole("button", { name: "显示全部剧集" })
+        );
+      },
+      { timeout: 5000, interval: 1000 }
     );
+
     await waitFor(
       () => {
         expect(within(panel).getByText(/万物无雨 六月的真相/));
@@ -97,12 +112,39 @@ export const PersonListPanel_: Story = {
     await SubjectPanel_.play({ canvasElement });
 
     const panel = await screen.findByRole("dialog");
-    await userEvent.click(
-      within(panel).getByRole("button", { name: "显示全部制作人员" })
+
+    await waitFor(
+      () => {
+        userEvent.click(
+          within(panel).getByRole("button", { name: "显示全部制作人员" })
+        );
+      },
+      { timeout: 5000, interval: 1000 }
     );
+
     await waitFor(
       () => {
         expect(within(panel).getAllByText(/久保带人/));
+      },
+      { timeout: 5000, interval: 1000 }
+    );
+  },
+};
+
+export const SubjectListPanel_NoMore: Story = {
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    // eslint-disable-next-line storybook/context-in-play-function
+    await SubjectPanel_.play({ canvasElement });
+
+    const panel = await screen.findByRole("dialog");
+
+    await waitFor(
+      () => {
+        expect(
+          within(panel).queryByRole("button", { name: "显示全部相关条目" })
+        ).not.toBeInTheDocument();
       },
       { timeout: 5000, interval: 1000 }
     );
@@ -119,29 +161,20 @@ export const SubjectListPanel: Story = {
 
     const panel = await screen.findByRole("dialog");
 
-    await userEvent.click(
-      within(panel).getByRole("button", { name: "显示全部相关条目" })
+    await waitFor(
+      () => {
+        userEvent.click(
+          within(panel).getByRole("button", { name: "显示全部相关条目" })
+        );
+      },
+      { timeout: 5000, interval: 1000 }
     );
+
     await waitFor(
       () => {
         expect(within(panel).getByText(/EVANGELION FINALLY/));
       },
       { timeout: 5000, interval: 1000 }
     );
-  },
-};
-
-export const SubjectListPanel_NoMore: Story = {
-  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
-    // eslint-disable-next-line storybook/context-in-play-function
-    await SubjectPanel_.play({ canvasElement });
-
-    const panel = await screen.findByRole("dialog");
-
-    expect(
-      within(panel).queryByRole("button", { name: "显示全部相关条目" })
-    ).not.toBeInTheDocument();
   },
 };
