@@ -12,19 +12,13 @@ import { action } from "@storybook/addon-actions";
 import { userEvent, within } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
 
-const meta: Meta = {
+const meta = {
   title: "AvatarCard",
-  play: async ({ canvasElement, args }) => {
-    const canvas = within(canvasElement);
-    const image = canvas.getByRole("img");
-    await userEvent.click(image);
-    await expect(args.onClickImage).toHaveBeenCalledTimes(1);
-  },
-};
+} satisfies Meta;
 
 export default meta;
 
-export const CharacterCard: StoryObj<{
+export const AvatarCard_: StoryObj<{
   commentCount: number;
   imageURL: string;
   items: { relation: string; name: string }[];
@@ -66,59 +60,10 @@ export const CharacterCard: StoryObj<{
       </AvatarCardContent>
     </AvatarCard>
   ),
-};
-
-export const PersonCard: StoryObj<{
-  commentCount: number;
-  imageURL: string;
-  items: { relation: string; name: string }[];
-  onClickImage: () => void;
-}> = {
-  args: {
-    commentCount: 175,
-    imageURL:
-      "https://lain.bgm.tv/r/400/pic/crt/l/19/01/94_prsn_Hp88F.jpg?r=1465131379",
-    items: [
-      {
-        relation: "导演",
-        name: "庵野秀明",
-      },
-    ],
-    onClickImage: action("click image"),
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+    const image = canvas.getByRole("img");
+    await userEvent.click(image);
+    await expect(args.onClickImage).toHaveBeenCalledTimes(1);
   },
-  render: CharacterCard.render,
-};
-
-export const SubjectCard: StoryObj<{
-  imageURL: string;
-  item: { relation: string; name: string };
-  onClickImage: () => void;
-}> = {
-  args: {
-    imageURL: "https://lain.bgm.tv/r/400/pic/cover/l/fe/45/6049_tbM7S.jpg",
-    item: {
-      relation: "续集",
-      name: "新世纪福音战士剧场版 Air/真心为你",
-    },
-    onClickImage: action("click image"),
-  },
-  render: ({ imageURL, item, onClickImage }) => (
-    <AvatarCard>
-      <AvatarCardContent className="mx-2 w-40 items-center">
-        <AvatarCardImage
-          src={imageURL}
-          alt="Avatar"
-          onClick={onClickImage}
-          className="h-56 w-40 rounded"
-        />
-        <AvatarCardInfo>
-          <AvatarCardInfoItem relation={item.relation}>
-            <AvatarCardInfoItemName title={item.name} className="line-clamp-2">
-              {item.name}
-            </AvatarCardInfoItemName>
-          </AvatarCardInfoItem>
-        </AvatarCardInfo>
-      </AvatarCardContent>
-    </AvatarCard>
-  ),
 };

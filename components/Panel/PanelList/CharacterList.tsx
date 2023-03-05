@@ -51,12 +51,6 @@ export function CharacterList({
                       character_id={characterData.id}
                       character_relation={characterData.relation}
                       actors={characterData.actors}
-                      onClick={() => {
-                        window.open(
-                          `https://bgm.tv/character/${characterData.id}`,
-                          "_blank"
-                        );
-                      }}
                     />
                   );
                 })
@@ -67,12 +61,6 @@ export function CharacterList({
                       character_id={characterData.id}
                       character_relation={characterData.relation}
                       actors={characterData.actors}
-                      onClick={() => {
-                        window.open(
-                          `https://bgm.tv/character/${characterData.id}`,
-                          "_blank"
-                        );
-                      }}
                     />
                   );
                 })}
