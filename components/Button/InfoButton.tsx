@@ -4,7 +4,7 @@ import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import { panelHistoryAtom, panelReducer } from "@/lib/panel";
 import { forwardRef } from "react";
 import { useReducerAtom } from "jotai/utils";
-import { PrimaryButton_Icon } from "@/ui/primitive/Button";
+import { Button } from "@/ui/primitive/Button";
 
 interface InfoButtonProps {
   subject_id: number;
@@ -13,8 +13,8 @@ export const InfoButton = forwardRef<HTMLButtonElement, InfoButtonProps>(
   ({ subject_id, ...props }, ref) => {
     const [, dispatch] = useReducerAtom(panelHistoryAtom, panelReducer);
     return (
-      <PrimaryButton_Icon
-        colorVariant={"accent"}
+      <Button
+        variant={{ type: "primary", color: "accent", iconOnly: true }}
         ref={ref}
         onClick={() => {
           dispatch({
@@ -27,7 +27,7 @@ export const InfoButton = forwardRef<HTMLButtonElement, InfoButtonProps>(
         {...props}
       >
         <InformationCircleIcon className="h-6 w-6" />
-      </PrimaryButton_Icon>
+      </Button>
     );
   }
 );

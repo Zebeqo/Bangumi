@@ -17,7 +17,7 @@ import {
 import { useState } from "react";
 import { screen, userEvent, within } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
-import { OutlineButton_Icon } from "@/ui/primitive/Button";
+import { Button } from "@/ui/primitive/Button";
 import { action } from "@storybook/addon-actions";
 
 const meta = {
@@ -52,9 +52,15 @@ export const DropdownMenu_: StoryObj<{
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <OutlineButton_Icon data-testid="Dropdown Menu">
+          <Button
+            variant={{
+              type: "outline",
+              iconOnly: true,
+            }}
+            data-testid="Dropdown Menu"
+          >
             <EllipsisVerticalIcon className="h-6 w-6" />
-          </OutlineButton_Icon>
+          </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start">
           {menuItems.map(({ label, handleSelect }, i) => (
@@ -109,9 +115,15 @@ export const DropdownMenu_Icon: StoryObj<{
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <OutlineButton_Icon data-testid="Dropdown Menu">
+          <Button
+            variant={{
+              type: "outline",
+              iconOnly: true,
+            }}
+            data-testid="Dropdown Menu"
+          >
             <EllipsisVerticalIcon className="h-6 w-6" />
-          </OutlineButton_Icon>
+          </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           {menuItems.map(({ label, icon, handleSelect }, i) => (
@@ -174,9 +186,15 @@ export const DropdownMenu_Radio: StoryObj<{
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <OutlineButton_Icon data-testid="Dropdown Menu">
+          <Button
+            variant={{
+              type: "outline",
+              iconOnly: true,
+            }}
+            data-testid="Dropdown Menu"
+          >
             <EllipsisVerticalIcon className="h-6 w-6" />
-          </OutlineButton_Icon>
+          </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start" sideOffset={8} className="w-36">
           <DropdownMenuRadioGroup

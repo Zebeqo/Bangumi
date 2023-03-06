@@ -12,7 +12,7 @@ import {
   CardTitle,
 } from "@/ui/primitive/Card";
 import Image from "next/image";
-import { PrimaryButton_Icon } from "@/ui/primitive/Button";
+import { Button } from "@/ui/primitive/Button";
 import {
   ChatBubbleLeftRightIcon,
   InformationCircleIcon,
@@ -121,16 +121,26 @@ export const Card_: StoryObj<{
         <CardHeader>
           <CardTitle mainTitle={name_cn} subTitle={name} />
           <CardButtonGroup>
-            <PrimaryButton_Icon
+            <Button
+              variant={{
+                type: "primary",
+                color: "accent",
+                iconOnly: true,
+              }}
               aria-label="open-info-panel"
-              colorVariant={"accent"}
               onClick={onClickInfoButton}
             >
               <InformationCircleIcon className="h-6 w-6" />
-            </PrimaryButton_Icon>
-            <PrimaryButton_Icon colorVariant={"accent"}>
+            </Button>
+            <Button
+              variant={{
+                type: "primary",
+                color: "accent",
+                iconOnly: true,
+              }}
+            >
               <ChatBubbleLeftRightIcon className="h-6 w-6" />
-            </PrimaryButton_Icon>
+            </Button>
           </CardButtonGroup>
         </CardHeader>
         <CardInfo>
@@ -155,7 +165,12 @@ export const Card_: StoryObj<{
         </CardInfo>
         <CardTagGroup>
           {tags.map((tag) => (
-            <Badge colorVariant={"primary"} key={tag}>
+            <Badge
+              variant={{
+                color: "primary",
+              }}
+              key={tag}
+            >
               {tag}
             </Badge>
           ))}

@@ -8,7 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/ui/primitive/DropdownMenu";
-import { OutlineButton_Icon } from "@/ui/primitive/Button";
+import { Button } from "@/ui/primitive/Button";
 
 export const MoreMenu = ({
   subject_id,
@@ -59,9 +59,15 @@ export const MoreMenu = ({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <OutlineButton_Icon colorVariant={"neutral"} aria-label={"more"}>
+        <Button
+          variant={{
+            type: "outline",
+            iconOnly: true,
+          }}
+          aria-label={"more"}
+        >
           <EllipsisVerticalIcon className="h-6 w-6" />
-        </OutlineButton_Icon>
+        </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         {menuItems.map(({ label, handleSelect }, i) => (

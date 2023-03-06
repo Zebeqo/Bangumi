@@ -14,7 +14,7 @@ import { action } from "@storybook/addon-actions";
 const meta = {
   title: "Select",
   argTypes: {
-    colorVariant: {
+    color: {
       control: {
         type: "radio",
       },
@@ -26,22 +26,28 @@ const meta = {
 export default meta;
 
 export const Select_: StoryObj<{
-  colorVariant: SelectColor;
+  color: SelectColor;
   defaultValue: string;
   options: string[];
 }> = {
   args: {
-    colorVariant: "accent",
+    color: "accent",
     defaultValue: "想看",
     options: Object.values(collectionTypeMap).map((value) => value.name_cn),
   },
-  render: ({ colorVariant, defaultValue, options }) => (
+  render: ({ color, defaultValue, options }) => (
     <Select defaultValue={defaultValue} onValueChange={action("value change")}>
-      <SelectContent colorVariant={colorVariant}>
+      <SelectContent
+        variant={{
+          color: color,
+        }}
+      >
         <SelectGroup>
           {options.map((value, index) => (
             <SelectItem
-              colorVariant={colorVariant}
+              variant={{
+                color: color,
+              }}
               key={`${value}-${index}`}
               value={value}
             >

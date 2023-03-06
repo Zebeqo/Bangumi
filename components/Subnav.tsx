@@ -1,7 +1,8 @@
 "use client";
+
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { ghostButton, selectedButton } from "@/ui/primitive/Button";
+import { buttonClass } from "@/ui/primitive/Button";
 
 export interface NavItem {
   name: string;
@@ -19,6 +20,7 @@ export function Subnav({
   children?: React.ReactNode;
 }) {
   const searchParams = useSearchParams();
+
   return (
     <div className="flex justify-between px-16">
       <div className="flex space-x-1">
@@ -34,8 +36,8 @@ export function Subnav({
               key={item.name}
               className={
                 selectedItemName === item.name
-                  ? selectedButton({ colorVariant: "neutral" })
-                  : ghostButton({ colorVariant: "neutral" })
+                  ? buttonClass({ type: "selected" })
+                  : buttonClass({ type: "ghost" })
               }
             >
               {item.value}

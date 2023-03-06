@@ -1,15 +1,14 @@
 import type { VariantProps } from "class-variance-authority";
 import { cva } from "class-variance-authority";
-import type { WithRequired } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 import { forwardRef } from "react";
 
-export const baseButtonClass =
+const baseButtonClass =
   "inline-flex items-center whitespace-nowrap rounded-md px-4 py-2 font-medium outline-none w-fit focus:outline-none focus:ring-2 select-none cursor-pointer";
 
-export const primaryButton = cva(baseButtonClass, {
+const primaryButton = cva(baseButtonClass, {
   variants: {
-    colorVariant: {
+    color: {
       primary: "bg-primary-9 text-white hover:bg-primary-10 ring-primary-7",
       accent: "bg-accent-9 text-white hover:bg-accent-10 ring-accent-7",
       neutral: "bg-neutral-9 text-white hover:bg-neutral-10 ring-neutral-7",
@@ -19,13 +18,13 @@ export const primaryButton = cva(baseButtonClass, {
     },
   },
   defaultVariants: {
-    colorVariant: "neutral",
+    color: "neutral",
   },
 });
 
-export const secondaryButton = cva(baseButtonClass, {
+const secondaryButton = cva(baseButtonClass, {
   variants: {
-    colorVariant: {
+    color: {
       primary:
         "bg-primary-4 text-primary-11 hover:bg-primary-5 active:bg-primary-6 ring-primary-7",
       accent:
@@ -40,13 +39,13 @@ export const secondaryButton = cva(baseButtonClass, {
     },
   },
   defaultVariants: {
-    colorVariant: "neutral",
+    color: "neutral",
   },
 });
 
-export const outlineButton = cva(cn(baseButtonClass, "focus:ring-1"), {
+const outlineButton = cva(cn(baseButtonClass, "focus:ring-1"), {
   variants: {
-    colorVariant: {
+    color: {
       primary:
         "border border-primary-7 bg-primary-1 text-primary-11 hover:bg-primary-3 ring-primary-7",
       accent:
@@ -61,13 +60,13 @@ export const outlineButton = cva(cn(baseButtonClass, "focus:ring-1"), {
     },
   },
   defaultVariants: {
-    colorVariant: "neutral",
+    color: "neutral",
   },
 });
 
-export const ghostButton = cva(baseButtonClass, {
+const ghostButton = cva(baseButtonClass, {
   variants: {
-    colorVariant: {
+    color: {
       primary:
         "bg-transparent text-primary-11 hover:bg-primary-4 active:bg-primary-5 ring-primary-7",
       accent:
@@ -82,13 +81,13 @@ export const ghostButton = cva(baseButtonClass, {
     },
   },
   defaultVariants: {
-    colorVariant: "neutral",
+    color: "neutral",
   },
 });
 
-export const selectedButton = cva(baseButtonClass, {
+const selectedButton = cva(baseButtonClass, {
   variants: {
-    colorVariant: {
+    color: {
       primary: "bg-primary-5 text-primary-11 ring-primary-7",
       accent: "bg-accent-5 text-accent-11 ring-accent-7",
       neutral: "bg-neutral-5 text-neutral-11 ring-neutral-7",
@@ -98,124 +97,47 @@ export const selectedButton = cva(baseButtonClass, {
     },
   },
   defaultVariants: {
-    colorVariant: "neutral",
+    color: "neutral",
   },
 });
 
-export type ButtonVariantProps = VariantProps<typeof primaryButton>;
-export interface ButtonProps
-  extends React.ComponentPropsWithoutRef<"button">,
-    ButtonVariantProps {}
+const button = (colorVariant?: VariantProps<typeof primaryButton>) =>
+  cva("", {
+    variants: {
+      variant: {
+        primary: primaryButton(colorVariant),
+        secondary: secondaryButton(colorVariant),
+        outline: outlineButton(colorVariant),
+        ghost: ghostButton(colorVariant),
+        selected: selectedButton(colorVariant),
+      },
+    },
+  });
 
-const PrimaryButton = forwardRef<
-  HTMLButtonElement,
-  WithRequired<ButtonProps, "children">
->(({ colorVariant, className, ...props }, ref) => (
-  <button
-    ref={ref}
-    className={cn(primaryButton({ colorVariant: colorVariant }), className)}
-    {...props}
-  />
-));
-PrimaryButton.displayName = "PrimaryButton";
+export type ButtonType = VariantProps<ReturnType<typeof button>>["variant"];
+export type ButtonColor = VariantProps<typeof primaryButton>["color"];
 
-const PrimaryButton_Icon = forwardRef<
-  HTMLButtonElement,
-  WithRequired<ButtonProps, "children">
->(({ className, ...props }, ref) => (
-  <PrimaryButton ref={ref} className={cn("px-2", className)} {...props} />
-));
-PrimaryButton_Icon.displayName = PrimaryButton.displayName;
+export interface ButtonProps extends React.ComponentPropsWithoutRef<"button"> {
+  variant: {
+    type: ButtonType;
+    color?: ButtonColor;
+    iconOnly?: boolean;
+  };
+}
 
-const SecondaryButton = forwardRef<
-  HTMLButtonElement,
-  WithRequired<ButtonProps, "children">
->(({ colorVariant, className, ...props }, ref) => (
-  <button
-    ref={ref}
-    className={cn(secondaryButton({ colorVariant: colorVariant }), className)}
-    {...props}
-  />
-));
-SecondaryButton.displayName = "SecondaryButton";
+export const buttonClass = (variant: ButtonProps["variant"]) =>
+  cn(
+    button({ color: variant.color })({ variant: variant.type }),
+    variant.iconOnly && "px-2"
+  );
 
-const SecondaryButton_Icon = forwardRef<
-  HTMLButtonElement,
-  WithRequired<ButtonProps, "children">
->(({ className, ...props }, ref) => (
-  <SecondaryButton ref={ref} className={cn("px-2", className)} {...props} />
-));
-SecondaryButton_Icon.displayName = SecondaryButton.displayName;
-
-const OutlineButton = forwardRef<
-  HTMLButtonElement,
-  WithRequired<ButtonProps, "children">
->(({ colorVariant, className, ...props }, ref) => (
-  <button
-    ref={ref}
-    className={cn(outlineButton({ colorVariant: colorVariant }), className)}
-    {...props}
-  />
-));
-OutlineButton.displayName = "OutlineButton";
-
-const OutlineButton_Icon = forwardRef<
-  HTMLButtonElement,
-  WithRequired<ButtonProps, "children">
->(({ className, ...props }, ref) => (
-  <OutlineButton ref={ref} className={cn("px-2", className)} {...props} />
-));
-OutlineButton_Icon.displayName = OutlineButton.displayName;
-
-const GhostButton = forwardRef<
-  HTMLButtonElement,
-  WithRequired<ButtonProps, "children">
->(({ colorVariant, className, ...props }, ref) => (
-  <button
-    ref={ref}
-    className={cn(ghostButton({ colorVariant: colorVariant }), className)}
-    {...props}
-  />
-));
-GhostButton.displayName = "GhostButton";
-
-const GhostButton_Icon = forwardRef<
-  HTMLButtonElement,
-  WithRequired<ButtonProps, "children">
->(({ className, ...props }, ref) => (
-  <GhostButton ref={ref} className={cn("px-2", className)} {...props} />
-));
-GhostButton_Icon.displayName = GhostButton.displayName;
-
-const SelectedButton = forwardRef<
-  HTMLButtonElement,
-  WithRequired<ButtonProps, "children">
->(({ colorVariant, className, ...props }, ref) => (
-  <button
-    ref={ref}
-    className={cn(selectedButton({ colorVariant: colorVariant }), className)}
-    {...props}
-  />
-));
-SelectedButton.displayName = "SelectedButton";
-
-const SelectedButton_Icon = forwardRef<
-  HTMLButtonElement,
-  WithRequired<ButtonProps, "children">
->(({ className, ...props }, ref) => (
-  <SelectedButton ref={ref} className={cn("px-2", className)} {...props} />
-));
-SelectedButton_Icon.displayName = SelectedButton.displayName;
-
-export {
-  PrimaryButton,
-  PrimaryButton_Icon,
-  SecondaryButton,
-  SecondaryButton_Icon,
-  OutlineButton,
-  OutlineButton_Icon,
-  GhostButton,
-  GhostButton_Icon,
-  SelectedButton,
-  SelectedButton_Icon,
-};
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant, ...props }, ref) => (
+    <button
+      ref={ref}
+      className={cn(buttonClass(variant), className)}
+      {...props}
+    />
+  )
+);
+Button.displayName = "Button";

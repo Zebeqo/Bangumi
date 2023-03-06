@@ -6,7 +6,7 @@ import { forwardRef } from "react";
 import type { WithRequired } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { GhostButton_Icon } from "@/ui/primitive/Button";
+import { Button } from "@/ui/primitive/Button";
 import { useInView } from "react-intersection-observer";
 
 const Dialog = DialogPrimitive.Root;
@@ -126,9 +126,14 @@ const DialogClose = forwardRef<
   >
 >(({ ...props }, ref) => (
   <DialogPrimitive.Close ref={ref} asChild {...props}>
-    <GhostButton_Icon colorVariant={"neutral"}>
+    <Button
+      variant={{
+        type: "ghost",
+        iconOnly: true,
+      }}
+    >
       <XMarkIcon className="h-6 w-6" />
-    </GhostButton_Icon>
+    </Button>
   </DialogPrimitive.Close>
 ));
 DialogClose.displayName = DialogPrimitive.Close.displayName;

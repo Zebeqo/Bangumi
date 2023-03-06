@@ -7,7 +7,7 @@ import { cva } from "class-variance-authority";
 
 const ratingVariant = cva("flex space-x-1", {
   variants: {
-    colorVariant: {
+    color: {
       primary: "text-primary-11",
       accent: "text-accent-11",
       neutral: "text-neutral-11",
@@ -17,21 +17,19 @@ const ratingVariant = cva("flex space-x-1", {
     },
   },
   defaultVariants: {
-    colorVariant: "neutral",
+    color: "neutral",
   },
 });
-interface RatingProps
-  extends React.ComponentPropsWithoutRef<"div">,
-    VariantProps<typeof ratingVariant> {
+interface RatingProps extends React.ComponentPropsWithoutRef<"div"> {
   score: number;
   maxScore: number;
   totalIconCount: number;
+  variant: {
+    color?: VariantProps<typeof ratingVariant>["color"];
+  };
 }
 const Rating = forwardRef<HTMLDivElement, RatingProps>(
-  (
-    { className, colorVariant, score, maxScore, totalIconCount, ...props },
-    ref
-  ) => {
+  ({ className, variant, score, maxScore, totalIconCount, ...props }, ref) => {
     if (score > maxScore || score < 0) {
       return null;
     }
@@ -46,7 +44,7 @@ const Rating = forwardRef<HTMLDivElement, RatingProps>(
     return (
       <div
         ref={ref}
-        className={cn(ratingVariant({ colorVariant: colorVariant }), className)}
+        className={cn(ratingVariant({ color: variant.color }), className)}
         {...props}
       >
         {Array.from({ length: fillStarCount }).map((_, index) => (
@@ -94,11 +92,9 @@ const RatingHalfIcon = forwardRef<
 >(({ className, ...props }, ref) => (
   <span ref={ref} className="relative" {...props}>
     <div className={"w-1/2 overflow-hidden"}>
-      <RatingFillIcon className={cn("h-4 w-4", className)} />
+      <RatingFillIcon className={className} />
     </div>
-    <RatingEmptyIcon
-      className={cn("absolute top-0 left-0 h-4 w-4", className)}
-    />
+    <RatingEmptyIcon className={cn("absolute top-0 left-0", className)} />
   </span>
 ));
 RatingHalfIcon.displayName = "RatingIcon";

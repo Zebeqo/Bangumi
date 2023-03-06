@@ -9,7 +9,7 @@ import {
   DialogDescription,
   DialogTitle,
 } from "@/ui/primitive/Dialog";
-import { SecondaryButton } from "@/ui/primitive/Button";
+import { Button } from "@/ui/primitive/Button";
 
 export function Dialog() {
   const dialog = useAtomValue(dialogAtom);
@@ -30,13 +30,16 @@ export function Dialog() {
         </DialogContentHeader>
         <DialogDescription>{dialog?.description ?? ""}</DialogDescription>
         {dialog?.action && (
-          <SecondaryButton
-            colorVariant={"error"}
+          <Button
+            variant={{
+              type: "secondary",
+              color: "error",
+            }}
             className="mt-4 mr-6 self-end"
             onClick={dialog.action.onClick}
           >
             {dialog.action.label}
-          </SecondaryButton>
+          </Button>
         )}
       </DialogContent>
     </DialogRoot>

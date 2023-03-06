@@ -8,7 +8,7 @@ const badge = cva(
   "inline-flex select-none items-center justify-center font-medium whitespace-nowrap text-xs px-3 rounded-md py-1",
   {
     variants: {
-      colorVariant: {
+      color: {
         primary: "bg-primary-4 text-primary-11",
         accent: "bg-accent-4 text-accent-11",
         neutral: "bg-neutral-4 text-neutral-11",
@@ -19,16 +19,17 @@ const badge = cva(
     },
   }
 );
-type BadgeVariantsProps = VariantProps<typeof badge>;
 
-interface BadgeProps
-  extends React.ComponentPropsWithoutRef<"span">,
-    Required<BadgeVariantsProps> {}
+interface BadgeProps extends React.ComponentPropsWithoutRef<"span"> {
+  variant: {
+    color: VariantProps<typeof badge>["color"];
+  };
+}
 
 const Badge = forwardRef<HTMLSpanElement, WithRequired<BadgeProps, "children">>(
-  ({ className, colorVariant, ...props }, ref) => (
+  ({ className, variant, ...props }, ref) => (
     <span
-      className={cn(badge({ colorVariant }), className)}
+      className={cn(badge({ color: variant.color }), className)}
       ref={ref}
       {...props}
     />

@@ -4,7 +4,7 @@ import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 import { forwardRef } from "react";
 import { cn } from "@/lib/utils";
 import { CheckIcon } from "@heroicons/react/20/solid";
-import { ghostButton } from "@/ui/primitive/Button";
+import { buttonClass } from "@/ui/primitive/Button";
 
 export type DropdownMenuColor = "primary" | "accent" | "neutral";
 
@@ -72,7 +72,7 @@ const DropdownMenuItem = forwardRef<
   <DropdownMenuPrimitive.Item
     ref={ref}
     className={cn(
-      ghostButton(),
+      buttonClass({ type: "ghost" }),
       "w-full focus:bg-neutral-4 focus:ring-0",
       className
     )}

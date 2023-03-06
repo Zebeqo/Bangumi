@@ -10,7 +10,7 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
 } from "@/ui/primitive/DropdownMenu";
-import { OutlineButton } from "@/ui/primitive/Button";
+import { Button } from "@/ui/primitive/Button";
 
 const sortRadioItems = [
   {
@@ -59,10 +59,10 @@ export function SortMenu() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <OutlineButton colorVariant={"neutral"} aria-label={"sort-menu"}>
+        <Button variant={{ type: "outline" }} aria-label={"sort-menu"}>
           <ArrowsUpDownIcon className="mr-2 h-5 w-5" />
           排序
-        </OutlineButton>
+        </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" sideOffset={8} className="w-36">
         <DropdownMenuRadioGroup

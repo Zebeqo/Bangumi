@@ -5,7 +5,7 @@ import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { LoadingSpinner } from "@/ui/icon/24/LoadingSpinner";
-import { GhostButton_Icon } from "@/ui/primitive/Button";
+import { Button } from "@/ui/primitive/Button";
 
 export function ThemeButton() {
   const [mounted, setMounted] = useState(false);
@@ -17,20 +17,20 @@ export function ThemeButton() {
 
   if (!mounted) {
     return (
-      <GhostButton_Icon
-        colorVariant={"neutral"}
+      <Button
+        variant={{ type: "ghost", iconOnly: true }}
         aria-label="Loading Theme"
         className="hover:bg-transparent active:bg-transparent"
       >
         <LoadingSpinner className="h-6 w-6" />
-      </GhostButton_Icon>
+      </Button>
     );
   }
 
   return (
-    <GhostButton_Icon
+    <Button
+      variant={{ type: "ghost", iconOnly: true }}
       aria-label="Toggle Dark Mode"
-      colorVariant={"neutral"}
       onClick={() => {
         setTheme(theme === "dark" ? "light" : "dark");
       }}
@@ -40,6 +40,6 @@ export function ThemeButton() {
       ) : (
         <MoonIcon className="h-6 w-6" />
       )}
-    </GhostButton_Icon>
+    </Button>
   );
 }

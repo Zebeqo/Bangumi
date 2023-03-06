@@ -10,9 +10,8 @@ import {
 import { forwardRef } from "react";
 import type { WithRequired } from "@/lib/utils";
 import { cn } from "@/lib/utils";
-import type { ButtonVariantProps } from "@/ui/primitive/Button";
-import { OutlineButton } from "@/ui/primitive/Button";
-import type { VariantProps } from "class-variance-authority";
+import type { ButtonProps } from "@/ui/primitive/Button";
+import { Button } from "@/ui/primitive/Button";
 import { cva } from "class-variance-authority";
 
 export type SelectColor = "primary" | "accent" | "neutral";
@@ -22,25 +21,25 @@ const SelectGroup = SelectPrimitive.Group;
 
 interface SelectTriggerProps
   extends React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>,
-    Required<ButtonVariantProps> {}
+    ButtonProps {}
 const SelectTrigger = forwardRef<
   React.ElementRef<typeof SelectPrimitive.Trigger>,
   Omit<SelectTriggerProps, "children">
->(({ colorVariant, ...props }, ref) => (
+>(({ variant, ...props }, ref) => (
   <SelectPrimitive.Trigger ref={ref} {...props} asChild>
-    <OutlineButton ref={ref} colorVariant={colorVariant}>
+    <Button ref={ref} variant={variant}>
       <SelectPrimitive.Value />
       <SelectPrimitive.Icon className="ml-2 h-5 w-5">
         <ChevronDownIcon />
       </SelectPrimitive.Icon>
-    </OutlineButton>
+    </Button>
   </SelectPrimitive.Trigger>
 ));
 SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
 
 const selectContent = cva("", {
   variants: {
-    colorVariant: {
+    color: {
       primary: "text-primary-11",
       accent: "text-accent-11",
       neutral: "text-neutral-11",
@@ -48,14 +47,22 @@ const selectContent = cva("", {
   },
 });
 interface SelectContentProps
-  extends React.ComponentPropsWithoutRef<typeof SelectPrimitive.Content>,
-    Required<VariantProps<typeof selectContent>> {}
+  extends React.ComponentPropsWithoutRef<typeof SelectPrimitive.Content> {
+  variant: {
+    color: SelectColor;
+  };
+}
 const SelectContent = forwardRef<
   React.ElementRef<typeof SelectPrimitive.Content>,
   WithRequired<SelectContentProps, "children">
->(({ colorVariant, className, children, ...props }, ref) => (
+>(({ variant, className, children, ...props }, ref) => (
   <>
-    <SelectTrigger colorVariant={colorVariant} />
+    <SelectTrigger
+      variant={{
+        type: "outline",
+        color: variant.color,
+      }}
+    />
     <SelectPrimitive.Portal>
       <SelectPrimitive.Content
         ref={ref}
@@ -65,7 +72,7 @@ const SelectContent = forwardRef<
         <SelectPrimitive.ScrollUpButton
           className={cn(
             "flex items-center justify-center",
-            selectContent({ colorVariant: colorVariant })
+            selectContent({ color: variant.color })
           )}
         >
           <ChevronUpIcon className="h-5 w-5" />
@@ -76,7 +83,7 @@ const SelectContent = forwardRef<
         <SelectPrimitive.ScrollDownButton
           className={cn(
             "flex items-center justify-center",
-            selectContent({ colorVariant: colorVariant })
+            selectContent({ color: variant.color })
           )}
         >
           <ChevronDownIcon className="h-5 w-5" />
@@ -91,7 +98,7 @@ const selectItem = cva(
   "relative flex select-none items-center rounded-md px-8 py-2 font-medium outline-none",
   {
     variants: {
-      colorVariant: {
+      color: {
         primary: "text-primary-11 focus:bg-primary-4",
         accent: "text-accent-11 focus:bg-accent-4",
         neutral: "text-neutral-11 focus:bg-neutral-4",
@@ -100,15 +107,18 @@ const selectItem = cva(
   }
 );
 interface SelectItemProps
-  extends React.ComponentPropsWithoutRef<typeof SelectPrimitive.Item>,
-    Required<VariantProps<typeof selectItem>> {}
+  extends React.ComponentPropsWithoutRef<typeof SelectPrimitive.Item> {
+  variant: {
+    color: SelectColor;
+  };
+}
 const SelectItem = forwardRef<
   React.ElementRef<typeof SelectPrimitive.Item>,
   WithRequired<SelectItemProps, "children">
->(({ className, colorVariant, children, ...props }, ref) => (
+>(({ className, variant, children, ...props }, ref) => (
   <SelectPrimitive.Item
     ref={ref}
-    className={cn(selectItem({ colorVariant: colorVariant }), className)}
+    className={cn(selectItem({ color: variant.color }), className)}
     {...props}
   >
     <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>

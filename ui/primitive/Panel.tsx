@@ -11,7 +11,7 @@ import {
 import { Dialog } from "@radix-ui/react-dialog";
 import type { WithRequired } from "@/lib/utils";
 import { cn, panelScrollToTop } from "@/lib/utils";
-import { OutlineButton_Icon } from "@/ui/primitive/Button";
+import { Button } from "@/ui/primitive/Button";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import { useReducerAtom, useResetAtom } from "jotai/utils";
 import { isOpenPanelAtom, panelHistoryAtom, panelReducer } from "@/lib/panel";
@@ -69,8 +69,8 @@ const PanelNavBackButton = () => {
   );
 
   return (
-    <OutlineButton_Icon
-      colorVariant="neutral"
+    <Button
+      variant={{ type: "outline", iconOnly: true }}
       onClick={() => {
         if (panelHistory.index) {
           dispatch({ type: "back" });
@@ -84,7 +84,7 @@ const PanelNavBackButton = () => {
       }
     >
       <ChevronLeftIcon className="h-6 w-6" />
-    </OutlineButton_Icon>
+    </Button>
   );
 };
 PanelNavBackButton.displayName = "PanelNavBackButton";
@@ -96,8 +96,8 @@ const PanelNavForwardButton = () => {
   );
 
   return (
-    <OutlineButton_Icon
-      colorVariant="neutral"
+    <Button
+      variant={{ type: "outline", iconOnly: true }}
       onClick={() => {
         if (panelHistory.index < panelHistory.history.length - 1) {
           dispatch({ type: "forward" });
@@ -111,7 +111,7 @@ const PanelNavForwardButton = () => {
       }
     >
       <ChevronRightIcon className="h-6 w-6" />
-    </OutlineButton_Icon>
+    </Button>
   );
 };
 PanelNavForwardButton.displayName = "PanelNavForwardButton";

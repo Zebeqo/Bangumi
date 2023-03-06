@@ -106,7 +106,12 @@ export async function CardServer({ subject_id, countType = "all" }: CardProps) {
         </CardInfo>
         <CardTagGroup>
           {tags.slice(0, 10).map((tag) => (
-            <Badge colorVariant={"primary"} key={tag.name}>
+            <Badge
+              variant={{
+                color: "primary",
+              }}
+              key={tag.name}
+            >
               {tag.name}
             </Badge>
           ))}

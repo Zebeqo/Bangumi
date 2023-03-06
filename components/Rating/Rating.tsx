@@ -5,6 +5,8 @@ export const Rating = ({ score }: { score: number }) => (
     score={score}
     maxScore={10}
     totalIconCount={5}
-    colorVariant={"accent"}
+    variant={{
+      color: "accent",
+    }}
   />
 );
