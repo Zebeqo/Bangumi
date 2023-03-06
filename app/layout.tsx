@@ -28,6 +28,11 @@ export default async function RootLayout({
 }) {
   const session = await getServerSession(authOptions);
 
+  let JotaiDevToolsComponent: React.ReactNode = null;
+  if (process.env.NODE_ENV === "development") {
+    JotaiDevToolsComponent = <JotaiDevTools />;
+  }
+
   return (
     // https://github.com/pacocoursey/next-themes/issues/152#issuecomment-1364280564
     <html lang="en" className={notoSansSC.variable} suppressHydrationWarning>
@@ -41,7 +46,7 @@ export default async function RootLayout({
         <ThemeProvider attribute="class" enableSystem={false}>
           <QueryProvider>
             <JotaiProvider>
-              <JotaiDevTools />
+              {JotaiDevToolsComponent}
               <SessionProvider session={session}>
                 <TooltipProvider delayDuration={300}>
                   {children}
