@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Button } from "@/ui/primitive/Button";
 import { useInView } from "react-intersection-observer";
+import { Tooltip } from "@/ui/primitive/Tooltip";
 
 const Dialog = DialogPrimitive.Root;
 const DialogTrigger = DialogPrimitive.Trigger;
@@ -125,16 +126,18 @@ const DialogClose = forwardRef<
     "children" | "asChild"
   >
 >(({ ...props }, ref) => (
-  <DialogPrimitive.Close ref={ref} asChild {...props}>
-    <Button
-      variant={{
-        type: "ghost",
-        iconOnly: true,
-      }}
-    >
-      <XMarkIcon className="h-6 w-6" />
-    </Button>
-  </DialogPrimitive.Close>
+  <Tooltip content="关闭">
+    <DialogPrimitive.Close ref={ref} asChild {...props}>
+      <Button
+        variant={{
+          type: "ghost",
+          iconOnly: true,
+        }}
+      >
+        <XMarkIcon className="h-6 w-6" />
+      </Button>
+    </DialogPrimitive.Close>
+  </Tooltip>
 ));
 DialogClose.displayName = DialogPrimitive.Close.displayName;
 

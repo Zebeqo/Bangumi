@@ -13,6 +13,7 @@ export const AvatarMenu_: Story = {
   args: {
     imageURL:
       "https://lain.bgm.tv/pic/user/l/000/76/09/760931.jpg?r=1674400223&hd=1",
+    nickname: "zebeqo",
   },
   play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
     const canvas = within(canvasElement);

@@ -14,8 +14,15 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/ui/primitive/DropdownMenu";
+import { Tooltip } from "@/ui/primitive/Tooltip";
 
-export const AvatarMenu = ({ imageURL }: { imageURL: string }) => {
+export const AvatarMenu = ({
+  imageURL,
+  nickname,
+}: {
+  imageURL: string;
+  nickname: string;
+}) => {
   const toast = useToast();
 
   const menuItems = [
@@ -50,20 +57,22 @@ export const AvatarMenu = ({ imageURL }: { imageURL: string }) => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger
-        className="relative rounded-lg outline-none ring-neutral-7 focus:outline-none focus:ring-2"
-        aria-label="avatar-menu"
-      >
-        <Image
-          src={imageURL}
-          alt={"Avatar"}
-          width={48}
-          height={48}
-          className="rounded-lg"
-          unoptimized={true}
-        />
-        <div className="absolute top-0 left-0 h-full w-full rounded-lg shadow-[inset_0_0_8px_rgba(0,0,0,0.15)]" />
-      </DropdownMenuTrigger>
+      <Tooltip content={`你好，${nickname} 😊`} side="bottom">
+        <DropdownMenuTrigger
+          className="relative rounded-lg outline-none ring-neutral-7 focus:outline-none focus:ring-2"
+          aria-label="avatar-menu"
+        >
+          <Image
+            src={imageURL}
+            alt={"Avatar"}
+            width={48}
+            height={48}
+            className="rounded-lg"
+            unoptimized={true}
+          />
+          <div className="absolute top-0 left-0 h-full w-full rounded-lg shadow-[inset_0_0_8px_rgba(0,0,0,0.15)]" />
+        </DropdownMenuTrigger>
+      </Tooltip>
       <DropdownMenuContent align="end" sideOffset={4}>
         {menuItems.map(({ label, icon, handleSelect }, i) => (
           <DropdownMenuItem key={`${label}-${i}`} onSelect={handleSelect}>

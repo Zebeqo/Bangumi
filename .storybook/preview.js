@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 import JotaiProvider from "../components/Provider/JotaiProvider";
 import QueryProvider from "../components/Provider/QueryProvider";
+import { TooltipProvider } from "../ui/primitive/Tooltip";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -38,7 +39,9 @@ const Provider = (Story) => {
     <div style={{ fontFamily: "Noto Sans SC" }}>
       <QueryProvider>
         <JotaiProvider>
-          <Story />
+          <TooltipProvider delayDuration={300}>
+            <Story />
+          </TooltipProvider>
         </JotaiProvider>
       </QueryProvider>
     </div>
