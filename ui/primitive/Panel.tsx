@@ -16,7 +16,6 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import { useReducerAtom, useResetAtom } from "jotai/utils";
 import { isOpenPanelAtom, panelHistoryAtom, panelReducer } from "@/lib/panel";
 import { useAtomValue } from "jotai";
-import { Tooltip } from "@/ui/primitive/Tooltip";
 
 interface PanelProps
   extends React.ComponentPropsWithoutRef<typeof Dialog>,
@@ -70,24 +69,22 @@ const PanelNavBackButton = () => {
   );
 
   return (
-    <Tooltip content="后退">
-      <Button
-        variant={{ type: "outline", iconOnly: true }}
-        onClick={() => {
-          if (panelHistory.index) {
-            dispatch({ type: "back" });
-            panelScrollToTop();
-          }
-        }}
-        className={
-          panelHistory.index
-            ? ""
-            : "cursor-not-allowed opacity-50 hover:bg-neutral-1 focus:ring-0"
+    <Button
+      variant={{ type: "outline", iconOnly: true }}
+      onClick={() => {
+        if (panelHistory.index) {
+          dispatch({ type: "back" });
+          panelScrollToTop();
         }
-      >
-        <ChevronLeftIcon className="h-6 w-6" />
-      </Button>
-    </Tooltip>
+      }}
+      className={
+        panelHistory.index
+          ? ""
+          : "cursor-not-allowed opacity-50 hover:bg-neutral-1 focus:ring-0"
+      }
+    >
+      <ChevronLeftIcon className="h-6 w-6" />
+    </Button>
   );
 };
 PanelNavBackButton.displayName = "PanelNavBackButton";
@@ -99,24 +96,22 @@ const PanelNavForwardButton = () => {
   );
 
   return (
-    <Tooltip content="前进">
-      <Button
-        variant={{ type: "outline", iconOnly: true }}
-        onClick={() => {
-          if (panelHistory.index < panelHistory.history.length - 1) {
-            dispatch({ type: "forward" });
-            panelScrollToTop();
-          }
-        }}
-        className={
-          panelHistory.index < panelHistory.history.length - 1
-            ? ""
-            : "cursor-not-allowed opacity-50 hover:bg-neutral-1 focus:ring-0"
+    <Button
+      variant={{ type: "outline", iconOnly: true }}
+      onClick={() => {
+        if (panelHistory.index < panelHistory.history.length - 1) {
+          dispatch({ type: "forward" });
+          panelScrollToTop();
         }
-      >
-        <ChevronRightIcon className="h-6 w-6" />
-      </Button>
-    </Tooltip>
+      }}
+      className={
+        panelHistory.index < panelHistory.history.length - 1
+          ? ""
+          : "cursor-not-allowed opacity-50 hover:bg-neutral-1 focus:ring-0"
+      }
+    >
+      <ChevronRightIcon className="h-6 w-6" />
+    </Button>
   );
 };
 PanelNavForwardButton.displayName = "PanelNavForwardButton";
