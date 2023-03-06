@@ -26,6 +26,7 @@
     "@radix-ui/react-slot": "1.0.1",
     "@radix-ui/react-switch": "1.0.1",
     "@radix-ui/react-toast": "1.1.2",
+    "@radix-ui/react-tooltip": "1.0.4",
     "@tanstack/query-core": "4.24.10",
     "@tanstack/react-query": "4.24.10",
     "@tanstack/react-query-devtools": "4.24.12",

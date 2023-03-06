@@ -11,6 +11,7 @@ import JotaiProvider, {
   JotaiDevTools,
 } from "@/components/Provider/JotaiProvider";
 import Analytics from "@/components/Analytics";
+import { TooltipProvider } from "@/ui/primitive/Tooltip";
 
 const notoSansSC = Noto_Sans_SC({
   variable: "--font-noto-sans-sc",
@@ -41,7 +42,11 @@ export default async function RootLayout({
           <QueryProvider>
             <JotaiProvider>
               <JotaiDevTools />
-              <SessionProvider session={session}>{children}</SessionProvider>
+              <SessionProvider session={session}>
+                <TooltipProvider delayDuration={300}>
+                  {children}
+                </TooltipProvider>
+              </SessionProvider>
             </JotaiProvider>
             <ReactQueryDevtools
               initialIsOpen={false}

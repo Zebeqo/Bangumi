@@ -6,6 +6,7 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { LoadingSpinner } from "@/ui/icon/24/LoadingSpinner";
 import { Button } from "@/ui/primitive/Button";
+import { Tooltip } from "@/ui/primitive/Tooltip";
 
 export function ThemeButton() {
   const [mounted, setMounted] = useState(false);
@@ -28,18 +29,20 @@ export function ThemeButton() {
   }
 
   return (
-    <Button
-      variant={{ type: "ghost", iconOnly: true }}
-      aria-label="Toggle Dark Mode"
-      onClick={() => {
-        setTheme(theme === "dark" ? "light" : "dark");
-      }}
-    >
-      {theme === "dark" ? (
-        <SunIcon className="h-6 w-6" />
-      ) : (
-        <MoonIcon className="h-6 w-6" />
-      )}
-    </Button>
+    <Tooltip content={theme === "dark" ? "明亮模式" : "黑暗模式"}>
+      <Button
+        variant={{ type: "ghost", iconOnly: true }}
+        aria-label="Toggle Dark Mode"
+        onClick={() => {
+          setTheme(theme === "dark" ? "light" : "dark");
+        }}
+      >
+        {theme === "dark" ? (
+          <SunIcon className="h-6 w-6" />
+        ) : (
+          <MoonIcon className="h-6 w-6" />
+        )}
+      </Button>
+    </Tooltip>
   );
 }

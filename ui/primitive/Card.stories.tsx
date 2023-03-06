@@ -27,6 +27,7 @@ import { Rating } from "@/components/Rating/Rating";
 import { userEvent, within } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
 import { Badge } from "@/ui/primitive/Badge";
+import { Tooltip } from "@/ui/primitive/Tooltip";
 
 const meta = {
   title: "Card",
@@ -121,26 +122,30 @@ export const Card_: StoryObj<{
         <CardHeader>
           <CardTitle mainTitle={name_cn} subTitle={name} />
           <CardButtonGroup>
-            <Button
-              variant={{
-                type: "primary",
-                color: "accent",
-                iconOnly: true,
-              }}
-              aria-label="open-info-panel"
-              onClick={onClickInfoButton}
-            >
-              <InformationCircleIcon className="h-6 w-6" />
-            </Button>
-            <Button
-              variant={{
-                type: "primary",
-                color: "accent",
-                iconOnly: true,
-              }}
-            >
-              <ChatBubbleLeftRightIcon className="h-6 w-6" />
-            </Button>
+            <Tooltip content="显示详情">
+              <Button
+                variant={{
+                  type: "primary",
+                  color: "accent",
+                  iconOnly: true,
+                }}
+                aria-label="open-info-panel"
+                onClick={onClickInfoButton}
+              >
+                <InformationCircleIcon className="h-6 w-6" />
+              </Button>
+            </Tooltip>
+            <Tooltip content="显示讨论">
+              <Button
+                variant={{
+                  type: "primary",
+                  color: "accent",
+                  iconOnly: true,
+                }}
+              >
+                <ChatBubbleLeftRightIcon className="h-6 w-6" />
+              </Button>
+            </Tooltip>
           </CardButtonGroup>
         </CardHeader>
         <CardInfo>
