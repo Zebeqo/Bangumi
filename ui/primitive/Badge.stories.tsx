@@ -7,7 +7,7 @@ import { colorArray } from "@/lib/color";
 const meta = {
   title: "Badge",
   argTypes: {
-    colorVariant: {
+    color: {
       control: {
         type: "radio",
       },
@@ -18,13 +18,18 @@ const meta = {
 
 export default meta;
 
-export const CommentBadge: StoryObj<{ colorVariant: Color; count: number }> = {
+export const CommentBadge: StoryObj<{ color: Color; count: number }> = {
   args: {
-    colorVariant: "success",
+    color: "success",
     count: 123,
   },
-  render: ({ colorVariant, count }) => (
-    <Badge colorVariant={colorVariant} className="rounded-full py-2">
+  render: ({ color, count }) => (
+    <Badge
+      variant={{
+        color: color,
+      }}
+      className="rounded-full py-2"
+    >
       <ChatBubbleLeftRightIcon className="mr-1 h-4 w-4" />
       {count}
     </Badge>
@@ -32,29 +37,39 @@ export const CommentBadge: StoryObj<{ colorVariant: Color; count: number }> = {
 };
 
 export const TagBadge: StoryObj<{
-  colorVariant: Color;
+  color: Color;
   count: number;
   label: string;
 }> = {
   args: {
-    colorVariant: "primary",
+    color: "primary",
     count: 123,
     label: "神作",
   },
-  render: ({ label, colorVariant, count }) => (
-    <Badge colorVariant={colorVariant}>
+  render: ({ label, color, count }) => (
+    <Badge
+      variant={{
+        color: color,
+      }}
+    >
       {label}
       <span className="ml-1 text-neutral-11">{count}</span>
     </Badge>
   ),
 };
 
-export const DefaultBadge: StoryObj<{ colorVariant: Color; label: string }> = {
+export const DefaultBadge: StoryObj<{ color: Color; label: string }> = {
   args: {
-    colorVariant: "primary",
+    color: "primary",
     label: "神作",
   },
-  render: ({ label, colorVariant }) => (
-    <Badge colorVariant={colorVariant}>{label}</Badge>
+  render: ({ label, color }) => (
+    <Badge
+      variant={{
+        color: color,
+      }}
+    >
+      {label}
+    </Badge>
   ),
 };

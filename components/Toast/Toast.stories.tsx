@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { useToast } from "@/hooks/use-toast";
-import { PrimaryButton } from "@/ui/primitive/Button";
+import { Button } from "@/ui/primitive/Button";
 import { action } from "@storybook/addon-actions";
 import { userEvent, within } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
@@ -31,7 +31,7 @@ export const Toast: StoryObj<{
     const toast = useToast();
 
     return (
-      <PrimaryButton
+      <Button
         data-testid="toast"
         onClick={() => {
           toast({
@@ -44,10 +44,10 @@ export const Toast: StoryObj<{
             },
           });
         }}
-        colorVariant={toastType}
+        variant={{ type: "primary", color: toastType }}
       >
         success toast
-      </PrimaryButton>
+      </Button>
     );
   },
   argTypes: {

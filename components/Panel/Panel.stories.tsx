@@ -2,7 +2,7 @@ import { expect } from "@storybook/jest";
 import type { Meta, StoryObj } from "@storybook/react";
 import { waitFor, within, screen, userEvent } from "@storybook/testing-library";
 import { PanelDecorator, ReactQueryDevtoolsDecorator } from "@/ui/Storybook";
-import { SecondaryButton } from "@/ui/primitive/Button";
+import { Button } from "@/ui/primitive/Button";
 import { panelHistoryAtom, panelReducer } from "@/lib/panel";
 import { useReducerAtom } from "jotai/utils";
 
@@ -15,7 +15,8 @@ const meta = {
   render: ({ target_id }) => {
     const [, dispatch] = useReducerAtom(panelHistoryAtom, panelReducer);
     return (
-      <SecondaryButton
+      <Button
+        variant={{ type: "secondary" }}
         data-testid="open-panel"
         onClick={() => {
           dispatch({
@@ -25,7 +26,7 @@ const meta = {
         }}
       >
         Open panel
-      </SecondaryButton>
+      </Button>
     );
   },
 } satisfies Meta;

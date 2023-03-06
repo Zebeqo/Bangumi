@@ -25,7 +25,7 @@ import { CollectionTypeSelect } from "@/components/Select/CollectionTypeSelect";
 import { RatingSelect } from "@/components/Select/RatingSelect";
 import { EpisodeButton } from "@/components/Button/EpisodeButton";
 import { MoreMenu } from "@/components/DropdownMenu/MoreMenu";
-import { OutlineButton, PrimaryButton } from "@/ui/primitive/Button";
+import { Button } from "@/ui/primitive/Button";
 import {
   ChevronDownIcon,
   InboxArrowDownIcon,
@@ -66,7 +66,7 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
                 <SubjectContentInfoHeaderDivider />
                 <SubjectContentTagGroup>
                   {subjectData.tags.map(({ count, name }) => (
-                    <Badge colorVariant={"primary"} key={name}>
+                    <Badge variant={{ color: "primary" }} key={name}>
                       {name}
                       <span className="ml-1 text-neutral-11">{count}</span>
                     </Badge>
@@ -127,8 +127,10 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
                   </>
                 ) : (
                   <>
-                    <PrimaryButton
-                      colorVariant={"neutral"}
+                    <Button
+                      variant={{
+                        type: "primary",
+                      }}
                       onClick={() => {
                         if (session) {
                           toast({
@@ -155,9 +157,11 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
                     >
                       <InboxArrowDownIcon className="mr-2 h-5 w-5" />
                       收藏
-                    </PrimaryButton>
-                    <OutlineButton
-                      colorVariant={"neutral"}
+                    </Button>
+                    <Button
+                      variant={{
+                        type: "outline",
+                      }}
                       onClick={() => {
                         if (session) {
                           toast({
@@ -176,7 +180,7 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
                         <span>评分</span>
                       </span>
                       <ChevronDownIcon className="ml-2 h-5 w-5" />
-                    </OutlineButton>
+                    </Button>
                     <MoreMenu subject_id={subjectData.id} />
                   </>
                 )}

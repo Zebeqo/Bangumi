@@ -7,7 +7,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/ui/primitive/Dialog";
-import { SecondaryButton } from "@/ui/primitive/Button";
+import { Button } from "@/ui/primitive/Button";
 import { action } from "@storybook/addon-actions";
 import { screen, userEvent, within } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
@@ -30,7 +30,7 @@ export const Dialog_: StoryObj<{
     return (
       <Dialog onOpenChange={action("trigger close")}>
         <DialogTrigger asChild>
-          <SecondaryButton>Open Dialog</SecondaryButton>
+          <Button variant={{ type: "secondary" }}>Open Dialog</Button>
         </DialogTrigger>
         <DialogContent>
           <DialogContentHeader>
@@ -68,20 +68,20 @@ export const Dialog_Action: StoryObj<{
     return (
       <Dialog onOpenChange={action("trigger close")}>
         <DialogTrigger asChild>
-          <SecondaryButton>Open Dialog</SecondaryButton>
+          <Button variant={{ type: "secondary" }}>Open Dialog</Button>
         </DialogTrigger>
         <DialogContent>
           <DialogContentHeader>
             <DialogTitle>{title}</DialogTitle>
           </DialogContentHeader>
           <DialogDescription>{description}</DialogDescription>
-          <SecondaryButton
-            colorVariant={"accent"}
+          <Button
+            variant={{ type: "secondary", color: "accent" }}
             onClick={handleAction}
             className="mt-4 mr-6 self-end"
           >
             {actionLabel}
-          </SecondaryButton>
+          </Button>
         </DialogContent>
       </Dialog>
     );

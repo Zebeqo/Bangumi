@@ -2,7 +2,7 @@
 
 import { ChatBubbleLeftRightIcon } from "@heroicons/react/24/outline";
 import { forwardRef } from "react";
-import { PrimaryButton_Icon } from "@/ui/primitive/Button";
+import { Button } from "@/ui/primitive/Button";
 import { useToast } from "@/hooks/use-toast";
 
 interface ChatButtonProps {
@@ -13,8 +13,8 @@ export const ChatButton = forwardRef<HTMLButtonElement, ChatButtonProps>(
     const toast = useToast();
 
     return (
-      <PrimaryButton_Icon
-        colorVariant={"accent"}
+      <Button
+        variant={{ type: "primary", color: "accent", iconOnly: true }}
         ref={ref}
         onClick={() => {
           toast({
@@ -26,7 +26,7 @@ export const ChatButton = forwardRef<HTMLButtonElement, ChatButtonProps>(
         {...props}
       >
         <ChatBubbleLeftRightIcon className="h-6 w-6" />
-      </PrimaryButton_Icon>
+      </Button>
     );
   }
 );

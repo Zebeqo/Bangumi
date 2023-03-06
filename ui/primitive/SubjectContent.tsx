@@ -69,7 +69,12 @@ const SubjectContentRating = forwardRef<
     className={cn("flex flex-col items-center space-y-2 p-2", className)}
     {...props}
   >
-    <Badge colorVariant={"accent"} className="w-full text-base">
+    <Badge
+      variant={{
+        color: "accent",
+      }}
+      className="w-full text-base"
+    >
       评分
     </Badge>
     <span className="text-4xl font-bold text-accent-11">

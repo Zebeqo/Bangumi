@@ -11,7 +11,7 @@ import {
 } from "@heroicons/react/20/solid";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { ghostButton, selectedButton } from "@/ui/primitive/Button";
+import { buttonClass } from "@/ui/primitive/Button";
 import { cn } from "@/lib/utils";
 
 const headerItems = [
@@ -65,17 +65,14 @@ const groups = [
   },
 ];
 
+const selectedClass = cn(
+  buttonClass({ type: "selected", color: "primary" }),
+  "w-full justify-start"
+);
+const defaultClass = cn(buttonClass({ type: "ghost" }), "w-full justify-start");
+
 export function Sidebar() {
   const path = usePathname();
-
-  const selectedClass = cn(
-    selectedButton({ colorVariant: "primary" }),
-    "w-full justify-start"
-  );
-  const ghostClass = cn(
-    ghostButton({ colorVariant: "neutral" }),
-    "w-full justify-start"
-  );
 
   return (
     <div className="fixed h-full w-52 border-r border-r-neutral-6 px-4 py-4">
@@ -92,10 +89,10 @@ export function Sidebar() {
                   path === "/"
                     ? item.href === "/top"
                       ? selectedClass
-                      : ghostClass
+                      : defaultClass
                     : path?.startsWith(item.href)
                     ? selectedClass
-                    : ghostClass
+                    : defaultClass
                 }
               >
                 {item.icon}
@@ -121,10 +118,10 @@ export function Sidebar() {
                         path === "/collection"
                           ? item.href === "/collection/do"
                             ? selectedClass
-                            : ghostClass
+                            : defaultClass
                           : path?.startsWith(item.href)
                           ? selectedClass
-                          : ghostClass
+                          : defaultClass
                       }
                     >
                       {item.icon}

@@ -11,7 +11,7 @@ import {
   SubjectContent_,
   SubjectContent_Auth,
 } from "@/ui/primitive/SubjectContent.stories";
-import { SecondaryButton } from "@/ui/primitive/Button";
+import { Button } from "@/ui/primitive/Button";
 import { panelHistoryAtom, panelReducer } from "@/lib/panel";
 import { useReducerAtom } from "jotai/utils";
 import { userEvent, within } from "@storybook/testing-library";
@@ -42,7 +42,8 @@ export const Panel_: StoryObj = {
             <p className="text-neutral-12">TODO: extract other content</p>
           </PanelContent>
         </Panel>
-        <SecondaryButton
+        <Button
+          variant={{ type: "secondary" }}
           data-testid="open-panel"
           onClick={() => {
             dispatch({
@@ -52,7 +53,7 @@ export const Panel_: StoryObj = {
           }}
         >
           Open panel
-        </SecondaryButton>
+        </Button>
       </>
     );
   },

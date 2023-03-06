@@ -1,20 +1,12 @@
 import { expect } from "@storybook/jest";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Rating } from "@/ui/primitive/Rating";
-import { colorArray } from "@/lib/color";
 import { within } from "@storybook/testing-library";
 
+// https://github.com/storybookjs/storybook/issues/12078
 const meta = {
   title: "Rating",
   component: Rating,
-  argTypes: {
-    colorVariant: {
-      control: {
-        type: "radio",
-      },
-      options: colorArray,
-    },
-  },
 } satisfies Meta<typeof Rating>;
 
 export default meta;
@@ -25,7 +17,9 @@ export const Rating_: Story = {
     score: 6.6,
     maxScore: 10,
     totalIconCount: 5,
-    colorVariant: "accent",
+    variant: {
+      color: "accent",
+    },
   },
   play: ({ canvasElement }: { canvasElement: HTMLElement }) => {
     const canvas = within(canvasElement);

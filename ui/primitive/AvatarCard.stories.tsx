@@ -42,7 +42,13 @@ export const AvatarCard_: StoryObj<{
   },
   render: ({ commentCount, imageURL, items, onClickImage }) => (
     <AvatarCard>
-      <AvatarCardBadge colorVariant={"success"}>{commentCount}</AvatarCardBadge>
+      <AvatarCardBadge
+        variant={{
+          color: "success",
+        }}
+      >
+        {commentCount}
+      </AvatarCardBadge>
       <AvatarCardContent>
         <AvatarCardImage src={imageURL} alt="Avatar" onClick={onClickImage} />
         <AvatarCardInfo>

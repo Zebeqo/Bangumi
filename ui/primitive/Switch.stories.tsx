@@ -9,7 +9,7 @@ import { colorArray } from "@/lib/color";
 const meta: Meta = {
   title: "Switch",
   argTypes: {
-    colorVariant: {
+    color: {
       control: {
         type: "radio",
       },
@@ -21,16 +21,21 @@ const meta: Meta = {
 export default meta;
 
 export const Switch_: StoryObj<{
-  colorVariant: Color;
+  color: Color;
   onCheckedChange: () => void;
 }> = {
   args: {
-    colorVariant: "accent",
+    color: "accent",
     onCheckedChange: action("checked change"),
   },
-  render: ({ colorVariant, onCheckedChange }) => {
+  render: ({ color, onCheckedChange }) => {
     return (
-      <Switch colorVariant={colorVariant} onCheckedChange={onCheckedChange} />
+      <Switch
+        variant={{
+          color: color,
+        }}
+        onCheckedChange={onCheckedChange}
+      />
     );
   },
   play: async ({ canvasElement, args }) => {

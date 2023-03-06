@@ -1,6 +1,6 @@
 import { expect } from "@storybook/jest";
 import type { Meta, StoryObj } from "@storybook/react";
-import { SecondaryButton } from "@/ui/primitive/Button";
+import { Button } from "@/ui/primitive/Button";
 import { useDialog } from "@/hooks/use-dialog";
 import { screen, userEvent, within } from "@storybook/testing-library";
 import { action } from "@storybook/addon-actions";
@@ -44,7 +44,10 @@ export const Dialog_: StoryObj<{
   render: ({ title, description, actionLabel, handleAction }) => {
     const dialog = useDialog();
     return (
-      <SecondaryButton
+      <Button
+        variant={{
+          type: "secondary",
+        }}
         onClick={() =>
           dialog({
             title: title,
@@ -57,7 +60,7 @@ export const Dialog_: StoryObj<{
         }
       >
         Open Dialog
-      </SecondaryButton>
+      </Button>
     );
   },
   play: async ({ canvasElement, args }) => {

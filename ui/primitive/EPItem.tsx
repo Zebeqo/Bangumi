@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import type { WithRequired } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 import type { ButtonProps } from "@/ui/primitive/Button";
-import { GhostButton, SelectedButton } from "@/ui/primitive/Button";
+import { Button } from "@/ui/primitive/Button";
 import {
   CalendarDaysIcon,
   ChatBubbleLeftRightIcon,
@@ -29,14 +29,20 @@ EPItemRightContent.displayName = "EPItemRightContent";
 
 const EPItemComment = forwardRef<
   HTMLButtonElement,
-  Omit<ButtonProps, "children"> & { count: number }
+  Omit<ButtonProps, "children" | "variant"> & { count: number }
 >(({ count, ...props }, ref) => (
-  <GhostButton ref={ref} {...props}>
+  <Button
+    ref={ref}
+    variant={{
+      type: "ghost",
+    }}
+    {...props}
+  >
     <ChatBubbleLeftRightIcon className="mr-2 h-5 w-5" />
     {count}
-  </GhostButton>
+  </Button>
 ));
-EPItemComment.displayName = GhostButton.displayName;
+EPItemComment.displayName = "EPItemComment";
 
 const EPItemLeftContent = forwardRef<
   HTMLDivElement,
@@ -56,19 +62,31 @@ interface EPItemIndexProps extends ButtonProps {
 }
 const EPItemIndex = forwardRef<
   HTMLButtonElement,
-  Omit<EPItemIndexProps, "children">
+  Omit<EPItemIndexProps, "children" | "variant">
 >(({ value, isSelected, ...props }, ref) =>
   isSelected ? (
-    <SelectedButton ref={ref} {...props}>
+    <Button
+      ref={ref}
+      variant={{
+        type: "selected",
+      }}
+      {...props}
+    >
       {value}
-    </SelectedButton>
+    </Button>
   ) : (
-    <GhostButton ref={ref} {...props}>
+    <Button
+      ref={ref}
+      variant={{
+        type: "ghost",
+      }}
+      {...props}
+    >
       {value}
-    </GhostButton>
+    </Button>
   )
 );
-EPItemIndex.displayName = GhostButton.displayName;
+EPItemIndex.displayName = "EPItemIndex";
 
 interface EPItemInfo extends EPItemInfoMainProps, EPItemInfoSubProps {}
 const EPItemInfo = forwardRef<HTMLDivElement, Omit<EPItemInfo, "children">>(

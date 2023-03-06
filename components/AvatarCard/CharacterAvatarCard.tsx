@@ -27,7 +27,11 @@ export function CharacterAvatarCard({
     <>
       {characterData && (
         <AvatarCard>
-          <AvatarCardBadge colorVariant={"success"}>
+          <AvatarCardBadge
+            variant={{
+              color: "success",
+            }}
+          >
             {characterData.stat.comments}
           </AvatarCardBadge>
           <AvatarCardContent>

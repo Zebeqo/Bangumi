@@ -80,12 +80,22 @@ export function CollectionCard({
         <CardTagGroup>
           {pvMode
             ? collection.tags.map((tag) => (
-                <Badge colorVariant={"primary"} key={tag}>
+                <Badge
+                  variant={{
+                    color: "primary",
+                  }}
+                  key={tag}
+                >
                   {tag}
                 </Badge>
               ))
             : collection.subject.tags.map((tag) => (
-                <Badge colorVariant={"primary"} key={tag.name}>
+                <Badge
+                  variant={{
+                    color: "primary",
+                  }}
+                  key={tag.name}
+                >
                   {tag.name}
                 </Badge>
               ))}

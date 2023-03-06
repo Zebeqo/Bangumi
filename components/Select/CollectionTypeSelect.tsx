@@ -10,13 +10,19 @@ export const CollectionTypeSelect = (
   props: React.ComponentPropsWithoutRef<typeof Select>
 ) => (
   <Select {...props}>
-    <SelectContent colorVariant="accent">
+    <SelectContent
+      variant={{
+        color: "accent",
+      }}
+    >
       <SelectGroup>
         {Object.values(collectionTypeMap)
           .map((value) => value.name_cn)
           .map((value, index) => (
             <SelectItem
-              colorVariant="accent"
+              variant={{
+                color: "accent",
+              }}
               key={`${value}-${index}`}
               value={value}
             >

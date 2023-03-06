@@ -1,5 +1,5 @@
 import { panelScrollToTop } from "@/lib/utils";
-import { GhostButton } from "@/ui/primitive/Button";
+import { Button } from "@/ui/primitive/Button";
 
 export const ListHeader = ({
   title,
@@ -14,9 +14,11 @@ export const ListHeader = ({
     <div className="flex items-center justify-between px-6 py-3">
       <span className="text-3xl font-medium text-neutral-12">{title}</span>
       {showAction && (
-        <GhostButton
+        <Button
+          variant={{
+            type: "ghost",
+          }}
           aria-label={`显示全部${title}`}
-          colorVariant="neutral"
           className="hover:bg-transparent active:bg-transparent"
           onClick={() => {
             onClickAction();
@@ -24,7 +26,7 @@ export const ListHeader = ({
           }}
         >
           显示全部
-        </GhostButton>
+        </Button>
       )}
     </div>
   );

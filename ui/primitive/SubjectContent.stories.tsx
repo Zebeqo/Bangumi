@@ -12,7 +12,7 @@ import {
   SubjectContentInfoText,
 } from "@/ui/primitive/SubjectContent";
 import { Badge } from "@/ui/primitive/Badge";
-import { OutlineButton, PrimaryButton } from "@/ui/primitive/Button";
+import { Button } from "@/ui/primitive/Button";
 import { action } from "@storybook/addon-actions";
 import {
   ChevronDownIcon,
@@ -188,7 +188,7 @@ export const SubjectContent_: StoryObj<{
           <SubjectContentInfoHeaderDivider />
           <SubjectContentTagGroup>
             {tags.map(({ count, name }) => (
-              <Badge colorVariant={"primary"} key={name}>
+              <Badge variant={{ color: "primary" }} key={name}>
                 {name}
                 <span className="ml-1 text-neutral-11">{count}</span>
               </Badge>
@@ -197,17 +197,17 @@ export const SubjectContent_: StoryObj<{
         </SubjectContentInfoHeader>
         <SubjectContentInfoText text={summary} />
         <SubjectContentInfoFooter>
-          <PrimaryButton colorVariant={"neutral"} onClick={onClickCollection}>
+          <Button variant={{ type: "primary" }} onClick={onClickCollection}>
             <InboxArrowDownIcon className="mr-2 h-5 w-5" />
             收藏
-          </PrimaryButton>
-          <OutlineButton colorVariant={"neutral"} onClick={onClickRating}>
+          </Button>
+          <Button variant={{ type: "outline" }} onClick={onClickRating}>
             <span className="flex items-center space-x-1">
               <StarIcon className="h-5 w-5" />
               <span>评分</span>
             </span>
             <ChevronDownIcon className="ml-2 h-5 w-5" />
-          </OutlineButton>
+          </Button>
           <MoreMenu subject_id={302286} hasCollectionData />
         </SubjectContentInfoFooter>
       </SubjectContentInfo>
@@ -245,7 +245,7 @@ export const SubjectContent_Auth: StoryObj<{
           <SubjectContentInfoHeaderDivider />
           <SubjectContentTagGroup>
             {tags.map(({ count, name }) => (
-              <Badge colorVariant={"primary"} key={name}>
+              <Badge variant={{ color: "primary" }} key={name}>
                 {name}
                 <span className="ml-1 text-neutral-11">{count}</span>
               </Badge>
