@@ -1,3 +1,5 @@
+"use client";
+
 import { signIn } from "next-auth/react";
 import { BangumiRawIcon } from "@/ui/icon/20/BangumiRawIcon";
 import { Button } from "@/ui/primitive/Button";
