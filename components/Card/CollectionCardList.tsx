@@ -3,7 +3,7 @@
 import { useCollectionsPageData } from "@/hooks/use-collection";
 import { useInView } from "react-intersection-observer";
 import { Fragment, useEffect } from "react";
-import { LoadMore } from "@/ui/LoadMore";
+import { LoadMore } from "@/components/LoadMore";
 import { CollectionCard } from "@/components/Card/CollectionCard";
 import { personalViewModeAtom } from "@/components/Switch/personalViewSwitch";
 import { useAtomValue } from "jotai";
