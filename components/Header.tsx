@@ -20,7 +20,10 @@ export async function Header() {
         </div>
         <div className="h-8 w-[1px] bg-neutral-6"></div>
         {session ? (
-          <AvatarMenu imageURL={session.user.image} />
+          <AvatarMenu
+            imageURL={session.user.image}
+            nickname={session.user.nickname}
+          />
         ) : (
           <LoginButton />
         )}
