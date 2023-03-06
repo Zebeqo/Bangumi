@@ -7,7 +7,9 @@ import ThemeProvider from "@/components/Provider/ThemeProvider";
 import QueryProvider, {
   ReactQueryDevtools,
 } from "@/components/Provider/QueryProvider";
-import JotaiProvider from "@/components/Provider/JotaiProvider";
+import JotaiProvider, {
+  JotaiDevTools,
+} from "@/components/Provider/JotaiProvider";
 import Analytics from "@/components/Analytics";
 
 const notoSansSC = Noto_Sans_SC({
@@ -38,9 +40,13 @@ export default async function RootLayout({
         <ThemeProvider attribute="class" enableSystem={false}>
           <QueryProvider>
             <JotaiProvider>
+              <JotaiDevTools />
               <SessionProvider session={session}>{children}</SessionProvider>
             </JotaiProvider>
-            <ReactQueryDevtools initialIsOpen={false} />
+            <ReactQueryDevtools
+              initialIsOpen={false}
+              position={"bottom-right"}
+            />
           </QueryProvider>
         </ThemeProvider>
         <Analytics />
