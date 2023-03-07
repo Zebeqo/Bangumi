@@ -28,6 +28,7 @@ export function useSubjectRelationsData(subject_id: number) {
         if (e instanceof Error) {
           const message = e.message;
           errorToast("获取相关条目信息失败", message);
+          return null;
         }
       }
     },

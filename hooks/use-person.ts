@@ -20,6 +20,7 @@ export function usePersonData(person_id: number) {
         if (e instanceof Error) {
           const message = e.message;
           errorToast("获取制作人员信息失败", message);
+          return null;
         }
       }
     },
@@ -53,6 +54,7 @@ export function useSubjectPersonsData(subject_id: number) {
         if (e instanceof Error) {
           const message = e.message;
           errorToast("获取条目制作人员信息失败", message);
+          return null;
         }
       }
     },

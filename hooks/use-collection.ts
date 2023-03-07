@@ -44,6 +44,7 @@ export function useCollectionData(subject_id: number) {
         if (e instanceof Error) {
           const message = e.message;
           errorToast("获取收藏信息失败", message);
+          return null;
         }
       }
     },
@@ -88,6 +89,7 @@ export function useCollectionsPageData(
           if (e instanceof Error) {
             const message = e.message;
             errorToast("获取收藏信息失败", message);
+            return null;
           }
         }
       },
