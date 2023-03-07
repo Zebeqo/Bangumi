@@ -19,6 +19,7 @@ export function useCharacterData(character_id: number) {
         if (e instanceof Error) {
           const message = e.message;
           errorToast("获取角色信息失败", message);
+          return null;
         }
       }
     },
@@ -52,6 +53,7 @@ export function useSubjectCharactersData(subject_id: number) {
         if (e instanceof Error) {
           const message = e.message;
           errorToast("获取条目角色信息失败", message);
+          return null;
         }
       }
     },

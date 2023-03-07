@@ -29,6 +29,7 @@ export function useSubjectData(subject_id: number) {
         if (e instanceof Error) {
           const message = e.message;
           errorToast("获取条目信息失败", message);
+          return null;
         }
       }
     },

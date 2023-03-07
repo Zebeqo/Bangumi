@@ -65,6 +65,7 @@ export function useEpisodesData(
         if (e instanceof Error) {
           const message = e.message;
           errorToast("获取剧集信息失败", message);
+          return null;
         }
       }
     },
@@ -100,6 +101,7 @@ export function useEpisodesPageData(subject_id: number, limit = 100, type = 0) {
           if (e instanceof Error) {
             const message = e.message;
             errorToast("获取剧集信息失败", message);
+            return null;
           }
         }
       },
