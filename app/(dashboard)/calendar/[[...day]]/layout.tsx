@@ -46,7 +46,7 @@ export default function Layout({
   params,
 }: {
   children: React.ReactNode;
-  params: { day?: undefined } | { day: string[] };
+  params: { day?: string[] };
 }) {
   const selectedItem = params.day
     ? params.day[0]
