@@ -12,6 +12,7 @@ import JotaiProvider, {
 } from "@/components/Provider/JotaiProvider";
 import Analytics from "@/components/Analytics";
 import { TooltipProvider } from "@/ui/primitive/Tooltip";
+import type { Metadata } from "next";
 
 const notoSansSC = Noto_Sans_SC({
   variable: "--font-noto-sans-sc",
@@ -20,6 +21,41 @@ const notoSansSC = Noto_Sans_SC({
   display: "auto",
   preload: false,
 });
+
+export const metadata: Metadata = {
+  title: {
+    default: "番组计划",
+    template: `%s | 番组计划`,
+  },
+  description: "一个开源的 bgm.tv 客户端",
+  keywords: [
+    "Bangumi",
+    "番组计划",
+    "Anime",
+    "Next.js",
+    "React",
+    "Tailwind CSS",
+  ],
+  authors: [
+    {
+      name: "zebeqo",
+      // TODO: My Blog URL
+    },
+  ],
+  creator: "zebeqo",
+  openGraph: {
+    type: "website",
+    locale: "zh_CN",
+    url: "https://www.bangumi.app/",
+    title: "番组计划",
+    description: "一个开源的 bgm.tv 客户端",
+    siteName: "Bangumi App",
+    // TODO: OG Image
+  },
+  icons: {
+    icon: "/bangumi-icon.svg",
+  },
+};
 
 export default async function RootLayout({
   children,
@@ -35,13 +71,7 @@ export default async function RootLayout({
 
   return (
     // https://github.com/pacocoursey/next-themes/issues/152#issuecomment-1364280564
-    <html lang="en" className={notoSansSC.variable} suppressHydrationWarning>
-      {/*
-        <head /> will contain the components returned by the nearest parent
-        head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
-      */}
-      <head />
-
+    <html lang="zh" className={notoSansSC.variable} suppressHydrationWarning>
       <body className="bg-white dark:bg-neutral-1">
         <ThemeProvider attribute="class" enableSystem={false}>
           <QueryProvider>
