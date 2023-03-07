@@ -33,7 +33,7 @@ export default function Layout({
   params,
 }: {
   children: React.ReactNode;
-  params: { type?: undefined } | { type: string[] };
+  params: { type?: string[] };
 }) {
   const selectedItem = params.type ? params.type.at(0) ?? "anime" : "anime";
 
