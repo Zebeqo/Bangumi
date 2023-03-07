@@ -13,7 +13,6 @@ export default meta;
 type Story = StoryObj<typeof CollectionCard>;
 
 const collectionData = {
-  updated_at: "2023-03-03T17:42:47Z",
   comment: null,
   tags: ["EVA", "神作", "原创"],
   subject: {

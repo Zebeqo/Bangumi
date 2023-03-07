@@ -3,7 +3,6 @@ import { FALLBACK_IMAGE } from "@/lib/constant";
 
 export const collectionScheme = z.object({
   subject_id: z.number().int(),
-  updated_at: z.string().datetime(),
   comment: z.string().nullable(),
   tags: z.array(z.string()),
   type: z.number().int().positive().lte(5),
