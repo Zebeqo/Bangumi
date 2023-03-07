@@ -2,11 +2,7 @@
 const nextConfig = {
   experimental: {
     appDir: true,
-    swcPlugins: [
-      ["@swc-jotai/debug-label", {}],
-      // https://github.com/pmndrs/swc-jotai/issues/6
-      // ["@swc-jotai/react-refresh", {}],
-    ],
+    swcPlugins: [["@swc-jotai/debug-label", {}]],
     forceSwcTransforms: true,
   },
   images: {
