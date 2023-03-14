@@ -62,7 +62,7 @@
     "@storybook/test-runner": "0.10.0-next.8",
     "@storybook/testing-library": "0.0.14-next.1",
     "@swc-jotai/debug-label": "0.0.6",
-    "@swc-jotai/react-refresh": "0.0.4",
+    "@swc-jotai/react-refresh": "0.0.7",
     "@tailwindcss/line-clamp": "0.4.2",
     "@tanstack/eslint-plugin-query": "4.24.11",
     "@tomfreudenberg/next-auth-mock": "0.5.6",
