@@ -59,7 +59,7 @@
     "@storybook/manager-api": "7.0.0-beta.61",
     "@storybook/nextjs": "7.0.0-beta.61",
     "@storybook/react": "7.0.0-beta.61",
-    "@storybook/test-runner": "0.10.0-next.8",
+    "@storybook/test-runner": "0.10.0-next.11",
     "@storybook/testing-library": "0.0.14-next.1",
     "@swc-jotai/debug-label": "0.0.6",
     "@swc-jotai/react-refresh": "0.0.4",
