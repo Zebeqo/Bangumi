@@ -1,5 +1,3 @@
-// export const dynamicParams = false;
-
 import { Subnav } from "@/components/Subnav";
 import { SortMenu } from "@/components/DropdownMenu/SortMenu";
 

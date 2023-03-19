@@ -1,6 +1,5 @@
-// export const dynamicParams = false;
+export const dynamicParams = false;
 
-import { notFound } from "next/navigation";
 import { CardServer } from "@/components/Card/CardServer";
 import type { SearchParams } from "@/lib/api/calendar";
 import { calendarScheme, sortCalendarData } from "@/lib/api/calendar";
@@ -8,18 +7,18 @@ import { GridWrapper } from "@/components/GridWrapper";
 
 // https://github.com/nextauthjs/next-auth/issues/5647#issuecomment-1342099364
 // https://github.com/vercel/next.js/issues/44764
-// export function generateStaticParams() {
-//   return [
-//     { day: [] },
-//     { day: ["monday"] },
-//     { day: ["tuesday"] },
-//     { day: ["wednesday"] },
-//     { day: ["thursday"] },
-//     { day: ["friday"] },
-//     { day: ["saturday"] },
-//     { day: ["sunday"] },
-//   ];
-// }
+export function generateStaticParams() {
+  return [
+    { day: [] },
+    { day: ["monday"] },
+    { day: ["tuesday"] },
+    { day: ["wednesday"] },
+    { day: ["thursday"] },
+    { day: ["friday"] },
+    { day: ["saturday"] },
+    { day: ["sunday"] },
+  ];
+}
 
 const dayMap = {
   today: new Date().getDay() === 0 ? 7 : new Date().getDay(),
@@ -51,22 +50,6 @@ export default async function Page({
   params: { day?: string[] };
   searchParams?: SearchParams;
 }) {
-  // compromise
-  if (
-    ![
-      undefined,
-      "monday",
-      "tuesday",
-      "wednesday",
-      "thursday",
-      "friday",
-      "saturday",
-      "sunday",
-    ].includes(params.day?.at(0))
-  ) {
-    notFound();
-  }
-
   const calendarData = await getCalendarData();
   const dayData = params.day
     ? calendarData.find(

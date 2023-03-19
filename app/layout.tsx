@@ -1,8 +1,5 @@
 import "@/styles/globals.css";
 import SessionProvider from "@/components/Provider/SessionProvider";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/lib/auth";
-import { Noto_Sans_SC } from "next/font/google";
 import ThemeProvider from "@/components/Provider/ThemeProvider";
 import QueryProvider, {
   ReactQueryDevtools,
@@ -13,19 +10,20 @@ import JotaiProvider, {
 import Analytics from "@/components/Analytics";
 import { TooltipProvider } from "@/ui/primitive/Tooltip";
 import type { Metadata } from "next";
+import { Noto_Sans_SC } from "next/font/google";
 
 // use in production
 // https://github.com/vercel/next.js/issues/45080
-// const notoSansSC = Noto_Sans_SC({
-//   variable: "--font-noto-sans-sc",
-//   weight: ["400", "500", "700"],
-//   subsets: ["latin"],
-//   display: "swap",
-//   preload: false,
-// });
+const notoSansSC = Noto_Sans_SC({
+  variable: "--font-noto-sans-sc",
+  weight: ["400", "500", "700"],
+  subsets: ["latin"],
+  display: "swap",
+  preload: false,
+});
 
 // use in development
-const notoSansSC = { variable: "font-['Noto_Sans_SC']" };
+// const notoSansSC = { variable: "font-['Noto_Sans_SC']" };
 
 export const metadata: Metadata = {
   title: {
@@ -62,13 +60,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getServerSession(authOptions);
-
   let JotaiDevToolsComponent: React.ReactNode = null;
   if (process.env.NODE_ENV === "development") {
     JotaiDevToolsComponent = <JotaiDevTools />; // put your debug store here, or remove store prop to debug global store
@@ -82,7 +78,7 @@ export default async function RootLayout({
           <QueryProvider>
             <JotaiProvider>
               {JotaiDevToolsComponent}
-              <SessionProvider session={session}>
+              <SessionProvider>
                 <TooltipProvider delayDuration={300}>
                   {children}
                 </TooltipProvider>
