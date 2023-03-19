@@ -77,7 +77,7 @@ const SelectContent = forwardRef<
         >
           <ChevronUpIcon className="h-5 w-5" />
         </SelectPrimitive.ScrollUpButton>
-        <SelectPrimitive.Viewport className="rounded-lg bg-neutral-1 p-2 shadow-lg">
+        <SelectPrimitive.Viewport className="rounded-lg bg-neutral-1 py-2 px-3.5 shadow-lg">
           {children}
         </SelectPrimitive.Viewport>
         <SelectPrimitive.ScrollDownButton

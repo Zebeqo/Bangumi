@@ -21,18 +21,31 @@ const meta = {
       options: ["primary", "accent", "neutral"],
     },
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const selectEl = canvas.getByRole("combobox");
+
+    await userEvent.click(selectEl);
+    const listbox = within(screen.getByRole("listbox"));
+    const option = await listbox.findAllByRole("option");
+    expect(option.length).toBeGreaterThan(1);
+
+    await userEvent.keyboard("{esc}");
+  },
 } satisfies Meta;
 
 export default meta;
 
-export const Select_: StoryObj<{
+type SelectStory = StoryObj<{
   color: SelectColor;
   defaultValue: string;
   options: string[];
-}> = {
+}>;
+
+export const Select_: SelectStory = {
   args: {
     color: "accent",
-    defaultValue: "想看",
+    defaultValue: "在看",
     options: Object.values(collectionTypeMap).map((value) => value.name_cn),
   },
   render: ({ color, defaultValue, options }) => (
@@ -58,15 +71,9 @@ export const Select_: StoryObj<{
       </SelectContent>
     </Select>
   ),
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const selectEl = canvas.getByRole("combobox");
+};
 
-    await userEvent.click(selectEl);
-    const listbox = within(screen.getByRole("listbox"));
-    const option = await listbox.findAllByRole("option");
-    expect(option.length).toBeGreaterThan(1);
-
-    await userEvent.keyboard("{esc}");
-  },
+export const Select_Edge: SelectStory = {
+  ...Select_,
+  parameters: { layout: "padded" },
 };
