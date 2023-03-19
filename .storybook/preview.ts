@@ -34,3 +34,5 @@ const preview: Preview = {
   },
   decorators: [RootDecorator],
 };
+
+export default preview;
