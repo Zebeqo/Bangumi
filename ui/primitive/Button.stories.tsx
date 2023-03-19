@@ -19,11 +19,6 @@ const meta = {
       options: colorArray,
     },
   },
-  args: {
-    color: "accent",
-    text: "Button",
-    onClick: action("button clicked"),
-  },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
     const buttons = canvas.getAllByRole("button");
@@ -43,6 +38,11 @@ type ButtonStory = StoryObj<{
 }>;
 
 export const Primary: ButtonStory = {
+  args: {
+    color: "accent",
+    text: "Button",
+    onClick: action("button clicked"),
+  },
   render: ({ color, text, onClick }) => (
     <>
       <Button
@@ -81,6 +81,11 @@ export const Primary: ButtonStory = {
 };
 
 export const Secondary: ButtonStory = {
+  args: {
+    color: "accent",
+    text: "Button",
+    onClick: action("button clicked"),
+  },
   render: ({ color, text, onClick }) => (
     <>
       <Button
@@ -119,6 +124,11 @@ export const Secondary: ButtonStory = {
 };
 
 export const Outline: ButtonStory = {
+  args: {
+    color: "accent",
+    text: "Button",
+    onClick: action("button clicked"),
+  },
   render: ({ color, text, onClick }) => (
     <>
       <Button
@@ -157,6 +167,11 @@ export const Outline: ButtonStory = {
 };
 
 export const Ghost: ButtonStory = {
+  args: {
+    color: "accent",
+    text: "Button",
+    onClick: action("button clicked"),
+  },
   render: ({ color, text, onClick }) => (
     <>
       <Button
@@ -195,6 +210,11 @@ export const Ghost: ButtonStory = {
 };
 
 export const Selected: ButtonStory = {
+  args: {
+    color: "accent",
+    text: "Button",
+    onClick: action("button clicked"),
+  },
   render: ({ color, text, onClick }) => (
     <>
       <Button
