@@ -2,6 +2,23 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Panel } from "@/components/Panel/Panel";
 import { Dialog } from "@/components/Dialog/Dialog";
 import { Toast } from "@/components/Toast/Toast";
+import QueryProvider from "@/components/Provider/QueryProvider";
+import JotaiProvider from "@/components/Provider/JotaiProvider";
+import { TooltipProvider } from "@/ui/primitive/Tooltip";
+
+export const RootDecorator = (Story: React.ComponentType) => {
+  return (
+    <div style={{ fontFamily: "Noto Sans SC" }}>
+      <QueryProvider>
+        <JotaiProvider>
+          <TooltipProvider delayDuration={300}>
+            <Story />
+          </TooltipProvider>
+        </JotaiProvider>
+      </QueryProvider>
+    </div>
+  );
+};
 
 export const ReactQueryDevtoolsDecorator = (Story: React.ComponentType) => {
   return (

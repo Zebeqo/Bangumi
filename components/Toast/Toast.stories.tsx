@@ -4,7 +4,7 @@ import { Button } from "@/ui/primitive/Button";
 import { action } from "@storybook/addon-actions";
 import { userEvent, within } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
-import { ToastDecorator } from "@/ui/Storybook";
+import { ToastDecorator } from "@/ui/StorybookDecorator";
 
 const meta: Meta = {
   title: "Toast",

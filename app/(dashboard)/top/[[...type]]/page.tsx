@@ -1,6 +1,5 @@
-// export const dynamicParams = false;
+export const dynamicParams = false;
 
-import { notFound } from "next/navigation";
 import { CardServer } from "@/components/Card/CardServer";
 import { GridWrapper } from "@/components/GridWrapper";
 import { subjectNameToTypeScheme } from "@/lib/api/subject";
@@ -8,16 +7,16 @@ import { searchResultScheme } from "@/lib/api/search";
 
 // https://github.com/nextauthjs/next-auth/issues/5647#issuecomment-1342099364
 // https://github.com/vercel/next.js/issues/44764
-// export function generateStaticParams() {
-//   return [
-//     { type: [] },
-//     { type: ["anime"] },
-//     { type: ["book"] },
-//     { type: ["music"] },
-//     { type: ["game"] },
-//     { type: ["real"] },
-//   ];
-// }
+export function generateStaticParams() {
+  return [
+    { type: [] },
+    { type: ["anime"] },
+    { type: ["book"] },
+    { type: ["music"] },
+    { type: ["game"] },
+    { type: ["real"] },
+  ];
+}
 
 async function getRankData(type: string) {
   return searchResultScheme.parse(
@@ -45,15 +44,6 @@ export default async function Page({
 }: {
   params: { type?: string[] };
 }) {
-  // compromise
-  if (
-    ![undefined, "anime", "book", "music", "game", "real"].includes(
-      params.type?.at(0)
-    )
-  ) {
-    notFound();
-  }
-
   const type = params.type?.at(0) ?? "anime";
 
   const rankData = await getRankData(type);

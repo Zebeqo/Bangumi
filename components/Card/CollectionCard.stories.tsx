@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { CollectionCard } from "@/components/Card/CollectionCard";
 import { collectionsDataScheme } from "@/lib/api/collection";
-import { PanelDecorator, ToastDecorator } from "@/ui/Storybook";
+import { PanelDecorator, ToastDecorator } from "@/ui/StorybookDecorator";
 
 const meta = {
   component: CollectionCard,

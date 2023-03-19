@@ -4,7 +4,7 @@ import { Button } from "@/ui/primitive/Button";
 import { useDialog } from "@/hooks/use-dialog";
 import { screen, userEvent, within } from "@storybook/testing-library";
 import { action } from "@storybook/addon-actions";
-import { DialogDecorator } from "@/ui/Storybook";
+import { DialogDecorator } from "@/ui/StorybookDecorator";
 
 const meta = {
   title: "Dialog",

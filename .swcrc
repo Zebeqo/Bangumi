@@ -1,7 +1,11 @@
 {
   "jsc": {
     "experimental": {
-      "plugins": [["@swc-jotai/react-refresh", {}]]
+      "plugins": [
+        //  debug-label not working here
+        ["@swc-jotai/debug-label", {}],
+        ["@swc-jotai/react-refresh", {}]
+      ]
     }
   }
 }

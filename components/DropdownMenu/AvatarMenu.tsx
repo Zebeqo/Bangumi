@@ -6,7 +6,7 @@ import {
   ArrowRightOnRectangleIcon,
 } from "@heroicons/react/20/solid";
 import Image from "next/image";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useToast } from "@/hooks/use-toast";
 import {
   DropdownMenu,
@@ -15,14 +15,11 @@ import {
   DropdownMenuTrigger,
 } from "@/ui/primitive/DropdownMenu";
 import { Tooltip } from "@/ui/primitive/Tooltip";
+import { LoginButton } from "@/components/Button/LoginButton";
 
-export const AvatarMenu = ({
-  imageURL,
-  nickname,
-}: {
-  imageURL: string;
-  nickname: string;
-}) => {
+export const AvatarMenu = () => {
+  const { data: session } = useSession();
+
   const toast = useToast();
 
   const menuItems = [
@@ -55,15 +52,19 @@ export const AvatarMenu = ({
     },
   ];
 
+  if (!session) {
+    return <LoginButton />;
+  }
+
   return (
     <DropdownMenu>
-      <Tooltip content={`你好，${nickname} 😊`} side="bottom">
+      <Tooltip content={`你好，${session.user.nickname} 😊`} side="bottom">
         <DropdownMenuTrigger
           className="relative rounded-lg outline-none ring-neutral-7 focus:outline-none focus:ring-2"
           aria-label="avatar-menu"
         >
           <Image
-            src={imageURL}
+            src={session.user.image}
             alt={"Avatar"}
             width={48}
             height={48}

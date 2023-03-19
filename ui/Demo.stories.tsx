@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import Demo from "./Demo";
+import Demo from "@/ui/Demo";
 
 const meta = {
   component: Demo,
