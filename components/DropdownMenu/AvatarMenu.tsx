@@ -19,7 +19,6 @@ import { LoginButton } from "@/components/Button/LoginButton";
 
 export const AvatarMenu = () => {
   const { data: session } = useSession();
-  console.log(session);
 
   const toast = useToast();
 
