@@ -20,7 +20,7 @@ const meta = {
     },
   },
   args: {
-    color: "primary",
+    color: "accent",
     text: "Button",
     onClick: action("button clicked"),
   },
