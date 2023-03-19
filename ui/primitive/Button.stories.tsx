@@ -2,7 +2,7 @@ import { expect } from "@storybook/jest";
 import type { Meta, StoryObj } from "@storybook/react";
 import type { ButtonColor } from "@/ui/primitive/Button";
 import { Button } from "@/ui/primitive/Button";
-import { RowDecorator } from "@/ui/Storybook";
+import { RowDecorator } from "@/ui/StorybookDecorator";
 import { BoltIcon } from "@heroicons/react/20/solid";
 import { action } from "@storybook/addon-actions";
 import { userEvent, within } from "@storybook/testing-library";
@@ -18,6 +18,11 @@ const meta = {
       },
       options: colorArray,
     },
+  },
+  args: {
+    color: "primary",
+    text: "Button",
+    onClick: action("button clicked"),
   },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
@@ -38,11 +43,6 @@ type ButtonStory = StoryObj<{
 }>;
 
 export const Primary: ButtonStory = {
-  args: {
-    color: "accent",
-    text: "Button",
-    onClick: action("button clicked"),
-  },
   render: ({ color, text, onClick }) => (
     <>
       <Button
@@ -81,11 +81,6 @@ export const Primary: ButtonStory = {
 };
 
 export const Secondary: ButtonStory = {
-  args: {
-    color: "accent",
-    text: "Button",
-    onClick: action("button clicked"),
-  },
   render: ({ color, text, onClick }) => (
     <>
       <Button
@@ -124,11 +119,6 @@ export const Secondary: ButtonStory = {
 };
 
 export const Outline: ButtonStory = {
-  args: {
-    color: "accent",
-    text: "Button",
-    onClick: action("button clicked"),
-  },
   render: ({ color, text, onClick }) => (
     <>
       <Button
@@ -167,11 +157,6 @@ export const Outline: ButtonStory = {
 };
 
 export const Ghost: ButtonStory = {
-  args: {
-    color: "accent",
-    text: "Button",
-    onClick: action("button clicked"),
-  },
   render: ({ color, text, onClick }) => (
     <>
       <Button
@@ -210,11 +195,6 @@ export const Ghost: ButtonStory = {
 };
 
 export const Selected: ButtonStory = {
-  args: {
-    color: "accent",
-    text: "Button",
-    onClick: action("button clicked"),
-  },
   render: ({ color, text, onClick }) => (
     <>
       <Button

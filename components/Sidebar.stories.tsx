@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Sidebar as SidebarComponent } from "./Sidebar";
-import { HeaderMarginDecorator } from "@/ui/Storybook";
+import { HeaderMarginDecorator } from "@/ui/StorybookDecorator";
 
 const meta: Meta<typeof SidebarComponent> = {
   title: "Sidebar",

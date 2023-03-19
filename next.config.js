@@ -2,7 +2,6 @@
 const nextConfig = {
   experimental: {
     appDir: true,
-    swcPlugins: [["@swc-jotai/debug-label", {}]],
     forceSwcTransforms: true,
   },
   images: {

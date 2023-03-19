@@ -1,7 +1,10 @@
 import { expect } from "@storybook/jest";
 import type { Meta, StoryObj } from "@storybook/react";
 import { waitFor, within, screen, userEvent } from "@storybook/testing-library";
-import { PanelDecorator, ReactQueryDevtoolsDecorator } from "@/ui/Storybook";
+import {
+  PanelDecorator,
+  ReactQueryDevtoolsDecorator,
+} from "@/ui/StorybookDecorator";
 import { Button } from "@/ui/primitive/Button";
 import { panelHistoryAtom, panelReducer } from "@/lib/panel";
 import { useReducerAtom } from "jotai/utils";

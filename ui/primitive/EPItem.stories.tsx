@@ -9,7 +9,7 @@ import {
   EPItemRightContent,
 } from "@/ui/primitive/EPItem";
 import { action } from "@storybook/addon-actions";
-import { ContainerDecorator } from "@/ui/Storybook";
+import { ContainerDecorator } from "@/ui/StorybookDecorator";
 import { userEvent, within } from "@storybook/testing-library";
 
 const meta = {

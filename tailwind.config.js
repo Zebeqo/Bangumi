@@ -10,7 +10,7 @@ module.exports = {
     "./ui/**/*.{ts,tsx}",
     "./hooks/**/*.tsx",
     "./.storybook/*.html",
-    "./.storybook/preview.js",
+    "./.storybook/preview.ts",
   ],
   darkMode: "class",
   theme: {
