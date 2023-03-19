@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { CollectionTypeSelect } from "@/components/Select/CollectionTypeSelect";
 import { action } from "@storybook/addon-actions";
-import { Select_ } from "@/ui/primitive/Select.stories";
+import SelectMeta from "@/ui/primitive/Select.stories";
 
 const meta = {
   component: CollectionTypeSelect,
@@ -19,6 +19,6 @@ export const CollectionTypeSelect_: Story = {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
     // eslint-disable-next-line storybook/context-in-play-function
-    await Select_.play({ canvasElement });
+    await SelectMeta.play({ canvasElement });
   },
 };
