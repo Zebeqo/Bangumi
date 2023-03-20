@@ -1,43 +1,4 @@
-import { Subnav } from "@/components/Subnav";
-import { SortMenu } from "@/components/DropdownMenu/SortMenu";
-
-const navItems = [
-  {
-    name: "monday",
-    value: "周一",
-    href: "/calendar/monday",
-  },
-  {
-    name: "tuesday",
-    value: "周二",
-    href: "/calendar/tuesday",
-  },
-  {
-    name: "wednesday",
-    value: "周三",
-    href: "/calendar/wednesday",
-  },
-  {
-    name: "thursday",
-    value: "周四",
-    href: "/calendar/thursday",
-  },
-  {
-    name: "friday",
-    value: "周五",
-    href: "/calendar/friday",
-  },
-  {
-    name: "saturday",
-    value: "周六",
-    href: "/calendar/saturday",
-  },
-  {
-    name: "sunday",
-    value: "周日",
-    href: "/calendar/sunday",
-  },
-];
+import { CalendarNavbar } from "@/components/Navbar/CalendarNavbar";
 
 // eslint-disable-next-line @typescript-eslint/require-await
 export async function generateMetadata({
@@ -67,22 +28,30 @@ export async function generateMetadata({
   };
 }
 
-export default function Layout({
-  children,
-  params,
-}: {
-  children: React.ReactNode;
-  params: { day?: string[] };
-}) {
-  const selectedItem = params.day
-    ? params.day[0]
-    : navItems[(new Date().getDay() === 0 ? 7 : new Date().getDay()) - 1].name;
-
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <Subnav navItems={navItems} selectedItemName={selectedItem}>
-        <SortMenu />
-      </Subnav>
+      <div className="flex items-center justify-between px-16">
+        <CalendarNavbar
+          defaultDay={
+            new Date().getDay() === 0
+              ? "sunday"
+              : new Date().getDay() === 1
+              ? "monday"
+              : new Date().getDay() === 2
+              ? "tuesday"
+              : new Date().getDay() === 3
+              ? "wednesday"
+              : new Date().getDay() === 4
+              ? "thursday"
+              : new Date().getDay() === 5
+              ? "friday"
+              : "saturday"
+          }
+        />
+        {/*FIXME: not working with ISR, use Route Handlers + client-side data fetching instead*/}
+        {/*<SortMenu />*/}
+      </div>
       {children}
     </>
   );

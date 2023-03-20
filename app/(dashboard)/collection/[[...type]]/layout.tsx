@@ -1,5 +1,5 @@
-import { Subnav } from "@/components/Subnav";
 import { PersonalViewSwitch } from "@/components/Switch/personalViewSwitch";
+import { CategoryNavbar } from "@/components/Navbar/CategoryNavbar";
 
 // eslint-disable-next-line @typescript-eslint/require-await
 export async function generateMetadata({
@@ -38,54 +38,13 @@ export async function generateMetadata({
   };
 }
 
-export default function Layout({
-  children,
-  params,
-}: {
-  children: React.ReactNode;
-  params: { type?: string[] };
-}) {
-  const selectedItem = params.type?.at(1) ?? "anime";
-  const collectionType = params.type?.at(0) ?? "do";
-
-  const navItems = [
-    {
-      name: "anime",
-      value: "动画",
-      href: `/collection/${collectionType}/anime`,
-    },
-    {
-      name: "book",
-      value: "书籍",
-      href: `/collection/${collectionType}/book`,
-    },
-    {
-      name: "music",
-      value: "音乐",
-      href: `/collection/${collectionType}/music`,
-    },
-    {
-      name: "game",
-      value: "游戏",
-      href: `/collection/${collectionType}/game`,
-    },
-    {
-      name: "real",
-      value: "三次元",
-      href: `/collection/${collectionType}/real`,
-    },
-  ];
-
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <Subnav navItems={navItems} selectedItemName={selectedItem}>
-        <div className="flex items-center space-x-3">
-          <span className="font-medium text-neutral-11">
-            个人视角<span className="text-xs font-normal ">（按 p 切换）</span>
-          </span>
-          <PersonalViewSwitch />
-        </div>
-      </Subnav>
+      <div className="flex items-center justify-between px-16">
+        <CategoryNavbar />
+        <PersonalViewSwitch />
+      </div>
       {children}
     </>
   );
