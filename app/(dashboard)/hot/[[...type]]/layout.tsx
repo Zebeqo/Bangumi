@@ -1,32 +1,4 @@
-import { Subnav } from "@/components/Subnav";
-
-const navItems = [
-  {
-    name: "anime",
-    value: "动画",
-    href: "/hot/anime",
-  },
-  {
-    name: "book",
-    value: "书籍",
-    href: "/hot/book",
-  },
-  {
-    name: "music",
-    value: "音乐",
-    href: "/hot/music",
-  },
-  {
-    name: "game",
-    value: "游戏",
-    href: "/hot/game",
-  },
-  {
-    name: "real",
-    value: "三次元",
-    href: "/hot/real",
-  },
-];
+import { CategoryNavbar } from "@/components/Navbar/CategoryNavbar";
 
 // eslint-disable-next-line @typescript-eslint/require-await
 export async function generateMetadata({
@@ -52,18 +24,12 @@ export async function generateMetadata({
   };
 }
 
-export default function Layout({
-  children,
-  params,
-}: {
-  children: React.ReactNode;
-  params: { type?: string[] };
-}) {
-  const selectedItem = params.type ? params.type.at(0) ?? "anime" : "anime";
-
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <Subnav navItems={navItems} selectedItemName={selectedItem} />
+      <div className="flex items-center justify-between px-16">
+        <CategoryNavbar />
+      </div>
       {children}
     </>
   );

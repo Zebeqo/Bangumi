@@ -21,7 +21,7 @@ export function generateStaticParams() {
 }
 
 const dayMap = {
-  today: new Date().getDay() === 0 ? 7 : new Date().getDay(),
+  today: new Date().getDay() || 7,
   monday: 1,
   tuesday: 2,
   wednesday: 3,
@@ -62,10 +62,15 @@ export default async function Page({
     throw new Error("Failed to fetch data");
   }
 
-  const sortedData = sortCalendarData(dayData, searchParams);
+  let data = dayData.items;
+
+  // FIXME: not working with ISR, use Route Handlers + client-side data fetching instead
+  if (searchParams) {
+    data = sortCalendarData(dayData, searchParams);
+  }
   return (
     <GridWrapper>
-      {sortedData.map((item) => (
+      {data.map((item) => (
         /* @ts-expect-error Server Component */
         <CardServer countType={"doing"} key={item.id} subject_id={item.id} />
       ))}
