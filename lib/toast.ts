@@ -1,4 +1,4 @@
-import { atom } from "jotai";
+import { atomWithReset } from "jotai/utils";
 
 export interface Toast {
   type: "success" | "error" | "info";
@@ -12,4 +12,4 @@ export interface ToastAction {
   onClick: () => void;
 }
 
-export const toastAtom = atom<Toast | null>(null);
+export const toastAtom = atomWithReset<Toast | null>(null);
