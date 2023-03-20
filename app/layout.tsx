@@ -11,6 +11,7 @@ import Analytics from "@/components/Analytics";
 import { TooltipProvider } from "@/ui/primitive/Tooltip";
 import type { Metadata } from "next";
 import { Noto_Sans_SC } from "next/font/google";
+import { ToastProvider } from "@/ui/primitive/Toast";
 
 // use in production
 // https://github.com/vercel/next.js/issues/45080
@@ -80,7 +81,7 @@ export default function RootLayout({
               {JotaiDevToolsComponent}
               <SessionProvider>
                 <TooltipProvider delayDuration={300}>
-                  {children}
+                  <ToastProvider>{children}</ToastProvider>
                 </TooltipProvider>
               </SessionProvider>
             </JotaiProvider>
