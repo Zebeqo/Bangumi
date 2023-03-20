@@ -5,7 +5,7 @@ import { ListHeader } from "@/components/Panel/PanelList/ListHeader";
 import { useReducerAtom } from "jotai/utils";
 import { panelHistoryAtom, panelReducer } from "@/lib/panel";
 import { EPItemList } from "@/components/EPItem/EPItemList";
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useMemo } from "react";
 import { LoadMore } from "@/components/LoadMore";
 import { useInView } from "react-intersection-observer";
 
@@ -18,7 +18,6 @@ export function EPListFull({ subject_id }: { subject_id: number }) {
   } = useEpisodesPageData(subject_id, 15);
 
   const { ref, inView } = useInView();
-
   useEffect(() => {
     if (inView) {
       void (async () => {
@@ -26,6 +25,14 @@ export function EPListFull({ subject_id }: { subject_id: number }) {
       })();
     }
   }, [fetchNextPage, inView]);
+
+  const EPList = useMemo(() => {
+    return episodesPageData?.pages.map((group, i) => (
+      <Fragment key={i}>
+        <EPItemList episodesData={group?.data} subject_id={subject_id} />
+      </Fragment>
+    ));
+  }, [episodesPageData, subject_id]);
 
   return (
     <>
@@ -40,13 +47,7 @@ export function EPListFull({ subject_id }: { subject_id: number }) {
             });
           }}
         />
-        <div className="flex flex-col space-y-2 py-2">
-          {episodesPageData?.pages.map((group, i) => (
-            <Fragment key={i}>
-              <EPItemList episodesData={group?.data} subject_id={subject_id} />
-            </Fragment>
-          ))}
-        </div>
+        <div className="flex flex-col space-y-2 py-2">{EPList}</div>
         <div className="flex w-full items-center justify-center">
           <LoadMore ref={ref} hasMore={hasNextPage} />
         </div>
