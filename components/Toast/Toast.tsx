@@ -6,9 +6,10 @@ import {
   Toast as ToastRoot,
   ToastAction,
   ToastDescription,
+  ToastProvider,
   ToastTitle,
 } from "@/ui/primitive/Toast";
-import { memo, useEffect } from "react";
+import { memo, useEffect, useRef } from "react";
 import { useResetAtom } from "jotai/utils";
 
 export const Toast = memo(function Toast() {
@@ -21,22 +22,27 @@ export const Toast = memo(function Toast() {
     };
   }, [resetToast]);
 
+  const ref = useRef(0);
+  ref.current = ref.current + 1;
+
   return (
     toast && (
-      <ToastRoot toastType={toast.type}>
-        <ToastTitle>{toast.title}</ToastTitle>
-        {toast.description && (
-          <ToastDescription>{toast.description}</ToastDescription>
-        )}
-        {toast.action && (
-          <ToastAction
-            altText={toast.action.label}
-            onClick={toast.action.onClick}
-          >
-            {toast.action.label}
-          </ToastAction>
-        )}
-      </ToastRoot>
+      <ToastProvider>
+        <ToastRoot key={ref.current} toastType={toast.type}>
+          <ToastTitle>{toast.title}</ToastTitle>
+          {toast.description && (
+            <ToastDescription>{toast.description}</ToastDescription>
+          )}
+          {toast.action && (
+            <ToastAction
+              altText={toast.action.label}
+              onClick={toast.action.onClick}
+            >
+              {toast.action.label}
+            </ToastAction>
+          )}
+        </ToastRoot>
+      </ToastProvider>
     )
   );
 });
