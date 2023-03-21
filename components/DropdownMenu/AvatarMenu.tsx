@@ -16,6 +16,8 @@ import {
 } from "@/ui/primitive/DropdownMenu";
 import { Tooltip } from "@/ui/primitive/Tooltip";
 import { LoginButton } from "@/components/Button/LoginButton";
+import { LoadingSpinner } from "@/ui/icon/24/LoadingSpinner";
+import { Button } from "@/ui/primitive/Button";
 
 export const AvatarMenu = () => {
   const { data: session } = useSession();
@@ -52,7 +54,20 @@ export const AvatarMenu = () => {
     },
   ];
 
-  if (!session) {
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  if (session === undefined) {
+    return (
+      <Button
+        variant={{ type: "ghost", iconOnly: true }}
+        aria-label="Loading Theme"
+        className="hover:bg-transparent active:bg-transparent"
+      >
+        <LoadingSpinner className="h-6 w-6" />
+      </Button>
+    );
+  }
+
+  if (session === null) {
     return <LoginButton />;
   }
 
