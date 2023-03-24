@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export function GridWrapper({
+export function CardGridWrapper({
   className,
   children,
 }: {

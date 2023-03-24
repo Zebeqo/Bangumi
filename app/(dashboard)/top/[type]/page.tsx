@@ -1,7 +1,7 @@
 export const dynamicParams = false;
 
 import { CardServer } from "@/components/Card/CardServer";
-import { GridWrapper } from "@/components/GridWrapper";
+import { CardGridWrapper } from "@/components/Card/CardGridWrapper";
 import { subjectNameToTypeScheme } from "@/lib/api/subject";
 import { searchResultScheme } from "@/lib/api/search";
 
@@ -9,13 +9,36 @@ import { searchResultScheme } from "@/lib/api/search";
 // https://github.com/vercel/next.js/issues/44764
 export function generateStaticParams() {
   return [
-    { type: [] },
-    { type: ["anime"] },
-    { type: ["book"] },
-    { type: ["music"] },
-    { type: ["game"] },
-    { type: ["real"] },
+    { type: "anime" },
+    { type: "book" },
+    { type: "music" },
+    { type: "game" },
+    { type: "real" },
   ];
+}
+
+// eslint-disable-next-line @typescript-eslint/require-await
+export async function generateMetadata({
+  params,
+}: {
+  params: { type: string };
+}) {
+  const typeValue =
+    params.type === "anime"
+      ? "动画"
+      : params.type === "book"
+      ? "书籍"
+      : params.type === "music"
+      ? "音乐"
+      : params.type === "game"
+      ? "游戏"
+      : params.type === "real"
+      ? "三次元"
+      : "";
+
+  return {
+    title: `${typeValue}排行`,
+  };
 }
 
 async function getRankData(type: string) {
@@ -39,21 +62,15 @@ async function getRankData(type: string) {
     }).then((res) => res.json())
   );
 }
-export default async function Page({
-  params,
-}: {
-  params: { type?: string[] };
-}) {
-  const type = params.type?.at(0) ?? "anime";
-
-  const rankData = await getRankData(type);
+export default async function Page({ params }: { params: { type: string } }) {
+  const rankData = await getRankData(params.type);
 
   return (
-    <GridWrapper>
+    <CardGridWrapper>
       {rankData.data.map(({ id }) => (
         /* @ts-expect-error Server Component */
         <CardServer key={id} subject_id={id} showCollectionNumber />
       ))}
-    </GridWrapper>
+    </CardGridWrapper>
   );
 }
