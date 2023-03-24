@@ -2,19 +2,42 @@ export const dynamicParams = false;
 
 import { CardServer } from "@/components/Card/CardServer";
 import * as cheerio from "cheerio";
-import { GridWrapper } from "@/components/GridWrapper";
+import { CardGridWrapper } from "@/components/Card/CardGridWrapper";
 
 // https://github.com/nextauthjs/next-auth/issues/5647#issuecomment-1342099364
 // https://github.com/vercel/next.js/issues/44764
 export function generateStaticParams() {
   return [
-    { type: [] },
-    { type: ["anime"] },
-    { type: ["book"] },
-    { type: ["music"] },
-    { type: ["game"] },
-    { type: ["real"] },
+    { type: "anime" },
+    { type: "book" },
+    { type: "music" },
+    { type: "game" },
+    { type: "real" },
   ];
+}
+
+// eslint-disable-next-line @typescript-eslint/require-await
+export async function generateMetadata({
+  params,
+}: {
+  params: { type: string };
+}) {
+  const typeValue =
+    params.type === "anime"
+      ? "动画"
+      : params.type === "book"
+      ? "书籍"
+      : params.type === "music"
+      ? "音乐"
+      : params.type === "game"
+      ? "游戏"
+      : params.type === "real"
+      ? "三次元"
+      : "";
+
+  return {
+    title: `热门${typeValue}`,
+  };
 }
 
 async function scrapeHotHtml(type: string) {
@@ -27,14 +50,8 @@ async function scrapeHotHtml(type: string) {
     },
   }).then((res) => res.text());
 }
-export default async function Page({
-  params,
-}: {
-  params: { type?: string[] };
-}) {
-  const type = params.type?.at(0) ?? "anime";
-
-  const html = await scrapeHotHtml(type);
+export default async function Page({ params }: { params: { type: string } }) {
+  const html = await scrapeHotHtml(params.type);
   const $ = cheerio.load(html);
 
   const list1 = [
@@ -58,11 +75,11 @@ export default async function Page({
   const list = list1.concat(list2).map((item) => item.replace("/subject/", ""));
 
   return (
-    <GridWrapper>
+    <CardGridWrapper>
       {list.map((id) => (
         /* @ts-expect-error Server Component */
         <CardServer key={id} subject_id={id} countType={"doing"} />
       ))}
-    </GridWrapper>
+    </CardGridWrapper>
   );
 }
