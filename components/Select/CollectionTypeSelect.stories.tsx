@@ -12,7 +12,7 @@ type Story = StoryObj<typeof CollectionTypeSelect>;
 
 export const CollectionTypeSelect_: Story = {
   args: {
-    defaultValue: "在看",
+    defaultValue: "do",
     onValueChange: action("onValueChange"),
   },
   play: async ({ canvasElement }) => {

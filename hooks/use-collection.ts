@@ -220,7 +220,7 @@ export function useCollectionMutation() {
       toast({
         type: "success",
         title: "修改收藏状态成功",
-        description: `已将条目的收藏状态修改为 ${description}`,
+        description: description,
       });
     },
     onError: (error, { subject_id }, context) => {

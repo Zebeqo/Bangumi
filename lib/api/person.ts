@@ -41,7 +41,7 @@ export const personScheme = z.object({
   }),
 });
 
-export enum personRelationEnum {
+export enum personRelationRankEnum {
   _other,
   音乐,
   人物设定,
@@ -50,6 +50,6 @@ export enum personRelationEnum {
   导演,
 }
 
-export const personRelationScheme = z
-  .nativeEnum(personRelationEnum)
-  .catch(personRelationEnum._other);
+export const personRelationRankScheme = z
+  .nativeEnum(personRelationRankEnum)
+  .catch(personRelationRankEnum._other);

@@ -8,7 +8,6 @@ import {
   SelectGroup,
   SelectItem,
 } from "@/ui/primitive/Select";
-import { collectionTypeMap } from "@/lib/map/collectionTypeMap";
 import { action } from "@storybook/addon-actions";
 
 const meta = {
@@ -39,14 +38,20 @@ export default meta;
 type SelectStory = StoryObj<{
   color: SelectColor;
   defaultValue: string;
-  options: string[];
+  options: { value: string; label: string }[];
 }>;
 
 export const Select_: SelectStory = {
   args: {
     color: "accent",
-    defaultValue: "在看",
-    options: Object.values(collectionTypeMap).map((value) => value.name_cn),
+    defaultValue: "do",
+    options: [
+      { value: "wish", label: "想看" },
+      { value: "collect", label: "看过" },
+      { value: "do", label: "在看" },
+      { value: "on_hold", label: "搁置" },
+      { value: "dropped", label: "抛弃" },
+    ],
   },
   render: ({ color, defaultValue, options }) => (
     <Select defaultValue={defaultValue} onValueChange={action("value change")}>
@@ -56,7 +61,7 @@ export const Select_: SelectStory = {
         }}
       >
         <SelectGroup>
-          {options.map((value, index) => (
+          {options.map(({ value, label }, index) => (
             <SelectItem
               variant={{
                 color: color,
@@ -64,7 +69,7 @@ export const Select_: SelectStory = {
               key={`${value}-${index}`}
               value={value}
             >
-              {value}
+              {label}
             </SelectItem>
           ))}
         </SelectGroup>

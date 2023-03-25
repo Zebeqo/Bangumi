@@ -13,7 +13,7 @@ export const subjectRelationsScheme = z.array(
   })
 );
 
-export enum subjectRelationEnum {
+export enum subjectRelationRankEnum {
   _other,
   相同世界观,
   不同演绎,
@@ -23,6 +23,6 @@ export enum subjectRelationEnum {
   主线故事,
 }
 
-export const subjectRelationScheme = z
-  .nativeEnum(subjectRelationEnum)
-  .catch(subjectRelationEnum._other);
+export const subjectRelationRankScheme = z
+  .nativeEnum(subjectRelationRankEnum)
+  .catch(subjectRelationRankEnum._other);

@@ -1,4 +1,4 @@
-import { collectionTypeMap } from "@/lib/map/collectionTypeMap";
+import { collectionTypeEnum } from "@/lib/enum/collectionTypeEnum";
 import {
   Select,
   SelectContent,
@@ -16,19 +16,17 @@ export const CollectionTypeSelect = (
       }}
     >
       <SelectGroup>
-        {Object.values(collectionTypeMap)
-          .map((value) => value.name_cn)
-          .map((value, index) => (
-            <SelectItem
-              variant={{
-                color: "accent",
-              }}
-              key={`${value}-${index}`}
-              value={value}
-            >
-              {value}
-            </SelectItem>
-          ))}
+        {Object.entries(collectionTypeEnum).map(([key, { label }], index) => (
+          <SelectItem
+            variant={{
+              color: "accent",
+            }}
+            key={`${key}-${index}`}
+            value={key}
+          >
+            {label}
+          </SelectItem>
+        ))}
       </SelectGroup>
     </SelectContent>
   </Select>
