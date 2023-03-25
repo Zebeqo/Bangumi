@@ -1,20 +1,17 @@
+import {
+  subjectTypeEnum,
+  subjectTypeEnumKeySchema,
+} from "@/lib/enum/subjectTypeEnum";
+
 export const dynamicParams = false;
 
 import { CardServer } from "@/components/Card/CardServer";
 import { CardGridWrapper } from "@/components/Card/CardGridWrapper";
-import { subjectNameToTypeScheme } from "@/lib/api/subject";
 import { searchResultScheme } from "@/lib/api/search";
+import { objectKeys } from "@/lib/utils";
 
-// https://github.com/nextauthjs/next-auth/issues/5647#issuecomment-1342099364
-// https://github.com/vercel/next.js/issues/44764
 export function generateStaticParams() {
-  return [
-    { type: "anime" },
-    { type: "book" },
-    { type: "music" },
-    { type: "game" },
-    { type: "real" },
-  ];
+  return objectKeys(subjectTypeEnum).map((key) => ({ type: key }));
 }
 
 // eslint-disable-next-line @typescript-eslint/require-await
@@ -23,25 +20,15 @@ export async function generateMetadata({
 }: {
   params: { type: string };
 }) {
-  const typeValue =
-    params.type === "anime"
-      ? "动画"
-      : params.type === "book"
-      ? "书籍"
-      : params.type === "music"
-      ? "音乐"
-      : params.type === "game"
-      ? "游戏"
-      : params.type === "real"
-      ? "三次元"
-      : "";
+  const subjectTypeLabel =
+    subjectTypeEnum[subjectTypeEnumKeySchema.parse(params.type)].label;
 
   return {
-    title: `${typeValue}排行`,
+    title: `${subjectTypeLabel}排行`,
   };
 }
 
-async function getRankData(type: string) {
+async function getRankData(type: number) {
   return searchResultScheme.parse(
     await fetch(`https://api.bgm.tv/v0/search/subjects?limit=50&offset=0`, {
       method: "POST",
@@ -52,7 +39,7 @@ async function getRankData(type: string) {
         keyword: "",
         sort: "rank",
         filter: {
-          type: [Number(subjectNameToTypeScheme.parse(type))],
+          type: [type],
           rank: [">0"],
         },
       }),
@@ -63,7 +50,9 @@ async function getRankData(type: string) {
   );
 }
 export default async function Page({ params }: { params: { type: string } }) {
-  const rankData = await getRankData(params.type);
+  const rankData = await getRankData(
+    subjectTypeEnum[subjectTypeEnumKeySchema.parse(params.type)].value
+  );
 
   return (
     <CardGridWrapper>

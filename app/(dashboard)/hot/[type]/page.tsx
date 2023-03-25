@@ -1,19 +1,17 @@
+import { objectKeys } from "@/lib/utils";
+
 export const dynamicParams = false;
 
+import {
+  subjectTypeEnum,
+  subjectTypeEnumKeySchema,
+} from "@/lib/enum/subjectTypeEnum";
 import { CardServer } from "@/components/Card/CardServer";
 import * as cheerio from "cheerio";
 import { CardGridWrapper } from "@/components/Card/CardGridWrapper";
 
-// https://github.com/nextauthjs/next-auth/issues/5647#issuecomment-1342099364
-// https://github.com/vercel/next.js/issues/44764
 export function generateStaticParams() {
-  return [
-    { type: "anime" },
-    { type: "book" },
-    { type: "music" },
-    { type: "game" },
-    { type: "real" },
-  ];
+  return objectKeys(subjectTypeEnum).map((key) => ({ type: key }));
 }
 
 // eslint-disable-next-line @typescript-eslint/require-await
@@ -22,21 +20,11 @@ export async function generateMetadata({
 }: {
   params: { type: string };
 }) {
-  const typeValue =
-    params.type === "anime"
-      ? "动画"
-      : params.type === "book"
-      ? "书籍"
-      : params.type === "music"
-      ? "音乐"
-      : params.type === "game"
-      ? "游戏"
-      : params.type === "real"
-      ? "三次元"
-      : "";
+  const subjectTypeLabel =
+    subjectTypeEnum[subjectTypeEnumKeySchema.parse(params.type)].label;
 
   return {
-    title: `热门${typeValue}`,
+    title: `热门${subjectTypeLabel}`,
   };
 }
 
