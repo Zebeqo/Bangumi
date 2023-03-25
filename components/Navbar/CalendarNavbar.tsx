@@ -15,7 +15,7 @@ export function CalendarNavbar() {
           "thursday",
           "friday",
           "saturday",
-        ][new Date().getDay()]
+        ].at(new Date().getDay())
       : segment;
 
   if (!day) {
