@@ -3,7 +3,10 @@
 import { ListHeader } from "@/components/Panel/PanelList/ListHeader";
 import { useSubjectPersonsData } from "@/hooks/use-person";
 import { PersonAvatarCard } from "@/components/AvatarCard/PersonAvatarCard";
-import { personRelationEnum, personRelationScheme } from "@/lib/api/person";
+import {
+  personRelationRankEnum,
+  personRelationRankScheme,
+} from "@/lib/api/person";
 import { useReducerAtom } from "jotai/utils";
 import { panelHistoryAtom, panelReducer } from "@/lib/panel";
 import { Suspense } from "react";
@@ -21,13 +24,13 @@ export function PersonList({
   const { data: subjectPersonsData } = useSubjectPersonsData(subject_id);
 
   const sortedListData = subjectPersonsData?.sort((a, b) => {
-    const personRelationA = personRelationScheme.parse(
+    const personRelationA = personRelationRankScheme.parse(
       // @ts-expect-error zod will catch it
-      personRelationEnum[a.relation]
+      personRelationRankEnum[a.relation]
     );
-    const personRelationB = personRelationScheme.parse(
+    const personRelationB = personRelationRankScheme.parse(
       // @ts-expect-error zod will catch it
-      personRelationEnum[b.relation]
+      personRelationRankEnum[b.relation]
     );
 
     return personRelationB - personRelationA;

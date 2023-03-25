@@ -1,4 +1,4 @@
-import { ratingMap } from "@/lib/map/ratingMap";
+import { ratingEnum } from "@/lib/enum/ratingEnum";
 import { StarIcon } from "@heroicons/react/20/solid";
 import {
   Select,
@@ -17,21 +17,19 @@ export const RatingSelect = (
       }}
     >
       <SelectGroup>
-        {Object.values(ratingMap)
-          .map((value) => value.name_cn)
-          .map((value, index) => (
-            <SelectItem
-              variant={{
-                color: "accent",
-              }}
-              value={value}
-              key={index}
-            >
-              <span className="flex items-center space-x-1">
-                <StarIcon className="h-5 w-5" /> <span>{value}</span>
-              </span>
-            </SelectItem>
-          ))}
+        {Object.entries(ratingEnum).map(([key], index) => (
+          <SelectItem
+            variant={{
+              color: "accent",
+            }}
+            key={`${key}-${index}`}
+            value={key}
+          >
+            <span className="flex items-center space-x-1">
+              <StarIcon className="h-5 w-5" /> <span>{key}</span>
+            </span>
+          </SelectItem>
+        ))}
       </SelectGroup>
     </SelectContent>
   </Select>

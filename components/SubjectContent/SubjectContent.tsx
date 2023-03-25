@@ -32,15 +32,15 @@ import {
   StarIcon,
 } from "@heroicons/react/20/solid";
 import {
-  collectionNameCNToTypeScheme,
-  collectionTypeKeyScheme,
-  collectionTypeMap,
-} from "@/lib/map/collectionTypeMap";
+  collectionTypeEnum,
+  collectionTypeValueToKeySchema,
+  collectionTypeEnumKeySchema,
+} from "@/lib/enum/collectionTypeEnum";
 import {
-  ratingKeyScheme,
-  ratingMap,
-  ratingNameCNToTypeScheme,
-} from "@/lib/map/ratingMap";
+  ratingEnum,
+  ratingValueToKeyScheme,
+  ratingEnumKeySchema,
+} from "@/lib/enum/ratingEnum";
 
 export function SubjectContent({ subject_id }: { subject_id: number }) {
   const toast = useToast();
@@ -78,40 +78,37 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
                 {collectionData ? (
                   <>
                     <CollectionTypeSelect
-                      defaultValue={
-                        collectionTypeMap[
-                          collectionTypeKeyScheme.parse(collectionData.type)
-                        ].name_cn
-                      }
+                      defaultValue={collectionTypeValueToKeySchema.parse(
+                        collectionData.type
+                      )}
                       onValueChange={(value: string) => {
                         const collection_type =
-                          collectionNameCNToTypeScheme.parse(value);
+                          collectionTypeEnumKeySchema.parse(value);
                         mutateCollection.mutate({
                           mutateCollection: {
-                            type: Number(collection_type),
+                            type: collectionTypeEnum[collection_type].value,
                           },
                           subject_id: subject_id,
-                          description: value,
                           subject_type: collectionData.subject.type,
                           collection_type: collectionData.type,
+                          description: `已将条目的收藏类型修改为 ${collectionTypeEnum[collection_type].label}`,
                         });
                       }}
                     />
                     <RatingSelect
-                      defaultValue={
-                        ratingMap[ratingKeyScheme.parse(collectionData.rate)]
-                          .name_cn
-                      }
+                      defaultValue={ratingValueToKeyScheme.parse(
+                        collectionData.rate
+                      )}
                       onValueChange={(value: string) => {
-                        const rating = ratingNameCNToTypeScheme.parse(value);
+                        const rating = ratingEnumKeySchema.parse(value);
                         mutateCollection.mutate({
                           mutateCollection: {
-                            rate: Number(rating),
+                            rate: ratingEnum[rating],
                           },
                           subject_id: subject_id,
-                          description: value,
                           subject_type: collectionData.subject.type,
                           collection_type: collectionData.type,
+                          description: `已将条目的评分修改为 ${rating}`,
                         });
                       }}
                     />

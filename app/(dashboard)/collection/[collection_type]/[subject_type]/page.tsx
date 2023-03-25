@@ -1,10 +1,14 @@
+import {
+  collectionTypeEnum,
+  collectionTypeEnumKeySchema,
+} from "@/lib/enum/collectionTypeEnum";
+
 export const dynamicParams = false;
 
 import { CollectionCardList } from "@/components/Card/CollectionCardList";
 import { subjectNameToTypeScheme } from "@/lib/api/subject";
 import { Suspense } from "react";
 import { CardGridSkeleton } from "@/components/Skeleton/CardGridSkeleton";
-import { collectionNameToTypeScheme } from "@/lib/map/collectionTypeMap";
 import { CardGridWrapper } from "@/components/Card/CardGridWrapper";
 
 // https://github.com/nextauthjs/next-auth/issues/5647#issuecomment-1342099364
@@ -54,6 +58,7 @@ export async function generateMetadata({
     title: `${collectionTypeName} | ${subjectTypeValue}`,
   };
 }
+
 export default function Page({
   params,
 }: {
@@ -66,9 +71,11 @@ export default function Page({
           subject_type={Number(
             subjectNameToTypeScheme.parse(params.subject_type)
           )}
-          collection_type={Number(
-            collectionNameToTypeScheme.parse(params.collection_type)
-          )}
+          collection_type={
+            collectionTypeEnum[
+              collectionTypeEnumKeySchema.parse(params.collection_type)
+            ].value
+          }
         />
       </CardGridWrapper>
     </Suspense>
