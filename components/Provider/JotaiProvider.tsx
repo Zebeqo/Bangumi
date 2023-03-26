@@ -1,7 +1,15 @@
 "use client";
 
-import { Provider } from "jotai";
+import { createStore, Provider } from "jotai";
 import { DevTools } from "jotai-devtools";
 
-export default Provider;
+export const rootStore = createStore();
+
+export default function JotaiProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return <Provider store={rootStore}>{children}</Provider>;
+}
 export { DevTools as JotaiDevTools };

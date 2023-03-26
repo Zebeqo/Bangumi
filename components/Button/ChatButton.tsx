@@ -5,11 +5,13 @@ import { forwardRef } from "react";
 import { Button } from "@/ui/primitive/Button";
 import { useToast } from "@/hooks/use-toast";
 import { Tooltip } from "@/ui/primitive/Tooltip";
+import { rootStore } from "@/components/Provider/JotaiProvider";
+import { Provider } from "jotai";
 
 interface ChatButtonProps {
   subject_id: number;
 }
-export const ChatButton = forwardRef<HTMLButtonElement, ChatButtonProps>(
+export const ChatButton_ = forwardRef<HTMLButtonElement, ChatButtonProps>(
   ({ subject_id, ...props }, ref) => {
     const toast = useToast();
 
@@ -34,4 +36,13 @@ export const ChatButton = forwardRef<HTMLButtonElement, ChatButtonProps>(
   }
 );
 
+ChatButton_.displayName = "ChatButton";
+
+export const ChatButton = forwardRef<HTMLButtonElement, ChatButtonProps>(
+  (props, ref) => (
+    <Provider store={rootStore}>
+      <ChatButton_ {...props} ref={ref} />
+    </Provider>
+  )
+);
 ChatButton.displayName = "ChatButton";

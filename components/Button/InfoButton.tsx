@@ -6,12 +6,14 @@ import { forwardRef } from "react";
 import { useReducerAtom } from "jotai/utils";
 import { Button } from "@/ui/primitive/Button";
 import { Tooltip } from "@/ui/primitive/Tooltip";
+import { Provider } from "jotai";
+import { rootStore } from "@/components/Provider/JotaiProvider";
 
 interface InfoButtonProps {
   className?: string;
   subject_id: number;
 }
-export const InfoButton = forwardRef<HTMLButtonElement, InfoButtonProps>(
+const InfoButton_ = forwardRef<HTMLButtonElement, InfoButtonProps>(
   ({ subject_id, ...props }, ref) => {
     const [, dispatch] = useReducerAtom(panelHistoryAtom, panelReducer);
     return (
@@ -35,5 +37,13 @@ export const InfoButton = forwardRef<HTMLButtonElement, InfoButtonProps>(
     );
   }
 );
+InfoButton_.displayName = "InfoButton";
 
+export const InfoButton = forwardRef<HTMLButtonElement, InfoButtonProps>(
+  (props, ref) => (
+    <Provider store={rootStore}>
+      <InfoButton_ {...props} ref={ref} />
+    </Provider>
+  )
+);
 InfoButton.displayName = "InfoButton";
