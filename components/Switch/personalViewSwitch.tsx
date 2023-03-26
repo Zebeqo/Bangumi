@@ -3,11 +3,11 @@
 import { atomWithStorage } from "jotai/utils";
 import { Switch } from "@/ui/primitive/Switch";
 import { useAtom } from "jotai";
-import { useEffect } from "react";
+import { memo, useEffect } from "react";
 
 export const personalViewModeAtom = atomWithStorage("personalViewMode", false);
 
-export const PersonalViewSwitch = () => {
+export const PersonalViewSwitch = memo(() => {
   const [checked, setChecked] = useAtom(personalViewModeAtom);
 
   useEffect(() => {
@@ -37,4 +37,5 @@ export const PersonalViewSwitch = () => {
       />
     </div>
   );
-};
+});
+PersonalViewSwitch.displayName = "PersonalViewSwitch";
