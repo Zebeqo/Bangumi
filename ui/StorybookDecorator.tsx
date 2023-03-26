@@ -3,18 +3,18 @@ import { Panel } from "@/components/Panel/Panel";
 import { Dialog } from "@/components/Dialog/Dialog";
 import { Toast } from "@/components/Toast/Toast";
 import QueryProvider from "@/components/Provider/QueryProvider";
-import JotaiProvider from "@/components/Provider/JotaiProvider";
 import { TooltipProvider } from "@/ui/primitive/Tooltip";
+import { Provider } from "jotai";
 
 export const RootDecorator = (Story: React.ComponentType) => {
   return (
     <div style={{ fontFamily: "Noto Sans SC" }}>
       <QueryProvider>
-        <JotaiProvider>
+        <Provider>
           <TooltipProvider delayDuration={300}>
             <Story />
           </TooltipProvider>
-        </JotaiProvider>
+        </Provider>
       </QueryProvider>
     </div>
   );
