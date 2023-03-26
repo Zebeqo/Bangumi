@@ -254,7 +254,7 @@ export const SubjectContent_Auth: StoryObj<{
         </SubjectContentInfoHeader>
         <SubjectContentInfoText text={summary} />
         <SubjectContentInfoFooter>
-          <CollectionTypeSelect defaultValue="在看" />
+          <CollectionTypeSelect defaultValue="do" />
           <RatingSelect defaultValue="(8) 力荐" />
           <MoreMenu subject_id={302286} hasCollectionData />
         </SubjectContentInfoFooter>
