@@ -27,7 +27,7 @@ const Tooltip = forwardRef<
           "radix-side-right:animate-slide-left-fade",
           "radix-side-bottom:animate-slide-up-fade",
           "radix-side-left:animate-slide-right-fade",
-          "inline-flex items-center rounded-md px-4 py-2.5",
+          "inline-flex items-center rounded-md px-3 py-2.5",
           "z-50 bg-neutral-9",
           className
         )}
