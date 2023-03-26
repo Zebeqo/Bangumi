@@ -6,6 +6,7 @@ import QueryProvider, {
 } from "@/components/Provider/QueryProvider";
 import JotaiProvider, {
   JotaiDevTools,
+  rootStore,
 } from "@/components/Provider/JotaiProvider";
 import Analytics from "@/components/Analytics";
 import { TooltipProvider } from "@/ui/primitive/Tooltip";
@@ -67,7 +68,7 @@ export default function RootLayout({
 }) {
   let JotaiDevToolsComponent: React.ReactNode = null;
   if (process.env.NODE_ENV === "development") {
-    JotaiDevToolsComponent = <JotaiDevTools />; // put your debug store here, or remove store prop to debug global store
+    JotaiDevToolsComponent = <JotaiDevTools store={rootStore} />; // put your debug store here
   }
 
   return (
