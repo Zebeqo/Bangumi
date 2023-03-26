@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef, memo, useEffect, useMemo } from "react";
+import { forwardRef, memo, useMemo } from "react";
 import { cn } from "@/lib/utils";
 import { atom, createStore, Provider, useAtomValue } from "jotai";
 import Link from "next/link";
@@ -12,22 +12,22 @@ export const navbarStore = createStore();
 const activeValueAtom = atom<string | null>(null);
 activeValueAtom.debugLabel = "activeValueAtom";
 
-const Navbar = forwardRef<
-  React.ElementRef<"nav">,
-  React.ComponentPropsWithoutRef<"nav"> & { value: string }
->(({ className, children, value, ...props }, ref) => {
-  useEffect(() => {
+const Navbar = memo(
+  forwardRef<
+    React.ElementRef<"nav">,
+    React.ComponentPropsWithoutRef<"nav"> & { value: string }
+  >(({ className, children, value, ...props }, ref) => {
     navbarStore.set(activeValueAtom, value);
-  }, [value]);
 
-  return (
-    <Provider store={navbarStore}>
-      <nav ref={ref} className={cn("h-fit", className)} {...props}>
-        <ul className="flex items-center space-x-1">{children}</ul>
-      </nav>
-    </Provider>
-  );
-});
+    return (
+      <Provider store={navbarStore}>
+        <nav ref={ref} className={cn("h-fit", className)} {...props}>
+          <ul className="flex items-center space-x-1">{children}</ul>
+        </nav>
+      </Provider>
+    );
+  })
+);
 Navbar.displayName = "Navbar";
 
 const NavbarItem = memo(
