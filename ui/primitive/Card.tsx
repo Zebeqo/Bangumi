@@ -12,7 +12,11 @@ const CardProvider = ({ children }: { children: React.ReactNode }) => {
   return <Provider>{children}</Provider>;
 };
 
-const CardContent = ({ children }: { children: React.ReactNode }) => {
+const CardContent = ({
+  children,
+  className,
+  ...props
+}: React.ComponentPropsWithoutRef<"div">) => {
   const ref = useRef(null);
   const isHovering = useHover(ref);
   const setHovered = useSetAtom(isHoveredAtom);
@@ -22,16 +26,23 @@ const CardContent = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
       ref={ref}
-      className="group flex w-[30rem] select-none overflow-hidden rounded-2xl bg-neutral-2 ring-1 ring-neutral-6"
+      className={cn(
+        "group flex w-[30rem] select-none overflow-hidden rounded-2xl bg-neutral-2 ring-1 ring-neutral-6",
+        className
+      )}
+      {...props}
     >
       {children}
     </div>
   );
 };
 
-const Card = ({ children }: { children: React.ReactNode }) => (
+const Card = ({
+  children,
+  ...props
+}: React.ComponentPropsWithoutRef<"div">) => (
   <CardProvider>
-    <CardContent>{children}</CardContent>
+    <CardContent {...props}>{children}</CardContent>
   </CardProvider>
 );
 
