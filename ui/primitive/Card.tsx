@@ -1,21 +1,39 @@
-import { forwardRef } from "react";
+"use client";
+
+import { forwardRef, useRef } from "react";
 import type { WithRequired } from "@/lib/utils";
 import { cn } from "@/lib/utils";
+import { useHover } from "ahooks";
+import { atom, Provider, useAtomValue, useSetAtom } from "jotai";
 
-const Card = forwardRef<
-  HTMLDivElement,
-  WithRequired<React.ComponentPropsWithoutRef<"div">, "children">
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn(
-      "group flex w-[30rem] select-none overflow-hidden rounded-2xl bg-neutral-2 ring-1 ring-neutral-6",
-      className
-    )}
-    {...props}
-  />
-));
-Card.displayName = "Card";
+const isHoveredAtom = atom(false);
+
+const CardProvider = ({ children }: { children: React.ReactNode }) => {
+  return <Provider>{children}</Provider>;
+};
+
+const CardContent = ({ children }: { children: React.ReactNode }) => {
+  const ref = useRef(null);
+  const isHovering = useHover(ref);
+  const setHovered = useSetAtom(isHoveredAtom);
+
+  setHovered(isHovering);
+
+  return (
+    <div
+      ref={ref}
+      className="group flex w-[30rem] select-none overflow-hidden rounded-2xl bg-neutral-2 ring-1 ring-neutral-6"
+    >
+      {children}
+    </div>
+  );
+};
+
+const Card = ({ children }: { children: React.ReactNode }) => (
+  <CardProvider>
+    <CardContent>{children}</CardContent>
+  </CardProvider>
+);
 
 const CardImage = forwardRef<
   HTMLDivElement,
@@ -30,13 +48,13 @@ const CardImage = forwardRef<
 ));
 CardImage.displayName = "CardImage";
 
-const CardContent = forwardRef<
+const CardBody = forwardRef<
   HTMLDivElement,
   WithRequired<React.ComponentPropsWithoutRef<"div">, "children">
 >(({ className, ...props }, ref) => (
   <div ref={ref} className={cn("w-full px-4 py-2", className)} {...props} />
 ));
-CardContent.displayName = "CardContent";
+CardBody.displayName = "CardBody";
 
 const CardHeader = forwardRef<
   HTMLDivElement,
@@ -91,13 +109,15 @@ CardTitleSub.displayName = "CardTitleSub";
 const CardButtonGroup = forwardRef<
   HTMLDivElement,
   WithRequired<React.ComponentPropsWithoutRef<"div">, "children">
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn("hidden space-x-1 group-hover:flex", className)}
-    {...props}
-  />
-));
+>(({ className, children, ...props }, ref) => {
+  const isHovered = useAtomValue(isHoveredAtom);
+
+  return (
+    <div ref={ref} className={cn("flex space-x-1", className)} {...props}>
+      {isHovered && children}
+    </div>
+  );
+});
 CardButtonGroup.displayName = "CardButtonGroup";
 
 const CardInfo = forwardRef<
@@ -152,7 +172,7 @@ CardFooter.displayName = "CardFooter";
 export {
   Card,
   CardImage,
-  CardContent,
+  CardBody,
   CardHeader,
   CardTitle,
   CardButtonGroup,

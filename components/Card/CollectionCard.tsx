@@ -11,7 +11,7 @@ import { Rating } from "@/components/Rating/Rating";
 import {
   Card,
   CardButtonGroup,
-  CardContent,
+  CardBody,
   CardFooter,
   CardHeader,
   CardImage,
@@ -42,7 +42,7 @@ export function CollectionCard({
           alt={"card-image"}
         />
       </CardImage>
-      <CardContent>
+      <CardBody>
         <CardHeader>
           <CardTitle
             mainTitle={collection.subject.name_cn || collection.subject.name}
@@ -119,7 +119,7 @@ export function CollectionCard({
             )}
           </div>
         </CardFooter>
-      </CardContent>
+      </CardBody>
     </Card>
   );
 }
