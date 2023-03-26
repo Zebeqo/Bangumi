@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import {
   Card,
   CardButtonGroup,
-  CardBody,
+  CardContent,
   CardFooter,
   CardHeader,
   CardImage,
@@ -31,14 +31,12 @@ import { Tooltip } from "@/ui/primitive/Tooltip";
 
 const meta = {
   title: "Card",
-  // TODO: not working
-  // play: async ({ canvasElement, args }) => {
-  //   const canvas = within(canvasElement);
-  //   await userEvent.hover(canvas.getByTestId("Card"));
-  //   const infoButton = await canvas.findByLabelText("open-info-panel");
-  //   await userEvent.click(infoButton);
-  //   await expect(args.onClickInfoButton).toHaveBeenCalledTimes(1);
-  // },
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+    const infoButton = canvas.getByLabelText("open-info-panel");
+    await userEvent.click(infoButton);
+    await expect(args.onClickInfoButton).toHaveBeenCalledTimes(1);
+  },
 } satisfies Meta;
 
 export default meta;
@@ -110,7 +108,7 @@ export const Card_: StoryObj<{
     ratingCount,
     onClickInfoButton,
   }) => (
-    <Card data-testid="Card">
+    <Card>
       <CardImage className="h-[201.6px]">
         <Image
           className="object-cover"
@@ -120,7 +118,7 @@ export const Card_: StoryObj<{
           alt={"card-image"}
         />
       </CardImage>
-      <CardBody>
+      <CardContent>
         <CardHeader>
           <CardTitle mainTitle={name_cn} subTitle={name} />
           <CardButtonGroup>
@@ -193,7 +191,7 @@ export const Card_: StoryObj<{
             <div className="text-xs text-neutral-11">{ratingCount} 人评分</div>
           </div>
         </CardFooter>
-      </CardBody>
+      </CardContent>
     </Card>
   ),
 };

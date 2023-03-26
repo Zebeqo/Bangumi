@@ -9,7 +9,7 @@ import { subjectScheme } from "@/lib/api/subject";
 import {
   Card,
   CardButtonGroup,
-  CardBody,
+  CardContent,
   CardFooter,
   CardHeader,
   CardImage,
@@ -76,7 +76,7 @@ export async function CardServer({ subject_id, countType = "all" }: CardProps) {
           alt={"card-image"}
         />
       </CardImage>
-      <CardBody>
+      <CardContent>
         <CardHeader>
           <CardTitle mainTitle={name_cn || name} subTitle={name} />
           <CardButtonGroup>
@@ -127,7 +127,7 @@ export async function CardServer({ subject_id, countType = "all" }: CardProps) {
             <div className="text-xs text-neutral-11">{rating.total} 人评分</div>
           </div>
         </CardFooter>
-      </CardBody>
+      </CardContent>
     </Card>
   );
 }
