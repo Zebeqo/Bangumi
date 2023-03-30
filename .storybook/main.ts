@@ -20,6 +20,7 @@ const config: StorybookConfig = {
     "@storybook/addon-storysource",
     "storybook-dark-mode",
     "@tomfreudenberg/next-auth-mock/storybook",
+    "@storybook/addon-mdx-gfm",
   ],
   framework: {
     name: "@storybook/nextjs",
