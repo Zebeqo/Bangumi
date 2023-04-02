@@ -3,7 +3,6 @@ import { objectKeys } from "@/lib/utils";
 export const dynamicParams = true;
 
 import { CardServer } from "@/components/Card/CardServer";
-import type { SearchParams } from "@/lib/api/calendar";
 import { calendarScheme, sortCalendarData } from "@/lib/api/calendar";
 import { CardGridWrapper } from "@/components/Card/CardGridWrapper";
 import { dayEnum, dayEnumKeySchema } from "@/lib/enum/dayEnum";
@@ -37,13 +36,7 @@ async function getCalendarData() {
     }).then((res) => res.json())
   );
 }
-export default async function Page({
-  params,
-  searchParams,
-}: {
-  params: { day: string };
-  searchParams?: SearchParams;
-}) {
+export default async function Page({ params }: { params: { day: string } }) {
   const calendarData = await getCalendarData();
   const dayData = calendarData.find(
     (data) =>
@@ -53,12 +46,11 @@ export default async function Page({
     throw new Error("Failed to fetch data");
   }
 
-  const data = dayData.items;
+  const data = sortCalendarData(dayData, {
+    order: "desc",
+    sort: "do",
+  });
 
-  // FIXME: not working with ISR, use Route Handlers + client-side data fetching instead
-  // if (searchParams) {
-  //   data = sortCalendarData(dayData, searchParams);
-  // }
   return (
     <CardGridWrapper>
       {data.map((item) => (
