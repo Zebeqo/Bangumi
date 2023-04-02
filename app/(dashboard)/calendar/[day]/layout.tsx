@@ -32,8 +32,6 @@ export default function Layout({
           <NavbarItem value={`/calendar/saturday`}>周六</NavbarItem>
           <NavbarItem value={`/calendar/sunday`}>周日</NavbarItem>
         </NavbarRoot>
-        {/*FIXME: not working with ISR, use Route Handlers + client-side data fetching instead*/}
-        {/*<SortMenu />*/}
       </div>
       {children}
     </>
