@@ -59,7 +59,7 @@
     "@storybook/nextjs": "7.0.0-rc.10",
     "@storybook/react": "7.0.0-rc.10",
     "@storybook/test-runner": "0.10.0-next.11",
-    "@storybook/testing-library": "0.0.14-next.1",
+    "@storybook/testing-library": "0.1.0",
     "@swc-jotai/debug-label": "0.0.9",
     "@swc-jotai/react-refresh": "0.0.7",
     "@tailwindcss/line-clamp": "0.4.2",
