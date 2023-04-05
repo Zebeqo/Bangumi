@@ -8,7 +8,7 @@ import {
   ToastDescription,
   ToastProvider,
   ToastTitle,
-} from "@/ui/primitive/Toast";
+} from "@/ui/components/Toast";
 import { memo, useEffect, useRef } from "react";
 import { useResetAtom } from "jotai/utils";
 

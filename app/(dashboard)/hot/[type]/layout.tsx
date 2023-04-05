@@ -1,6 +1,6 @@
 import { objectKeys } from "@/lib/utils";
 import { subjectTypeEnum } from "@/lib/enum/subjectTypeEnum";
-import { Navbar as NavbarRoot, NavbarItem } from "@/ui/primitive/Navbar";
+import { Navbar as NavbarRoot, NavbarItem } from "@/ui/components/Navbar";
 
 export default function Layout({
   children,

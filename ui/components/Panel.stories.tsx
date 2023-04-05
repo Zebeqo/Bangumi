@@ -6,12 +6,12 @@ import {
   PanelNavSubTitle,
   PanelNavTitle,
   PanelNavTitleGroup,
-} from "@/ui/primitive/Panel";
+} from "@/ui/components/Panel";
 import {
   SubjectContent_,
   SubjectContent_Auth,
-} from "@/ui/primitive/SubjectContent.stories";
-import { Button } from "@/ui/primitive/Button";
+} from "@/ui/components/SubjectContent.stories";
+import { Button } from "@/ui/components/Button";
 import { panelHistoryAtom, panelReducer } from "@/lib/panel";
 import { useReducerAtom } from "jotai/utils";
 import { userEvent, within } from "@storybook/testing-library";
@@ -43,7 +43,7 @@ export const Panel_: StoryObj = {
           </PanelContent>
         </Panel>
         <Button
-          variant={{ type: "secondary" }}
+          variant="secondary"
           data-testid="open-panel"
           onClick={() => {
             dispatch({

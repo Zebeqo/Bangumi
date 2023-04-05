@@ -12,6 +12,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { useResetAtom } from "jotai/utils";
 import { toastAtom } from "@/lib/toast";
+import { classed } from "@/classed.config";
 
 const ToastProvider = (
   props: React.ComponentProps<typeof ToastPrimitive.ToastProvider>
@@ -82,50 +83,20 @@ const ToastClose = forwardRef<
 ));
 ToastClose.displayName = ToastPrimitive.Close.displayName;
 
-const ToastTitle = forwardRef<
-  React.ElementRef<typeof ToastPrimitive.Title>,
-  WithRequired<
-    React.ComponentPropsWithoutRef<typeof ToastPrimitive.Title>,
-    "children"
-  >
->(({ className, ...props }, ref) => (
-  <ToastPrimitive.Title
-    className={cn("text-sm font-medium text-neutral-12", className)}
-    ref={ref}
-    {...props}
-  />
-));
-ToastTitle.displayName = ToastPrimitive.Title.displayName;
+const ToastTitle = classed(
+  ToastPrimitive.Title,
+  "text-sm font-medium text-neutral-12"
+);
 
-const ToastDescription = forwardRef<
-  React.ElementRef<typeof ToastPrimitive.Description>,
-  WithRequired<
-    React.ComponentPropsWithoutRef<typeof ToastPrimitive.Description>,
-    "children"
-  >
->(({ className, ...props }, ref) => (
-  <ToastPrimitive.Description
-    className={cn("text-sm text-neutral-11", className)}
-    ref={ref}
-    {...props}
-  />
-));
-ToastDescription.displayName = ToastPrimitive.Description.displayName;
+const ToastDescription = classed(
+  ToastPrimitive.Description,
+  "text-sm text-neutral-11"
+);
 
-const ToastAction = forwardRef<
-  React.ElementRef<typeof ToastPrimitive.Action>,
-  WithRequired<
-    React.ComponentPropsWithoutRef<typeof ToastPrimitive.Action>,
-    "children"
-  >
->(({ className, ...props }, ref) => (
-  <ToastPrimitive.Action
-    className={cn("inline-flex w-fit text-sm text-accent-11", className)}
-    ref={ref}
-    {...props}
-  />
-));
-ToastAction.displayName = ToastPrimitive.Action.displayName;
+const ToastAction = classed(
+  ToastPrimitive.Action,
+  "inline-flex w-fit text-sm text-accent-11"
+);
 
 export {
   ToastProvider,

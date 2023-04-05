@@ -3,7 +3,7 @@ import { Panel } from "@/components/Panel/Panel";
 import { Dialog } from "@/components/Dialog/Dialog";
 import { Toast } from "@/components/Toast/Toast";
 import QueryProvider from "@/components/Provider/QueryProvider";
-import { TooltipProvider } from "@/ui/primitive/Tooltip";
+import { TooltipProvider } from "@/ui/components/Tooltip";
 import { Provider } from "jotai";
 
 export const RootDecorator = (Story: React.ComponentType) => {

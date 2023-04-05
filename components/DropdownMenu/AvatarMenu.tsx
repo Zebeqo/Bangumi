@@ -13,11 +13,11 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/ui/primitive/DropdownMenu";
-import { Tooltip } from "@/ui/primitive/Tooltip";
+} from "@/ui/components/DropdownMenu";
+import { Tooltip } from "@/ui/components/Tooltip";
 import { LoginButton } from "@/components/Button/LoginButton";
 import { LoadingSpinner } from "@/ui/icon/24/LoadingSpinner";
-import { Button } from "@/ui/primitive/Button";
+import { Button } from "@/ui/components/Button";
 
 export const AvatarMenu = () => {
   const { data: session } = useSession();
@@ -58,7 +58,8 @@ export const AvatarMenu = () => {
   if (session === undefined) {
     return (
       <Button
-        variant={{ type: "ghost", iconOnly: true }}
+        variant="ghost"
+        iconOnly
         aria-label="Loading Theme"
         className="hover:bg-transparent active:bg-transparent"
       >

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Badge } from "@/ui/primitive/Badge";
+import { Badge } from "@/ui/components/Badge";
 import { ChatBubbleLeftRightIcon } from "@heroicons/react/20/solid";
 import type { Color } from "@/lib/color";
 import { colorArray } from "@/lib/color";
@@ -24,12 +24,7 @@ export const CommentBadge: StoryObj<{ color: Color; count: number }> = {
     count: 123,
   },
   render: ({ color, count }) => (
-    <Badge
-      variant={{
-        color: color,
-      }}
-      className="rounded-full py-2"
-    >
+    <Badge color={color} className="rounded-full py-2">
       <ChatBubbleLeftRightIcon className="mr-1 h-4 w-4" />
       {count}
     </Badge>
@@ -47,11 +42,7 @@ export const TagBadge: StoryObj<{
     label: "神作",
   },
   render: ({ label, color, count }) => (
-    <Badge
-      variant={{
-        color: color,
-      }}
-    >
+    <Badge color={color}>
       {label}
       <span className="ml-1 text-neutral-11">{count}</span>
     </Badge>
@@ -63,13 +54,5 @@ export const DefaultBadge: StoryObj<{ color: Color; label: string }> = {
     color: "primary",
     label: "神作",
   },
-  render: ({ label, color }) => (
-    <Badge
-      variant={{
-        color: color,
-      }}
-    >
-      {label}
-    </Badge>
-  ),
+  render: ({ label, color }) => <Badge color={color}>{label}</Badge>,
 };

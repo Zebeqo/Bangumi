@@ -4,7 +4,8 @@ import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 import { forwardRef } from "react";
 import { cn } from "@/lib/utils";
 import { CheckIcon } from "@heroicons/react/20/solid";
-import { buttonClass } from "@/ui/primitive/Button";
+import { GhostButton } from "@/ui/components/Button";
+import { classed } from "@/classed.config";
 
 export type DropdownMenuColor = "primary" | "accent" | "neutral";
 
@@ -14,17 +15,10 @@ const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger;
 
 const DropdownMenuRadioGroup = DropdownMenuPrimitive.RadioGroup;
 
-const DropdownMenuSeparator = forwardRef<
-  React.ElementRef<typeof DropdownMenuPrimitive.Separator>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Separator>
->(({ className, ...props }, ref) => (
-  <DropdownMenuPrimitive.Separator
-    ref={ref}
-    className={cn("my-1 h-px bg-neutral-6", className)}
-    {...props}
-  />
-));
-DropdownMenuSeparator.displayName = DropdownMenuPrimitive.Separator.displayName;
+const DropdownMenuSeparator = classed(
+  DropdownMenuPrimitive.Separator,
+  "my-1 h-px bg-neutral-6"
+);
 
 const DropdownMenuRadioItem = forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.RadioItem>,
@@ -65,23 +59,11 @@ const DropdownMenuContent = forwardRef<
 ));
 DropdownMenuContent.displayName = DropdownMenuPrimitive.Content.displayName;
 
-const DropdownMenuItem = forwardRef<
-  React.ElementRef<typeof DropdownMenuPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Item>
->(({ children, className, ...props }, ref) => (
-  <DropdownMenuPrimitive.Item
-    ref={ref}
-    className={cn(
-      buttonClass({ type: "ghost" }),
-      "w-full focus:bg-neutral-4 focus:ring-0",
-      className
-    )}
-    {...props}
-  >
-    {children}
-  </DropdownMenuPrimitive.Item>
-));
-DropdownMenuItem.displayName = DropdownMenuPrimitive.Item.displayName;
+const DropdownMenuItem = classed(
+  DropdownMenuPrimitive.Item,
+  GhostButton,
+  "w-full focus:bg-neutral-4 focus:ring-0"
+);
 
 export {
   DropdownMenu,

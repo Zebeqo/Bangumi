@@ -106,4 +106,12 @@ export const EPItemList_: Story = {
     ],
     subject_id: 265,
   },
+  argTypes: {
+    episodesData: {
+      control: false,
+    },
+    subject_id: {
+      control: false,
+    },
+  },
 };

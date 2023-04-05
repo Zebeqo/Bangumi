@@ -1,7 +1,7 @@
 "use client";
 
 import { atomWithStorage } from "jotai/utils";
-import { Switch } from "@/ui/primitive/Switch";
+import { Switch } from "@/ui/components/Switch";
 import { useAtom } from "jotai";
 import { memo, useEffect } from "react";
 
@@ -28,13 +28,7 @@ export const PersonalViewSwitch = memo(() => {
       <span className="font-medium text-neutral-11">
         个人视角<span className="text-xs font-normal ">（按 p 切换）</span>
       </span>
-      <Switch
-        variant={{
-          color: "accent",
-        }}
-        checked={checked}
-        onCheckedChange={setChecked}
-      />
+      <Switch color="accent" checked={checked} onCheckedChange={setChecked} />
     </div>
   );
 });

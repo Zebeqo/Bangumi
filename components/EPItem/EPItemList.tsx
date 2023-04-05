@@ -12,7 +12,7 @@ import {
   EPItemInfo,
   EPItemLeftContent,
   EPItemRightContent,
-} from "@/ui/primitive/EPItem";
+} from "@/ui/components/EPItem";
 
 export function EPItemList({
   episodesData,
@@ -31,12 +31,13 @@ export function EPItemList({
         <EPItem key={episodeData.ep}>
           <EPItemLeftContent>
             <EPItemIndex
-              isSelected={
+              variant={
                 collectionData
                   ? episodeData.ep <= collectionData.ep_status
-                  : false
+                    ? "selected"
+                    : "ghost"
+                  : "ghost"
               }
-              value={episodeData.ep}
               onClick={() => {
                 if (collectionData) {
                   collectionData.ep_status === episodeData.ep
@@ -61,7 +62,9 @@ export function EPItemList({
                   });
                 }
               }}
-            />
+            >
+              {episodeData.ep}
+            </EPItemIndex>
             <EPItemInfo
               name={episodeData.name || "未知"}
               name_cn={episodeData.name === "" ? "" : episodeData.name_cn}

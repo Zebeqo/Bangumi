@@ -19,13 +19,13 @@ import {
   SubjectContentInfoText,
   SubjectContentRating,
   SubjectContentTagGroup,
-} from "@/ui/primitive/SubjectContent";
-import { Badge } from "@/ui/primitive/Badge";
+} from "@/ui/components/SubjectContent";
+import { Badge } from "@/ui/components/Badge";
 import { CollectionTypeSelect } from "@/components/Select/CollectionTypeSelect";
 import { RatingSelect } from "@/components/Select/RatingSelect";
 import { EpisodeButton } from "@/components/Button/EpisodeButton";
 import { MoreMenu } from "@/components/DropdownMenu/MoreMenu";
-import { Button } from "@/ui/primitive/Button";
+import { Button } from "@/ui/components/Button";
 import {
   ChevronDownIcon,
   InboxArrowDownIcon,
@@ -66,7 +66,7 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
                 <SubjectContentInfoHeaderDivider />
                 <SubjectContentTagGroup>
                   {subjectData.tags.map(({ count, name }) => (
-                    <Badge variant={{ color: "primary" }} key={name}>
+                    <Badge color="primary" key={name}>
                       {name}
                       <span className="ml-1 text-neutral-11">{count}</span>
                     </Badge>
@@ -125,9 +125,7 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
                 ) : (
                   <>
                     <Button
-                      variant={{
-                        type: "primary",
-                      }}
+                      variant="primary"
                       onClick={() => {
                         if (session) {
                           toast({
@@ -156,9 +154,7 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
                       收藏
                     </Button>
                     <Button
-                      variant={{
-                        type: "outline",
-                      }}
+                      variant="outline"
                       onClick={() => {
                         if (session) {
                           toast({

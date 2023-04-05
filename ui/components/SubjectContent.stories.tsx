@@ -10,9 +10,9 @@ import {
   SubjectContentRating,
   SubjectContentTagGroup,
   SubjectContentInfoText,
-} from "@/ui/primitive/SubjectContent";
-import { Badge } from "@/ui/primitive/Badge";
-import { Button } from "@/ui/primitive/Button";
+} from "@/ui/components/SubjectContent";
+import { Badge } from "@/ui/components/Badge";
+import { Button } from "@/ui/components/Button";
 import { action } from "@storybook/addon-actions";
 import {
   ChevronDownIcon,
@@ -188,7 +188,7 @@ export const SubjectContent_: StoryObj<{
           <SubjectContentInfoHeaderDivider />
           <SubjectContentTagGroup>
             {tags.map(({ count, name }) => (
-              <Badge variant={{ color: "primary" }} key={name}>
+              <Badge color="primary" key={name}>
                 {name}
                 <span className="ml-1 text-neutral-11">{count}</span>
               </Badge>
@@ -197,11 +197,11 @@ export const SubjectContent_: StoryObj<{
         </SubjectContentInfoHeader>
         <SubjectContentInfoText text={summary} />
         <SubjectContentInfoFooter>
-          <Button variant={{ type: "primary" }} onClick={onClickCollection}>
+          <Button variant="primary" onClick={onClickCollection}>
             <InboxArrowDownIcon className="mr-2 h-5 w-5" />
             收藏
           </Button>
-          <Button variant={{ type: "outline" }} onClick={onClickRating}>
+          <Button variant="outline" onClick={onClickRating}>
             <span className="flex items-center space-x-1">
               <StarIcon className="h-5 w-5" />
               <span>评分</span>
@@ -245,7 +245,7 @@ export const SubjectContent_Auth: StoryObj<{
           <SubjectContentInfoHeaderDivider />
           <SubjectContentTagGroup>
             {tags.map(({ count, name }) => (
-              <Badge variant={{ color: "primary" }} key={name}>
+              <Badge color="primary" key={name}>
                 {name}
                 <span className="ml-1 text-neutral-11">{count}</span>
               </Badge>

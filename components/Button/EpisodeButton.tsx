@@ -6,7 +6,7 @@ import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 import { useEpisodeMutation } from "@/hooks/use-episode";
 import { useCollectionData } from "@/hooks/use-collection";
-import { Button } from "@/ui/primitive/Button";
+import { Button } from "@/ui/components/Button";
 
 export function EpisodeButton({
   subject_id,
@@ -39,7 +39,7 @@ export function EpisodeButton({
     <>
       {collectionData && (
         <Button
-          variant={{ type: "outline" }}
+          variant="outline"
           className="bg-neutral-1 hover:bg-neutral-1 active:bg-neutral-1"
           onClick={() => {
             if (inputRef.current) {

@@ -5,14 +5,14 @@ import {
   CardContent,
   CardFooter,
   CardHeader,
-  CardImage,
+  CardImageContainer,
   CardInfo,
   CardInfoItem,
   CardTagGroup,
   CardTitle,
-} from "@/ui/primitive/Card";
+} from "@/ui/components/Card";
 import Image from "next/image";
-import { Button } from "@/ui/primitive/Button";
+import { Button } from "@/ui/components/Button";
 import {
   ChatBubbleLeftRightIcon,
   InformationCircleIcon,
@@ -26,8 +26,8 @@ import {
 import { Rating } from "@/components/Rating/Rating";
 import { userEvent, within } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
-import { Badge } from "@/ui/primitive/Badge";
-import { Tooltip } from "@/ui/primitive/Tooltip";
+import { Badge } from "@/ui/components/Badge";
+import { Tooltip } from "@/ui/components/Tooltip";
 
 const meta = {
   title: "Card",
@@ -109,7 +109,7 @@ export const Card_: StoryObj<{
     onClickInfoButton,
   }) => (
     <Card>
-      <CardImage className="h-[201.6px]">
+      <CardImageContainer className="h-[201.6px]">
         <Image
           className="object-cover"
           src={image}
@@ -117,18 +117,16 @@ export const Card_: StoryObj<{
           unoptimized={true}
           alt={"card-image"}
         />
-      </CardImage>
+      </CardImageContainer>
       <CardContent>
         <CardHeader>
           <CardTitle mainTitle={name_cn} subTitle={name} />
           <CardButtonGroup>
             <Tooltip content="显示详情">
               <Button
-                variant={{
-                  type: "primary",
-                  color: "accent",
-                  iconOnly: true,
-                }}
+                variant="primary"
+                color="accent"
+                iconOnly
                 aria-label="open-info-panel"
                 onClick={onClickInfoButton}
               >
@@ -136,13 +134,7 @@ export const Card_: StoryObj<{
               </Button>
             </Tooltip>
             <Tooltip content="显示讨论">
-              <Button
-                variant={{
-                  type: "primary",
-                  color: "accent",
-                  iconOnly: true,
-                }}
-              >
+              <Button variant="primary" color="accent" iconOnly>
                 <ChatBubbleLeftRightIcon className="h-6 w-6" />
               </Button>
             </Tooltip>
@@ -170,12 +162,7 @@ export const Card_: StoryObj<{
         </CardInfo>
         <CardTagGroup>
           {tags.map((tag) => (
-            <Badge
-              variant={{
-                color: "primary",
-              }}
-              key={tag}
-            >
+            <Badge color="primary" key={tag}>
               {tag}
             </Badge>
           ))}

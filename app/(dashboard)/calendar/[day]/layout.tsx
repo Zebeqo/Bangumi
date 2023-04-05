@@ -1,4 +1,4 @@
-import { Navbar as NavbarRoot, NavbarItem } from "@/ui/primitive/Navbar";
+import { Navbar as NavbarRoot, NavbarItem } from "@/ui/components/Navbar";
 
 export default function Layout({
   children,

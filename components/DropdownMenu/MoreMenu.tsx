@@ -7,9 +7,9 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/ui/primitive/DropdownMenu";
-import { Button } from "@/ui/primitive/Button";
-import { Tooltip } from "@/ui/primitive/Tooltip";
+} from "@/ui/components/DropdownMenu";
+import { Button } from "@/ui/components/Button";
+import { Tooltip } from "@/ui/components/Tooltip";
 
 export const MoreMenu = ({
   subject_id,
@@ -61,13 +61,7 @@ export const MoreMenu = ({
     <DropdownMenu>
       <Tooltip content="更多选项">
         <DropdownMenuTrigger asChild>
-          <Button
-            variant={{
-              type: "outline",
-              iconOnly: true,
-            }}
-            aria-label={"more"}
-          >
+          <Button variant="outline" iconOnly aria-label={"more"}>
             <EllipsisVerticalIcon className="h-6 w-6" />
           </Button>
         </DropdownMenuTrigger>

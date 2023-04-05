@@ -9,7 +9,7 @@ import JotaiProvider, {
   rootStore,
 } from "@/components/Provider/JotaiProvider";
 import Analytics from "@/components/Analytics";
-import { TooltipProvider } from "@/ui/primitive/Tooltip";
+import { TooltipProvider } from "@/ui/components/Tooltip";
 import type { Metadata } from "next";
 import { Noto_Sans_SC } from "next/font/google";
 

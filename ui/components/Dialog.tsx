@@ -6,8 +6,9 @@ import { forwardRef } from "react";
 import type { WithRequired } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { Button } from "@/ui/primitive/Button";
+import { Button } from "@/ui/components/Button";
 import { useInView } from "react-intersection-observer";
+import { classed } from "@/classed.config";
 
 const Dialog = DialogPrimitive.Root;
 const DialogTrigger = DialogPrimitive.Trigger;
@@ -83,40 +84,15 @@ const DialogContentHeader = ({
 };
 DialogContentHeader.displayName = "DialogContentHeader";
 
-const DialogTitle = forwardRef<
-  React.ElementRef<typeof DialogPrimitive.Title>,
-  WithRequired<
-    React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>,
-    "children"
-  >
->(({ children, className, ...props }, ref) => (
-  <DialogPrimitive.Title
-    ref={ref}
-    className={cn("text-lg font-bold text-neutral-12", className)}
-    {...props}
-  >
-    {children}
-  </DialogPrimitive.Title>
-));
-DialogTitle.displayName = DialogPrimitive.Title.displayName;
+const DialogTitle = classed(
+  DialogPrimitive.Title,
+  "text-lg font-bold text-neutral-12"
+);
 
-const DialogDescription = forwardRef<
-  React.ElementRef<typeof DialogPrimitive.Description>,
-  WithRequired<
-    React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>,
-    "children"
-  >
->(({ className, ...props }, ref) => (
-  <DialogPrimitive.Description
-    ref={ref}
-    className={cn(
-      "w-full whitespace-pre-wrap break-words px-6 text-neutral-11",
-      className
-    )}
-    {...props}
-  />
-));
-DialogDescription.displayName = DialogPrimitive.Description.displayName;
+const DialogDescription = classed(
+  DialogPrimitive.Description,
+  "w-full whitespace-pre-wrap break-words px-6 text-neutral-11"
+);
 
 const DialogClose = forwardRef<
   React.ElementRef<typeof DialogPrimitive.Close>,
@@ -126,12 +102,7 @@ const DialogClose = forwardRef<
   >
 >(({ ...props }, ref) => (
   <DialogPrimitive.Close ref={ref} asChild {...props}>
-    <Button
-      variant={{
-        type: "ghost",
-        iconOnly: true,
-      }}
-    >
+    <Button variant="ghost" iconOnly>
       <XMarkIcon className="h-6 w-6" />
     </Button>
   </DialogPrimitive.Close>

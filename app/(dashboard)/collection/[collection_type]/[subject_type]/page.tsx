@@ -8,7 +8,7 @@ export const dynamicParams = false;
 import { CollectionCardList } from "@/components/Card/CollectionCardList";
 import { Suspense } from "react";
 import { CardGridSkeleton } from "@/components/Skeleton/CardGridSkeleton";
-import { CardGridWrapper } from "@/components/Card/CardGridWrapper";
+import { CardGrid } from "@/components/Card/CardGrid";
 import {
   subjectTypeEnum,
   subjectTypeEnumKeySchema,
@@ -50,7 +50,7 @@ export default function Page({
 }) {
   return (
     <Suspense fallback={<CardGridSkeleton />}>
-      <CardGridWrapper className="relative my-8">
+      <CardGrid className="relative my-8">
         <CollectionCardList
           subject_type={
             subjectTypeEnum[subjectTypeEnumKeySchema.parse(params.subject_type)]
@@ -62,7 +62,7 @@ export default function Page({
             ].value
           }
         />
-      </CardGridWrapper>
+      </CardGrid>
     </Suspense>
   );
 }

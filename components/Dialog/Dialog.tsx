@@ -8,8 +8,8 @@ import {
   DialogContentHeader,
   DialogDescription,
   DialogTitle,
-} from "@/ui/primitive/Dialog";
-import { Button } from "@/ui/primitive/Button";
+} from "@/ui/components/Dialog";
+import { Button } from "@/ui/components/Button";
 
 export function Dialog() {
   const dialog = useAtomValue(dialogAtom);
@@ -31,10 +31,8 @@ export function Dialog() {
         <DialogDescription>{dialog?.description ?? ""}</DialogDescription>
         {dialog?.action && (
           <Button
-            variant={{
-              type: "secondary",
-              color: "error",
-            }}
+            variant="secondary"
+            color="error"
             className="mt-4 mr-6 self-end"
             onClick={dialog.action.onClick}
           >

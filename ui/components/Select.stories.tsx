@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { screen, userEvent, within } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
-import type { SelectColor } from "@/ui/primitive/Select";
+import type { SelectColor } from "@/ui/components/Select";
 import {
   Select,
   SelectContent,
   SelectGroup,
   SelectItem,
-} from "@/ui/primitive/Select";
+} from "@/ui/components/Select";
 import { action } from "@storybook/addon-actions";
 
 const meta = {
@@ -55,20 +55,10 @@ export const Select_: SelectStory = {
   },
   render: ({ color, defaultValue, options }) => (
     <Select defaultValue={defaultValue} onValueChange={action("value change")}>
-      <SelectContent
-        variant={{
-          color: color,
-        }}
-      >
+      <SelectContent color={color}>
         <SelectGroup>
           {options.map(({ value, label }, index) => (
-            <SelectItem
-              variant={{
-                color: color,
-              }}
-              key={`${value}-${index}`}
-              value={value}
-            >
+            <SelectItem color={color} key={`${value}-${index}`} value={value}>
               {label}
             </SelectItem>
           ))}

@@ -8,7 +8,7 @@ import {
 } from "@/lib/enum/subjectTypeEnum";
 import { CardServer } from "@/components/Card/CardServer";
 import * as cheerio from "cheerio";
-import { CardGridWrapper } from "@/components/Card/CardGridWrapper";
+import { CardGrid } from "@/components/Card/CardGrid";
 
 export function generateStaticParams() {
   return objectKeys(subjectTypeEnum).map((key) => ({ type: key }));
@@ -63,11 +63,11 @@ export default async function Page({ params }: { params: { type: string } }) {
   const list = list1.concat(list2).map((item) => item.replace("/subject/", ""));
 
   return (
-    <CardGridWrapper>
+    <CardGrid>
       {list.map((id) => (
         /* @ts-expect-error Server Component */
         <CardServer key={id} subject_id={id} countType={"doing"} />
       ))}
-    </CardGridWrapper>
+    </CardGrid>
   );
 }
