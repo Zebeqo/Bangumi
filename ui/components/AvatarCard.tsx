@@ -31,13 +31,17 @@ const AvatarCardContent = classed("div", "flex w-32 flex-col space-y-4");
 
 const AvatarCardImage = forwardRef<
   React.ElementRef<typeof Image>,
-  Omit<React.ComponentPropsWithoutRef<typeof Image>, "children">
->(({ className, alt, ...props }, ref) => (
-  <div
+  Omit<React.ComponentPropsWithoutRef<typeof Image>, "children"> & {
+    href?: string;
+  }
+>(({ className, alt, href, ...props }, ref) => (
+  <a
+    target="_blank"
     className={cn(
       "relative h-32 w-32 self-center overflow-hidden rounded-full",
       className
     )}
+    href={href}
   >
     <Image
       ref={ref}
@@ -47,7 +51,7 @@ const AvatarCardImage = forwardRef<
       alt={alt}
       {...props}
     />
-  </div>
+  </a>
 ));
 AvatarCardImage.displayName = "AvatarCardImage";
 

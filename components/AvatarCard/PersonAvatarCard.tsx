@@ -32,9 +32,7 @@ export function PersonAvatarCard({
             <AvatarCardImage
               src={personData.images.medium}
               alt="Avatar"
-              onClick={() => {
-                window.open(`https://bgm.tv/person/${id}`, "_blank");
-              }}
+              href={`https://bgm.tv/person/${id}`}
             />
             <AvatarCardInfo>
               <AvatarCardInfoItem relation={relation}>
