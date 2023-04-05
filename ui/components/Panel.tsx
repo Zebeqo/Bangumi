@@ -2,20 +2,21 @@
 
 import type { ReactNode } from "react";
 import { forwardRef } from "react";
-import type { DialogContentProps } from "@/ui/primitive/Dialog";
+import type { DialogContentProps } from "@/ui/components/Dialog";
 import {
+  Dialog,
   DialogContent,
   DialogContentHeader,
   DialogTitle,
-} from "@/ui/primitive/Dialog";
-import { Dialog } from "@radix-ui/react-dialog";
+} from "@/ui/components/Dialog";
 import type { WithRequired } from "@/lib/utils";
-import { cn, panelScrollToTop } from "@/lib/utils";
-import { Button } from "@/ui/primitive/Button";
+import { panelScrollToTop } from "@/lib/utils";
+import { Button } from "@/ui/components/Button";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import { useReducerAtom, useResetAtom } from "jotai/utils";
 import { isOpenPanelAtom, panelHistoryAtom, panelReducer } from "@/lib/panel";
 import { useAtomValue } from "jotai";
+import { classed } from "@/classed.config";
 
 interface PanelProps
   extends React.ComponentPropsWithoutRef<typeof Dialog>,
@@ -54,13 +55,7 @@ const PanelNav = ({ children }: { children: ReactNode }) => {
 };
 PanelNav.displayName = "PanelNav";
 
-const PanelNavButtonGroup = forwardRef<
-  HTMLDivElement,
-  WithRequired<React.ComponentPropsWithoutRef<"div">, "children">
->(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("flex space-x-2", className)} {...props}></div>
-));
-PanelNavButtonGroup.displayName = "PanelNavButtonGroup";
+const PanelNavButtonGroup = classed("div", "flex space-x-2");
 
 const PanelNavBackButton = () => {
   const [panelHistory, dispatch] = useReducerAtom(
@@ -70,7 +65,8 @@ const PanelNavBackButton = () => {
 
   return (
     <Button
-      variant={{ type: "outline", iconOnly: true }}
+      variant="outline"
+      iconOnly
       onClick={() => {
         if (panelHistory.index) {
           dispatch({ type: "back" });
@@ -87,7 +83,6 @@ const PanelNavBackButton = () => {
     </Button>
   );
 };
-PanelNavBackButton.displayName = "PanelNavBackButton";
 
 const PanelNavForwardButton = () => {
   const [panelHistory, dispatch] = useReducerAtom(
@@ -97,7 +92,8 @@ const PanelNavForwardButton = () => {
 
   return (
     <Button
-      variant={{ type: "outline", iconOnly: true }}
+      variant="outline"
+      iconOnly
       onClick={() => {
         if (panelHistory.index < panelHistory.history.length - 1) {
           dispatch({ type: "forward" });
@@ -114,55 +110,14 @@ const PanelNavForwardButton = () => {
     </Button>
   );
 };
-PanelNavForwardButton.displayName = "PanelNavForwardButton";
 
-const PanelNavTitleGroup = forwardRef<
-  HTMLDivElement,
-  WithRequired<React.ComponentPropsWithoutRef<"div">, "children">
->(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("flex flex-col", className)} {...props} />
-));
-PanelNavTitleGroup.displayName = "PanelNavTitleGroup";
+const PanelNavTitleGroup = classed("div", "flex flex-col");
 
-const PanelNavTitle = forwardRef<
-  React.ElementRef<typeof DialogTitle>,
-  WithRequired<React.ComponentPropsWithoutRef<typeof DialogTitle>, "children">
->(({ className, children, ...props }, ref) => {
-  return (
-    <DialogTitle
-      ref={ref}
-      className={cn("text-lg font-bold text-neutral-12", className)}
-      {...props}
-    >
-      {children}
-    </DialogTitle>
-  );
-});
-PanelNavTitle.displayName = "PanelNavTitle";
+const PanelNavTitle = classed(DialogTitle, "text-lg font-bold text-neutral-12");
 
-const PanelNavSubTitle = forwardRef<
-  HTMLDivElement,
-  WithRequired<React.ComponentPropsWithoutRef<"div">, "children">
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn("text-xs font-medium text-neutral-11", className)}
-    {...props}
-  />
-));
-PanelNavSubTitle.displayName = "PanelNavSubTitle";
+const PanelNavSubTitle = classed("div", "text-xs font-medium text-neutral-11");
 
-const PanelContent = forwardRef<
-  HTMLDivElement,
-  WithRequired<React.ComponentPropsWithoutRef<"div">, "children">
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn("flex  flex-col space-y-2 px-8", className)}
-    {...props}
-  />
-));
-PanelContent.displayName = "PanelContent";
+const PanelContent = classed("div", "flex flex-col space-y-2 px-8");
 
 export {
   Panel,

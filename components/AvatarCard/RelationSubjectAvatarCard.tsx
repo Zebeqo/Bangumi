@@ -5,7 +5,7 @@ import {
   AvatarCardInfo,
   AvatarCardInfoItem,
   AvatarCardInfoItemName,
-} from "@/ui/primitive/AvatarCard";
+} from "@/ui/components/AvatarCard";
 
 export function RelationSubjectAvatarCard({
   name,

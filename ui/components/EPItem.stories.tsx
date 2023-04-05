@@ -7,7 +7,7 @@ import {
   EPItemInfo,
   EPItemLeftContent,
   EPItemRightContent,
-} from "@/ui/primitive/EPItem";
+} from "@/ui/components/EPItem";
 import { action } from "@storybook/addon-actions";
 import { ContainerDecorator } from "@/ui/StorybookDecorator";
 import { userEvent, within } from "@storybook/testing-library";
@@ -55,11 +55,12 @@ export const EPItem_: StoryObj<{
     <EPItem>
       <EPItemLeftContent>
         <EPItemIndex
+          variant={isSelected ? "selected" : "ghost"}
           aria-label={`episode ${index}`}
-          value={index}
-          isSelected={isSelected}
           onClick={onClickIndex}
-        />
+        >
+          {index}
+        </EPItemIndex>
         <EPItemInfo
           name={name}
           name_cn={name_cn}

@@ -5,7 +5,9 @@ import { cn } from "@/lib/utils";
 import { atom, createStore, Provider, useAtomValue } from "jotai";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { buttonClass } from "@/ui/primitive/Button";
+import { GhostButton } from "@/ui/components/Button";
+import { makeStrict } from "@tw-classed/react";
+import { classed } from "@/classed.config";
 
 export const navbarStore = createStore();
 
@@ -30,6 +32,10 @@ const Navbar = memo(
 );
 Navbar.displayName = "Navbar";
 
+const LinkButton = makeStrict(
+  classed(Link, GhostButton, "relative z-10 px-4 py-2")
+);
+
 const NavbarItem = memo(
   forwardRef<
     React.ElementRef<"li">,
@@ -51,16 +57,7 @@ const NavbarItem = memo(
         ref={ref}
         {...props}
       >
-        <Link
-          href={`${value}`}
-          className={cn(
-            "relative z-10",
-            buttonClass({ type: "ghost" }),
-            "px-4 py-2"
-          )}
-        >
-          {children}
-        </Link>
+        <LinkButton href={`${value}`}>{children}</LinkButton>
         {isSelected && (
           <motion.div
             layoutId="thumb"

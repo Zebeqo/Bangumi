@@ -4,7 +4,7 @@ export const dynamicParams = true;
 
 import { CardServer } from "@/components/Card/CardServer";
 import { calendarScheme, sortCalendarData } from "@/lib/api/calendar";
-import { CardGridWrapper } from "@/components/Card/CardGridWrapper";
+import { CardGrid } from "@/components/Card/CardGrid";
 import { dayEnum, dayEnumKeySchema } from "@/lib/enum/dayEnum";
 
 export function generateStaticParams() {
@@ -52,11 +52,11 @@ export default async function Page({ params }: { params: { day: string } }) {
   });
 
   return (
-    <CardGridWrapper>
+    <CardGrid>
       {data.map((item) => (
         /* @ts-expect-error Server Component */
         <CardServer countType={"doing"} key={item.id} subject_id={item.id} />
       ))}
-    </CardGridWrapper>
+    </CardGrid>
   );
 }

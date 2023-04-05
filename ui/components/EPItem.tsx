@@ -1,92 +1,34 @@
 import { forwardRef } from "react";
-import type { WithRequired } from "@/lib/utils";
 import { cn } from "@/lib/utils";
-import type { ButtonProps } from "@/ui/primitive/Button";
-import { Button } from "@/ui/primitive/Button";
+import { Button, GhostButton } from "@/ui/components/Button";
 import {
   CalendarDaysIcon,
   ChatBubbleLeftRightIcon,
   ClockIcon,
 } from "@heroicons/react/20/solid";
+import type { ComponentProps } from "@tw-classed/react";
+import { deriveClassed } from "@tw-classed/react";
+import { classed } from "@/classed.config";
 
-const EPItem = forwardRef<
-  HTMLDivElement,
-  WithRequired<React.ComponentPropsWithoutRef<"div">, "children">
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn("flex items-center justify-between px-2", className)}
-    {...props}
-  />
-));
-EPItem.displayName = "EPItem";
+const EPItem = classed("div", "flex items-center justify-between px-2");
 
-const EPItemRightContent = forwardRef<
-  HTMLDivElement,
-  WithRequired<React.ComponentPropsWithoutRef<"div">, "children">
->(({ ...props }, ref) => <div ref={ref} {...props} />);
-EPItemRightContent.displayName = "EPItemRightContent";
+const EPItemRightContent = classed("div");
 
-const EPItemComment = forwardRef<
-  HTMLButtonElement,
-  Omit<ButtonProps, "children" | "variant"> & { count: number }
->(({ count, ...props }, ref) => (
-  <Button
-    ref={ref}
-    variant={{
-      type: "ghost",
-    }}
-    {...props}
-  >
-    <ChatBubbleLeftRightIcon className="mr-2 h-5 w-5" />
-    {count}
-  </Button>
-));
-EPItemComment.displayName = "EPItemComment";
+const EPItemComment = deriveClassed<
+  typeof GhostButton,
+  ComponentProps<typeof GhostButton> & { count: number }
+>(({ count, ...props }, ref) => {
+  return (
+    <GhostButton ref={ref} {...props}>
+      <ChatBubbleLeftRightIcon className="mr-2 h-5 w-5" />
+      {count}
+    </GhostButton>
+  );
+});
 
-const EPItemLeftContent = forwardRef<
-  HTMLDivElement,
-  WithRequired<React.ComponentPropsWithoutRef<"div">, "children">
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn("flex items-center space-x-4 p-2", className)}
-    {...props}
-  />
-));
-EPItemLeftContent.displayName = "EPItemLeftContent";
+const EPItemLeftContent = classed("div", "flex items-center space-x-4 p-2");
 
-interface EPItemIndexProps extends ButtonProps {
-  isSelected: boolean;
-  value: number;
-}
-const EPItemIndex = forwardRef<
-  HTMLButtonElement,
-  Omit<EPItemIndexProps, "children" | "variant">
->(({ value, isSelected, ...props }, ref) =>
-  isSelected ? (
-    <Button
-      ref={ref}
-      variant={{
-        type: "selected",
-      }}
-      {...props}
-    >
-      {value}
-    </Button>
-  ) : (
-    <Button
-      ref={ref}
-      variant={{
-        type: "ghost",
-      }}
-      {...props}
-    >
-      {value}
-    </Button>
-  )
-);
-EPItemIndex.displayName = "EPItemIndex";
+const EPItemIndex = Button;
 
 interface EPItemInfo extends EPItemInfoMainProps, EPItemInfoSubProps {}
 const EPItemInfo = forwardRef<HTMLDivElement, Omit<EPItemInfo, "children">>(

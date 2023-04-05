@@ -6,7 +6,7 @@ import {
   PanelNavSubTitle,
   PanelNavTitle,
   PanelNavTitleGroup,
-} from "@/ui/primitive/Panel";
+} from "@/ui/components/Panel";
 import { useSubjectData } from "@/hooks/use-subject";
 import { PersonList } from "@/components/Panel/PanelList/PersonList";
 

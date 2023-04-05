@@ -9,7 +9,7 @@ import {
   AvatarCardInfo,
   AvatarCardInfoItem,
   AvatarCardInfoItemName,
-} from "@/ui/primitive/AvatarCard";
+} from "@/ui/components/AvatarCard";
 
 // FIXME: 分页 API 无法获取全部所需数据
 export function CharacterAvatarCard({
@@ -27,11 +27,7 @@ export function CharacterAvatarCard({
     <>
       {characterData && (
         <AvatarCard>
-          <AvatarCardBadge
-            variant={{
-              color: "success",
-            }}
-          >
+          <AvatarCardBadge color="success">
             {characterData.stat.comments}
           </AvatarCardBadge>
           <AvatarCardContent>

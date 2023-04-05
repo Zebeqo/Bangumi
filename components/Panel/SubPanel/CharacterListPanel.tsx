@@ -8,7 +8,7 @@ import {
   PanelNavSubTitle,
   PanelNavTitle,
   PanelContent,
-} from "@/ui/primitive/Panel";
+} from "@/ui/components/Panel";
 
 export function CharacterListPanel({ subject_id }: { subject_id: number }) {
   const { data: subjectData } = useSubjectData(subject_id);

@@ -14,15 +14,15 @@ import {
   CardContent,
   CardFooter,
   CardHeader,
-  CardImage,
+  CardImageContainer,
   CardInfo,
   CardInfoItem,
   CardTagGroup,
   CardTitle,
-} from "@/ui/primitive/Card";
+} from "@/ui/components/Card";
 import { CardComment } from "@/components/Dialog/CardComment";
 import { ChatButton } from "@/components/Button/ChatButton";
-import { Badge } from "@/ui/primitive/Badge";
+import { Badge } from "@/ui/components/Badge";
 
 export function CollectionCard({
   collection,
@@ -33,7 +33,7 @@ export function CollectionCard({
 }) {
   return (
     <Card>
-      <CardImage>
+      <CardImageContainer>
         <Image
           className="object-cover"
           src={collection.subject.images.common}
@@ -41,7 +41,7 @@ export function CollectionCard({
           unoptimized={true}
           alt={"card-image"}
         />
-      </CardImage>
+      </CardImageContainer>
       <CardContent>
         <CardHeader>
           <CardTitle
@@ -80,22 +80,12 @@ export function CollectionCard({
         <CardTagGroup>
           {pvMode
             ? collection.tags.map((tag) => (
-                <Badge
-                  variant={{
-                    color: "primary",
-                  }}
-                  key={tag}
-                >
+                <Badge color="primary" key={tag}>
                   {tag}
                 </Badge>
               ))
             : collection.subject.tags.map((tag) => (
-                <Badge
-                  variant={{
-                    color: "primary",
-                  }}
-                  key={tag.name}
-                >
+                <Badge color="primary" key={tag.name}>
                   {tag.name}
                 </Badge>
               ))}

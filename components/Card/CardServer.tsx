@@ -12,17 +12,17 @@ import {
   CardContent,
   CardFooter,
   CardHeader,
-  CardImage,
+  CardImageContainer,
   CardInfo,
   CardInfoItem,
   CardTagGroup,
   CardTitle,
-} from "@/ui/primitive/Card";
+} from "@/ui/components/Card";
 import { InfoButton } from "@/components/Button/InfoButton";
 import { cva } from "class-variance-authority";
 import { ChatButton } from "@/components/Button/ChatButton";
 import { Rating } from "@/components/Rating/Rating";
-import { Badge } from "@/ui/primitive/Badge";
+import { Badge } from "@/ui/components/Badge";
 
 async function getSubjectData(id: number) {
   return subjectScheme.safeParse(
@@ -67,7 +67,7 @@ export async function CardServer({ subject_id, countType = "all" }: CardProps) {
 
   return (
     <Card>
-      <CardImage>
+      <CardImageContainer>
         <Image
           className="object-cover"
           src={images.common}
@@ -75,7 +75,7 @@ export async function CardServer({ subject_id, countType = "all" }: CardProps) {
           unoptimized={true}
           alt={"card-image"}
         />
-      </CardImage>
+      </CardImageContainer>
       <CardContent>
         <CardHeader>
           <CardTitle mainTitle={name_cn || name} subTitle={name} />
@@ -106,12 +106,7 @@ export async function CardServer({ subject_id, countType = "all" }: CardProps) {
         </CardInfo>
         <CardTagGroup>
           {tags.slice(0, 10).map((tag) => (
-            <Badge
-              variant={{
-                color: "primary",
-              }}
-              key={tag.name}
-            >
+            <Badge color="primary" key={tag.name}>
               {tag.name}
             </Badge>
           ))}

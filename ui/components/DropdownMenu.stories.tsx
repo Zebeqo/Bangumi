@@ -7,7 +7,7 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator,
   DropdownMenuItem,
-} from "@/ui/primitive/DropdownMenu";
+} from "@/ui/components/DropdownMenu";
 import {
   ArrowRightOnRectangleIcon,
   Cog6ToothIcon,
@@ -17,7 +17,7 @@ import {
 import { useState } from "react";
 import { screen, userEvent, within } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
-import { Button } from "@/ui/primitive/Button";
+import { Button } from "@/ui/components/Button";
 import { action } from "@storybook/addon-actions";
 
 const meta = {
@@ -52,13 +52,7 @@ export const DropdownMenu_: StoryObj<{
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button
-            variant={{
-              type: "outline",
-              iconOnly: true,
-            }}
-            data-testid="Dropdown Menu"
-          >
+          <Button variant="outline" iconOnly={true} data-testid="Dropdown Menu">
             <EllipsisVerticalIcon className="h-6 w-6" />
           </Button>
         </DropdownMenuTrigger>
@@ -115,13 +109,7 @@ export const DropdownMenu_Icon: StoryObj<{
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button
-            variant={{
-              type: "outline",
-              iconOnly: true,
-            }}
-            data-testid="Dropdown Menu"
-          >
+          <Button variant="outline" iconOnly={true} data-testid="Dropdown Menu">
             <EllipsisVerticalIcon className="h-6 w-6" />
           </Button>
         </DropdownMenuTrigger>
@@ -186,13 +174,7 @@ export const DropdownMenu_Radio: StoryObj<{
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button
-            variant={{
-              type: "outline",
-              iconOnly: true,
-            }}
-            data-testid="Dropdown Menu"
-          >
+          <Button variant="outline" iconOnly={true} data-testid="Dropdown Menu">
             <EllipsisVerticalIcon className="h-6 w-6" />
           </Button>
         </DropdownMenuTrigger>

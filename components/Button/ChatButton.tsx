@@ -2,9 +2,9 @@
 
 import { ChatBubbleLeftRightIcon } from "@heroicons/react/24/outline";
 import { forwardRef } from "react";
-import { Button } from "@/ui/primitive/Button";
+import { Button } from "@/ui/components/Button";
 import { useToast } from "@/hooks/use-toast";
-import { Tooltip } from "@/ui/primitive/Tooltip";
+import { Tooltip } from "@/ui/components/Tooltip";
 import { rootStore } from "@/components/Provider/JotaiProvider";
 import { Provider } from "jotai";
 
@@ -18,7 +18,9 @@ export const ChatButton_ = forwardRef<HTMLButtonElement, ChatButtonProps>(
     return (
       <Tooltip content="显示讨论">
         <Button
-          variant={{ type: "primary", color: "accent", iconOnly: true }}
+          variant="primary"
+          color="accent"
+          iconOnly
           ref={ref}
           onClick={() => {
             toast({

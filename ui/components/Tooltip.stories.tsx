@@ -1,7 +1,7 @@
 import { expect } from "@storybook/jest";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Tooltip } from "@/ui/primitive/Tooltip";
-import { Button } from "@/ui/primitive/Button";
+import { Tooltip } from "@/ui/components/Tooltip";
+import { Button } from "@/ui/components/Button";
 import { BoltIcon } from "@heroicons/react/20/solid";
 import { userEvent, within, screen } from "@storybook/testing-library";
 
@@ -31,7 +31,7 @@ export const Tooltip_: StoryObj<{
         align={align}
         sideOffset={sideOffset}
       >
-        <Button variant={{ type: "ghost", iconOnly: true }}>
+        <Button variant="ghost" iconOnly>
           <BoltIcon className="h-6 w-6" />
         </Button>
       </Tooltip>

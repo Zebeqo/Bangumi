@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { CollectionTypeSelect } from "@/components/Select/CollectionTypeSelect";
 import { action } from "@storybook/addon-actions";
-import SelectMeta from "@/ui/primitive/Select.stories";
+import SelectMeta from "@/ui/components/Select.stories";
 
 const meta = {
   component: CollectionTypeSelect,

@@ -4,8 +4,8 @@ import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import { panelHistoryAtom, panelReducer } from "@/lib/panel";
 import { forwardRef } from "react";
 import { useReducerAtom } from "jotai/utils";
-import { Button } from "@/ui/primitive/Button";
-import { Tooltip } from "@/ui/primitive/Tooltip";
+import { Button } from "@/ui/components/Button";
+import { Tooltip } from "@/ui/components/Tooltip";
 import { Provider } from "jotai";
 import { rootStore } from "@/components/Provider/JotaiProvider";
 
@@ -20,7 +20,9 @@ const InfoButton_ = forwardRef<HTMLButtonElement, InfoButtonProps>(
       <Tooltip content="显示详情">
         <Button
           ref={ref}
-          variant={{ type: "primary", color: "accent", iconOnly: true }}
+          variant="primary"
+          color="accent"
+          iconOnly
           onClick={() => {
             dispatch({
               type: "push",

@@ -9,7 +9,7 @@ import {
   DialogDescription,
   DialogTitle,
   DialogTrigger,
-} from "@/ui/primitive/Dialog";
+} from "@/ui/components/Dialog";
 
 export function CardComment({ comment }: { comment: string }) {
   const [isClamped, setIsClamped] = useState(false);

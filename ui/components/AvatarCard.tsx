@@ -1,28 +1,21 @@
 import { forwardRef } from "react";
 import type { WithRequired } from "@/lib/utils";
 import { cn } from "@/lib/utils";
-import { Badge } from "@/ui/primitive/Badge";
+import { Badge } from "@/ui/components/Badge";
 import { ChatBubbleLeftRightIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";
+import { classed } from "@/classed.config";
+import type { ComponentProps } from "@tw-classed/react";
+import { deriveClassed } from "@tw-classed/react";
 
-const AvatarCard = forwardRef<
-  HTMLDivElement,
-  WithRequired<React.ComponentPropsWithoutRef<"div">, "children">
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn(
-      "relative flex justify-center rounded-lg bg-neutral-3 px-4 py-6 hover:bg-neutral-5",
-      className
-    )}
-    {...props}
-  />
-));
-AvatarCard.displayName = "AvatarCard";
+const AvatarCard = classed(
+  "div",
+  "relative flex justify-center rounded-lg bg-neutral-3 px-4 py-6 hover:bg-neutral-5"
+);
 
-const AvatarCardBadge = forwardRef<
-  React.ElementRef<typeof Badge>,
-  React.ComponentPropsWithoutRef<typeof Badge>
+const AvatarCardBadge = deriveClassed<
+  typeof Badge,
+  ComponentProps<typeof Badge>
 >(({ className, children, ...props }, ref) => (
   <Badge
     ref={ref}
@@ -33,19 +26,8 @@ const AvatarCardBadge = forwardRef<
     {children}
   </Badge>
 ));
-AvatarCardBadge.displayName = Badge.displayName;
 
-const AvatarCardContent = forwardRef<
-  HTMLDivElement,
-  WithRequired<React.ComponentPropsWithoutRef<"div">, "children">
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn("flex w-32 flex-col space-y-4", className)}
-    {...props}
-  />
-));
-AvatarCardContent.displayName = "AvatarCardContent";
+const AvatarCardContent = classed("div", "flex w-32 flex-col space-y-4");
 
 const AvatarCardImage = forwardRef<
   React.ElementRef<typeof Image>,
@@ -69,17 +51,7 @@ const AvatarCardImage = forwardRef<
 ));
 AvatarCardImage.displayName = "AvatarCardImage";
 
-const AvatarCardInfo = forwardRef<
-  HTMLDivElement,
-  WithRequired<React.ComponentPropsWithoutRef<"div">, "children">
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn("flex flex-col space-y-1", className)}
-    {...props}
-  />
-));
-AvatarCardInfo.displayName = "AvatarCardInfo";
+const AvatarCardInfo = classed("div", "flex flex-col space-y-1");
 
 interface AvatarCardInfoItemProps
   extends React.ComponentPropsWithoutRef<"div"> {
@@ -98,22 +70,10 @@ const AvatarCardInfoItem = forwardRef<
 ));
 AvatarCardInfoItem.displayName = "AvatarCardInfoItem";
 
-const AvatarCardInfoItemName = forwardRef<
-  HTMLSpanElement,
-  WithRequired<React.ComponentPropsWithoutRef<"span">, "children">
->(({ className, children, ...props }, ref) => (
-  <span
-    ref={ref}
-    className={cn(
-      "whitespace-pre-wrap text-xs font-medium text-neutral-12 line-clamp-1",
-      className
-    )}
-    {...props}
-  >
-    {children}
-  </span>
-));
-AvatarCardInfoItemName.displayName = "AvatarCardInfoItemName";
+const AvatarCardInfoItemName = classed(
+  "span",
+  "whitespace-pre-wrap text-xs font-medium text-neutral-12 line-clamp-1"
+);
 
 export {
   AvatarCard,

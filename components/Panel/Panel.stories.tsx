@@ -5,7 +5,7 @@ import {
   PanelDecorator,
   ReactQueryDevtoolsDecorator,
 } from "@/ui/StorybookDecorator";
-import { Button } from "@/ui/primitive/Button";
+import { Button } from "@/ui/components/Button";
 import { panelHistoryAtom, panelReducer } from "@/lib/panel";
 import { useReducerAtom } from "jotai/utils";
 
@@ -19,7 +19,7 @@ const meta = {
     const [, dispatch] = useReducerAtom(panelHistoryAtom, panelReducer);
     return (
       <Button
-        variant={{ type: "secondary" }}
+        variant="secondary"
         data-testid="open-panel"
         onClick={() => {
           dispatch({

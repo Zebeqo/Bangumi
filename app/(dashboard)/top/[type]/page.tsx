@@ -6,7 +6,7 @@ import {
 export const dynamicParams = false;
 
 import { CardServer } from "@/components/Card/CardServer";
-import { CardGridWrapper } from "@/components/Card/CardGridWrapper";
+import { CardGrid } from "@/components/Card/CardGrid";
 import { searchResultScheme } from "@/lib/api/search";
 import { objectKeys } from "@/lib/utils";
 
@@ -55,11 +55,11 @@ export default async function Page({ params }: { params: { type: string } }) {
   );
 
   return (
-    <CardGridWrapper>
+    <CardGrid>
       {rankData.data.map(({ id }) => (
         /* @ts-expect-error Server Component */
         <CardServer key={id} subject_id={id} showCollectionNumber />
       ))}
-    </CardGridWrapper>
+    </CardGrid>
   );
 }

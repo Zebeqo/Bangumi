@@ -11,8 +11,12 @@ import {
 } from "@heroicons/react/20/solid";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { buttonClass } from "@/ui/primitive/Button";
 import { cn } from "@/lib/utils";
+import { classed } from "@/classed.config";
+import type { ComponentProps } from "@tw-classed/react";
+import { makeStrict } from "@tw-classed/react";
+import { ClassedButton } from "@/ui/components/Button";
+import { forwardRef } from "react";
 
 const headerItems = [
   {
@@ -65,11 +69,25 @@ const groups = [
   },
 ];
 
-const selectedClass = cn(
-  buttonClass({ type: "selected", color: "primary" }),
-  "w-full justify-start"
-);
-const defaultClass = cn(buttonClass({ type: "ghost" }), "w-full justify-start");
+const LinkButton = makeStrict(classed(Link, ClassedButton));
+
+const SidebarItem = forwardRef<
+  React.ElementRef<typeof LinkButton>,
+  Omit<ComponentProps<typeof LinkButton>, "color" | "variant"> & {
+    selected?: boolean;
+  }
+>(({ className, selected = false, ...props }, ref) => {
+  return (
+    <LinkButton
+      ref={ref}
+      variant={selected ? "selected" : "ghost"}
+      color={selected ? "primary" : "neutral"}
+      className={cn("w-full justify-start", className)}
+      {...props}
+    />
+  );
+});
+SidebarItem.displayName = "SidebarItem";
 
 export function Sidebar() {
   const path = usePathname();
@@ -82,22 +100,18 @@ export function Sidebar() {
           {headerItems.map((item) => {
             return (
               // Sidebar.Item
-              <Link
+              <SidebarItem
                 href={item.href}
                 key={item.name}
-                className={
+                selected={
                   path === "/"
                     ? item.href === "/top"
-                      ? selectedClass
-                      : defaultClass
                     : path?.startsWith(item.href)
-                    ? selectedClass
-                    : defaultClass
                 }
               >
                 {item.icon}
                 {item.name}
-              </Link>
+              </SidebarItem>
             );
           })}
         </div>
@@ -111,22 +125,18 @@ export function Sidebar() {
                 {group.items.map((item) => {
                   return (
                     // Sidebar.Item
-                    <Link
+                    <SidebarItem
                       href={item.href}
                       key={item.name}
-                      className={
+                      selected={
                         path === "/collection"
                           ? item.href === "/collection/do"
-                            ? selectedClass
-                            : defaultClass
                           : path?.startsWith(item.href)
-                          ? selectedClass
-                          : defaultClass
                       }
                     >
                       {item.icon}
                       {item.name}
-                    </Link>
+                    </SidebarItem>
                   );
                 })}
               </div>

@@ -11,7 +11,7 @@ import {
   PanelNavSubTitle,
   PanelNavTitle,
   PanelNavTitleGroup,
-} from "@/ui/primitive/Panel";
+} from "@/ui/components/Panel";
 
 export function EPListPanel({ subject_id }: { subject_id: number }) {
   const { data: subjectData } = useSubjectData(subject_id);
