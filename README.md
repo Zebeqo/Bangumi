@@ -17,14 +17,14 @@
 - 🩺 Validations using [Zod](https://github.com/colinhacks/zod)
 - 🔐 Authentication using [next-auth](https://github.com/nextauthjs/next-auth) custom provider
   - [Bangumi oauth 2.0](https://github.com/bangumi/api/blob/master/docs-raw/How-to-Auth.md)
-- 💄 Styled using [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss)
+- 💄 Styling using [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss)
 - 🥼 UI Components built using [Radix UI](https://github.com/radix-ui/primitives)
 - 🌗 Light/Dark mode following [Radix UI Color](https://www.radix-ui.com/colors) color system
-- 🥽 Fully Streaming and Suspense
-- 📖 [Storybook](https://github.com/storybookjs/storybook) 7.0 integration
+- 🥽 Loading UI and Suspense
+- 📖 [Storybook](https://github.com/storybookjs/storybook) 7.0
 - 🔬 Interaction tests in Storybook with @storybook/[jest](https://jestjs.io/), @storybook/[testing-library](https://testing-library.com/)
-- 🗃 State managed by [Jotai](https://github.com/pmndrs/jotai)
-- Server side data fetching with [Server Components](https://beta.nextjs.org/docs/rendering/server-and-client-components#server-components) `fetch()` API
+- 🗃 State managing using [Jotai](https://github.com/pmndrs/jotai)
+- Server side data fetching using [Server Components](https://beta.nextjs.org/docs/rendering/server-and-client-components#server-components) with new `fetch` API
 - Client side data fetching with [React Query](https://github.com/TanStack/query) (Auto Caching + Refetching, Load-More + Infinite Scroll, Optimistic Updates...)
 
 ## 📖 Storybook
@@ -59,10 +59,7 @@ pnpm storybook
 ```
 
 > **Warning**
-> next/font 目前对于非英文字体有些问题，我已经参考 https://github.com/vercel/next.js/issues/45080 做了一些调整，如果仍然出现相关问题，请自行删除字体相关代码。
-
-> **Note**
-> 开发时请尽量运行在 storybook 或者登陆后的收藏页， 因为收藏页的分页 api 可以获得 UI 足够的信息，但是其他页面的分页 api 信息不够，需要再获取每个条目的 api，这会造成大量请求严重影响加载速度。为了解决这个问题，生产模式下可以使用 next.js 服务器组件中新的 [Automatic fetch() Request Deduping](https://beta.nextjs.org/docs/data-fetching/fundamentals#automatic-fetch-request-deduping) 来进行 ISR，但是开发模式下这个功能是禁用的。
+> next/font 目前对于非英文字体有些问题，见 https://github.com/vercel/next.js/issues/45080 。如果仍然出现相关问题，请自行删除字体相关代码。
 
 ## 🖼️ ScreenShot
 
