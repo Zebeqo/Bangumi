@@ -74,10 +74,10 @@ export function EPItemList({
           </EPItemLeftContent>
           <EPItemRightContent>
             <EPItemComment
+              as="a"
               count={episodeData.comment}
-              onClick={() => {
-                window.open(`https://bgm.tv/ep/${episodeData.id}`, "_blank");
-              }}
+              target="_blank"
+              href={`https://bgm.tv/ep/${episodeData.id}`}
             />
           </EPItemRightContent>
         </EPItem>

@@ -34,12 +34,7 @@ export function CharacterAvatarCard({
             <AvatarCardImage
               src={characterData.images.medium}
               alt="Avatar"
-              onClick={() => {
-                window.open(
-                  `https://bgm.tv/character/${character_id}`,
-                  "_blank"
-                );
-              }}
+              href={`https://bgm.tv/character/${character_id}`}
             />
             <AvatarCardInfo>
               <AvatarCardInfoItem relation={character_relation}>
@@ -60,17 +55,13 @@ export function CharacterAvatarCard({
                   {actors.map((actor, index) => (
                     <div key={actor.id}>
                       <AvatarCardInfoItemName title={actor.name}>
-                        <span
+                        <a
                           className="cursor-pointer hover:text-accent-11"
-                          onClick={() => {
-                            window.open(
-                              `https://bgm.tv/person/${actor.id}`,
-                              "_blank"
-                            );
-                          }}
+                          href={`https://bgm.tv/person/${actor.id}`}
+                          target="_blank"
                         >
                           {actor.name}
-                        </span>
+                        </a>
                         <span className="select-none">
                           {index !== actors.length - 1 && "  /"}
                         </span>
