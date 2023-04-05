@@ -5,7 +5,7 @@ import {
   AvatarCardInfo,
   AvatarCardInfoItem,
   AvatarCardInfoItemName,
-} from "@/ui/primitive/AvatarCard";
+} from "@/ui/components/AvatarCard";
 
 export function RelationSubjectAvatarCard({
   name,
@@ -21,31 +21,22 @@ export function RelationSubjectAvatarCard({
   onClick: () => void;
 }) {
   return (
-    <>
-      {
-        <AvatarCard>
-          <AvatarCardContent className="mx-2 w-40 items-center">
-            <AvatarCardImage
-              src={
-                imageURL || "https://avatars.githubusercontent.com/u/7521082"
-              }
-              alt="Avatar"
-              onClick={onClick}
-              className="h-56 w-40 rounded-md"
-            />
-            <AvatarCardInfo>
-              <AvatarCardInfoItem relation={relation}>
-                <AvatarCardInfoItemName
-                  title={name_cn}
-                  className="line-clamp-2"
-                >
-                  {name_cn || name}
-                </AvatarCardInfoItemName>
-              </AvatarCardInfoItem>
-            </AvatarCardInfo>
-          </AvatarCardContent>
-        </AvatarCard>
-      }
-    </>
+    <AvatarCard>
+      <AvatarCardContent className="mx-2 w-40 items-center">
+        <AvatarCardImage
+          src={imageURL}
+          alt="Avatar"
+          onClick={onClick}
+          className="h-56 w-40 rounded-md"
+        />
+        <AvatarCardInfo>
+          <AvatarCardInfoItem relation={relation}>
+            <AvatarCardInfoItemName title={name_cn} className="line-clamp-2">
+              {name_cn || name}
+            </AvatarCardInfoItemName>
+          </AvatarCardInfoItem>
+        </AvatarCardInfo>
+      </AvatarCardContent>
+    </AvatarCard>
   );
 }

@@ -1,4 +1,5 @@
-import { atom } from "jotai/vanilla";
+import { atom } from "jotai";
+import { atomWithReset } from "jotai/utils";
 import { z } from "zod";
 
 interface Panel {
@@ -27,7 +28,7 @@ export interface PanelHistory {
   history: Panel[];
   index: number;
 }
-export const panelHistoryAtom = atom<PanelHistory>({
+export const panelHistoryAtom = atomWithReset<PanelHistory>({
   history: [],
   index: -1,
 });
@@ -75,4 +76,4 @@ export const currentPanelAtom = atom((get) =>
   get(panelHistoryAtom).history.at(get(panelHistoryAtom).index)
 );
 
-export const isOpenPanelAtom = atom(false);
+export const isOpenPanelAtom = atom((get) => get(panelHistoryAtom).index >= 0);

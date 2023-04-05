@@ -1,12 +1,12 @@
 import { CardSkeleton } from "@/components/Skeleton/CardSkeleton";
-import { GridWrapper } from "@/components/GridWrapper";
+import { CardGrid } from "@/components/Card/CardGrid";
 
 export function CardGridSkeleton() {
   return (
-    <GridWrapper>
+    <CardGrid>
       {Array.from({ length: 20 }).map((_, index) => (
         <CardSkeleton key={index} />
       ))}
-    </GridWrapper>
+    </CardGrid>
   );
 }

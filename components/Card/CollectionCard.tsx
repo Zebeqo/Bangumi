@@ -1,49 +1,39 @@
-"use client";
-
 import Image from "next/image";
 import { InfoButton } from "@/components/Button/InfoButton";
-import { ChatBubbleLeftRightIcon } from "@heroicons/react/24/outline";
 import {
   BookmarkIcon,
   CalendarDaysIcon,
   TableCellsIcon,
 } from "@heroicons/react/20/solid";
-import { cn } from "@/lib/utils";
 import type { z } from "zod";
 import type { collectionsPageScheme } from "@/lib/api/collection";
-import { useAtomValue } from "jotai/react";
-import { personalViewModeAtom } from "@/components/Switch/personalViewSwitch";
-import { useRef, useState } from "react";
-import { useDialog } from "@/hooks/use-dialog";
-import { PrimaryButton_Icon } from "@/ui/primitive/Button";
-import { Rating } from "@/components/Rating";
+import { Rating } from "@/components/Rating/Rating";
 import {
   Card,
   CardButtonGroup,
   CardContent,
   CardFooter,
   CardHeader,
-  CardImage,
+  CardImageContainer,
   CardInfo,
   CardInfoItem,
   CardTagGroup,
-  CardTagGroupItem,
   CardTitle,
-} from "@/ui/primitive/Card";
+} from "@/ui/components/Card";
+import { CardComment } from "@/components/Dialog/CardComment";
+import { ChatButton } from "@/components/Button/ChatButton";
+import { Badge } from "@/ui/components/Badge";
 
 export function CollectionCard({
   collection,
+  pvMode = false,
 }: {
   collection: z.infer<typeof collectionsPageScheme>["data"][number];
+  pvMode?: boolean;
 }) {
-  const pvMode = useAtomValue(personalViewModeAtom);
-  const [isClamped, setIsClamped] = useState(false);
-  const commentRef = useRef<HTMLParagraphElement>(null);
-  const openDialog = useDialog();
-
   return (
     <Card>
-      <CardImage>
+      <CardImageContainer>
         <Image
           className="object-cover"
           src={collection.subject.images.common}
@@ -51,7 +41,7 @@ export function CollectionCard({
           unoptimized={true}
           alt={"card-image"}
         />
-      </CardImage>
+      </CardImageContainer>
       <CardContent>
         <CardHeader>
           <CardTitle
@@ -60,24 +50,21 @@ export function CollectionCard({
           />
           <CardButtonGroup>
             <InfoButton subject_id={collection.subject.id} />
-            <PrimaryButton_Icon colorType={"accent"}>
-              <ChatBubbleLeftRightIcon className="h-6 w-6" />
-            </PrimaryButton_Icon>
+            <ChatButton subject_id={collection.subject.id} />
           </CardButtonGroup>
         </CardHeader>
-        <CardInfo className="mt-1">
+        <CardInfo>
           <CardInfoItem>
             <span className="h-4 w-4">
               <CalendarDaysIcon />
             </span>
-            <span>{collection.subject.date || "未知"}</span>
+            <span>{collection.subject.date}</span>
           </CardInfoItem>
           <CardInfoItem>
             <span className="h-4 w-4">
               <TableCellsIcon />
             </span>
             <span>
-              {" "}
               {collection.subject.eps
                 ? `${collection.ep_status} / ${collection.subject.eps} 集`
                 : "未知"}
@@ -93,14 +80,14 @@ export function CollectionCard({
         <CardTagGroup>
           {pvMode
             ? collection.tags.map((tag) => (
-                <CardTagGroupItem colorType={"primary"} key={tag}>
+                <Badge color="primary" key={tag}>
                   {tag}
-                </CardTagGroupItem>
+                </Badge>
               ))
             : collection.subject.tags.map((tag) => (
-                <CardTagGroupItem colorType={"primary"} key={tag.name}>
+                <Badge color="primary" key={tag.name}>
                   {tag.name}
-                </CardTagGroupItem>
+                </Badge>
               ))}
         </CardTagGroup>
         <CardFooter>
@@ -116,30 +103,7 @@ export function CollectionCard({
               />
             </div>
             {collection.comment ? (
-              <div
-                ref={commentRef}
-                className={cn(
-                  "whitespace-pre-wrap text-xs font-medium italic text-accent-12 line-clamp-1",
-                  isClamped && "hover:cursor-pointer hover:not-italic"
-                )}
-                onMouseEnter={() => {
-                  if (commentRef.current) {
-                    setIsClamped(
-                      commentRef.current.scrollHeight >
-                        commentRef.current.clientHeight + 1
-                    );
-                  }
-                }}
-                onClick={() =>
-                  isClamped &&
-                  openDialog({
-                    title: "评论",
-                    description: collection.comment ?? "",
-                  })
-                }
-              >
-                “ {collection.comment} ”
-              </div>
+              <CardComment comment={collection.comment} />
             ) : (
               <span className="text-xs text-neutral-11">未发表吐槽</span>
             )}

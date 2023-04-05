@@ -1,13 +1,14 @@
 import type { NextAuthOptions } from "next-auth";
 import { z } from "zod";
 import * as process from "process";
+import { FALLBACK_IMAGE } from "@/lib/constant";
 
 const userScheme = z.object({
   id: z.number().transform((value) => value.toString()),
   username: z.string(),
   nickname: z.string(),
   avatar: z.object({
-    large: z.string().url(),
+    large: z.string().url().catch(FALLBACK_IMAGE),
   }),
 });
 

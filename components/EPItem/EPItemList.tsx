@@ -12,7 +12,7 @@ import {
   EPItemInfo,
   EPItemLeftContent,
   EPItemRightContent,
-} from "@/ui/primitive/EPItem";
+} from "@/ui/components/EPItem";
 
 export function EPItemList({
   episodesData,
@@ -23,7 +23,7 @@ export function EPItemList({
 }) {
   const { data: collectionData } = useCollectionData(subject_id);
   const mutateEpisode = useEpisodeMutation();
-  const openToast = useToast();
+  const toast = useToast();
 
   return (
     <>
@@ -31,12 +31,13 @@ export function EPItemList({
         <EPItem key={episodeData.ep}>
           <EPItemLeftContent>
             <EPItemIndex
-              isSelected={
+              variant={
                 collectionData
                   ? episodeData.ep <= collectionData.ep_status
-                  : false
+                    ? "selected"
+                    : "ghost"
+                  : "ghost"
               }
-              value={episodeData.ep}
               onClick={() => {
                 if (collectionData) {
                   collectionData.ep_status === episodeData.ep
@@ -55,13 +56,15 @@ export function EPItemList({
                         collection_type: collectionData.type,
                       });
                 } else {
-                  openToast({
+                  toast({
                     type: "info",
                     title: "请先收藏该条目",
                   });
                 }
               }}
-            />
+            >
+              {episodeData.ep}
+            </EPItemIndex>
             <EPItemInfo
               name={episodeData.name || "未知"}
               name_cn={episodeData.name === "" ? "" : episodeData.name_cn}

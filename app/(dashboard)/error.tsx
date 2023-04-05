@@ -3,27 +3,23 @@
 import { useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 
-export default function Error({
-  error,
-  reset,
-}: {
-  error: Error;
-  reset: () => void;
-}) {
-  const openToast = useToast();
+export default function Error({ error }: { error: Error; reset: () => void }) {
+  const toast = useToast();
   useEffect(() => {
     // Log the error to an error reporting service
     console.error(error);
-    openToast({
+    toast({
       type: "error",
-      title: "该页API 暂不能使用！",
-      description: "请尝试更换其他页面",
+      title: "出现了意外错误！",
+      description: "请尝试刷新或更换其他页面",
       action: {
-        label: "重试",
-        onClick: reset,
+        label: "反馈信息",
+        onClick: () => {
+          window.open("https://github.com/Zebeqo/Bangumi/issues/new", "_blank");
+        },
       },
     });
-  }, [error]);
+  }, [error, toast]);
 
   return null;
 }

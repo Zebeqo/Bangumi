@@ -1,50 +1,23 @@
-"use client";
-
+import { collectionTypeEnum } from "@/lib/enum/collectionTypeEnum";
 import {
-  useCollectionData,
-  useCollectionMutation,
-} from "@/hooks/use-collection";
-import {
-  collectionNameCNToTypeScheme,
-  collectionTypeKeyScheme,
-  collectionTypeMap,
-} from "@/lib/map/collectionTypeMap";
-import { Select, SelectOptionsContent } from "@/ui/primitive/Select";
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+} from "@/ui/components/Select";
 
-export function CollectionTypeSelect({ subject_id }: { subject_id: number }) {
-  const { data: collectionData } = useCollectionData(subject_id);
-  const mutateCollection = useCollectionMutation();
-
-  return (
-    <>
-      {collectionData && (
-        <Select
-          defaultValue={
-            collectionTypeMap[
-              collectionTypeKeyScheme.parse(collectionData.type)
-            ].name_cn
-          }
-          onValueChange={(value: string) => {
-            const collection_type = collectionNameCNToTypeScheme.parse(value);
-            mutateCollection.mutate({
-              mutateCollection: {
-                type: Number(collection_type),
-              },
-              subject_id: subject_id,
-              subject_type: collectionData.subject.type,
-              collection_type: collectionData.type,
-              description: value,
-            });
-          }}
-        >
-          <SelectOptionsContent
-            colorType="accent"
-            options={Object.values(collectionTypeMap).map(
-              (value) => value.name_cn
-            )}
-          />
-        </Select>
-      )}
-    </>
-  );
-}
+export const CollectionTypeSelect = (
+  props: React.ComponentPropsWithoutRef<typeof Select>
+) => (
+  <Select {...props}>
+    <SelectContent color="accent">
+      <SelectGroup>
+        {Object.entries(collectionTypeEnum).map(([key, { label }], index) => (
+          <SelectItem color="accent" key={`${key}-${index}`} value={key}>
+            {label}
+          </SelectItem>
+        ))}
+      </SelectGroup>
+    </SelectContent>
+  </Select>
+);

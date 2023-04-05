@@ -1,8 +1,11 @@
 "use client";
 
 import { useSubjectData } from "@/hooks/use-subject";
-import { Suspense, useRef, useState } from "react";
-import { useCollectionData } from "@/hooks/use-collection";
+import { Suspense } from "react";
+import {
+  useCollectionData,
+  useCollectionMutation,
+} from "@/hooks/use-collection";
 import { useToast } from "@/hooks/use-toast";
 import { signIn, useSession } from "next-auth/react";
 import { SubjectContentSkeleton } from "@/components/Skeleton/SubjectContentSkeleton";
@@ -10,39 +13,47 @@ import {
   SubjectContent as SubjectContentRoot,
   SubjectContentImage,
   SubjectContentInfo,
-  SubjectContentInfoBody,
   SubjectContentInfoFooter,
   SubjectContentInfoHeader,
   SubjectContentInfoHeaderDivider,
+  SubjectContentInfoText,
   SubjectContentRating,
   SubjectContentTagGroup,
-} from "@/ui/primitive/SubjectContent";
-import { Badge } from "@/ui/primitive/Badge";
-import { cn } from "@/lib/utils";
+} from "@/ui/components/SubjectContent";
+import { Badge } from "@/ui/components/Badge";
 import { CollectionTypeSelect } from "@/components/Select/CollectionTypeSelect";
 import { RatingSelect } from "@/components/Select/RatingSelect";
-import { EpisodeButton as EpisodeButtonComponent } from "@/components/Button/EpisodeButton";
-import { MoreDropdownMenu } from "@/components/DropdownMenu/MoreDropdownMenu";
-import { OutlineButton, PrimaryButton } from "@/ui/primitive/Button";
+import { EpisodeButton } from "@/components/Button/EpisodeButton";
+import { MoreMenu } from "@/components/DropdownMenu/MoreMenu";
+import { Button } from "@/ui/components/Button";
 import {
   ChevronDownIcon,
   InboxArrowDownIcon,
   StarIcon,
 } from "@heroicons/react/20/solid";
+import {
+  collectionTypeEnum,
+  collectionTypeValueToKeySchema,
+  collectionTypeEnumKeySchema,
+} from "@/lib/enum/collectionTypeEnum";
+import {
+  ratingEnum,
+  ratingValueToKeyScheme,
+  ratingEnumKeySchema,
+} from "@/lib/enum/ratingEnum";
 
 export function SubjectContent({ subject_id }: { subject_id: number }) {
-  const [showFullInfo, setShowFullInfo] = useState(false);
-  const [isClamped, setIsClamped] = useState(false);
-  const descriptionRef = useRef<HTMLParagraphElement>(null);
-  const { data: collectionData, isSuccess: isCollectionDataSuccess } =
-    useCollectionData(subject_id);
-  const openToast = useToast();
+  const toast = useToast();
+
+  const { data: collectionData } = useCollectionData(subject_id);
   const { data: session } = useSession();
-  const { data: subjectData, isSuccess: isSubjectDataSuccess } =
-    useSubjectData(subject_id);
+  const { data: subjectData } = useSubjectData(subject_id);
+
+  const mutateCollection = useCollectionMutation();
+
   return (
     <>
-      {subjectData && isSubjectDataSuccess && isCollectionDataSuccess && (
+      {subjectData && (
         <Suspense fallback={<SubjectContentSkeleton />}>
           <SubjectContentRoot>
             <SubjectContentImage src={subjectData.images.medium} alt="cover" />
@@ -55,61 +66,69 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
                 <SubjectContentInfoHeaderDivider />
                 <SubjectContentTagGroup>
                   {subjectData.tags.map(({ count, name }) => (
-                    <Badge colorType={"primary"} key={name} className="mr-2">
+                    <Badge color="primary" key={name}>
                       {name}
                       <span className="ml-1 text-neutral-11">{count}</span>
                     </Badge>
                   ))}
                 </SubjectContentTagGroup>
               </SubjectContentInfoHeader>
-              <SubjectContentInfoBody>
-                <p
-                  ref={descriptionRef}
-                  onMouseEnter={() => {
-                    if (descriptionRef.current) {
-                      setIsClamped(
-                        descriptionRef.current.scrollHeight >
-                          descriptionRef.current.clientHeight
-                      );
-                    }
-                  }}
-                  onClick={() => {
-                    isClamped && setShowFullInfo(true);
-                  }}
-                  className={cn(
-                    "line-clamp-8",
-                    showFullInfo
-                      ? "line-clamp-none"
-                      : isClamped && "hover:cursor-pointer hover:font-medium"
-                  )}
-                >
-                  {subjectData.summary}
-                </p>
-              </SubjectContentInfoBody>
+              <SubjectContentInfoText text={subjectData.summary} />
               <SubjectContentInfoFooter>
                 {collectionData ? (
                   <>
                     <CollectionTypeSelect
-                      subject_id={collectionData.subject_id}
+                      defaultValue={collectionTypeValueToKeySchema.parse(
+                        collectionData.type
+                      )}
+                      onValueChange={(value: string) => {
+                        const collection_type =
+                          collectionTypeEnumKeySchema.parse(value);
+                        mutateCollection.mutate({
+                          mutateCollection: {
+                            type: collectionTypeEnum[collection_type].value,
+                          },
+                          subject_id: subject_id,
+                          subject_type: collectionData.subject.type,
+                          collection_type: collectionData.type,
+                          description: `已将条目的收藏类型修改为 ${collectionTypeEnum[collection_type].label}`,
+                        });
+                      }}
                     />
-                    <RatingSelect subject_id={collectionData.subject_id} />
-                    <EpisodeButtonComponent
+                    <RatingSelect
+                      defaultValue={ratingValueToKeyScheme.parse(
+                        collectionData.rate
+                      )}
+                      onValueChange={(value: string) => {
+                        const rating = ratingEnumKeySchema.parse(value);
+                        mutateCollection.mutate({
+                          mutateCollection: {
+                            rate: ratingEnum[rating],
+                          },
+                          subject_id: subject_id,
+                          subject_type: collectionData.subject.type,
+                          collection_type: collectionData.type,
+                          description: `已将条目的评分修改为 ${rating}`,
+                        });
+                      }}
+                    />
+                    <EpisodeButton
                       subject_id={collectionData.subject_id}
                       eps={collectionData.subject.eps}
                       ep_status={collectionData.ep_status}
                     />
-                    <MoreDropdownMenu
+                    <MoreMenu
                       subject_id={collectionData.subject_id}
                       hasCollectionData={true}
                     />
                   </>
                 ) : (
                   <>
-                    <PrimaryButton
-                      colorType={"neutral"}
+                    <Button
+                      variant="primary"
                       onClick={() => {
                         if (session) {
-                          openToast({
+                          toast({
                             type: "info",
                             title: "收藏条目失败",
                             description:
@@ -133,12 +152,12 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
                     >
                       <InboxArrowDownIcon className="mr-2 h-5 w-5" />
                       收藏
-                    </PrimaryButton>
-                    <OutlineButton
-                      colorType={"neutral"}
+                    </Button>
+                    <Button
+                      variant="outline"
                       onClick={() => {
                         if (session) {
-                          openToast({
+                          toast({
                             type: "info",
                             title: "请先收藏该条目",
                           });
@@ -154,8 +173,8 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
                         <span>评分</span>
                       </span>
                       <ChevronDownIcon className="ml-2 h-5 w-5" />
-                    </OutlineButton>
-                    <MoreDropdownMenu subject_id={subjectData.id} />
+                    </Button>
+                    <MoreMenu subject_id={subjectData.id} />
                   </>
                 )}
               </SubjectContentInfoFooter>

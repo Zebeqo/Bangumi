@@ -1,13 +1,13 @@
 "use client";
 
-import { atomWithStorage } from "jotai/vanilla/utils";
-import { Switch } from "@/ui/primitive/Switch";
-import { useAtom } from "jotai/react";
-import { useEffect } from "react";
+import { atomWithStorage } from "jotai/utils";
+import { Switch } from "@/ui/components/Switch";
+import { useAtom } from "jotai";
+import { memo, useEffect } from "react";
 
 export const personalViewModeAtom = atomWithStorage("personalViewMode", false);
 
-export const PersonalViewSwitch = () => {
+export const PersonalViewSwitch = memo(() => {
   const [checked, setChecked] = useAtom(personalViewModeAtom);
 
   useEffect(() => {
@@ -22,15 +22,14 @@ export const PersonalViewSwitch = () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, [checked, setChecked]);
-  function handleChecked(checked: boolean) {
-    setChecked(checked);
-  }
 
   return (
-    <Switch
-      colorType={"accent"}
-      checked={checked}
-      onCheckedChange={handleChecked}
-    />
+    <div className="flex items-center space-x-3">
+      <span className="font-medium text-neutral-11">
+        个人视角<span className="text-xs font-normal ">（按 p 切换）</span>
+      </span>
+      <Switch color="accent" checked={checked} onCheckedChange={setChecked} />
+    </div>
   );
-};
+});
+PersonalViewSwitch.displayName = "PersonalViewSwitch";

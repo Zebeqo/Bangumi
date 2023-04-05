@@ -3,43 +3,42 @@
 import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
 
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
-import { LoadingSpinner } from "@/ui/icon/24/LoadingSpinner";
-import { GhostButton_Icon } from "@/ui/primitive/Button";
+import { Button } from "@/ui/components/Button";
+import { Tooltip } from "@/ui/components/Tooltip";
 
 export function ThemeButton() {
-  const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return (
-      <GhostButton_Icon
-        colorType={"neutral"}
-        aria-label="Loading Theme"
-        className="hover:bg-transparent active:bg-transparent"
-      >
-        <LoadingSpinner className="h-6 w-6" />
-      </GhostButton_Icon>
-    );
-  }
+  const { setTheme } = useTheme();
 
   return (
-    <GhostButton_Icon
-      aria-label="Toggle Dark Mode"
-      colorType={"neutral"}
-      onClick={() => {
-        setTheme(theme === "dark" ? "light" : "dark");
-      }}
-    >
-      {theme === "dark" ? (
-        <SunIcon className="h-6 w-6" />
-      ) : (
-        <MoonIcon className="h-6 w-6" />
-      )}
-    </GhostButton_Icon>
+    <>
+      <span className="hidden dark:inline-block">
+        <Tooltip content={"明亮模式"}>
+          <Button
+            variant="ghost"
+            iconOnly
+            aria-label="Toggle light Mode"
+            onClick={() => {
+              setTheme("light");
+            }}
+          >
+            <SunIcon className="h-6 w-6" />
+          </Button>
+        </Tooltip>
+      </span>
+      <span className="inline-block dark:hidden">
+        <Tooltip content={"黑暗模式"}>
+          <Button
+            variant="ghost"
+            iconOnly
+            aria-label="Toggle dark Mode"
+            onClick={() => {
+              setTheme("dark");
+            }}
+          >
+            <MoonIcon className="h-6 w-6" />
+          </Button>
+        </Tooltip>
+      </span>
+    </>
   );
 }

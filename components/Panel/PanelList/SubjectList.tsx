@@ -2,9 +2,12 @@
 
 import { ListHeader } from "@/components/Panel/PanelList/ListHeader";
 import { useSubjectRelationsData } from "@/hooks/use-relation";
-import { subjectRelationEnum, subjectRelationScheme } from "@/lib/api/relation";
+import {
+  subjectRelationRankEnum,
+  subjectRelationRankScheme,
+} from "@/lib/api/relation";
 import { RelationSubjectAvatarCard } from "@/components/AvatarCard/RelationSubjectAvatarCard";
-import { useReducerAtom } from "jotai/react/utils";
+import { useReducerAtom } from "jotai/utils";
 import { panelHistoryAtom, panelReducer } from "@/lib/panel";
 import { panelScrollToTop } from "@/lib/utils";
 import { Suspense } from "react";
@@ -22,13 +25,13 @@ export function SubjectList({
   const { data: subjectRelationsData } = useSubjectRelationsData(subject_id);
 
   const sortedListData = subjectRelationsData?.sort((a, b) => {
-    const subjectRelationA = subjectRelationScheme.parse(
+    const subjectRelationA = subjectRelationRankScheme.parse(
       // @ts-expect-error zod will catch it
-      subjectRelationEnum[a.relation]
+      subjectRelationRankEnum[a.relation]
     );
-    const subjectRelationB = subjectRelationScheme.parse(
+    const subjectRelationB = subjectRelationRankScheme.parse(
       // @ts-expect-error zod will catch it
-      subjectRelationEnum[b.relation]
+      subjectRelationRankEnum[b.relation]
     );
 
     return subjectRelationB - subjectRelationA;

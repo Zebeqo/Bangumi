@@ -9,18 +9,17 @@ import {
   AvatarCardInfo,
   AvatarCardInfoItem,
   AvatarCardInfoItemName,
-} from "@/ui/primitive/AvatarCard";
+} from "@/ui/components/AvatarCard";
 
+// FIXME: 分页 API 无法获取全部所需数据
 export function CharacterAvatarCard({
   character_id,
   character_relation,
   actors,
-  onClick,
 }: {
   character_id: number;
   character_relation: string;
   actors: { id: number; name: string }[];
-  onClick?: () => void;
 }) {
   const { data: characterData } = useCharacterData(character_id);
 
@@ -28,17 +27,19 @@ export function CharacterAvatarCard({
     <>
       {characterData && (
         <AvatarCard>
-          <AvatarCardBadge colorType={"success"}>
+          <AvatarCardBadge color="success">
             {characterData.stat.comments}
           </AvatarCardBadge>
           <AvatarCardContent>
             <AvatarCardImage
-              src={
-                characterData.images?.medium ||
-                "https://avatars.githubusercontent.com/u/7521082"
-              }
+              src={characterData.images.medium}
               alt="Avatar"
-              onClick={onClick}
+              onClick={() => {
+                window.open(
+                  `https://bgm.tv/character/${character_id}`,
+                  "_blank"
+                );
+              }}
             />
             <AvatarCardInfo>
               <AvatarCardInfoItem relation={character_relation}>

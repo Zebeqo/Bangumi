@@ -2,14 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 import { subjectScheme } from "@/lib/api/subject";
 import { useErrorToast } from "@/hooks/use-toast";
 import { useSession } from "next-auth/react";
-import { errorScheme } from "@/lib/error";
+import { handleResponse } from "@/lib/api/utils";
 
 export function useSubjectData(subject_id: number) {
   const { data: session } = useSession();
-  const openErrorToast = useErrorToast();
+  const errorToast = useErrorToast();
   const { data, isSuccess } = useQuery({
     queryKey: ["subject", subject_id, session?.user.name],
     queryFn: async () => {
+      if (subject_id === -1) return null;
       try {
         const response = await fetch(
           `https://api.bgm.tv/v0/subjects/${subject_id}`,
@@ -22,25 +23,13 @@ export function useSubjectData(subject_id: number) {
                   },
           }
         );
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        const data = await response.json();
-        const subjectResult = subjectScheme.safeParse(data);
-        if (!subjectResult.success) {
-          const errorResult = errorScheme.safeParse(data);
-          if (errorResult.success) {
-            throw new Error(JSON.stringify(errorResult.data, null, 2));
-          } else {
-            throw new Error(
-              `FROM ERROR:\n${errorResult.error.message}\n\nFROM SUBJECT:\n${subjectResult.error.message}`
-            );
-          }
-        } else {
-          return subjectResult.data;
-        }
+
+        return await handleResponse(response, subjectScheme);
       } catch (e) {
         if (e instanceof Error) {
           const message = e.message;
-          openErrorToast("获取条目信息失败", message);
+          errorToast("获取条目信息失败", message);
+          return null;
         }
       }
     },

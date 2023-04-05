@@ -10,7 +10,7 @@ module.exports = {
     "./ui/**/*.{ts,tsx}",
     "./hooks/**/*.tsx",
     "./.storybook/*.html",
-    "./.storybook/preview.js",
+    "./.storybook/preview.ts",
   ],
   darkMode: "class",
   theme: {
@@ -32,6 +32,7 @@ module.exports = {
         success: toRadixVars("green"),
         error: toRadixVars("tomato"),
         info: toRadixVars("blue"),
+        ...radixColors.blackA,
       },
 
       // https://github.com/ecklf/tailwindcss-radix/blob/main/demo/tailwind.config.js
@@ -169,10 +170,9 @@ module.exports = {
         tomatoDark: radixColors.tomatoDark,
         blue: radixColors.blue,
         blueDark: radixColors.blueDark,
-        blackA: radixColors.blackA,
-        whiteA: radixColors.whiteA,
       },
     }),
     require("tailwindcss-radix")(),
+    require("tailwindcss-animate"),
   ],
 };

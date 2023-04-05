@@ -6,7 +6,7 @@ import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 import { useEpisodeMutation } from "@/hooks/use-episode";
 import { useCollectionData } from "@/hooks/use-collection";
-import { OutlineButton } from "@/ui/primitive/Button";
+import { Button } from "@/ui/components/Button";
 
 export function EpisodeButton({
   subject_id,
@@ -20,7 +20,7 @@ export function EpisodeButton({
   const [value, setValue] = useState<number>(ep_status);
   const [prevValue, setPrevValue] = useState<number>(ep_status);
   const inputRef = useRef<HTMLInputElement>(null);
-  const openToast = useToast();
+  const toast = useToast();
   const mutateEpisode = useEpisodeMutation();
   const { data: collectionData } = useCollectionData(subject_id);
 
@@ -38,8 +38,8 @@ export function EpisodeButton({
   return (
     <>
       {collectionData && (
-        <OutlineButton
-          colorType={"neutral"}
+        <Button
+          variant="outline"
           className="bg-neutral-1 hover:bg-neutral-1 active:bg-neutral-1"
           onClick={() => {
             if (inputRef.current) {
@@ -75,7 +75,7 @@ export function EpisodeButton({
 
                 if (epResult.success) {
                   if (value - prevValue > 100) {
-                    openToast({
+                    toast({
                       type: "error",
                       title: "修改收藏进度失败！",
                       description: "单次最多更新 100 集。建议前往主站更新",
@@ -103,7 +103,7 @@ export function EpisodeButton({
                   });
                 } else {
                   setValue(prevValue);
-                  openToast({
+                  toast({
                     type: "error",
                     title: "修改收藏进度失败！",
                     description: `请输入 0-${eps || "max"} 之间的整数。`,
@@ -132,7 +132,7 @@ export function EpisodeButton({
                   collection_type: collectionData.type,
                 });
               } else {
-                openToast({
+                toast({
                   type: "error",
                   title: "修改收藏进度失败！",
                   description: `请输入 0-${eps || "max"} 之间的整数。`,
@@ -140,7 +140,7 @@ export function EpisodeButton({
               }
             }}
           />
-        </OutlineButton>
+        </Button>
       )}
     </>
   );

@@ -1,43 +1,50 @@
 import { expect } from "@storybook/jest";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Dialog, DialogContent_Panel } from "@/ui/primitive/Dialog";
-import { action } from "@storybook/addon-actions";
-import { STORYBOOK_SUBJECT_ID } from "@/lib/constant";
-import { SubjectPanelSkeleton } from "@/components/Skeleton/SubjectPanelSkeleton";
-import { Suspense } from "react";
-import { CharacterListPanel } from "@/components/Panel/SubPanel/CharacterListPanel";
-import { EPListPanel } from "@/components/Panel/SubPanel/EPListPanel";
-import { PersonListPanel } from "@/components/Panel/SubPanel/PersonListPanel";
-import { SubjectListPanel } from "@/components/Panel/SubPanel/SubjectListPanel";
-import { SubjectPanel } from "@/components/Panel/SubPanel/SubjectPanel";
-import { waitFor, within, screen } from "@storybook/testing-library";
-import { reactQueryDevtoolsDecorator } from "@/ui/storybook";
+import { waitFor, within, screen, userEvent } from "@storybook/testing-library";
+import {
+  PanelDecorator,
+  ReactQueryDevtoolsDecorator,
+} from "@/ui/StorybookDecorator";
+import { Button } from "@/ui/components/Button";
+import { panelHistoryAtom, panelReducer } from "@/lib/panel";
+import { useReducerAtom } from "jotai/utils";
 
-const meta: Meta = {
+const meta = {
   title: "Panel",
+  decorators: [ReactQueryDevtoolsDecorator, PanelDecorator],
   args: {
-    subject_id: STORYBOOK_SUBJECT_ID,
-    open: true,
+    target_id: 302286,
   },
-  decorators: [reactQueryDevtoolsDecorator],
-};
+  render: ({ target_id }) => {
+    const [, dispatch] = useReducerAtom(panelHistoryAtom, panelReducer);
+    return (
+      <Button
+        variant="secondary"
+        data-testid="open-panel"
+        onClick={() => {
+          dispatch({
+            type: "push",
+            value: { type: "subject", target_id: target_id as number },
+          });
+        }}
+      >
+        Open panel
+      </Button>
+    );
+  },
+} satisfies Meta;
 
 export default meta;
 
-type PanelStory = StoryObj<{ subject_id: number; open: boolean }>;
+type Story = StoryObj<{ target_id: number }>;
 
-export const SubjectPanel_: PanelStory = {
-  render: ({ subject_id, open }) => (
-    <Dialog open={open} onOpenChange={action("trigger close")}>
-      <DialogContent_Panel isOpen={open}>
-        <Suspense fallback={<SubjectPanelSkeleton />}>
-          <SubjectPanel subject_id={subject_id} />
-        </Suspense>
-      </DialogContent_Panel>
-    </Dialog>
-  ),
-  play: async () => {
+export const SubjectPanel_: Story = {
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getByTestId("open-panel"));
+
     const panel = await screen.findByRole("dialog");
+
     await waitFor(
       () => {
         expect(within(panel).getByText(/或是偶然，或是必然/));
@@ -47,16 +54,24 @@ export const SubjectPanel_: PanelStory = {
   },
 };
 
-export const CharacterListPanel_: PanelStory = {
-  render: ({ subject_id, open }) => (
-    <Dialog open={open} onOpenChange={action("trigger close")}>
-      <DialogContent_Panel isOpen={open}>
-        <CharacterListPanel subject_id={subject_id} />
-      </DialogContent_Panel>
-    </Dialog>
-  ),
-  play: async () => {
+export const CharacterListPanel_: Story = {
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    // eslint-disable-next-line storybook/context-in-play-function
+    await SubjectPanel_.play({ canvasElement });
+
     const panel = await screen.findByRole("dialog");
+
+    await waitFor(
+      () => {
+        userEvent.click(
+          within(panel).getByRole("button", { name: "显示全部角色" })
+        );
+      },
+      { timeout: 5000, interval: 1000 }
+    );
+
     await waitFor(
       () => {
         expect(within(panel).getByText(/黑崎一护/));
@@ -65,17 +80,25 @@ export const CharacterListPanel_: PanelStory = {
     );
   },
 };
+//
+export const EPListPanel_: Story = {
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    // eslint-disable-next-line storybook/context-in-play-function
+    await SubjectPanel_.play({ canvasElement });
 
-export const EPListPanel_: PanelStory = {
-  render: ({ subject_id, open }) => (
-    <Dialog open={open} onOpenChange={action("trigger close")}>
-      <DialogContent_Panel isOpen={open}>
-        <EPListPanel subject_id={subject_id} />
-      </DialogContent_Panel>
-    </Dialog>
-  ),
-  play: async () => {
     const panel = await screen.findByRole("dialog");
+
+    await waitFor(
+      () => {
+        userEvent.click(
+          within(panel).getByRole("button", { name: "显示全部剧集" })
+        );
+      },
+      { timeout: 5000, interval: 1000 }
+    );
+
     await waitFor(
       () => {
         expect(within(panel).getByText(/万物无雨 六月的真相/));
@@ -85,16 +108,24 @@ export const EPListPanel_: PanelStory = {
   },
 };
 
-export const PersonListPanel_: PanelStory = {
-  render: ({ subject_id, open }) => (
-    <Dialog open={open} onOpenChange={action("trigger close")}>
-      <DialogContent_Panel isOpen={open}>
-        <PersonListPanel subject_id={subject_id} />
-      </DialogContent_Panel>
-    </Dialog>
-  ),
-  play: async () => {
+export const PersonListPanel_: Story = {
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    // eslint-disable-next-line storybook/context-in-play-function
+    await SubjectPanel_.play({ canvasElement });
+
     const panel = await screen.findByRole("dialog");
+
+    await waitFor(
+      () => {
+        userEvent.click(
+          within(panel).getByRole("button", { name: "显示全部制作人员" })
+        );
+      },
+      { timeout: 5000, interval: 1000 }
+    );
+
     await waitFor(
       () => {
         expect(within(panel).getAllByText(/久保带人/));
@@ -104,19 +135,48 @@ export const PersonListPanel_: PanelStory = {
   },
 };
 
-export const SubjectListPanel_: PanelStory = {
-  render: ({ subject_id, open }) => (
-    <Dialog open={open} onOpenChange={action("trigger close")}>
-      <DialogContent_Panel isOpen={open}>
-        <SubjectListPanel subject_id={subject_id} />
-      </DialogContent_Panel>
-    </Dialog>
-  ),
-  play: async () => {
+export const SubjectListPanel_NoMore: Story = {
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    // eslint-disable-next-line storybook/context-in-play-function
+    await SubjectPanel_.play({ canvasElement });
+
     const panel = await screen.findByRole("dialog");
+
     await waitFor(
       () => {
-        expect(within(panel).getByText(/诀别谭/));
+        expect(
+          within(panel).queryByRole("button", { name: "显示全部相关条目" })
+        ).not.toBeInTheDocument();
+      },
+      { timeout: 5000, interval: 1000 }
+    );
+  },
+};
+
+export const SubjectListPanel: Story = {
+  args: {
+    target_id: 265,
+  },
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getByTestId("open-panel"));
+
+    const panel = await screen.findByRole("dialog");
+
+    await waitFor(
+      () => {
+        userEvent.click(
+          within(panel).getByRole("button", { name: "显示全部相关条目" })
+        );
+      },
+      { timeout: 5000, interval: 1000 }
+    );
+
+    await waitFor(
+      () => {
+        expect(within(panel).getByText(/EVANGELION FINALLY/));
       },
       { timeout: 5000, interval: 1000 }
     );

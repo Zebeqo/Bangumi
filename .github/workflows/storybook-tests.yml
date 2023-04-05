@@ -1,0 +1,29 @@
+name: Storybook Tests
+on: deployment_status
+jobs:
+  check:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    if: |
+      github.event.deployment_status.state == 'success' &&
+        contains(github.event.deployment_status.target_url, 'storybook')
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2.2.4
+        with:
+          version: 7
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Install Playwright
+        run: pnpm dlx playwright install --with-deps
+
+      - name: Run Storybook tests
+        run: pnpm test-storybook
+        env:
+          TARGET_URL: '${{ github.event.deployment_status.target_url }}'

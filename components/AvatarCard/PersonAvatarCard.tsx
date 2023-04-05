@@ -9,8 +9,9 @@ import {
   AvatarCardInfo,
   AvatarCardInfoItem,
   AvatarCardInfoItemName,
-} from "@/ui/primitive/AvatarCard";
+} from "@/ui/components/AvatarCard";
 
+// FIXME: 分页 API 无法获取全部所需数据
 export function PersonAvatarCard({
   id,
   relation,
@@ -24,15 +25,12 @@ export function PersonAvatarCard({
     <>
       {personData && (
         <AvatarCard>
-          <AvatarCardBadge colorType={"success"}>
+          <AvatarCardBadge color="success">
             {personData.stat.comments}
           </AvatarCardBadge>
           <AvatarCardContent>
             <AvatarCardImage
-              src={
-                personData.images?.medium ||
-                "https://avatars.githubusercontent.com/u/7521082"
-              }
+              src={personData.images.medium}
               alt="Avatar"
               onClick={() => {
                 window.open(`https://bgm.tv/person/${id}`, "_blank");

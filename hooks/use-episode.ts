@@ -7,13 +7,14 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 import { z } from "zod";
-import { errorScheme, ToastError } from "@/lib/error";
+import { ToastError } from "@/lib/error";
 import type { mutateEpisodesScheme } from "@/lib/api/episode";
 import { episodesPageScheme } from "@/lib/api/episode";
 import {
   collectionPagesDataScheme,
   collectionScheme,
 } from "@/lib/api/collection";
+import { handleMutationResponse, handleResponse } from "@/lib/api/utils";
 
 export function useEpisodesData(
   subject_id: number,
@@ -22,7 +23,8 @@ export function useEpisodesData(
   type = 0
 ) {
   const { data: session } = useSession();
-  const openErrorToast = useErrorToast();
+  const toast = useToast();
+  const errorToast = useErrorToast();
 
   const { data, isSuccess } = useQuery({
     queryKey: ["episodes", subject_id, offset, limit, type, session?.user.name],
@@ -42,28 +44,28 @@ export function useEpisodesData(
                   },
           }
         );
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        const data = await response.json();
-        const episodesResult = episodesPageScheme.safeParse(data);
-        if (!episodesResult.success) {
-          const errorResult = errorScheme.safeParse(data);
-          if (errorResult.success) {
-            throw new Error(JSON.stringify(errorResult.data, null, 2));
-          } else {
-            throw new Error(
-              `FROM ERROR:\n${errorResult.error.message}\n\nFROM EPISODES:\n${episodesResult.error.message}`
-            );
-          }
-        } else {
-          if (episodesResult.data.data[0]?.ep !== offset + 1) {
-            return null;
-          }
-          return episodesResult.data;
+
+        const episodesResult = episodesPageScheme.safeParse(
+          await response.clone().json()
+        );
+        if (
+          episodesResult.success &&
+          episodesResult.data.data[0]?.ep !== offset + 1
+        ) {
+          toast({
+            type: "info",
+            title: "无法获取剧集",
+            description: "该条目剧集数据不符合格式。",
+          });
+          return null;
         }
+
+        return await handleResponse(response, episodesPageScheme);
       } catch (e) {
         if (e instanceof Error) {
           const message = e.message;
-          openErrorToast("获取剧集信息失败", message);
+          errorToast("获取剧集信息失败", message);
+          return null;
         }
       }
     },
@@ -75,7 +77,7 @@ export function useEpisodesData(
 
 export function useEpisodesPageData(subject_id: number, limit = 100, type = 0) {
   const { data: session } = useSession();
-  const openErrorToast = useErrorToast();
+  const errorToast = useErrorToast();
 
   const { data, isSuccess, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useInfiniteQuery({
@@ -94,25 +96,12 @@ export function useEpisodesPageData(subject_id: number, limit = 100, type = 0) {
                     },
             }
           );
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-          const data = await response.json();
-          const episodesPageResult = episodesPageScheme.safeParse(data);
-          if (!episodesPageResult.success) {
-            const errorResult = errorScheme.safeParse(data);
-            if (errorResult.success) {
-              throw new Error(JSON.stringify(errorResult.data, null, 2));
-            } else {
-              throw new Error(
-                `FROM ERROR:\n${errorResult.error.message}\n\nFROM EPISODES_PAGE:\n${episodesPageResult.error.message}`
-              );
-            }
-          } else {
-            return episodesPageResult.data;
-          }
+          return await handleResponse(response, episodesPageScheme);
         } catch (e) {
           if (e instanceof Error) {
             const message = e.message;
-            openErrorToast("获取剧集信息失败", message);
+            errorToast("获取剧集信息失败", message);
+            return null;
           }
         }
       },
@@ -133,8 +122,8 @@ export function useEpisodesPageData(subject_id: number, limit = 100, type = 0) {
 export function useEpisodeMutation() {
   const queryClient = useQueryClient();
   const { data: session } = useSession();
-  const openToast = useToast();
-  const openErrorToast = useErrorToast();
+  const toast = useToast();
+  const errorToast = useErrorToast();
 
   return useMutation({
     mutationFn: z
@@ -241,14 +230,7 @@ export function useEpisodeMutation() {
       { targetEp, subject_type, collection_type, subject_id }
     ) => {
       if (data) {
-        if (data.status !== 204) {
-          const errorResult = errorScheme.safeParse(await data.json());
-          if (errorResult.success) {
-            throw new Error(JSON.stringify(errorResult.data));
-          } else {
-            throw new Error(errorResult.error.message);
-          }
-        }
+        await handleMutationResponse(data);
       }
 
       queryClient.setQueryData(
@@ -281,7 +263,7 @@ export function useEpisodeMutation() {
         }
       );
 
-      openToast({
+      toast({
         type: "success",
         title: "修改收藏进度成功",
         description: `已将条目的收藏进度修改为观看至第 ${targetEp} 集`,
@@ -290,14 +272,14 @@ export function useEpisodeMutation() {
     onError: (error, { subject_id }, context) => {
       if (error instanceof Error) {
         if (error instanceof ToastError) {
-          openToast({
+          toast({
             type: "error",
             title: "修改收藏进度失败",
             description: error.description,
             action: error.action,
           });
         } else {
-          openErrorToast("修改收藏进度失败", error.message);
+          errorToast("修改收藏进度失败", error.message);
         }
       }
 
