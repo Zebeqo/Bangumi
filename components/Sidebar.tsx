@@ -103,11 +103,7 @@ export function Sidebar() {
               <SidebarItem
                 href={item.href}
                 key={item.name}
-                selected={
-                  path === "/"
-                    ? item.href === "/top"
-                    : path?.startsWith(item.href)
-                }
+                selected={path?.startsWith(item.href)}
               >
                 {item.icon}
                 {item.name}
@@ -128,11 +124,7 @@ export function Sidebar() {
                     <SidebarItem
                       href={item.href}
                       key={item.name}
-                      selected={
-                        path === "/collection"
-                          ? item.href === "/collection/do"
-                          : path?.startsWith(item.href)
-                      }
+                      selected={path?.startsWith(item.href)}
                     >
                       {item.icon}
                       {item.name}
