@@ -1,5 +1,5 @@
 import { PersonalViewSwitch } from "@/components/Switch/personalViewSwitch";
-import { Navbar as NavbarRoot, NavbarItem } from "@/ui/components/Navbar";
+import { Navbar, NavbarItem } from "@/ui/components/Navbar";
 import { objectKeys } from "@/lib/utils";
 import { subjectTypeEnum } from "@/lib/enum/subjectTypeEnum";
 
@@ -13,7 +13,7 @@ export default function Layout({
   return (
     <>
       <div className="flex items-center justify-between px-16">
-        <NavbarRoot
+        <Navbar
           value={`/collection/${params.collection_type}/${params.subject_type}`}
         >
           {objectKeys(subjectTypeEnum).map((subject_type, index) => (
@@ -24,7 +24,7 @@ export default function Layout({
               {subjectTypeEnum[subject_type].label}
             </NavbarItem>
           ))}
-        </NavbarRoot>
+        </Navbar>
         <PersonalViewSwitch />
       </div>
       {children}
