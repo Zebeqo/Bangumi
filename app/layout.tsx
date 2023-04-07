@@ -80,7 +80,7 @@ export default function RootLayout({
             <JotaiProvider>
               {JotaiDevToolsComponent}
               <SessionProvider>
-                <TooltipProvider delayDuration={300}>
+                <TooltipProvider>
                   <p className="block text-neutral-12 lg:hidden">
                     尚未设计移动端，请使用桌面端浏览。
                   </p>

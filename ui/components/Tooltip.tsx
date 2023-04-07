@@ -6,7 +6,9 @@ import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 import { cn } from "@/lib/utils";
 import { forwardRef } from "react";
 
-const TooltipProvider = TooltipPrimitive.Provider;
+const TooltipProvider = (
+  props: React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Provider>
+) => <TooltipPrimitive.Provider delayDuration={300} {...props} />;
 
 interface TooltipProps
   extends React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content> {
