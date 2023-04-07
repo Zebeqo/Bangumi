@@ -1,6 +1,6 @@
 import { objectKeys } from "@/lib/utils";
 import { subjectTypeEnum } from "@/lib/enum/subjectTypeEnum";
-import { Navbar as NavbarRoot, NavbarItem } from "@/ui/components/Navbar";
+import { Navbar, NavbarItem } from "@/ui/components/Navbar";
 
 export default function Layout({
   children,
@@ -12,7 +12,7 @@ export default function Layout({
   return (
     <>
       <div className="flex items-center justify-between px-16">
-        <NavbarRoot value={`/hot/${params.type}`}>
+        <Navbar value={`/hot/${params.type}`}>
           {objectKeys(subjectTypeEnum).map((subject_type, index) => (
             <NavbarItem
               value={`/hot/${subject_type}`}
@@ -21,7 +21,7 @@ export default function Layout({
               {subjectTypeEnum[subject_type].label}
             </NavbarItem>
           ))}
-        </NavbarRoot>
+        </Navbar>
       </div>
       {children}
     </>

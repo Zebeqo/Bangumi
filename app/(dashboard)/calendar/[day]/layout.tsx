@@ -1,4 +1,4 @@
-import { Navbar as NavbarRoot, NavbarItem } from "@/ui/components/Navbar";
+import { Navbar, NavbarItem } from "@/ui/components/Navbar";
 
 export default function Layout({
   children,
@@ -23,7 +23,7 @@ export default function Layout({
   return (
     <>
       <div className="flex items-center justify-between px-16">
-        <NavbarRoot value={`/calendar/${day}`}>
+        <Navbar value={`/calendar/${day}`}>
           <NavbarItem value={`/calendar/monday`}>周一</NavbarItem>
           <NavbarItem value={`/calendar/tuesday`}>周二</NavbarItem>
           <NavbarItem value={`/calendar/wednesday`}>周三</NavbarItem>
@@ -31,7 +31,7 @@ export default function Layout({
           <NavbarItem value={`/calendar/friday`}>周五</NavbarItem>
           <NavbarItem value={`/calendar/saturday`}>周六</NavbarItem>
           <NavbarItem value={`/calendar/sunday`}>周日</NavbarItem>
-        </NavbarRoot>
+        </Navbar>
       </div>
       {children}
     </>
