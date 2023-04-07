@@ -11,7 +11,7 @@ interface InfoButtonProps {
   className?: string;
   subject_id: number;
 }
-const InfoButton = forwardRef<HTMLButtonElement, InfoButtonProps>(
+export const InfoButton = forwardRef<HTMLButtonElement, InfoButtonProps>(
   ({ subject_id, ...props }, ref) => {
     const [, dispatch] = useReducerAtom(panelHistoryAtom, panelReducer);
     return (
