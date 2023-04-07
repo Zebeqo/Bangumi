@@ -11,7 +11,7 @@ export const RootDecorator = (Story: React.ComponentType) => {
     <div style={{ fontFamily: "Noto Sans SC" }}>
       <QueryProvider>
         <Provider>
-          <TooltipProvider delayDuration={300}>
+          <TooltipProvider>
             <Story />
           </TooltipProvider>
         </Provider>

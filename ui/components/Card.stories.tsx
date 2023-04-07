@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import {
   Card,
   CardButtonGroup,
-  CardContent,
+  CardBody,
   CardFooter,
   CardHeader,
   CardImageContainer,
@@ -118,7 +118,7 @@ export const Card_: StoryObj<{
           alt={"card-image"}
         />
       </CardImageContainer>
-      <CardContent>
+      <CardBody>
         <CardHeader>
           <CardTitle mainTitle={name_cn} subTitle={name} />
           <CardButtonGroup>
@@ -178,7 +178,7 @@ export const Card_: StoryObj<{
             <div className="text-xs text-neutral-11">{ratingCount} 人评分</div>
           </div>
         </CardFooter>
-      </CardContent>
+      </CardBody>
     </Card>
   ),
 };
