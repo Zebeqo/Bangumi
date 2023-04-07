@@ -3,8 +3,6 @@ import {
   collectionTypeEnumKeySchema,
 } from "@/lib/enum/collectionTypeEnum";
 
-export const dynamicParams = false;
-
 import { CollectionCardList } from "@/components/Card/CollectionCardList";
 import { Suspense } from "react";
 import { CardGridSkeleton } from "@/components/Skeleton/CardGridSkeleton";
@@ -13,16 +11,6 @@ import {
   subjectTypeEnum,
   subjectTypeEnumKeySchema,
 } from "@/lib/enum/subjectTypeEnum";
-import { objectKeys } from "@/lib/utils";
-
-export function generateStaticParams() {
-  return objectKeys(collectionTypeEnum).flatMap((collection_type) =>
-    objectKeys(subjectTypeEnum).map((subject_type) => ({
-      collection_type: collection_type,
-      subject_type: subject_type,
-    }))
-  );
-}
 
 // eslint-disable-next-line @typescript-eslint/require-await
 export async function generateMetadata({

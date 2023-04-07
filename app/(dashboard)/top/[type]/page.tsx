@@ -3,16 +3,9 @@ import {
   subjectTypeEnumKeySchema,
 } from "@/lib/enum/subjectTypeEnum";
 
-export const dynamicParams = false;
-
 import { CardServer } from "@/components/Card/CardServer";
 import { CardGrid } from "@/components/Card/CardGrid";
 import { searchResultScheme } from "@/lib/api/search";
-import { objectKeys } from "@/lib/utils";
-
-export function generateStaticParams() {
-  return objectKeys(subjectTypeEnum).map((key) => ({ type: key }));
-}
 
 // eslint-disable-next-line @typescript-eslint/require-await
 export async function generateMetadata({

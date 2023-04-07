@@ -13,6 +13,8 @@ import Analytics from "@/components/Analytics";
 import { TooltipProvider } from "@/ui/components/Tooltip";
 import type { Metadata } from "next";
 import { Noto_Sans_SC } from "next/font/google";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/lib/auth";
 import { Polyfill } from "@/app/Polyfill";
 
 // use in production
@@ -63,7 +65,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -72,6 +74,7 @@ export default function RootLayout({
   if (process.env.NODE_ENV === "development") {
     JotaiDevToolsComponent = <JotaiDevTools store={rootStore} />; // put your debug store here
   }
+  const session = await getServerSession(authOptions);
 
   return (
     // https://github.com/pacocoursey/next-themes/issues/152#issuecomment-1364280564
@@ -81,7 +84,7 @@ export default function RootLayout({
           <QueryProvider>
             <JotaiProvider>
               {JotaiDevToolsComponent}
-              <SessionProvider>
+              <SessionProvider session={session}>
                 <TooltipProvider>
                   <p className="block text-neutral-12 lg:hidden">
                     尚未设计移动端，请使用桌面端浏览。

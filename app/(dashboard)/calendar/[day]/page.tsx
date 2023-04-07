@@ -1,15 +1,7 @@
-import { objectKeys } from "@/lib/utils";
-
-export const dynamicParams = true;
-
 import { CardServer } from "@/components/Card/CardServer";
 import { calendarScheme, sortCalendarData } from "@/lib/api/calendar";
 import { CardGrid } from "@/components/Card/CardGrid";
 import { dayEnum, dayEnumKeySchema } from "@/lib/enum/dayEnum";
-
-export function generateStaticParams() {
-  return objectKeys(dayEnum).map((day) => ({ day }));
-}
 
 // eslint-disable-next-line @typescript-eslint/require-await
 export async function generateMetadata({

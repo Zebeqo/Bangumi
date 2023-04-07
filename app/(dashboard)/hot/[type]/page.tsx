@@ -1,7 +1,3 @@
-import { objectKeys } from "@/lib/utils";
-
-export const dynamicParams = false;
-
 import {
   subjectTypeEnum,
   subjectTypeEnumKeySchema,
@@ -9,10 +5,6 @@ import {
 import { CardServer } from "@/components/Card/CardServer";
 import * as cheerio from "cheerio";
 import { CardGrid } from "@/components/Card/CardGrid";
-
-export function generateStaticParams() {
-  return objectKeys(subjectTypeEnum).map((key) => ({ type: key }));
-}
 
 // eslint-disable-next-line @typescript-eslint/require-await
 export async function generateMetadata({
