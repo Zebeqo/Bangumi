@@ -10,10 +10,10 @@ import {
 import { collectionGroup, headerGroup } from "@/config/sidebar";
 
 export function Sidebar() {
-  const path = usePathname();
+  const path = usePathname() ?? "";
 
   return (
-    <SidebarRoot value={`/${path?.split("/").at(1) ?? ""}`}>
+    <SidebarRoot value={path}>
       <SidebarGroup>
         {headerGroup.items.map((item) => (
           <SidebarItem value={item.href} key={`${item.href}-${item.name}`}>

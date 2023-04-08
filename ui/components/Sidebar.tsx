@@ -36,7 +36,7 @@ const SidebarItem = ({
   children: React.ReactNode;
 }) => {
   const isSelectedAtom = useMemo(
-    () => atom((get) => get(activeValueAtom) === value),
+    () => atom((get) => get(activeValueAtom)?.startsWith(value)),
     [value]
   );
 
