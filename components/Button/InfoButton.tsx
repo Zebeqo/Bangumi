@@ -24,7 +24,7 @@ export const InfoButton = forwardRef<HTMLButtonElement, InfoButtonProps>(
       if (session === undefined) {
         toast({
           type: "info",
-          title: "正在等待与服务器认证...",
+          title: "请等待与服务器认证...",
         });
         return;
       }
