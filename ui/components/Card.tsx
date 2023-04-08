@@ -7,7 +7,7 @@ import { deriveClassed } from "@tw-classed/react";
 
 const CardContent = classed(
   "div",
-  "group flex w-[30rem] select-none overflow-hidden rounded-2xl bg-neutral-2 ring-1 ring-neutral-6"
+  "group flex w-[30rem] select-none overflow-hidden rounded-2xl bg-neutral-2 ring-1 ring-neutral-6 h-[200px]"
 );
 
 const Card = deriveClassed<
