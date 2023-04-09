@@ -94,7 +94,7 @@ export function CollectionCard({
         <CardFooter>
           <div className="h-10 text-4xl font-bold text-accent-11">
             {pvMode
-              ? collection.rate.toFixed(1) || null
+              ? collection.rate || null
               : collection.subject.score.toFixed(1)}
           </div>
           <div className="flex flex-col justify-center space-y-1">
