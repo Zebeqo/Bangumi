@@ -54,7 +54,7 @@ specifiers:
   jotai-devtools: 0.4.0
   lint-staged: 13.2.1
   next: 13.3.0
-  next-auth: 4.21.1
+  next-auth: 4.22.0
   next-themes: 0.2.1
   postcss: 8.4.21
   postcss-loader: 7.2.4
@@ -97,7 +97,7 @@ dependencies:
   jotai: 2.0.3_react@18.2.0
   jotai-devtools: 0.4.0_luv6rn4iuzdjdj5243nlcad7ui
   next: 13.3.0_z72xxk7vwlamvgqemvc4ptm4du
-  next-auth: 4.21.1_yucv4tfv7v7nrkw2uguegj6e7e
+  next-auth: 4.22.0_yucv4tfv7v7nrkw2uguegj6e7e
   next-themes: 0.2.1_yucv4tfv7v7nrkw2uguegj6e7e
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -125,7 +125,7 @@ devDependencies:
   '@swc-jotai/react-refresh': 0.0.7
   '@tailwindcss/line-clamp': 0.4.4_tailwindcss@3.2.7
   '@tanstack/eslint-plugin-query': 4.29.0
-  '@tomfreudenberg/next-auth-mock': 0.5.6_6mpxid6oihht5li6hlxzzmzaju
+  '@tomfreudenberg/next-auth-mock': 0.5.6_3hyssxn6dz2kk755pzrcmb5lpa
   '@types/node': 18.15.11
   '@types/react': 18.0.33
   '@types/react-dom': 18.0.11
@@ -4464,13 +4464,13 @@ packages:
       '@testing-library/dom': 8.20.0
     dev: true
 
-  /@tomfreudenberg/next-auth-mock/0.5.6_6mpxid6oihht5li6hlxzzmzaju:
+  /@tomfreudenberg/next-auth-mock/0.5.6_3hyssxn6dz2kk755pzrcmb5lpa:
     resolution: {integrity: sha512-fSZJY5rUyj8GIcJI450ZV7FV/CMzpjUUGhPiaRyQo9l7l5mLvrnNe1MymzOnLpgXIkFja+CF/UHFGW807QcwmA==}
     peerDependencies:
       next-auth: ^4.12.3
       react: ^18
     dependencies:
-      next-auth: 4.21.1_yucv4tfv7v7nrkw2uguegj6e7e
+      next-auth: 4.22.0_yucv4tfv7v7nrkw2uguegj6e7e
       react: 18.2.0
     dev: true
 
@@ -10565,8 +10565,8 @@ packages:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
     dev: true
 
-  /next-auth/4.21.1_yucv4tfv7v7nrkw2uguegj6e7e:
-    resolution: {integrity: sha512-NYkU4jAPSVxWhCblE8dDFAnKM7kOoO/QEobQ0RoEVP9Wox99A3PKHwOAsWhSg8ahJG/iKIWk2Bo1xHvsS4R39Q==}
+  /next-auth/4.22.0_yucv4tfv7v7nrkw2uguegj6e7e:
+    resolution: {integrity: sha512-08+kjnDoE7aQ52O996x6cwA3ffc2CbHIkrCgLYhbE+aDIJBKI0oA9UbIEIe19/+ODYJgpAHHOtJx4izmsgaVag==}
     peerDependencies:
       next: ^12.2.5 || ^13
       nodemailer: ^6.6.5
