@@ -13,6 +13,7 @@ import Analytics from "@/components/Analytics";
 import { TooltipProvider } from "@/ui/components/Tooltip";
 import type { Metadata } from "next";
 import { Noto_Sans_SC } from "next/font/google";
+import { Polyfill } from "@/app/Polyfill";
 
 // use in production
 // https://github.com/vercel/next.js/issues/45080
@@ -85,6 +86,7 @@ export default function RootLayout({
                   <p className="block text-neutral-12 lg:hidden">
                     尚未设计移动端，请使用桌面端浏览。
                   </p>
+                  <Polyfill />
                   <div className="hidden lg:block">{children}</div>
                 </TooltipProvider>
               </SessionProvider>
