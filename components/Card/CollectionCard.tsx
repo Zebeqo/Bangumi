@@ -89,6 +89,7 @@ export function CollectionCard({
                   {tag.name}
                 </Badge>
               ))}
+          <span className="text-transparent">placeholder</span>
         </CardTagGroup>
         <CardFooter>
           <div className="h-10 text-4xl font-bold text-accent-11">

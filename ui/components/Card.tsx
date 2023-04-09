@@ -60,10 +60,10 @@ const CardInfoItem = classed(
 
 const CardTagGroup = classed(
   "div",
-  "inline-flex h-fit flex-wrap items-start gap-2 mt-2 h-[4rem] overflow-hidden"
+  "inline-flex h-fit flex-wrap items-start gap-2 mt-2 h-[4rem] overflow-hidden w-full"
 );
 
-const CardFooter = classed("div", "mt-px flex space-x-3");
+const CardFooter = classed("div", "flex space-x-3");
 
 export {
   Card,
