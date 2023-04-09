@@ -36,6 +36,7 @@
     "cheerio": "1.0.0-rc.12",
     "class-variance-authority": "0.5.1",
     "clsx": "1.2.1",
+    "core-js": "^3.30.0",
     "framer-motion": "10.11.2",
     "jotai": "2.0.3",
     "jotai-devtools": "0.4.0",

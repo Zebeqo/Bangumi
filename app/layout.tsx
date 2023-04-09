@@ -1,4 +1,5 @@
 import "@/styles/globals.css";
+import "core-js/features/array/at";
 import SessionProvider from "@/components/Provider/SessionProvider";
 import ThemeProvider from "@/components/Provider/ThemeProvider";
 import QueryProvider, {
