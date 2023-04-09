@@ -89,11 +89,12 @@ export function CollectionCard({
                   {tag.name}
                 </Badge>
               ))}
+          <span className="text-transparent">placeholder</span>
         </CardTagGroup>
         <CardFooter>
           <div className="h-10 text-4xl font-bold text-accent-11">
             {pvMode
-              ? collection.rate || null
+              ? collection.rate.toFixed(1) || null
               : collection.subject.score.toFixed(1)}
           </div>
           <div className="flex flex-col justify-center space-y-1">
