@@ -45,7 +45,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-intersection-observer": "9.4.3",
-    "tailwind-merge": "1.11.0",
+    "tailwind-merge": "1.12.0",
     "tailwindcss-radix": "2.8.0",
     "zod": "3.21.4"
   },

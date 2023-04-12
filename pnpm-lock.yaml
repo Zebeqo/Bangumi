@@ -66,7 +66,7 @@ specifiers:
   storybook: 7.0.3
   storybook-dark-mode: 3.0.0
   style-loader: 3.3.2
-  tailwind-merge: 1.11.0
+  tailwind-merge: 1.12.0
   tailwindcss: 3.2.7
   tailwindcss-animate: 1.0.5
   tailwindcss-radix: 2.8.0
@@ -102,7 +102,7 @@ dependencies:
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-intersection-observer: 9.4.3_react@18.2.0
-  tailwind-merge: 1.11.0
+  tailwind-merge: 1.12.0
   tailwindcss-radix: 2.8.0
   zod: 3.21.4
 
@@ -13079,8 +13079,8 @@ packages:
     resolution: {integrity: sha512-4kl5w+nCB44EVRdO0g/UGoOp3vlwgycUVtkk/7DPyeLZUCuNFFKCFG6/t/DgHLrUPHjrZg6s5tNm+56Q2B0xyg==}
     dev: false
 
-  /tailwind-merge/1.11.0:
-    resolution: {integrity: sha512-oG3/328Y7LrfPMfkgMNxoqEk1ZQdXBxdphf9FFrreo8q0EtVIHt3bQf2IyFhQuVt8puB57lCRBNbazGhYAyz9w==}
+  /tailwind-merge/1.12.0:
+    resolution: {integrity: sha512-Y17eDp7FtN1+JJ4OY0Bqv9OA41O+MS8c1Iyr3T6JFLnOgLg3EvcyMKZAnQ8AGyvB5Nxm3t9Xb5Mhe139m8QT/g==}
     dev: false
 
   /tailwindcss-animate/1.0.5_tailwindcss@3.2.7:
