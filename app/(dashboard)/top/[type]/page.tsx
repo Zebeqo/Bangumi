@@ -58,7 +58,7 @@ export default async function Page({ params }: { params: { type: string } }) {
     <CardGrid>
       {rankData.data.map(({ id }) => (
         /* @ts-expect-error Server Component */
-        <CardServer key={id} subject_id={id} showCollectionNumber />
+        <CardServer key={id} subject_id={id} />
       ))}
     </CardGrid>
   );

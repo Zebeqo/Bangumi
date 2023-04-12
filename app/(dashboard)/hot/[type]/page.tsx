@@ -66,7 +66,7 @@ export default async function Page({ params }: { params: { type: string } }) {
     <CardGrid>
       {list.map((id) => (
         /* @ts-expect-error Server Component */
-        <CardServer key={id} subject_id={id} countType={"doing"} />
+        <CardServer key={id} subject_id={Number(id)} countType={"doing"} />
       ))}
     </CardGrid>
   );
