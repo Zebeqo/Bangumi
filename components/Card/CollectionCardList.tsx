@@ -7,6 +7,8 @@ import { LoadMore } from "@/components/LoadMore";
 import { CollectionCard } from "@/components/Card/CollectionCard";
 import { personalViewModeAtom } from "@/components/Switch/personalViewSwitch";
 import { useAtomValue } from "jotai";
+import { useSession } from "next-auth/react";
+import { CardSkeletonList } from "@/components/Skeleton/CardGridSkeleton";
 
 export function CollectionCardList({
   subject_type,
@@ -21,6 +23,7 @@ export function CollectionCardList({
     hasNextPage,
   } = useCollectionsPageData(subject_type, collection_type);
   const pvMode = useAtomValue(personalViewModeAtom);
+  const { data: session } = useSession();
 
   const { ref, inView } = useInView();
   useEffect(() => {
@@ -44,6 +47,8 @@ export function CollectionCardList({
       </Fragment>
     ));
   }, [collectionsPageData, pvMode]);
+
+  if (!session) return <CardSkeletonList />;
 
   return (
     <>
