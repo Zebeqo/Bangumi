@@ -6,10 +6,19 @@ import { ListHeader } from "@/components/Panel/PanelList/ListHeader";
 import { useReducerAtom } from "jotai/utils";
 import { panelHistoryAtom, panelReducer } from "@/lib/panel";
 import { EPItemList } from "@/components/EPItem/EPItemList";
-import { Suspense } from "react";
 import { EPItemSkeleton } from "@/components/Skeleton/EPItemSkeleton";
 import { useSubjectData } from "@/hooks/use-subject";
 import { ListSkeletonWrapper } from "@/components/Skeleton/ListSkeletonWrapper";
+
+export const EPListDynamicSkeleton = () => (
+  <ListSkeletonWrapper>
+    <div className="flex flex-col space-y-2 py-2">
+      {Array.from({ length: 10 }).map((_, i) => (
+        <EPItemSkeleton key={i} />
+      ))}
+    </div>
+  </ListSkeletonWrapper>
+);
 
 export function EPListDynamic({
   subject_id,
@@ -45,17 +54,7 @@ export function EPListDynamic({
   );
 
   return (
-    <Suspense
-      fallback={
-        <ListSkeletonWrapper>
-          <div className="flex flex-col space-y-2 py-2">
-            {Array.from({ length: 10 }).map((_, i) => (
-              <EPItemSkeleton key={i} />
-            ))}
-          </div>
-        </ListSkeletonWrapper>
-      }
-    >
+    <>
       {episodesData?.data.length ? (
         <div className="flex flex-col space-y-2 p-2">
           <ListHeader
@@ -76,6 +75,6 @@ export function EPListDynamic({
           </div>
         </div>
       ) : null}
-    </Suspense>
+    </>
   );
 }

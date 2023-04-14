@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQueries, useQuery } from "@tanstack/react-query";
 import { characterScheme, subjectCharactersScheme } from "@/lib/api/character";
 import { useSession } from "next-auth/react";
 import { useErrorToast } from "@/hooks/use-toast";
@@ -27,6 +27,33 @@ export function useCharacterData(character_id: number) {
   });
 
   return { data, isSuccess };
+}
+
+export function useCharactersData(characterIds: number[], length?: number) {
+  const errorToast = useErrorToast();
+
+  return useQueries({
+    queries: characterIds
+      .slice(0, length === undefined ? characterIds.length : length)
+      .map((character_id) => ({
+        queryKey: ["character", character_id],
+        queryFn: async () => {
+          try {
+            const response = await fetch(
+              `https://api.bgm.tv/v0/characters/${character_id}`
+            );
+            return await handleResponse(response, characterScheme);
+          } catch (e) {
+            if (e instanceof Error) {
+              const message = e.message;
+              errorToast("获取角色信息失败", message);
+              return null;
+            }
+          }
+        },
+        staleTime: Infinity,
+      })),
+  });
 }
 
 export function useSubjectCharactersData(subject_id: number) {

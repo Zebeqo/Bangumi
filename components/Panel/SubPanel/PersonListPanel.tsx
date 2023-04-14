@@ -8,7 +8,11 @@ import {
   PanelNavTitleGroup,
 } from "@/ui/components/Panel";
 import { useSubjectData } from "@/hooks/use-subject";
-import { PersonList } from "@/components/Panel/PanelList/PersonList";
+import {
+  PersonList,
+  PersonListSkeleton,
+} from "@/components/Panel/PanelList/PersonList";
+import { Suspense } from "react";
 
 export function PersonListPanel({ subject_id }: { subject_id: number }) {
   const { data: subjectData } = useSubjectData(subject_id);
@@ -25,7 +29,9 @@ export function PersonListPanel({ subject_id }: { subject_id: number }) {
             </PanelNavTitleGroup>
           </PanelNav>
           <PanelContent>
-            <PersonList subject_id={subject_id} />
+            <Suspense fallback={<PersonListSkeleton />}>
+              <PersonList subject_id={subject_id} />
+            </Suspense>
           </PanelContent>
         </>
       )}

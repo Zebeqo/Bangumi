@@ -109,7 +109,7 @@ export const Card_: StoryObj<{
     onClickInfoButton,
   }) => (
     <Card>
-      <CardImageContainer className="h-[201.6px]">
+      <CardImageContainer className="h-[200px]">
         <Image
           className="object-cover"
           src={image}
