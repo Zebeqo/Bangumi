@@ -12,7 +12,7 @@ import { ListSkeletonWrapper } from "@/components/Skeleton/ListSkeletonWrapper";
 
 export const EPListDynamicSkeleton = () => (
   <ListSkeletonWrapper>
-    <div className="flex flex-col space-y-2 py-2">
+    <div className="flex min-w-[720px] flex-col space-y-2 py-2">
       {Array.from({ length: 10 }).map((_, i) => (
         <EPItemSkeleton key={i} />
       ))}
@@ -50,6 +50,7 @@ export function EPListDynamic({
   const { data: episodesData } = useEpisodesData(
     subject_id,
     length,
+    subjectData?.type ?? 0,
     episodesStart
   );
 

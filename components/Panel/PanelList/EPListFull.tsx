@@ -36,7 +36,7 @@ export function EPListFull({ subject_id }: { subject_id: number }) {
 
   return (
     <>
-      <div className="relative flex flex-col space-y-2 p-2">
+      <div className="relative flex min-w-[720px] flex-col space-y-2 p-2">
         <ListHeader
           title={"剧集"}
           showAction={false}
