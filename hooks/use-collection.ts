@@ -146,6 +146,10 @@ export function useCollectionMutation() {
         });
       }),
     onMutate: async ({ mutateCollection, subject_id }) => {
+      toast({
+        type: "info",
+        title: "正在修改收藏状态...",
+      });
       await queryClient.cancelQueries(["collection", subject_id]);
       const previousCollectionData = collectionScheme.parse(
         queryClient.getQueryData(["collection", subject_id, session?.user.name])
