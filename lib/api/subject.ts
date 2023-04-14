@@ -29,4 +29,5 @@ export const subjectScheme = z.object({
   }),
   eps: z.number(),
   summary: z.string(),
+  type: z.number().int(),
 });

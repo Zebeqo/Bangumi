@@ -19,6 +19,7 @@ import { handleMutationResponse, handleResponse } from "@/lib/api/utils";
 export function useEpisodesData(
   subject_id: number,
   limit: number,
+  subject_type: number,
   offset = 0,
   type = 0
 ) {
@@ -52,11 +53,13 @@ export function useEpisodesData(
           episodesResult.success &&
           episodesResult.data.data[0]?.ep !== offset + 1
         ) {
-          toast({
-            type: "info",
-            title: "无法获取剧集",
-            description: "该条目剧集数据不符合格式。",
-          });
+          if ([2, 3, 6].includes(subject_type)) {
+            toast({
+              type: "info",
+              title: "无法获取剧集",
+              description: "该条目剧集数据不符合格式。",
+            });
+          }
           return null;
         }
 
