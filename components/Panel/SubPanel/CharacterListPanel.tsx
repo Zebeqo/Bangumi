@@ -1,7 +1,10 @@
 "use client";
 
 import { useSubjectData } from "@/hooks/use-subject";
-import { CharacterList } from "@/components/Panel/PanelList/CharacterList";
+import {
+  CharacterList,
+  CharacterListSkeleton,
+} from "@/components/Panel/PanelList/CharacterList";
 import {
   PanelNav,
   PanelNavTitleGroup,
@@ -9,6 +12,7 @@ import {
   PanelNavTitle,
   PanelContent,
 } from "@/ui/components/Panel";
+import { Suspense } from "react";
 
 export function CharacterListPanel({ subject_id }: { subject_id: number }) {
   const { data: subjectData } = useSubjectData(subject_id);
@@ -25,7 +29,9 @@ export function CharacterListPanel({ subject_id }: { subject_id: number }) {
             </PanelNavTitleGroup>
           </PanelNav>
           <PanelContent>
-            <CharacterList subject_id={subject_id} />
+            <Suspense fallback={<CharacterListSkeleton />}>
+              <CharacterList subject_id={subject_id} />
+            </Suspense>
           </PanelContent>
         </>
       )}

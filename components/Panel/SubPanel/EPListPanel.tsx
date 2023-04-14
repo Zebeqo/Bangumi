@@ -3,8 +3,6 @@
 import { useSubjectData } from "@/hooks/use-subject";
 import { EPListFull } from "@/components/Panel/PanelList/EPListFull";
 import { Suspense } from "react";
-import { EPItemSkeleton } from "@/components/Skeleton/EPItemSkeleton";
-import { ListSkeletonWrapper } from "@/components/Skeleton/ListSkeletonWrapper";
 import {
   PanelContent,
   PanelNav,
@@ -12,6 +10,7 @@ import {
   PanelNavTitle,
   PanelNavTitleGroup,
 } from "@/ui/components/Panel";
+import { EPListDynamicSkeleton } from "@/components/Panel/PanelList/EPListDynamic";
 
 export function EPListPanel({ subject_id }: { subject_id: number }) {
   const { data: subjectData } = useSubjectData(subject_id);
@@ -28,17 +27,7 @@ export function EPListPanel({ subject_id }: { subject_id: number }) {
             </PanelNavTitleGroup>
           </PanelNav>
           <PanelContent>
-            <Suspense
-              fallback={
-                <ListSkeletonWrapper>
-                  <div className="flex flex-col space-y-2 py-2">
-                    {Array.from({ length: 10 }).map((_, i) => (
-                      <EPItemSkeleton key={i} />
-                    ))}
-                  </div>
-                </ListSkeletonWrapper>
-              }
-            >
+            <Suspense fallback={<EPListDynamicSkeleton />}>
               <EPListFull subject_id={subject_id} />
             </Suspense>
           </PanelContent>

@@ -8,12 +8,25 @@ import {
   PanelNavTitleGroup,
 } from "@/ui/components/Panel";
 import { useSubjectData } from "@/hooks/use-subject";
-import { SubjectList } from "@/components/Panel/PanelList/SubjectList";
+import {
+  SubjectList,
+  SubjectListSkeleton,
+} from "@/components/Panel/PanelList/SubjectList";
 import { useCollectionData } from "@/hooks/use-collection";
-import { CharacterList } from "@/components/Panel/PanelList/CharacterList";
-import { EPListDynamic } from "@/components/Panel/PanelList/EPListDynamic";
-import { PersonList } from "@/components/Panel/PanelList/PersonList";
+import {
+  CharacterList,
+  CharacterListSkeleton,
+} from "@/components/Panel/PanelList/CharacterList";
+import {
+  EPListDynamic,
+  EPListDynamicSkeleton,
+} from "@/components/Panel/PanelList/EPListDynamic";
+import {
+  PersonList,
+  PersonListSkeleton,
+} from "@/components/Panel/PanelList/PersonList";
 import { SubjectContent } from "@/components/SubjectContent/SubjectContent";
+import { Suspense } from "react";
 
 export function SubjectPanel({ subject_id }: { subject_id: number }) {
   const { isSuccess: isCollectionDataSuccess } = useCollectionData(subject_id);
@@ -33,14 +46,18 @@ export function SubjectPanel({ subject_id }: { subject_id: number }) {
           </PanelNav>
           <PanelContent>
             <SubjectContent subject_id={subjectData.id} />
-            {/*SubjectContent.CharacterList*/}
-            <CharacterList subject_id={subjectData.id} length={10} />
-            {/*SubjectContent.EPListDynamic*/}
-            <EPListDynamic subject_id={subjectData.id} length={10} />
-            {/*SubjectContent.PersonList*/}
-            <PersonList subject_id={subjectData.id} length={5} />
-            {/*SubjectContent.SubjectList*/}
-            <SubjectList subject_id={subjectData.id} length={8} />
+            <Suspense fallback={<CharacterListSkeleton />}>
+              <CharacterList subject_id={subjectData.id} length={10} />
+            </Suspense>
+            <Suspense fallback={<EPListDynamicSkeleton />}>
+              <EPListDynamic subject_id={subjectData.id} length={10} />
+            </Suspense>
+            <Suspense fallback={<PersonListSkeleton />}>
+              <PersonList subject_id={subjectData.id} length={5} />
+            </Suspense>
+            <Suspense fallback={<SubjectListSkeleton />}>
+              <SubjectList subject_id={subjectData.id} length={8} />
+            </Suspense>
           </PanelContent>
         </>
       )}

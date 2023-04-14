@@ -1,6 +1,6 @@
 "use client";
 
-import { usePersonData } from "@/hooks/use-person";
+import type { personScheme, subjectPersonsScheme } from "@/lib/api/person";
 import {
   AvatarCard,
   AvatarCardBadge,
@@ -10,47 +10,40 @@ import {
   AvatarCardInfoItem,
   AvatarCardInfoItemName,
 } from "@/ui/components/AvatarCard";
+import type { z } from "zod";
 
-// FIXME: 分页 API 无法获取全部所需数据
 export function PersonAvatarCard({
-  id,
-  relation,
+  subjectPersonData,
+  personData,
 }: {
-  id: number;
-  relation: string;
+  subjectPersonData: z.infer<typeof subjectPersonsScheme>[number];
+  personData: z.infer<typeof personScheme>;
 }) {
-  const { data: personData } = usePersonData(id);
-
   return (
-    <>
-      {personData && (
-        <AvatarCard>
-          <AvatarCardBadge color="success">
-            {personData.stat.comments}
-          </AvatarCardBadge>
-          <AvatarCardContent>
-            <AvatarCardImage
-              src={personData.images.medium}
-              alt="Avatar"
-              href={`https://bgm.tv/person/${id}`}
-            />
-            <AvatarCardInfo>
-              <AvatarCardInfoItem relation={relation}>
-                <AvatarCardInfoItemName
-                  title={
-                    (personData.infobox.find(
-                      (item) => item.key === "简体中文名"
-                    )?.value as string | undefined) ?? personData.name
-                  }
-                >
-                  {(personData.infobox.find((item) => item.key === "简体中文名")
-                    ?.value as string | undefined) ?? personData.name}
-                </AvatarCardInfoItemName>
-              </AvatarCardInfoItem>
-            </AvatarCardInfo>
-          </AvatarCardContent>
-        </AvatarCard>
-      )}
-    </>
+    <AvatarCard>
+      <AvatarCardBadge color="success">
+        {personData.stat.comments}
+      </AvatarCardBadge>
+      <AvatarCardContent>
+        <AvatarCardImage
+          src={personData.images.medium}
+          alt="Avatar"
+          href={`https://bgm.tv/person/${subjectPersonData.id}`}
+        />
+        <AvatarCardInfo>
+          <AvatarCardInfoItem relation={subjectPersonData.relation}>
+            <AvatarCardInfoItemName
+              title={
+                (personData.infobox.find((item) => item.key === "简体中文名")
+                  ?.value as string | undefined) ?? personData.name
+              }
+            >
+              {(personData.infobox.find((item) => item.key === "简体中文名")
+                ?.value as string | undefined) ?? personData.name}
+            </AvatarCardInfoItemName>
+          </AvatarCardInfoItem>
+        </AvatarCardInfo>
+      </AvatarCardContent>
+    </AvatarCard>
   );
 }

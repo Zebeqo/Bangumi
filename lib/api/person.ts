@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { FALLBACK_IMAGE } from "@/lib/constant";
 
-export const subjectPersonScheme = z.array(
+export const subjectPersonsScheme = z.array(
   z.object({
     id: z.number().int(),
     name: z.string(),
