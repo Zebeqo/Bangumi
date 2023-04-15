@@ -22,7 +22,7 @@
 - 🔬 Interaction tests in Storybook with @storybook/[jest](https://jestjs.io/), @storybook/[testing-library](https://testing-library.com/)
 - 🗃 State managing using [Jotai](https://github.com/pmndrs/jotai)
 - Server side data fetching using [Server Components](https://beta.nextjs.org/docs/rendering/server-and-client-components#server-components) with new `fetch` API
-- Client side data fetching with [React Query](https://github.com/TanStack/query) (Auto Caching + Refetching, Load-More + Infinite Scroll, Optimistic Updates...)
+- Client side data fetching with [React Query](https://github.com/TanStack/query)
 
 ## 📖 Storybook
 
