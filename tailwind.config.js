@@ -15,12 +15,6 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
-      lineClamp: {
-        7: "7",
-        8: "8",
-        9: "9",
-        10: "10",
-      },
       fontFamily: {
         sans: ["var(--font-noto-sans-sc)"],
       },
@@ -154,7 +148,6 @@ module.exports = {
     },
   },
   plugins: [
-    require("@tailwindcss/line-clamp"),
     require("prettier-plugin-tailwindcss"),
     require("windy-radix-palette")({
       colors: {
