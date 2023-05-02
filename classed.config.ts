@@ -1,4 +1,4 @@
 import { createClassed } from "@tw-classed/react";
-import { customTwMerge } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
-export const { classed } = createClassed({ merger: customTwMerge });
+export const { classed } = createClassed({ merger: cn });

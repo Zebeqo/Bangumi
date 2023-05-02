@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   authors: [
     {
       name: "zebeqo",
-      // TODO: My Blog URL
+      url: "https://www.zebeqo.dev/",
     },
   ],
   creator: "zebeqo",
@@ -80,7 +80,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" enableSystem={false}>
           <QueryProvider>
             <JotaiProvider>
-              {JotaiDevToolsComponent}
+              {/*{JotaiDevToolsComponent}*/}
               <SessionProvider>
                 <TooltipProvider>
                   <p className="block text-neutral-12 lg:hidden">
