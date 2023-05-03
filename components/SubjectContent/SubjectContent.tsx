@@ -39,6 +39,8 @@ import {
   ratingValueToKeyScheme,
   ratingEnumKeySchema,
 } from "@/lib/enum/ratingEnum";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { LoadingSpinner } from "@/ui/icon/24/LoadingSpinner";
 
 export function SubjectContent({ subject_id }: { subject_id: number }) {
   const toast = useToast();
@@ -48,6 +50,38 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
   const { data: subjectData } = useSubjectData(subject_id);
 
   const mutateCollection = useCollectionMutation();
+
+  const queryClient = useQueryClient();
+  const addCollection = useMutation({
+    mutationFn: (subject_id: number) =>
+      fetch(`https://api.bgm.tv/v0/users/-/collections/${subject_id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session?.accessToken ?? ""}`,
+        },
+        body: JSON.stringify({
+          type: 1,
+        }),
+      }),
+    onMutate: () =>
+      toast({
+        type: "info",
+        title: "正在添加收藏...",
+      }),
+    onSuccess: async () => {
+      await queryClient.refetchQueries([
+        "collection",
+        subject_id,
+        session?.user.name,
+      ]);
+
+      toast({
+        type: "success",
+        title: "添加收藏成功",
+      });
+    },
+  });
 
   return (
     <>
@@ -125,21 +159,7 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
                     variant="primary"
                     onClick={() => {
                       if (session) {
-                        toast({
-                          type: "info",
-                          title: "收藏条目失败",
-                          description:
-                            "收藏 api 暂未开放，请先自行前往主站收藏。",
-                          action: {
-                            label: "前往主站",
-                            onClick: () => {
-                              window.open(
-                                `https://bgm.tv/subject/${subject_id}`,
-                                "_blank"
-                              );
-                            },
-                          },
-                        });
+                        addCollection.mutate(subject_id);
                       } else {
                         void signIn("bangumi", {
                           redirect: false,
@@ -147,7 +167,11 @@ export function SubjectContent({ subject_id }: { subject_id: number }) {
                       }
                     }}
                   >
-                    <InboxArrowDownIcon className="mr-2 h-5 w-5" />
+                    {addCollection.isLoading ? (
+                      <LoadingSpinner className="mr-2 h-5 w-5" />
+                    ) : (
+                      <InboxArrowDownIcon className="mr-2 h-5 w-5" />
+                    )}
                     收藏
                   </Button>
                   <Button
