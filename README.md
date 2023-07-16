@@ -1,4 +1,4 @@
-# Bangumi App
+# Bangumi App (写的很烂，最近会重写，慎看！)
 
 基于 [Bangumi Api](https://bangumi.github.io/api/) 构建的 [Bangumi](https://bgm.tv/) 第三方 Web 客户端，使用 Next.js 13 appDir 开发，获得最佳体验请使用 chrome 浏览器。logo 图标来自 [bangumi-frontend](https://github.com/bangumi/frontend)
 
