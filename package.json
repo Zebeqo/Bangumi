@@ -90,6 +90,6 @@
     "tailwindcss": "3.3.2",
     "tailwindcss-animate": "1.0.5",
     "typescript": "5.0.4",
-    "windy-radix-palette": "0.6.0"
+    "windy-radix-palette": "0.6.1"
   }
 }
