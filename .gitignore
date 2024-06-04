@@ -39,6 +39,8 @@ next-env.d.ts
 
 # storybook
 migration-storybook.log
+/storybook-static
 
 # eslint
 .eslintcache
+
