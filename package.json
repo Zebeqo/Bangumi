@@ -64,7 +64,7 @@
     "@storybook/react": "7.0.7",
     "@storybook/test-runner": "0.10.0",
     "@storybook/testing-library": "0.1.0",
-    "@swc-jotai/debug-label": "0.0.9",
+    "@swc-jotai/debug-label": "0.1.1",
     "@swc-jotai/react-refresh": "0.0.7",
     "@tanstack/eslint-plugin-query": "4.29.4",
     "@tomfreudenberg/next-auth-mock": "0.5.6",
